@@ -4,15 +4,15 @@
   "source_artifact": "pre-submission-persistence-live-220.json",
   "execution_context": "pre_submission_explicit_user_authorization",
   "status": "in_progress",
-  "complete_cells": 17,
+  "complete_cells": 330,
   "total_cells": 360,
   "arms": {
-    "evolve": 6,
-    "depth_matched_reset": 6,
-    "no_canary": 5
+    "evolve": 110,
+    "depth_matched_reset": 110,
+    "no_canary": 110
   },
-  "provider_calls": 840,
-  "total_tokens": 1990705,
+  "provider_calls": 17048,
+  "total_tokens": 39637371,
   "inference_eligible": false,
   "interpretation": "Operational checkpoint only; no scientific conclusion is drawn before the complete balanced artifact passes its preregistered gates.",
   "arr_manuscript_isolation": true,
