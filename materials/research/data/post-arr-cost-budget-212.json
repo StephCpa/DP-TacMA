@@ -1,0 +1,24 @@
+{
+  "artifact": "post-arr-cost-budget-212",
+  "status": "passed",
+  "mode": "local cost planning from recorded X1 artifact; no provider calls",
+  "baseline_artifact": "research/artifacts/iclr2027-x1-g1-decision-036.json",
+  "baseline": {
+    "cells": 60,
+    "provider_calls": 3317,
+    "formal_tokens": 7479153,
+    "calls_per_cell": 55.28333333333333,
+    "tokens_per_cell": 124652.55
+  },
+  "target_cells": 360,
+  "projected_without_margin": {
+    "provider_calls": 19902,
+    "formal_tokens": 44874918
+  },
+  "safety_margin": 1.2,
+  "runner_budget": {
+    "max_total_calls": 23883,
+    "max_total_tokens": 53849902
+  },
+  "interpretation_guard": "This is a spending guard, not a claim about model utility or leakage; a budget stop yields incomplete data."
+}

@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "amendment_id": "PRE-SUBMISSION-X1-PERSISTENCE-REPLICATION-219",
+  "base_protocol": "research/configs/post-arr-persistence-replication-protocol-199.json",
+  "arr_submission_status": "not_submitted",
+  "authorization": "The user explicitly authorized starting the persistence replication before ARR submission in the current conversation on 2026-10-01.",
+  "manuscript_isolation": "This run is separate from the frozen ARR package and cannot change its manuscript, claims, or submission artifact.",
+  "execution_rule": "Require --pre-submission-authorized and PRE_SUBMISSION_EXPERIMENT_AUTHORIZED=1; retain the positive-control, ARR-freeze, budget, resume-integrity, and raw-canary guards.",
+  "primary_model": "deepseek-v4-flash",
+  "output_artifact": "research/artifacts/pre-submission-persistence-live-220.json"
+}

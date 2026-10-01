@@ -1,0 +1,15 @@
+{
+  "artifact": "acl-arr-official-pubcheck-194",
+  "status": "passed",
+  "mode": "official ACL aclpubcheck source checkout; no provider calls",
+  "tool_source": "https://github.com/acl-org/aclpubcheck",
+  "source_commit": "237bee3a554f2d2fcda69cd0cf1edf4168e3d339",
+  "source_retrieval": "direct GitHub ls-remote/clone with the GitHub proxy bypassed",
+  "command": "python -m aclpubcheck --paper_type long research/qa/arr-pubcheck-180/main.pdf",
+  "proof_pdf": "research/qa/arr-pubcheck-180/main.pdf",
+  "dependency_environment": "isolated temporary dependency path; project virtual environment was not modified",
+  "result": "All Clear!",
+  "exit_code": 0,
+  "historical_environment_failure": "research/artifacts/acl-arr-official-pubcheck-181.json",
+  "scope_note": "This is the current official-source result on the non-line-numbered proof. It does not validate a future camera-ready PDF or author metadata."
+}

@@ -1,0 +1,21 @@
+{
+  "snapshot_date": "2026-10-02",
+  "timezone": "Asia/Shanghai",
+  "source_artifact": "pre-submission-persistence-live-220.json",
+  "execution_context": "pre_submission_explicit_user_authorization",
+  "status": "in_progress",
+  "complete_cells": 17,
+  "total_cells": 360,
+  "arms": {
+    "evolve": 6,
+    "depth_matched_reset": 6,
+    "no_canary": 5
+  },
+  "provider_calls": 840,
+  "total_tokens": 1990705,
+  "inference_eligible": false,
+  "interpretation": "Operational checkpoint only; no scientific conclusion is drawn before the complete balanced artifact passes its preregistered gates.",
+  "arr_manuscript_isolation": true,
+  "raw_canaries_included": false,
+  "credentials_included": false
+}

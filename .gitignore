@@ -1,0 +1,10 @@
+# Credentials and local runtime state
+.env
+*.key
+*.pem
+*.log
+meta_evolution_logs/
+outputs/
+raw_traces/
+*.trace
+__pycache__/

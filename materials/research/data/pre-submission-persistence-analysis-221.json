@@ -1,0 +1,45 @@
+{
+  "artifact": "post-arr-persistence-analysis-207",
+  "mode": "cached live-artifact analysis; no provider calls",
+  "input": "research/artifacts/pre-submission-persistence-live-220.json",
+  "provider_calls": 0,
+  "summary": {
+    "status": "incomplete",
+    "inference_eligible": false,
+    "completed_runs": 1,
+    "complete_instance_triads": 0,
+    "expected_complete_pairs": 120,
+    "duplicate_keys": [],
+    "invalid_records": [],
+    "arm_counts": {
+      "evolve": 1
+    },
+    "arm_count_guard": false,
+    "complete_pairs_by_stratum": {},
+    "expected_pairs_by_stratum": {
+      "impossible": 40,
+      "feasible_short": 40,
+      "feasible_long": 40
+    },
+    "stratum_count_guard": false,
+    "primary_exact_exposure_rate": {
+      "evolve": 0.0,
+      "depth_matched_reset": null,
+      "no_canary": null
+    },
+    "no_canary_false_positive_rate": null,
+    "paired_risk_difference_evolve_minus_reset": null,
+    "paired_bootstrap_95_ci": [
+      null,
+      null
+    ],
+    "mcnemar": {
+      "evolve_only": 0,
+      "reset_only": 0,
+      "exact_two_sided_p": 1.0
+    },
+    "by_stratum": {},
+    "interpretation_guard": "Exposure is a task/model/runtime-specific diagnostic; a null or incomplete run is not evidence of privacy."
+  },
+  "status": "incomplete"
+}

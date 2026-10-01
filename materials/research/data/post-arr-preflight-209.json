@@ -1,0 +1,122 @@
+{
+  "artifact": "post-arr-preflight-209",
+  "status": "passed",
+  "mode": "sequential post-ARR pre-live regression; provider credentials cleared; no provider calls",
+  "steps": [
+    {
+      "step": "audit_post_arr_persistence_cohort_inventory.py",
+      "exit_code": 0,
+      "elapsed_seconds": 0.457,
+      "stdout_tail": "f IDs in prior logs/artifacts; no provider calls\", \"dataset\": \"upstream/TacoMAS-MultiAgent/datasets/plancraft_converted.json\", \"total_by_stratum\": {\"impossible\": 100, \"feasible_long\": 109, \"feasible_short\": 371}, \"conservatively_used_by_stratum\": {\"impossible\": 14, \"feasible_long\": 58, \"feasible_short\": 84}, \"remaining_by_stratum\": {\"feasible_short\": 287, \"feasible_long\": 51, \"impossible\": 86}, \"required_pairs_per_stratum\": 40, \"failed_strata\": [], \"selection_guard\": \"Counts are an availability audit only; final cohort selection remains frozen metadata-only before new outputs are inspected.\"}\n",
+      "stderr_tail": ""
+    },
+    {
+      "step": "freeze_post_arr_persistence_cohort.py",
+      "exit_code": 0,
+      "elapsed_seconds": 0.373,
+      "stdout_tail": "99\", \"selection_rule\": \"exclude every TEST id present in prior upstream logs or pre-existing non-post-arr research artifacts; ignore post-arr planning artifacts; sort remaining IDs by SHA-256(seed:id); take first 40 per stratum\", \"excluded_prior_id_count\": 156, \"eligible_by_stratum\": {\"impossible\": 86, \"feasible_short\": 287, \"feasible_long\": 51}, \"selected_by_stratum\": {\"impossible\": 40, \"feasible_short\": 40, \"feasible_long\": 40}, \"required_per_stratum\": 40, \"failed_strata\": [], \"public_artifact_rule\": \"The manifest stores IDs and selection commitments, not expected answers or raw canaries.\"}\n",
+      "stderr_tail": ""
+    },
+    {
+      "step": "audit_post_arr_manifest_reproducibility.py",
+      "exit_code": 0,
+      "elapsed_seconds": 0.912,
+      "stdout_tail": "{\"artifact\": \"post-arr-manifest-reproducibility-211\", \"status\": \"passed\", \"mode\": \"deterministic metadata-only cohort freeze audit; no provider calls\", \"freeze_exit_codes\": [0, 0], \"canonical_manifest_sha256\": [\"cc702a7ef567ddf89a8d27b16ed9c61dcdcebbc021d66ded4d358b7721a1a8ed\", \"cc702a7ef567ddf89a8d27b16ed9c61dcdcebbc021d66ded4d358b7721a1a8ed\", \"cc702a7ef567ddf89a8d27b16ed9c61dcdcebbc021d66ded4d358b7721a1a8ed\"], \"selected_instance_count\": 120, \"failed_checks\": []}\n",
+      "stderr_tail": ""
+    },
+    {
+      "step": "plan_post_arr_cost_budget.py",
+      "exit_code": 0,
+      "elapsed_seconds": 0.125,
+      "stdout_tail": "om recorded X1 artifact; no provider calls\", \"baseline_artifact\": \"research/artifacts/iclr2027-x1-g1-decision-036.json\", \"baseline\": {\"cells\": 60, \"provider_calls\": 3317, \"formal_tokens\": 7479153, \"calls_per_cell\": 55.28333333333333, \"tokens_per_cell\": 124652.55}, \"target_cells\": 360, \"projected_without_margin\": {\"provider_calls\": 19902, \"formal_tokens\": 44874918}, \"safety_margin\": 1.2, \"runner_budget\": {\"max_total_calls\": 23883, \"max_total_tokens\": 53849902}, \"interpretation_guard\": \"This is a spending guard, not a claim about model utility or leakage; a budget stop yields incomplete data.\"}\n",
+      "stderr_tail": ""
+    },
+    {
+      "step": "prepare_post_arr_persistence_runner_cohort.py",
+      "exit_code": 0,
+      "elapsed_seconds": 0.14,
+      "stdout_tail": "{\"artifact\": \"post-arr-persistence-runner-adapter-audit-203\", \"status\": \"passed\", \"mode\": \"answer-free runner adapter audit; no provider calls\", \"config\": \"research/configs/post-arr-persistence-runner-cohort-203.json\", \"instance_count\": 120, \"cell_count\": 360, \"counts_by_stratum\": {\"impossible\": 40, \"feasible_short\": 40, \"feasible_long\": 40}, \"failed_checks\": [], \"runner_contract\": \"compatible with run_x1_runtime arm names and dataset index lookup\"}\n",
+      "stderr_tail": ""
+    },
+    {
+      "step": "preflight_post_arr_persistence_schedule.py",
+      "exit_code": 0,
+      "elapsed_seconds": 0.191,
+      "stdout_tail": "{\"artifact\": \"post-arr-persistence-schedule-preflight-204\", \"status\": \"passed\", \"mode\": \"local schedule and canary commitment preflight; no provider calls\", \"config\": \"research/configs/post-arr-persistence-runner-cohort-203.json\", \"instances\": 120, \"cells\": 360, \"canary_token_count\": 9, \"partial_detector_token_count\": 5, \"unique_canary_commitments\": 120, \"failed_checks\": [], \"raw_canary_storage\": \"none\"}\n",
+      "stderr_tail": ""
+    },
+    {
+      "step": "validate_x1_extractor_positive_control.py",
+      "exit_code": 0,
+      "elapsed_seconds": 0.175,
+      "stdout_tail": "C:\\work\\博士整理\\dp-es\\research\\artifacts\\iclr2027-x1-extractor-positive-control-064.json\n",
+      "stderr_tail": ""
+    },
+    {
+      "step": "preflight_post_arr_runtime_contract.py",
+      "exit_code": 0,
+      "elapsed_seconds": 9.726,
+      "stdout_tail": "{\"artifact\": \"post-arr-runtime-contract-preflight-208\", \"status\": \"passed\", \"mode\": \"local frozen-runtime import and contract preflight; no provider calls\", \"failed_checks\": [], \"provider_calls\": 0, \"credential_use\": \"none\"}\n",
+      "stderr_tail": ""
+    },
+    {
+      "step": "audit_post_arr_slow_update_semantics.py",
+      "exit_code": 0,
+      "elapsed_seconds": 0.126,
+      "stdout_tail": "{\"artifact\": \"post-arr-slow-update-semantics-audit-213\", \"status\": \"passed\", \"mode\": \"source-level runtime contract audit; no provider calls\", \"protocol_interval\": 3, \"protocol_rounds\": 5, \"expected_first_slow_update_after_round\": 3, \"first_trigger_can_be_deferred_by_conservative_mode\": false, \"failed_checks\": []}\n",
+      "stderr_tail": ""
+    },
+    {
+      "step": "audit_post_arr_reset_isolation.py",
+      "exit_code": 0,
+      "elapsed_seconds": 2.723,
+      "stdout_tail": "{\"artifact\": \"post-arr-reset-isolation-audit-214\", \"status\": \"passed\", \"mode\": \"local reset-channel audit; no provider calls\", \"provider_calls\": 0, \"focused_test_exit_code\": 0, \"focused_test_stdout_tail\": \"..                                                                       [100%]\\n2 passed in 0.09s\\n\", \"failed_checks\": []}\n",
+      "stderr_tail": ""
+    },
+    {
+      "step": "audit_post_arr_raw_canary_hygiene.py",
+      "exit_code": 0,
+      "elapsed_seconds": 0.892,
+      "stdout_tail": "{\"artifact\": \"post-arr-raw-canary-hygiene-audit-216\", \"status\": \"passed\", \"mode\": \"local public-artifact raw-canary scan; no provider calls\", \"provider_calls\": 0, \"cohort_canary_count\": 120, \"scanned_file_count\": 304, \"raw_canary_hits\": [], \"public_artifact_rule\": \"Only hashes and match metadata may be stored in research artifacts; raw canary strings remain in local runtime traces only.\"}\n",
+      "stderr_tail": ""
+    },
+    {
+      "step": "analyze_post_arr_persistence_replication.py",
+      "exit_code": 0,
+      "elapsed_seconds": 0.171,
+      "stdout_tail": "{\"artifact\": \"post-arr-persistence-analysis-207\", \"status\": \"awaiting_live_data\", \"mode\": \"no-provider analysis entrypoint; live artifact not present\", \"input\": \"research/artifacts/post-arr-persistence-live-205.json\", \"provider_calls\": 0}\n",
+      "stderr_tail": ""
+    },
+    {
+      "step": "audit_post_arr_persistence_live_guard.py",
+      "exit_code": 0,
+      "elapsed_seconds": 0.326,
+      "stdout_tail": "{\"artifact\": \"post-arr-persistence-live-guard-audit-206\", \"status\": \"passed\", \"mode\": \"local execute-guard test with provider credentials removed; no provider calls\", \"runner\": \"research/experiments/run_post_arr_persistence_replication.py\", \"exit_code\": 1, \"guard_message_seen\": true, \"live_artifact_created\": false, \"failed_checks\": []}\n",
+      "stderr_tail": ""
+    },
+    {
+      "step": "audit_post_arr_credentials.py",
+      "exit_code": 0,
+      "elapsed_seconds": 0.199,
+      "stdout_tail": "{\"artifact\": \"post-arr-credential-scan-210\", \"status\": \"passed\", \"mode\": \"post-ARR asset credential/path scan; no provider calls\", \"scanned_file_count\": 40, \"secret_hits\": {}, \"machine_path_hits\": {}, \"raw_canary_rule\": \"The scan is supplementary; raw canaries are forbidden by protocol and not stored in public artifacts.\"}\n",
+      "stderr_tail": ""
+    },
+    {
+      "step": "validate_post_arr_persistence_protocol.py",
+      "exit_code": 0,
+      "elapsed_seconds": 0.137,
+      "stdout_tail": "{\"artifact\": \"post-arr-persistence-protocol-audit-200\", \"status\": \"passed\", \"mode\": \"planning protocol schema audit; no provider calls\", \"config\": \"research/configs/post-arr-persistence-replication-protocol-199.json\", \"failed_checks\": [], \"execution_guard\": \"No provider call before ARR submission and no live execution from this config alone.\"}\n",
+      "stderr_tail": ""
+    },
+    {
+      "step": "pytest",
+      "exit_code": 0,
+      "elapsed_seconds": 25.856,
+      "stdout_tail": "........................................................................ [ 45%]\n........................................................................ [ 91%]\n.............                                                            [100%]\n157 passed in 22.16s\n",
+      "stderr_tail": ""
+    }
+  ],
+  "failed_steps": [],
+  "provider_calls": 0,
+  "live_execution": false
+}

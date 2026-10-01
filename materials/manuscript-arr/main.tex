@@ -1,0 +1,259 @@
+\documentclass[11pt]{article}
+\usepackage[review]{acl}
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{microtype}
+\usepackage{inconsolata}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{amsmath,amssymb}
+\usepackage{url}
+\usepackage{hyperref}
+\hypersetup{hidelinks}
+\input{math_commands.tex}
+
+\title{Before Selecting Evolving LLM Agents: Auditing Exposure, Score Validity, and Candidate Support}
+\author{Anonymous ACL Submission}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Test-time LLM agents retain natural-language state, score responses, and revise workflows while solving tasks. Before adding a selector or privacy mechanism, we need to know whether state carries sensitive content, whether scores track executable utility, and whether generation exposes useful alternatives. We introduce a persistence-aware executable audit and apply it to a released multi-agent runtime on PlanCraft. A three-arm study detects no post-input canary exposure in 20 instances, with an upper confidence bound of 13.9\%. Removing a score term assigning 85\% weight to output length changes the score scale across DeepSeek and Qwen, while a secondary synthesis of 42 paired runs changes exactness by only $+0.024$ (95\% interval $[-0.095,0.143]$). Across four frozen cohorts, selectors restricted to recorded candidates have at most 0--8.3 percentage points of headroom. Five independent Qwen trajectories raise executable-oracle accuracy from 0.60 to 0.80 at triple the token cost. A frozen same-task public-only control reverses our initial explanation on two selected DeepSeek failures: one invalid endpoint remains concentrated under both repair-conditioned and public-only prompts. These results define an audit order for evolving LLM-agent selection and its limits; they do not provide end-to-end privacy or a general prevalence estimate.
+\end{abstract}
+
+\section{Introduction}
+
+Language-model agents increasingly adapt while solving a task. They revise role prompts, summarize natural-language memories, assign contribution scores, and change workflows or communication structure. TacoMAS exemplifies this design: a fast loop produces and evaluates agent outputs, while a slower controller can update feedback and topology \citep{xu2026tacomas}. Such systems invite a natural privacy proposal. If an input can enter persistent evolved state, privatize the scores or decisions that update that state.
+
+This proposal joins two questions that need not have the same answer. A mechanism can provide a valid event-level DP guarantee for a bounded score while protecting a decision with negligible task value. Conversely, a useful candidate selector says nothing about whether natural-language memories and messages are private. Before measuring a privacy--utility frontier, three empirical premises must hold:
+\begin{enumerate}
+    \item sensitive information measurably enters post-input persistent state
+    \item the score being privatized causally tracks executable utility
+    \item the realized candidate pool contains a better output worth selecting.
+\end{enumerate}
+Architecture diagrams do not establish any of them. A model may fail to retain a tested secret over a short horizon. A ``contribution'' score may mostly reward verbose text. A perfect selector cannot recover a candidate the generator never produced.
+
+We develop a persistence-aware executable audit around these premises and apply it to a frozen TacoMAS runtime on PlanCraft, a tool-using crafting benchmark with deterministic action-list evaluation \citep{dagan2025plancraft}. The audit is designed to distinguish a privacy-relevant state channel from score validity and candidate-support failures. In this setting, we did not detect the motivating post-input canary channel, and removing the dominant score term did not reliably improve exactness. Most failed runs instead contained no executable candidate for any selector restricted to the recorded support to recover.
+
+The resulting audit has a narrow systems conclusion. Across four frozen cohorts, an oracle over all persisted candidates improves accuracy by at most 0--8.3 points. Repeated repair under fixed execution feedback can concentrate on the same wrong response despite stochastic decoding. Independent trajectories expand task-relevant support and raise the pool oracle by 20 points, although at substantial cost. The latter is evidence about generation support; it is not an end-to-end privacy result.
+
+For the evaluation of test-time LLM-agent pipelines, our contributions are:
+\begin{itemize}
+    \item a persistence-aware executable audit that separates exposure, signal validity, and candidate support
+    \item a realized-pool upper bound that applies to every private or non-private selector restricted to the recorded candidates
+    \item prospective evidence that independent generation expands support, with a matched-slot analysis locating the gain in cross-context coverage
+    \item a scoped diagnostic on two selected hard failures showing task-level response collapse under both repair-conditioned and public-only prompts.
+\end{itemize}
+We do not present a new end-to-end private agent or a general leakage estimate. The result is an audit of the prerequisites that determine whether selection is worth studying.
+
+\section{Auditing Selection in Test-Time LLM Agents}
+
+\subsection{Persistent exposure after the input disappears}
+
+At round $t$, agent $v$ has persistent text-bearing state
+\[
+s_{v,t}=(\phi_{v,t},m_{v,t},f_{v,t},o_{v,t},q_{v,t}),
+\]
+covering policy text, memory, feedback, stored outputs, and score history. A canary placed in the round-one query trivially occurs in that query and may be echoed immediately. We therefore define leakage operationally as exact or preregistered five-token partial recovery from persistent state at rounds 3 or 5, after the direct-input checkpoint.
+
+The audit uses three five-round arms: evolution with a canary, a depth-matched reset that restores initial state after each round, and evolution without a canary. The reset control distinguishes persistence created by state evolution from ordinary processing of a repeated task. Structural graph edits are disabled so that all arms have the same three-agent topology and depth. We snapshot every declared text channel, store only match metadata in research artifacts, and separately verify the extractor by deterministic channel injection and a live memory-write positive control.
+
+\subsection{Signal validity before privacy calibration}
+
+The released non-slow-round score is
+\[
+\begin{aligned}
+c(y,e)={}&0.85\min\{1,|y|/800\}\\
+&+0.15\mathbf 1\{e=\mathrm{success}\}.
+\end{aligned}
+\]
+Length can therefore move the score much more than environment success. To distinguish correlation from consequence, we prospectively compare the released score with a length-zero arm while holding prompts, topology, rounds, feedback opportunities, and structural masks fixed. References are withheld until generation finishes, and deterministic executable exactness is computed offline. This firewall prevents an evaluator from leaking the answer into stopping, retention, or feedback.
+
+The runtime authors clarify that this formula is a low-cost heuristic for fast rounds without a slow update, intended as a coarse proxy for analytical effort. During a scheduled slow update, a separately configured Judge LLM produces an independent score; the Meta-LLM receives that score together with historical heuristic and judge scores when making topology, edge, feedback, and workflow decisions. Thus the heuristic enters subsequent system state rather than serving only as a log. The authors report no independent validation for the specific $0.85$ weight. We therefore treat the formula as an unvalidated design choice whose causal effect on the recorded score can be measured, rather than as a validated semantic utility estimator.
+
+For a randomized score intervention $Z$, define its arm-level utility consequence as
+\[
+\widehat\delta_U^{\mathrm{abl}}=
+\widehat{\mathbb E}[U\mid Z=1]-\widehat{\mathbb E}[U\mid Z=0].
+\]
+This randomized-arm diagnostic asks whether the intervention changes downstream utility. It is not a parameter of a candidate selector. For two candidates with utility-score gap $g_U^{\mathrm{sel}}=u(c^+)-u(c^-)$ and candidate-score sensitivity $\Delta_u$, define the separate local selector ratio $\rho_U^{\mathrm{sel}}=g_U^{\mathrm{sel}}/\Delta_u$. Private discrimination depends on $\varepsilon\rho_U^{\mathrm{sel}}$. For a monotone exponential mechanism over $k$ candidates, the preferred-candidate probability is
+\[
+\frac{1}{1+(k-1)e^{-\varepsilon\rho_U^{\mathrm{sel}}}}.
+\]
+If the intervention changes scores but not utility, increasing $\varepsilon$ cannot make the targeted signal useful.
+
+\subsection{Candidate-pool headroom}
+
+Let $f_i$ be run $i$'s final answer and let $\mathcal C_i$ contain $f_i$ plus all persisted round-agent candidates available to a downstream selector. For executable utility $U$, define
+\[
+H_i=\max_{c\in\mathcal C_i}U(c)-U(f_i).
+\]
+$H_i$ is an exact upper bound for the realized run: no selector whose output must belong to $\mathcal C_i$ can improve by more than $H_i$. This includes noisy maximum, the exponential mechanism, and any non-private reranker over the same support. The bound does not constrain regeneration, repair, or new tool interaction because those operations change $\mathcal C_i$.
+
+We parse candidate text into canonical crafting plans and execute it without reference answers. The reference sequence is retained only for offline secondary checks. This distinction matters because a plausible explanation is not a successful plan, while an executable candidate with different surface text is useful.
+
+\subsection{Inference and experimental sequence}
+
+Paired binary effects use task-level risk differences, paired task bootstraps, and exact discordant-pair tests when positive and negative differences are both possible. Nested pools satisfy $C_1\subset C_5$, so their support and oracle differences cannot be negative. We report task-bootstrap intervals and one-sided lower bounds, not sign-test $p$-values. Provider calls, rounds, candidate slots, and repeated repairs are never treated as independent task units.
+
+The experiments proceed in a fixed order. We first audit canary exposure and cached score validity with DeepSeek V4 Flash. We then replicate the length ablation on a non-degenerate DeepSeek cohort and an untouched Qwen3.7-Max cohort. A zero-call oracle audit measures fixed-pool headroom. Finally, a prospective Qwen study expands candidate support with independent trajectories, followed by a compute-matched DeepSeek gate comparing an independent restart with direct executor-guided repair. Protocols, stopping rules, amendments, and provider-accounting details appear in the appendix.
+
+For transparency, the appendix begins with an endpoint-status table that identifies which quantities were frozen before provider execution and which later analyses are explicitly secondary or qualified. No post-outcome qualification changes a recorded run or its primary cohort endpoint.
+
+\section{Results}
+
+\subsection{Leakage diagnostic and score validity}
+
+All 60 cells in the 20-instance canary study complete five rounds. We detect no exact or five-token partial canary in post-input persistent state in any arm (Table~\ref{tab:audit}). The evolve-arm one-sided 95\% upper confidence bound is 13.9\%, so the study is a low-powered failed-to-detect diagnostic rather than a gate capable of excluding rare or modest exposure. The extractor recovers 7/7 deterministic channel injections and a live canary written into memory at round 2. State is active rather than inert: 617/720 comparable agent transitions change, all 168 recorded slow-feedback fields are nonempty, and retention fires in 60/300 rounds. The defensible result is therefore \emph{failed to detect with a functioning instrument}.
+
+\begin{table*}[t]
+\caption{Primary audit diagnostics. Exposure is measured only after the input round. Length ablations report length-zero minus released-score exactness. The 42-pair synthesis is a secondary outcome-aware analysis, not a single preregistered trial.}
+\label{tab:audit}
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+Study & $n$ & Primary observation & 95\% interval \\
+\midrule
+Canary: evolve & 20 & exact/partial $0/20$ & upper bound 0.139 \\
+Canary: reset & 20 & exact/partial $0/20$ & upper bound 0.139 \\
+DeepSeek initial ablation & 10 pairs & exactness $0.000$ & $[0,0]$ \\
+DeepSeek healthy cohort & 12 pairs & exactness $+0.167$ & $[0,0.417]$ \\
+Qwen healthy cohort & 20 pairs & exactness $-0.050$ & $[-0.250,0.150]$ \\
+Stratified synthesis & 42 pairs & exactness $+0.024$ & $[-0.095,0.143]$ \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+The score audit also separates score movement from task movement. Scores at least 0.8 occur mostly in failed runs because failures dominate the cohort; relative to the base rate, high scores are only mildly enriched among successes. The conditional AUC analysis is reported in Appendix~D rather than used as a primary result because only five runs are exact and they come from three task instances.
+
+Randomized intervention supplies the causal result. Removing length sharply reduces mean contribution score in every study: from 0.429 to 0.069 in the initial DeepSeek pairs, by $-0.308$ $[-0.381,-0.230]$ in the non-degenerate DeepSeek replication, and by $-0.117$ $[-0.150,-0.084]$ in Qwen. It also eliminates every score at least 0.8 in the paired cohorts. Exactness does not move consistently (Table~\ref{tab:audit}). The pooled direction is near zero, and the two healthy-regime point estimates have opposite signs. Length controls the released score scale, but deleting it is not a validated utility improvement.
+
+\subsection{Fixed-pool selection has little realized headroom}
+
+We execute the final answer and every persisted round-agent candidate in four independently frozen original or control cohorts. Table~\ref{tab:headroom} reports the final accuracy and candidate-pool oracle. In every cohort, average headroom is between zero and 8.3 points. This is not a confidence statement about all future tasks. It is an exact statement about what any selector could have recovered from each recorded pool.
+
+\begin{table*}[t]
+\caption{Executable headroom for selectors restricted to persisted candidates. Intervals resample tasks within cohort. DeepSeek X1 has $n=13$ because forward execution cannot certify the seven \texttt{IMPOSSIBLE} references. Diversity summaries retain all 20 evolve runs.}
+\label{tab:headroom}
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+Cohort & $n$ & Final & Oracle & $\widehat H$ [95\% interval] \\
+\midrule
+DeepSeek X1 evolve & 13 & .154 & .154 & .000 $[0,0]$ \\
+DeepSeek healthy evolve & 12 & .500 & .583 & .083 $[0,.250]$ \\
+DeepSeek retention control & 20 & .000 & .050 & .050 $[0,.150]$ \\
+Qwen released score & 20 & .550 & .600 & .050 $[0,.150]$ \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+Pooling the four heterogeneous original/control cohorts gives 3 recoverable failures among 65 semantically eligible runs. The two-sided Clopper--Pearson interval is $[0.010,0.129]$ only under an exchangeable-Bernoulli reading. The cohort-stratified bootstrap interval is $[0,0.108]$. These population intervals do not alter the exact realized-pool bound.
+
+The Qwen audit makes the failure mode concrete. Of nine failed final answers under released scoring, only one run contains an executable intermediate candidate. The other eight are generation failures. The length-zero arm similarly has one recoverable failure and nine generation failures. Most failed runs are not cases where a good candidate was scored badly. No good candidate exists on the recorded surface.
+
+Literal duplication is model-dependent and therefore not the general explanation. Qwen repeats exact text in roughly 81--82\% of its 16 slots, whereas DeepSeek duplicate-text rates are much lower. Task-relevant support is small in both model families: across selected arms, 38/72 runs contain no parseable canonical plan, 22 contain one, eight contain two, and only four contain at least three. The common bottleneck is effective executable support, not identical wording.
+
+\subsection{Independent contexts expand support}
+
+We test the bound's escape clause prospectively on 20 untouched Qwen length-two tasks. Each task receives one temperature-zero trajectory and five independent temperature-0.7 trajectories. Every five-round trajectory supplies 15 agent outputs and a final answer. After canonical deduplication, $C_j$ is the nested union of the temperature-zero trajectory and the first $j$ stochastic trajectories.
+
+Moving from $C_1$ to $C_5$ adds 1.00 canonical plan per task, with two-sided task-bootstrap interval $[0.50,1.60]$ and one-sided 95\% lower bound 0.60. Executable-oracle accuracy rises from 0.60 to 0.80, a gain of 0.20 $[0.05,0.40]$. Because these pools are nested, we do not report sign-test $p$-values. A non-nested comparison between the first temperature-0.7 trajectory and the temperature-zero trajectory finds a support difference of $-0.05$ $[-0.35,0.25]$. Temperature alone is not sufficient. The measured gain comes from accumulating independent trajectories.
+
+At a matched 16 candidate slots, sampling across the five stochastic trajectories yields expected oracle coverage 0.626, compared with 0.570 for 16 slots within one trajectory. The difference is 0.056 $[0.016,0.105]$. This cached comparison locates useful diversity across independently restarted contexts, not merely across more candidate slots within one shared context. It does not isolate a multi-agent advantage because every trajectory uses the same three-agent runtime.
+
+The final answers alone expose the same allocation effect: an oracle over five independent stochastic finals reaches 0.65, compared with 0.570 for 16 slots sampled within one trajectory. Within this runtime, independent restarts therefore contribute more observed coverage than adding rounds and agents inside a shared trajectory, but this comparison does not identify an architectural multi-agent effect.
+
+The gain is uneven. Across the 100 stochastic trajectories, per-task success estimates are exactly zero or one for 14/20 tasks. Four tasks are rescued by $C_5$ but not $C_1$, and three of these contain a valid plan in only one of five trajectories. A fresh-draw plug-in expectation is 0.751 at five stochastic trajectories, whereas the realized nested $C_5$ pool reaches 0.80 on the same sample. The former averages estimated future draws, while the latter is the observed cached pool. The plug-in curve rises to 0.798 at twenty and has an empirical asymptote of 0.80, but this is finite-sample extrapolation. Zero successes in five trials still permits a one-sided 95\% binomial upper bound of 0.451, so 0.80 is not an identified hard ceiling.
+
+The escape is also expensive. $C_1$ records 4.81M tokens and $C_5$ 14.43M, a 3.00-fold increase for a 0.20 oracle gain. Independent restarting is an existence proof and a cost baseline, not an efficient method.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.90\textwidth]{figures/qwen-candidate-pool-enlargement.png}
+\caption{Independent trajectories enlarge canonical support and executable headroom. The selector calculation in panel (b) is an illustrative narrow-adjacency calibration over cached candidates, not an end-to-end private-system accuracy result. The dashed 0.80 line is the cached-pool oracle.}
+\label{fig:pool}
+\end{figure*}
+
+\subsection{The obvious cheap remedy does not diversify hard failures}
+
+We next ask whether direct repair can beat the restart baseline without paying for another full trajectory. Eight untouched DeepSeek tasks first receive one shared temperature-zero trajectory. If its pool succeeds, both methods stop. Otherwise, one arm runs a full temperature-0.7 restart, whose realized token use caps sequential temperature-0.7 repairs in the other arm. Repair receives the public task, its current candidate, and reference-free execution diagnostics.
+
+Five of eight anchors already succeed, leaving only three informative failures rather than the preregistered minimum of four. The gate stops and no main cohort runs. Among those three failures, restart succeeds on 0/3 and repair on 1/3, with one discordant task and exact paired $p=1$. On the rescued task, repair succeeds on its first 1,008-token call while the matched-budget restart fails after 157,910 tokens, an existence result on one task rather than an efficiency ratio.
+
+The two exhausted repairs tell a different story. On TEST0030, 69/80 calls return the identical invalid string \texttt{["IMPOSSIBLE"]}. After semantic normalization, 78/80 express impossibility. TEST0535 returns \texttt{["redstone\_torch"]} in 76/80 calls, repeatedly omitting the required intermediate. Thus nominally stochastic decoding under a fixed task, candidate, and diagnostic context concentrates on one wrong answer at raw modal rates of 86.25\% and 95\%.
+
+We froze a same-task control before making another provider call. DeepSeek then received only the public task and the same output-format instruction, with no current candidate, executor diagnostic, attempt index, or response history. TEST0030 returned \texttt{["bookshelf"]} in 79/80 calls (98.75\%). TEST0535 returned raw \texttt{["redstone\_torch"]} in 76/80 calls and the same semantic plan in 80/80. None of the 160 public-task-only responses was executable. The mean task-level conditioned-minus-public-only raw modal-rate difference is $-0.0625$.
+
+This control reverses our initial explanation. Conditioning is not necessary for the concentration and does not increase it on either selected task. We therefore treat this as a scoped task-level response-collapse diagnostic: direct stochastic generation remains trapped on one invalid endpoint under both prompts. The repeated calls estimate two within-task response distributions, not 160 task units, so the result does not estimate a population prevalence. It provides a mechanism example for why raising temperature inside a direct prompt can add little support while full independent trajectories sometimes escape.
+
+\subsection{A held-out planning component control}
+
+To separate model choice from the executable support supplied by the planner, we ran a frozen 18-task diagnostic that removed bounded pre-checks and distance filtering while retaining local action verification. The unfiltered DeepSeek arm produced executable replays on 8/12 feasible tasks and canonical exact plans on 5/12; a zero-call symbolic search on the same cohort produced 12/12 and 8/12. The four replay discordances all favored symbolic search (two-sided exact $p=0.125$); canonical exactness was 5/12 versus 8/12 ($p=0.375$). This fixed-cohort component result localizes much of the coverage to symbolic constraints, rather than establishing an LLM or multi-agent architectural advantage.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.90\textwidth]{figures/evolution-audit-main-results.pdf}
+\caption{Secondary audit results. Post-input exposure is not detected. The 42-pair utility synthesis combines all three length interventions rather than only the initial cohort, and the original score has modest base-rate-aware lift.}
+\label{fig:audit}
+\end{figure*}
+
+\subsection{Support expansion determines selector headroom}
+
+On a mixed $C_5$ pool, trusted binary executor utility has $g_U^{\mathrm{sel}}=\Delta_u=1$ and hence local $\rho_U^{\mathrm{sel}}=1$. Under candidate-score replacement adjacency, the monotone exponential mechanism samples index $j$ with probability proportional to $\exp(\varepsilon u_j/\Delta_u)$. Its mean executable probability is 0.512, 0.575, 0.682, 0.779, and 0.800 at $\varepsilon=0.5,1,2,4,8$, respectively, against the non-private oracle of 0.80. At $\varepsilon=0.5$, 0.512 is barely above the 0.50 baseline. The curve becomes materially separated near $\varepsilon=2$ in this binary-gap setting.
+
+This is an illustrative selector calculation, not an experiment establishing a privacy--utility frontier. Candidate texts, prompts, memories, inter-agent messages, and control flow remain trusted; only the released selected index or output is covered by the stated adjacency. The calculation shows how a bounded selector would behave after a mixed-validity pool exists. It does not establish end-to-end privacy or demonstrate that the mechanism improves the evolving agent.
+
+\section{Related Work and Implications}
+
+Test-time optimization uses language models as optimizers or textual-gradient generators \citep{yang2023opro,yuksekgonul2024textgrad}. Self-consistency, tree search, and compute-aware inference instead spend additional test-time computation on diverse samples or structured exploration \citep{wang2022selfconsistency,yao2023tot,zhou2023lats,snell2024testtime}. Our headroom measurement complements this literature by asking a prior question: before optimizing search or selection, did the recorded generator expose any executable alternative?
+
+Feedback-based agents such as ReAct, Reflexion, Self-Refine, and LATS condition later generation on actions, evaluation, or verbal memory \citep{yao2022react,shinn2023reflexion,madaan2023selfrefine,zhou2023lats}. Multi-agent sampling and layered aggregation seek gains from multiple response sources \citep{li2024moreagents,wang2024moa,xu2026tacomas}. Our matched-slot result distinguishes independent-context coverage from additional slots within one trajectory. The repair gate and public-only control show the same wrong mode under feedback-conditioned and direct prompts. Context independence is therefore an empirical variable, not an automatic consequence of temperature.
+
+Learned evaluation can track preferences while exhibiting position, self-enhancement, and verbosity biases \citep{zheng2023judge}. Length-controlled evaluation directly targets the latter confound \citep{dubois2024length}. We instead intervene on a score used inside an evolving runtime and measure machine-executable utility. The separation between score movement and task movement is therefore causal and operational, not only a meta-evaluation correlation.
+
+Canary methods test whether rare secrets influence model outputs \citep{carlini2019secret}. Our adaptation targets retained test-time state rather than trained parameters and separates immediate echo from later exposure. Work on indirect prompt injection, memory poisoning, tool-using-agent attacks, and privacy-norm behavior demonstrates that agent state and external observations can carry security- or privacy-relevant information \citep{greshake2023indirect,chen2024agentpoison,debenedetti2024agentdojo,shao2024privacylens}. These threat models motivate measurement but do not imply that our specific canary must persist.
+
+Differential privacy calibrates randomized releases to sensitivity \citep{dwork2006calibrating,dwork2014foundations}. Report Noisy Max \citep{dwork2014foundations}, the exponential mechanism \citep{mcsherry2007mechanism}, and selection from candidates whose score functions are themselves private \citep{liu2019private} cover distinct private-selection settings. Private prompt optimization \citep{hong2024dpopt} and continual-observation tools \citep{dwork2010continual} protect other bounded channels, but formal privacy does not establish that the protected decision improves task outcomes.
+
+The observed support bottleneck also changes the engineering target. Better reranking cannot solve generator-unreachable tasks. Independent restarts do, but at three times the token cost. Direct repair can exploit execution feedback and stop early, yet the stopped gate shows that stochastic generation can remain trapped on one invalid endpoint with or without repair conditioning. Refinement methods therefore cannot assume that feedback supplies diversity. Efficient diversity requires an intervention that changes task-relevant support without multiplying full trajectories. Designing and validating such an intervention is future work, not a post-hoc addition to this study.
+
+An end-to-end private architecture would still need an explicit privacy principal, adjacency relation, public transcript, and trusted boundary. Natural-language memory, cross-agent messages, stopping time, and topology changes can reveal information independently of a private score. One possible direction is a typed-edge billboard design in which cross-boundary communication is mediated through a privatized summary and slow-loop actions are post-processing. The billboard lemma gives a standard route from a shared DP signal plus each participant's own data to joint DP outputs \citep{hsu2014private}. We do not evaluate that architecture here.
+
+\section{Reproducibility}
+
+Every reported experiment uses a frozen JSON protocol, a resumable runner, and machine-readable outputs. References are withheld during online generation and exactness is recomputed offline. Repeated calls, trajectories, and candidate slots are clustered by task in uncertainty analyses. Raw canaries and provider credentials are excluded from research artifacts. The appendix records amendments, stopping decisions, and excluded provider-error traces.
+
+\section{Conclusion}
+
+Selection in evolving LLM agents should be preceded by an audit of exposure, score validity, and candidate support. In our setting, the canary study is a low-powered failed-to-detect diagnostic, removing the dominant score term does not reliably change utility, and fixed candidate pools leave at most 0--8.3 points of realized headroom. Independent trajectories raise the oracle from 0.60 to 0.80 but triple token use. A two-task diagnostic shows task-level response collapse under both repair-conditioned and public-only prompts. These measurements define the empirical conditions that a future private selector must satisfy and expose the limits of the present evidence.
+
+\section{Limitations}
+
+The leakage audit covers one canary family, injection route, model, five-round horizon, and fixed topology. Topology evolution is disabled, so the study does not test leakage through structural edits. With 0/20 observations it cannot exclude rates below 13.9\% at one-sided 95\% confidence, and it does not mount adaptive extraction attacks. Qwen replicates the score intervention but not leakage.
+
+PlanCraft exactness is deliberately strict and may ignore useful partial reasoning. The headroom result applies only to recorded candidates and binary target-reaching utility. Hidden reasoning, new repairs, and unrecorded tool interactions lie outside the bound. The four cohort estimates are modest in size, and their intervals do not justify a universal numerical ceiling.
+
+The contribution formula is a coarse heuristic rather than an independently validated measure of analytical effort. The runtime authors do not provide an independent justification for the $0.85$ length weight. Our intervention establishes its effect on the recorded score and does not evaluate whether the separate slow-update Judge LLM improves downstream decisions.
+
+The Qwen enlargement study has 20 tasks and one benchmark. Its nested design identifies added-pool gains but not a sign-symmetric treatment test or a same-context, token-matched continuation control. Its estimated trajectory curve assumes conditional i.i.d. restarts beyond the five observed. Cost totals are provider-recorded token counts rather than wall-clock or monetary comparisons. The matched-slot result identifies cross-trajectory coverage in the cached multi-agent runtime, not a causal multi-agent advantage.
+
+Task-level response collapse is observed on two selected exhausted DeepSeek tasks. The public-task-only control removes candidate and diagnostic conditioning, but repeated calls still characterize only two tasks and do not create 160 independent task units. The stopped repair gate has three informative comparisons and one discordance, and the successful branch stops after one draw. Prevalence and association with success therefore remain unidentified.
+
+Finally, the study does not provide end-to-end DP. The selector experiment protects only a candidate-validity release under a narrow replacement adjacency. It leaves candidate text and the evolving transcript trusted.
+
+\section{Ethical Considerations}
+
+The experiments use a released agent runtime, a public synthetic planning benchmark, and synthetic canaries; they involve no human participants or personal data. The audit is designed to test privacy-relevant persistence without publishing raw canary values or provider credentials. Its failed-to-detect leakage result should not be read as a privacy guarantee for the audited runtime or for LLM agents generally.
+
+\bibliography{references}
+
+\input{appendix.tex}
+
+\end{document}
+

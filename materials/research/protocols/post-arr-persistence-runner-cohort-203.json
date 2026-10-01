@@ -1,0 +1,1339 @@
+{
+  "schema_version": 1,
+  "experiment_id": "POST-ARR-X1-PERSISTENCE-REPLICATION-199",
+  "status": "pre_live_adapter",
+  "source_manifest": "research/artifacts/post-arr-persistence-cohort-manifest-202.json",
+  "source_manifest_sha256": "79da9b57fab2919dce385661be274858206e59730ddba694a01885f2352d60a7",
+  "dataset": "upstream/TacoMAS-MultiAgent/datasets/plancraft_converted.json",
+  "dataset_sha256": "1d41af11279cfb554e74e27bc8d8ab36f255490dc7919a756390c5cae8116e0e",
+  "canary_seed_base": 199,
+  "arms": [
+    "evolve",
+    "depth_matched_reset",
+    "no_canary"
+  ],
+  "cell_count": 360,
+  "instances": [
+    {
+      "id": "TEST0101",
+      "index": 98,
+      "stratum": "feasible_long",
+      "selection_rank": 1,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0580",
+      "index": 560,
+      "stratum": "feasible_long",
+      "selection_rank": 2,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0426",
+      "index": 411,
+      "stratum": "feasible_long",
+      "selection_rank": 3,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0528",
+      "index": 509,
+      "stratum": "feasible_long",
+      "selection_rank": 4,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0147",
+      "index": 142,
+      "stratum": "feasible_long",
+      "selection_rank": 5,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0064",
+      "index": 61,
+      "stratum": "feasible_long",
+      "selection_rank": 6,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0252",
+      "index": 245,
+      "stratum": "feasible_long",
+      "selection_rank": 7,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0493",
+      "index": 477,
+      "stratum": "feasible_long",
+      "selection_rank": 8,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0504",
+      "index": 487,
+      "stratum": "feasible_long",
+      "selection_rank": 9,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0342",
+      "index": 332,
+      "stratum": "feasible_long",
+      "selection_rank": 10,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0019",
+      "index": 19,
+      "stratum": "feasible_long",
+      "selection_rank": 11,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0531",
+      "index": 512,
+      "stratum": "feasible_long",
+      "selection_rank": 12,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0205",
+      "index": 200,
+      "stratum": "feasible_long",
+      "selection_rank": 13,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0469",
+      "index": 453,
+      "stratum": "feasible_long",
+      "selection_rank": 14,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0295",
+      "index": 288,
+      "stratum": "feasible_long",
+      "selection_rank": 15,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0148",
+      "index": 143,
+      "stratum": "feasible_long",
+      "selection_rank": 16,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0013",
+      "index": 13,
+      "stratum": "feasible_long",
+      "selection_rank": 17,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0572",
+      "index": 552,
+      "stratum": "feasible_long",
+      "selection_rank": 18,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0316",
+      "index": 309,
+      "stratum": "feasible_long",
+      "selection_rank": 19,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0015",
+      "index": 15,
+      "stratum": "feasible_long",
+      "selection_rank": 20,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0388",
+      "index": 375,
+      "stratum": "feasible_long",
+      "selection_rank": 21,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0515",
+      "index": 496,
+      "stratum": "feasible_long",
+      "selection_rank": 22,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0465",
+      "index": 449,
+      "stratum": "feasible_long",
+      "selection_rank": 23,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0375",
+      "index": 362,
+      "stratum": "feasible_long",
+      "selection_rank": 24,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0207",
+      "index": 202,
+      "stratum": "feasible_long",
+      "selection_rank": 25,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0132",
+      "index": 128,
+      "stratum": "feasible_long",
+      "selection_rank": 26,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0352",
+      "index": 340,
+      "stratum": "feasible_long",
+      "selection_rank": 27,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0498",
+      "index": 481,
+      "stratum": "feasible_long",
+      "selection_rank": 28,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0344",
+      "index": 333,
+      "stratum": "feasible_long",
+      "selection_rank": 29,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0586",
+      "index": 566,
+      "stratum": "feasible_long",
+      "selection_rank": 30,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0423",
+      "index": 408,
+      "stratum": "feasible_long",
+      "selection_rank": 31,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0192",
+      "index": 187,
+      "stratum": "feasible_long",
+      "selection_rank": 32,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0539",
+      "index": 519,
+      "stratum": "feasible_long",
+      "selection_rank": 33,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0248",
+      "index": 241,
+      "stratum": "feasible_long",
+      "selection_rank": 34,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0459",
+      "index": 443,
+      "stratum": "feasible_long",
+      "selection_rank": 35,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0286",
+      "index": 279,
+      "stratum": "feasible_long",
+      "selection_rank": 36,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0227",
+      "index": 222,
+      "stratum": "feasible_long",
+      "selection_rank": 37,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0217",
+      "index": 212,
+      "stratum": "feasible_long",
+      "selection_rank": 38,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0228",
+      "index": 223,
+      "stratum": "feasible_long",
+      "selection_rank": 39,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0212",
+      "index": 207,
+      "stratum": "feasible_long",
+      "selection_rank": 40,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0537",
+      "index": 518,
+      "stratum": "feasible_short",
+      "selection_rank": 1,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0119",
+      "index": 116,
+      "stratum": "feasible_short",
+      "selection_rank": 2,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0477",
+      "index": 461,
+      "stratum": "feasible_short",
+      "selection_rank": 3,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0591",
+      "index": 571,
+      "stratum": "feasible_short",
+      "selection_rank": 4,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0362",
+      "index": 350,
+      "stratum": "feasible_short",
+      "selection_rank": 5,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0411",
+      "index": 398,
+      "stratum": "feasible_short",
+      "selection_rank": 6,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0143",
+      "index": 138,
+      "stratum": "feasible_short",
+      "selection_rank": 7,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0214",
+      "index": 209,
+      "stratum": "feasible_short",
+      "selection_rank": 8,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0098",
+      "index": 95,
+      "stratum": "feasible_short",
+      "selection_rank": 9,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0597",
+      "index": 577,
+      "stratum": "feasible_short",
+      "selection_rank": 10,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0489",
+      "index": 473,
+      "stratum": "feasible_short",
+      "selection_rank": 11,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0116",
+      "index": 113,
+      "stratum": "feasible_short",
+      "selection_rank": 12,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0410",
+      "index": 397,
+      "stratum": "feasible_short",
+      "selection_rank": 13,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0042",
+      "index": 41,
+      "stratum": "feasible_short",
+      "selection_rank": 14,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0527",
+      "index": 508,
+      "stratum": "feasible_short",
+      "selection_rank": 15,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0127",
+      "index": 123,
+      "stratum": "feasible_short",
+      "selection_rank": 16,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0596",
+      "index": 576,
+      "stratum": "feasible_short",
+      "selection_rank": 17,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0034",
+      "index": 34,
+      "stratum": "feasible_short",
+      "selection_rank": 18,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0054",
+      "index": 51,
+      "stratum": "feasible_short",
+      "selection_rank": 19,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0199",
+      "index": 194,
+      "stratum": "feasible_short",
+      "selection_rank": 20,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0145",
+      "index": 140,
+      "stratum": "feasible_short",
+      "selection_rank": 21,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0017",
+      "index": 17,
+      "stratum": "feasible_short",
+      "selection_rank": 22,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0446",
+      "index": 430,
+      "stratum": "feasible_short",
+      "selection_rank": 23,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0587",
+      "index": 567,
+      "stratum": "feasible_short",
+      "selection_rank": 24,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0508",
+      "index": 490,
+      "stratum": "feasible_short",
+      "selection_rank": 25,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0598",
+      "index": 578,
+      "stratum": "feasible_short",
+      "selection_rank": 26,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0300",
+      "index": 293,
+      "stratum": "feasible_short",
+      "selection_rank": 27,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0106",
+      "index": 103,
+      "stratum": "feasible_short",
+      "selection_rank": 28,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0159",
+      "index": 154,
+      "stratum": "feasible_short",
+      "selection_rank": 29,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0460",
+      "index": 444,
+      "stratum": "feasible_short",
+      "selection_rank": 30,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0418",
+      "index": 405,
+      "stratum": "feasible_short",
+      "selection_rank": 31,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0029",
+      "index": 29,
+      "stratum": "feasible_short",
+      "selection_rank": 32,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0221",
+      "index": 216,
+      "stratum": "feasible_short",
+      "selection_rank": 33,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0517",
+      "index": 498,
+      "stratum": "feasible_short",
+      "selection_rank": 34,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0202",
+      "index": 197,
+      "stratum": "feasible_short",
+      "selection_rank": 35,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0542",
+      "index": 522,
+      "stratum": "feasible_short",
+      "selection_rank": 36,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0176",
+      "index": 171,
+      "stratum": "feasible_short",
+      "selection_rank": 37,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0393",
+      "index": 380,
+      "stratum": "feasible_short",
+      "selection_rank": 38,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0363",
+      "index": 351,
+      "stratum": "feasible_short",
+      "selection_rank": 39,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0016",
+      "index": 16,
+      "stratum": "feasible_short",
+      "selection_rank": 40,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0305",
+      "index": 298,
+      "stratum": "impossible",
+      "selection_rank": 1,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0332",
+      "index": 323,
+      "stratum": "impossible",
+      "selection_rank": 2,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0150",
+      "index": 145,
+      "stratum": "impossible",
+      "selection_rank": 3,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0222",
+      "index": 217,
+      "stratum": "impossible",
+      "selection_rank": 4,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0210",
+      "index": 205,
+      "stratum": "impossible",
+      "selection_rank": 5,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0360",
+      "index": 348,
+      "stratum": "impossible",
+      "selection_rank": 6,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0373",
+      "index": 360,
+      "stratum": "impossible",
+      "selection_rank": 7,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0322",
+      "index": 315,
+      "stratum": "impossible",
+      "selection_rank": 8,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0126",
+      "index": 122,
+      "stratum": "impossible",
+      "selection_rank": 9,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0247",
+      "index": 240,
+      "stratum": "impossible",
+      "selection_rank": 10,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0041",
+      "index": 40,
+      "stratum": "impossible",
+      "selection_rank": 11,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0568",
+      "index": 548,
+      "stratum": "impossible",
+      "selection_rank": 12,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0209",
+      "index": 204,
+      "stratum": "impossible",
+      "selection_rank": 13,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0403",
+      "index": 390,
+      "stratum": "impossible",
+      "selection_rank": 14,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0081",
+      "index": 78,
+      "stratum": "impossible",
+      "selection_rank": 15,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0529",
+      "index": 510,
+      "stratum": "impossible",
+      "selection_rank": 16,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0571",
+      "index": 551,
+      "stratum": "impossible",
+      "selection_rank": 17,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0385",
+      "index": 372,
+      "stratum": "impossible",
+      "selection_rank": 18,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0123",
+      "index": 119,
+      "stratum": "impossible",
+      "selection_rank": 19,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0330",
+      "index": 321,
+      "stratum": "impossible",
+      "selection_rank": 20,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0303",
+      "index": 296,
+      "stratum": "impossible",
+      "selection_rank": 21,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0392",
+      "index": 379,
+      "stratum": "impossible",
+      "selection_rank": 22,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0390",
+      "index": 377,
+      "stratum": "impossible",
+      "selection_rank": 23,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0497",
+      "index": 480,
+      "stratum": "impossible",
+      "selection_rank": 24,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0481",
+      "index": 465,
+      "stratum": "impossible",
+      "selection_rank": 25,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0203",
+      "index": 198,
+      "stratum": "impossible",
+      "selection_rank": 26,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0160",
+      "index": 155,
+      "stratum": "impossible",
+      "selection_rank": 27,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0505",
+      "index": 488,
+      "stratum": "impossible",
+      "selection_rank": 28,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0406",
+      "index": 393,
+      "stratum": "impossible",
+      "selection_rank": 29,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0524",
+      "index": 505,
+      "stratum": "impossible",
+      "selection_rank": 30,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0501",
+      "index": 484,
+      "stratum": "impossible",
+      "selection_rank": 31,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0355",
+      "index": 343,
+      "stratum": "impossible",
+      "selection_rank": 32,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0133",
+      "index": 129,
+      "stratum": "impossible",
+      "selection_rank": 33,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0380",
+      "index": 367,
+      "stratum": "impossible",
+      "selection_rank": 34,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0378",
+      "index": 365,
+      "stratum": "impossible",
+      "selection_rank": 35,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0084",
+      "index": 81,
+      "stratum": "impossible",
+      "selection_rank": 36,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0220",
+      "index": 215,
+      "stratum": "impossible",
+      "selection_rank": 37,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0435",
+      "index": 419,
+      "stratum": "impossible",
+      "selection_rank": 38,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0167",
+      "index": 162,
+      "stratum": "impossible",
+      "selection_rank": 39,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    },
+    {
+      "id": "TEST0453",
+      "index": 437,
+      "stratum": "impossible",
+      "selection_rank": 40,
+      "arm_order": [
+        "evolve",
+        "depth_matched_reset",
+        "no_canary"
+      ]
+    }
+  ],
+  "answer_free_rule": "This adapter contains IDs, indices, strata, and arm order only; expected answers and raw canaries are not copied."
+}
