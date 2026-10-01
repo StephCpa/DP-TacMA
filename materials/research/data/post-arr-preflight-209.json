@@ -49,7 +49,7 @@
       "step": "validate_x1_extractor_positive_control.py",
       "exit_code": 0,
       "elapsed_seconds": 0.175,
-      "stdout_tail": "C:\\work\\博士整理\\dp-es\\research\\artifacts\\iclr2027-x1-extractor-positive-control-064.json\n",
+      "stdout_tail": "<workspace>\\research\\artifacts\\iclr2027-x1-extractor-positive-control-064.json\n",
       "stderr_tail": ""
     },
     {

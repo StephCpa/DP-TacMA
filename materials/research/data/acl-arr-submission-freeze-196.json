@@ -5,7 +5,7 @@
   "steps": [
     {
       "step": "audit_arr_numeric_consistency.py",
-      "command": "C:\\work\\博士整理\\dp-es\\.venv\\Scripts\\python.exe research/experiments/audit_arr_numeric_consistency.py",
+      "command": "<workspace>\\.venv\\Scripts\\python.exe research/experiments/audit_arr_numeric_consistency.py",
       "exit_code": 0,
       "elapsed_seconds": 0.125,
       "stdout_tail": "{\"artifact\": \"acl-arr-numeric-consistency-audit-189\", \"status\": \"passed\", \"failed_checks\": []}\n",
@@ -13,7 +13,7 @@
     },
     {
       "step": "audit_arr_claim_evidence.py",
-      "command": "C:\\work\\博士整理\\dp-es\\.venv\\Scripts\\python.exe research/experiments/audit_arr_claim_evidence.py",
+      "command": "<workspace>\\.venv\\Scripts\\python.exe research/experiments/audit_arr_claim_evidence.py",
       "exit_code": 0,
       "elapsed_seconds": 0.14,
       "stdout_tail": "{\"artifact\": \"acl-arr-claim-evidence-audit-191\", \"status\": \"passed\", \"failed_checks\": []}\n",
@@ -21,7 +21,7 @@
     },
     {
       "step": "audit_arr_citations.py",
-      "command": "C:\\work\\博士整理\\dp-es\\.venv\\Scripts\\python.exe research/experiments/audit_arr_citations.py",
+      "command": "<workspace>\\.venv\\Scripts\\python.exe research/experiments/audit_arr_citations.py",
       "exit_code": 0,
       "elapsed_seconds": 0.125,
       "stdout_tail": "{\"artifact\": \"acl-arr-citation-audit-192\", \"status\": \"passed\", \"failed_checks\": []}\n",
@@ -29,7 +29,7 @@
     },
     {
       "step": "audit_arr_metadata_form.py",
-      "command": "C:\\work\\博士整理\\dp-es\\.venv\\Scripts\\python.exe research/experiments/audit_arr_metadata_form.py",
+      "command": "<workspace>\\.venv\\Scripts\\python.exe research/experiments/audit_arr_metadata_form.py",
       "exit_code": 0,
       "elapsed_seconds": 0.125,
       "stdout_tail": "{\"artifact\": \"acl-arr-metadata-audit-193\", \"status\": \"passed\", \"failed_checks\": []}\n",
@@ -37,7 +37,7 @@
     },
     {
       "step": "audit_arr_draft_readiness.py",
-      "command": "C:\\work\\博士整理\\dp-es\\.venv\\Scripts\\python.exe research/experiments/audit_arr_draft_readiness.py",
+      "command": "<workspace>\\.venv\\Scripts\\python.exe research/experiments/audit_arr_draft_readiness.py",
       "exit_code": 0,
       "elapsed_seconds": 0.266,
       "stdout_tail": "{\"artifact\": \"acl-arr-draft-readiness-audit-174\", \"status\": \"passed\", \"pages\": 15, \"failed_checks\": []}\n",
@@ -45,7 +45,7 @@
     },
     {
       "step": "audit_active_evidence_paths.py",
-      "command": "C:\\work\\博士整理\\dp-es\\.venv\\Scripts\\python.exe research/experiments/audit_active_evidence_paths.py",
+      "command": "<workspace>\\.venv\\Scripts\\python.exe research/experiments/audit_active_evidence_paths.py",
       "exit_code": 0,
       "elapsed_seconds": 0.156,
       "stdout_tail": "{\"artifact\": \"iclr2027-active-evidence-path-audit-172\", \"status\": \"passed\", \"referenced_path_count\": 73, \"failed_checks\": []}\n",
@@ -53,7 +53,7 @@
     },
     {
       "step": "verify_arr_upload_candidate.py",
-      "command": "C:\\work\\博士整理\\dp-es\\.venv\\Scripts\\python.exe research/experiments/verify_arr_upload_candidate.py",
+      "command": "<workspace>\\.venv\\Scripts\\python.exe research/experiments/verify_arr_upload_candidate.py",
       "exit_code": 0,
       "elapsed_seconds": 0.203,
       "stdout_tail": "{\"artifact\": \"acl-arr-upload-candidate-185\", \"status\": \"manuscript_only_candidate_ready\", \"entry_count\": 10, \"failed_checks\": []}\n",
@@ -61,7 +61,7 @@
     },
     {
       "step": "pytest",
-      "command": "C:\\work\\博士整理\\dp-es\\.venv\\Scripts\\python.exe -m pytest -q",
+      "command": "<workspace>\\.venv\\Scripts\\python.exe -m pytest -q",
       "exit_code": 0,
       "elapsed_seconds": 28.61,
       "stdout_tail": "........................................................................ [ 46%]\n........................................................................ [ 92%]\n............                                                             [100%]\n156 passed in 26.50s\n",

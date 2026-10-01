@@ -1,8 +1,10 @@
 """Run the frozen post-ARR X1 persistence replication.
 
-The default mode is a no-provider dry run. Live execution requires both
-``--execute`` and ``ARR_SUBMISSION_COMPLETE=1`` so the ARR freeze cannot be
-accidentally bypassed.
+The default mode is a no-provider dry run. Post-submission live execution
+requires both ``--execute`` and ``ARR_SUBMISSION_COMPLETE=1`` so the ARR freeze
+cannot be accidentally bypassed. The separately authorized pre-submission run
+(amendment 219) instead requires ``--execute --pre-submission-authorized`` plus
+``PRE_SUBMISSION_EXPERIMENT_AUTHORIZED=1`` and writes artifact 220.
 """
 
 from __future__ import annotations

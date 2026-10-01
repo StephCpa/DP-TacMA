@@ -10,20 +10,46 @@ import sys
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
-from research.src.post_arr_persistence_analysis import summarize_replication  # noqa: E402
+try:
+    from research.src.post_arr_persistence_analysis import summarize_replication  # noqa: E402
+except ImportError:  # standalone copy in materials/repro
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    from post_arr_persistence_analysis import summarize_replication  # noqa: E402
+
+ARTIFACTS = ROOT / "research" / "artifacts"
+
+
+def _display(path: Path) -> str:
+    try:
+        return str(path.relative_to(ROOT)).replace("\\", "/")
+    except ValueError:
+        return path.name
 
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--input", type=Path, default=ROOT / "research" / "artifacts" / "post-arr-persistence-live-205.json")
-    parser.add_argument("--output", type=Path, default=ROOT / "research" / "artifacts" / "post-arr-persistence-analysis-207.json")
+    parser.add_argument("--input", type=Path, default=None)
+    parser.add_argument("--output", type=Path, default=None)
+    parser.add_argument(
+        "--pre-submission",
+        action="store_true",
+        help="analyze the authorized pre-submission artifact 220 and write analysis 221",
+    )
     args = parser.parse_args()
+    if args.pre_submission:
+        default_input = ARTIFACTS / "pre-submission-persistence-live-220.json"
+        default_output = ARTIFACTS / "pre-submission-persistence-analysis-221.json"
+    else:
+        default_input = ARTIFACTS / "post-arr-persistence-live-205.json"
+        default_output = ARTIFACTS / "post-arr-persistence-analysis-207.json"
+    args.input = (args.input or default_input).resolve()
+    args.output = (args.output or default_output).resolve()
     if not args.input.exists():
         result = {
             "artifact": "post-arr-persistence-analysis-207",
             "status": "awaiting_live_data",
             "mode": "no-provider analysis entrypoint; live artifact not present",
-            "input": str(args.input.relative_to(ROOT)).replace("\\", "/"),
+            "input": _display(args.input),
             "provider_calls": 0,
         }
     else:
@@ -31,7 +57,7 @@ def main() -> None:
         result = {
             "artifact": "post-arr-persistence-analysis-207",
             "mode": "cached live-artifact analysis; no provider calls",
-            "input": str(args.input.relative_to(ROOT)).replace("\\", "/"),
+            "input": _display(args.input),
             "provider_calls": 0,
             "summary": summarize_replication(
                 payload.get("runs", []),

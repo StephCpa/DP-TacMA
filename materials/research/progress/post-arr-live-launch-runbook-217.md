@@ -67,11 +67,25 @@ call/token budget. A budget stop is reported as incomplete, never as a null.
 
 ## Analysis
 
-After the artifact reports `complete`, run:
+After the artifact reports `complete`, run the command that matches the launch
+path. The default reads the post-submission artifact 205; the authorized
+pre-submission run writes artifact 220 and must be analyzed with
+`--pre-submission` (equivalently, explicit `--input`/`--output` paths), or the
+script reports `awaiting_live_data` for the wrong file.
 
 ```powershell
+# Pre-submission authorization (artifact 220 -> analysis 221)
+.\.venv\Scripts\python.exe research\experiments\analyze_post_arr_persistence_replication.py --pre-submission
+
+# Post-submission launch (artifact 205 -> analysis 207)
 .\.venv\Scripts\python.exe research\experiments\analyze_post_arr_persistence_replication.py
 ```
+
+The summary's `g1_decision` field applies the protocol-199 decision rule
+(`positive_persistence_signal`, `failed_to_detect`, or `incomplete`); the
+positive-control instrument check remains a runner precondition. The secondary
+five-token partial detector, one-sided exact upper bounds, and per-arm usage
+means are reported alongside it.
 
 Only a complete 120-triad artifact with balanced strata is inferentially
 eligible. Incomplete, malformed, or failed-to-detect outcomes remain scoped by
