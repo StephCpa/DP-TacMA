@@ -10,7 +10,7 @@ The table below separates outcomes fixed before provider execution from later an
 \begin{center}
 \resizebox{\columnwidth}{!}{%
 \scriptsize
-\begin{tabular}{p{0.22\columnwidth}p{0.29\columnwidth}p{0.39\columnwidth}}
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.22\columnwidth}>{\raggedright\arraybackslash}p{0.29\columnwidth}>{\raggedright\arraybackslash}p{0.39\columnwidth}}
 \toprule
 \shortstack{\textbf{Component}} & \shortstack{\textbf{Frozen}\\\textbf{endpoint}} & \shortstack{\textbf{Final status or}\\\textbf{qualification}} \\
 \midrule
@@ -25,6 +25,30 @@ Selector calculation & Closed-form exponential-mechanism probabilities on cached
 \end{tabular}%
 }
 \end{center}
+
+\section{Threat model and trust boundary}
+\label{app:threat}
+
+The two privacy-relevant components answer different questions and use different boundaries.
+
+\begin{center}
+\resizebox{\columnwidth}{!}{%
+\scriptsize
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.20\columnwidth}>{\raggedright\arraybackslash}p{0.36\columnwidth}>{\raggedright\arraybackslash}p{0.36\columnwidth}}
+\toprule
+& \textbf{Canary audit} & \textbf{Selector calculation} \\
+\midrule
+Protected unit & A synthetic nine-token canary placed once in the round-one query & One candidate's clipped validity bit (candidate-score replacement adjacency) \\
+Observer & Anyone who can read persistent state after the input round: memory, feedback, stored outputs, scores, and slow-update logs & Only the selected index or output \\
+Released & Full state snapshots at rounds 3 and 5 & The selected index or output \\
+Trusted & Runtime code, provider, and extractor & Candidate texts, prompts, memories, messages, control flow, and the executor \\
+Out of scope & Adaptive extraction, provider-side logs, structural edits, task-relevant secrets & End-to-end DP of the transcript or of the evolving state \\
+\bottomrule
+\end{tabular}%
+}
+\end{center}
+
+A detected canary would show a persistence channel; a non-detection is a bounded failure to detect under this observer, not a guarantee against a stronger one.
 
 \section{Reference-firewall calibration failure}
 
@@ -157,6 +181,13 @@ Length-zero score & 10/20 & 11/20 & 1/20 & 9/20 & 263/320 \\
 Both semantic oracle gaps are 0.05 with paired-bootstrap intervals [0, 0.15]. Reference-exact gaps are identical. No finalization failure contains a valid round-5 candidate. The original-score recoverable count is below the frozen 4/20 advancement threshold, so the execution-gated selector route stops without API expenditure. This diagnostic does not prove that generation is the only bottleneck; it shows that selection among the persisted answer candidates has insufficient observed headroom for the planned method.
 
 \section{Cross-cohort headroom and diversity}
+\label{app:headroom}
+
+\begin{center}
+\includegraphics[width=\columnwidth]{figures/failure-decomposition.pdf}
+\end{center}
+\noindent\textit{Failure decomposition.} In every cohort most failed runs contain no executable candidate in the recorded pool (generation failures); selection failures, where a better selector over the same pool would have succeeded, total three of 46 failures.
+
 
 Protocol 080 freezes a zero-call extension to the 60-run DeepSeek X1 cohort, the 48-run non-degenerate main matrix, and the 40-run execution-aware confirmatory cohort. Semantic headroom excludes \texttt{\detokenize{IMPOSSIBLE}} references because forward execution cannot certify non-existence. Diversity and reference-exact summaries retain all runs. The original frozen estimand compared the 15-round-candidate oracle directly with the synthesized final. This comparison is not an upper bound because a synthesizer can in principle create a valid final absent from its input candidates. We retain the original protocol hash and record an outcome-aware amendment that adds the realized final to oracle support. The corrected quantity is weakly nonnegative and bounds selectors that can retain the current final. In the 65 selected semantically eligible original/control runs, the observed frequency of a valid synthesized final with no valid round-agent candidate is 0/65. No model call or run outcome changes.
 
@@ -234,6 +265,7 @@ We then froze protocol 096 before making a same-task public-only control. Each e
 The first two direct calls on TEST0030 reached the output limit in hidden reasoning and exposed empty visible answers because the direct path omitted the full runtime's explicit non-thinking switch. Both calls, 3,768 tokens, and malformed outcomes remain in the intention-to-repair record. Subsequent direct calls pass \texttt{\detokenize{thinking.type=disabled}}; no prior output is deleted or rerun. LiteLLM response caching is disabled throughout, while DeepSeek's automatic provider-side prefix-cache accounting is separately outside that client flag. Total gate usage is 736 calls and 1,642,567 recorded tokens: 1,081,254 anchor, 458,662 restart, and 102,651 repair tokens. TEST0181 shows only that repair succeeded on its first attempt while a matched-budget restart failed; comparing first-draw tokens with a fully spent failed trajectory as a multiplicative efficiency ratio would be misleading. This stopped gate is positive mechanism evidence about two observed failures, but not a positive comparative-method claim.
 
 \section{Held-out planning component control}
+\label{app:planner}
 
 The planner was developed post hoc on nine earlier PlanCraft screening tasks: DeepSeek selects one verifier-applicable recipe output per step, options are restricted to those with minimum finite post-action distance to the target, and a bounded symbolic pre-check (depth 12, 50,000 states) emits \texttt{IMPOSSIBLE} only when it exhausts its state space without a target. Its first held-out batch of nine tasks used an eight-step cap and truncated the three long tasks; the cap was then raised to 12 and the same batch rerun, after which a second batch of nine ran unchanged. Bounded stops are not global impossibility proofs. The final planning diagnostic used this frozen 18-task cohort and no new benchmark selection. The symbolic-only control reproduces 12/12 feasible replays, 8/12 canonical exact plans, six bounded stops on impossible-reference tasks, and 14/18 evaluator-exact labels. Ten of the 12 feasible cached plans are sequence-identical to the symbolic plans; the two remaining replay-valid plans use alternative action orderings. Only 7/78 accepted requests exposed multiple options, and four step-index mismatches occurred in two replay-valid tasks. These branch-level quantities are descriptive for the fixed cohort.
 

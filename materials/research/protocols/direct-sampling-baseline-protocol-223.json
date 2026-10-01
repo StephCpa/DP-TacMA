@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "experiment_id": "DIRECT-SAMPLING-SUPPORT-BASELINE-223",
+  "status": "draft_not_frozen",
+  "freeze_instructions": "Review, then set status to 'frozen', record the SHA-256 of this file in the progress log, and commit before the first provider call. No field may change after the first call; any change is a dated amendment that keeps the original hash.",
+  "numbering_note": "Artifact numbers 222-225 are provisional; renumber before freezing if the workspace already uses them.",
+  "question": "On the 20 Qwen main tasks of protocol 083, does cheap direct temperature-0.7 sampling without the multi-agent runtime reach the executable support of the nested trajectory pools, and how often does it collapse onto a single invalid response?",
+  "cohort": {
+    "source_protocol": "research/configs/qwen-candidate-pool-enlargement-protocol-083.json",
+    "tasks": "the 20 main-cohort tasks of protocol 083, in its frozen order; the eight gate tasks are excluded",
+    "comparators": {
+      "artifact": "research/artifacts/iclr2027-qwen-candidate-pool-enlargement-084.json",
+      "per_task_fields": [
+        "C1 executable oracle",
+        "C5 executable oracle",
+        "temperature-zero final executable"
+      ],
+      "known_aggregates": {
+        "C1_oracle": 0.6,
+        "C5_oracle": 0.8,
+        "baseline_final": 0.5,
+        "C1_tokens": 4807489,
+        "C5_tokens": 14430644
+      }
+    },
+    "outcome_blindness": "Comparator outcomes are already known; every design choice below is fixed before any direct-sampling output is generated or inspected."
+  },
+  "arms": [
+    {
+      "name": "qwen_direct",
+      "role": "primary",
+      "model": "qwen3.7-max-2026-06-08",
+      "temperature": 0.7,
+      "thinking": "disabled",
+      "client_cache": "disabled",
+      "calls_per_task": 200
+    },
+    {
+      "name": "deepseek_direct",
+      "role": "secondary",
+      "model": "deepseek-v4-flash",
+      "temperature": 0.7,
+      "thinking": "disabled",
+      "client_cache": "disabled",
+      "calls_per_task": 200
+    }
+  ],
+  "prompt": {
+    "template": "the protocol-096 public-task-only template, unchanged",
+    "includes": [
+      "public task text",
+      "output-format instruction"
+    ],
+    "excludes": [
+      "reference answer",
+      "current candidate",
+      "executor diagnostic",
+      "attempt index",
+      "response history",
+      "tool access"
+    ],
+    "known_asymmetry": "The runtime trajectories had recipe-search tool access; direct sampling has none. A direct-sampling deficit therefore cannot be attributed to the multi-agent structure alone, whereas direct parity or advantage holds despite strictly less context."
+  },
+  "scoring": {
+    "canonicalizer": "the protocol-083 canonical-plan parser",
+    "executor": "the reference-free PlanCraft executor used for the protocol-083 oracle",
+    "semantic_key": "the protocol-096 semantic normalization (IMPOSSIBLE variants merged; canonical plan otherwise)",
+    "references": "used only offline for secondary exactness, never during generation"
+  },
+  "endpoints": {
+    "primary": [
+      {
+        "id": "E1_oracle_vs_C5",
+        "definition": "task-level indicator that any of the 200 qwen_direct responses is executable, compared with the C5 oracle on the same task",
+        "statistics": [
+          "paired risk difference direct minus C5",
+          "task-bootstrap 95% interval (100,000 draws, seed 223)",
+          "two-sided exact McNemar on discordant tasks"
+        ]
+      },
+      {
+        "id": "E2_collapse_prevalence",
+        "definition": "share of the 20 tasks whose raw modal response occupies at least 0.80 of qwen_direct calls and is non-executable",
+        "statistics": [
+          "count/20",
+          "two-sided exact Clopper-Pearson 95% interval"
+        ]
+      }
+    ],
+    "secondary": [
+      "E1 against C1 and against the temperature-zero final",
+      "unbiased coverage at k in {1, 5, 10, 20, 50, 100, 200} per task, 1 - C(n-c,k)/C(n,k), averaged over tasks",
+      "distinct canonical plans and distinct executable plans per task",
+      "semantic modal share and E2 under semantic normalization",
+      "recorded tokens per arm and the direct-to-C5 token ratio",
+      "all endpoints for deepseek_direct, and the paired qwen-versus-deepseek collapse contrast (exact McNemar over tasks)"
+    ]
+  },
+  "decision_rules": {
+    "direct_parity_or_better": "E1 point difference (direct minus C5) >= 0; superiority is claimed only if the exact McNemar p < 0.05",
+    "runtime_advantage": "E1 point difference < 0 and exact McNemar p < 0.05",
+    "inconclusive": "any other complete outcome; report the interval and do not describe the arms as equivalent",
+    "collapse_reporting": "report E2 as a proportion with its exact interval; do not use the words 'common' or 'rare' unless the interval lies entirely above or below 0.5",
+    "scope": "One benchmark, one cohort of 20 length-two tasks, two dated models. Calls are not independent task units; the 20 tasks are the inferential unit."
+  },
+  "budget": {
+    "max_total_calls": 8400,
+    "max_total_tokens": 4000000,
+    "planning_basis": "protocol 096 used 37,298 tokens for 160 DeepSeek calls (about 233 per call); 8,000 planned calls are expected to use about 1.9M tokens",
+    "budget_stop_interpretation": "stop before the next call when a limit is reached and report incomplete, never an inferred null"
+  },
+  "integrity": {
+    "invalid_call": "provider error, access-denied or payment text, or missing usage; an empty visible answer with valid usage is a valid, non-executable response",
+    "rule": "retain invalid calls in the artifact, exclude them from endpoints, and replace each with one new call at the same index; stop and report if more than 5% of calls in an arm are invalid",
+    "credential_rule": "credentials only from process environment variables; never written to artifacts or logs"
+  },
+  "execution_guard": "Live calls require --execute and DIRECT_SAMPLING_223_AUTHORIZED=1 and a frozen status in this file.",
+  "outputs": {
+    "live_artifact": "research/artifacts/direct-sampling-baseline-live-224.json",
+    "analysis_artifact": "research/artifacts/direct-sampling-baseline-analysis-225.json"
+  }
+}

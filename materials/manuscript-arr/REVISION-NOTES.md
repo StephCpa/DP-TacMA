@@ -50,6 +50,59 @@ or add new rows.
 
 The recompiled `main.pdf` has 16 pages. The main body (sections 1–6) still ends on page 8. A clean `pdflatex`/`bibtex` build gives no undefined references and no overfull boxes.
 
+## Second pass: experiment preparation and positioning
+
+### Manuscript
+
+- **Failure decomposition.** The abstract, introduction, roadmap, §3.2,
+  Table 3, and conclusion now lead with the generation-versus-selection split:
+  43 of 46 failed runs (93%) have no executable candidate anywhere in the
+  recorded pool, and only three are selection failures. Table 3 gains a
+  "Generation failures" column (11/13, 5/12, 19/20, 8/20). The appendix adds
+  `figures/failure-decomposition.pdf`. All counts come from Table 3
+  (final = successes; oracle minus final = recoverable; 1 minus oracle =
+  generation failures).
+- **§3.5 shortened** to one paragraph under the title "Symbolic constraints
+  supply planning support". Planner details stay in the appendix (labelled
+  `app:planner`). This frees space for the new experiments.
+- **Related work.** Seven web-verified citations:
+  - repeated-sampling coverage: Brown et al. 2024 (arXiv);
+  - agent-structure search: GPTSwarm (ICML 2024), ADAS (ICLR 2025), AFlow (ICLR 2025);
+  - self-correction limits: Huang et al. (ICLR 2024), Kamoi et al. (TACL 2024);
+  - diversity after preference tuning: Kirk et al. (ICLR 2024), framed as an untested candidate explanation.
+- **Threat model.** New appendix section A, with a pointer from §2.1. It
+  states the protected unit, observer, release, trusted components, and scope
+  for the canary audit and for the selector calculation.
+- **Limitations.** Notes that the canary is a task-unrelated synthetic string,
+  so the audit tests incidental retention only.
+- **Tightening.** The introduction summary, the endpoint-status sentence in
+  §2.4, and the five-finals paragraph in §3.3 are shorter.
+- **Build.** 17 pages; the main body ends on page 8 with about five lines
+  spare; 34 references; no warnings and no Type 3 fonts. Figure generation is
+  deterministic.
+
+### Experiment materials (nothing has been run)
+
+- **Direct-sampling baseline, protocol 223 (draft, not frozen).**
+  - Design: 20 protocol-083 Qwen tasks, 200 public-only calls per task for
+    Qwen (primary) and DeepSeek (secondary), about 1.9M tokens.
+  - Primary endpoints: oracle versus $C_5$, and the prevalence of response
+    collapse.
+  - Documents: `research/protocols/direct-sampling-baseline-protocol-223.json`
+    and `research/progress/direct-sampling-baseline-protocol-223.md`.
+  - Code: `repro/run_direct_sampling_baseline.py` (guarded and resumable),
+    `repro/direct_sampling_analysis.py`, and `repro/direct_sampling_adapter.py`.
+    The adapter's hooks deliberately raise `NotImplementedError` until wired
+    to the protocol-083/096 code.
+  - Tests use synthetic data and a fake adapter, and pass.
+- **Replication inclusion, amendment 222 (draft, pending author commit).**
+  - Documents: `research/protocols/replication-manuscript-inclusion-amendment-222.json`
+    and `research/progress/replication-reporting-templates-222.md`.
+  - It commits to reporting whichever G1 outcome the 120-triad replication
+    produces, using text written before the result. It requires an author to
+    confirm that nobody has inspected the exposure fields, and sets a
+    7 October cutoff.
+
 ## Required follow-up in the source workspace before upload
 
 The workspace audits are keyed to the previous text, so they will report
@@ -71,6 +124,13 @@ mismatches until they are rerun:
    test suite and analysis 221 once artifact 220 is complete.
 
 ## Open decisions for the authors
+
+- Commit or discard amendment 222 today. It only works if it is committed
+  before anyone looks at the replication's exposure results.
+- Freeze protocol 223 after review. Wire the adapter to the protocol-083/096
+  code and run the smoke test (`--max-new-calls 20`) before the full run.
+- If either result is added, use the space freed in §3.5 and §3.3. Rerun the
+  page check, because the body has only about five lines spare.
 
 - Once the 120-triad replication completes and passes its gates, decide
   whether its preregistered G1 outcome belongs in the ARR version. It is the

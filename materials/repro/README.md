@@ -25,3 +25,16 @@ claims. Do not overwrite the frozen manuscript with its incomplete output.
 Port these changes to the source workspace and rerun its full test suite
 before using them on artifact 220.
 
+## Direct-sampling baseline (protocol 223, draft)
+
+- `run_direct_sampling_baseline.py`: the dry run is the default. Live calls
+  need a frozen protocol, `--execute`, and `DIRECT_SAMPLING_223_AUTHORIZED=1`.
+  `--analyze` makes no calls.
+- `direct_sampling_analysis.py`: E1 (oracle versus C5/C1/baseline, exact
+  McNemar), E2 (collapse prevalence, Clopper--Pearson), unbiased coverage at k,
+  and the decision rule.
+- `direct_sampling_adapter.py`: wire every hook to the protocol-083/096 code
+  before use; each raises `NotImplementedError` until then.
+- Tests: `python test_direct_sampling_analysis.py` and
+  `python test_run_direct_sampling_baseline.py`.
+

@@ -51,8 +51,9 @@ INK, MUTED, REF = "#0b0b0b", "#52514e", "#8a8984"
 
 
 def save(fig, stem: str) -> None:
-    fig.savefig(f"{stem}.pdf")
-    fig.savefig(f"{stem}.png")
+    # Omit timestamps so regenerating unchanged figures leaves the files unchanged.
+    fig.savefig(f"{stem}.pdf", metadata={"CreationDate": None})
+    fig.savefig(f"{stem}.png", metadata={"Software": None})
     plt.close(fig)
 
 
@@ -187,6 +188,43 @@ def audit_figure() -> None:
     save(fig, "evolution-audit-main-results")
 
 
+def failure_decomposition_figure() -> None:
+    # Section 3.2 / Table 3: semantically eligible original/control runs.
+    cohorts = ["DeepSeek X1 evolve", "DeepSeek non-degenerate", "DeepSeek text retention", "Qwen released score"]
+    success = [2, 6, 0, 11]
+    recoverable = [0, 1, 1, 1]  # failed final, executable candidate in pool
+    generation = [11, 5, 19, 8]  # no executable candidate anywhere
+    n = [s + r + g for s, r, g in zip(success, recoverable, generation)]
+
+    fig, ax = plt.subplots(figsize=(3.3, 1.75))
+    ax.set_axisbelow(True)
+    ys = list(range(len(cohorts)))[::-1]
+    parts = [
+        ("final executable", success, BLUE),
+        ("selection failure", recoverable, ORANGE),
+        ("generation failure", generation, MUTED),
+    ]
+    left = [0.0] * len(cohorts)
+    for label, counts, color in parts:
+        shares = [c / total for c, total in zip(counts, n)]
+        ax.barh(ys, shares, left=left, height=0.62, color=color, edgecolor="white", linewidth=1.2, label=label)
+        for y, l, share, c in zip(ys, left, shares, counts):
+            if c and share >= 0.12:
+                ax.text(l + share / 2, y, str(c), ha="center", va="center", fontsize=6.5,
+                        color="white")
+        left = [l + share for l, share in zip(left, shares)]
+    ax.set_yticks(ys, [f"{c} (n={k})" for c, k in zip(cohorts, n)], fontsize=6.5)
+    ax.set_xlim(0, 1)
+    ax.xaxis.set_major_formatter(matplotlib.ticker.PercentFormatter(1.0, decimals=0))
+    ax.set_xlabel("Share of semantically eligible runs")
+    ax.grid(axis="y", visible=False)
+    ax.grid(axis="x", visible=True)
+    ax.legend(loc="upper center", bbox_to_anchor=(0.35, -0.30), ncol=3, frameon=False,
+              fontsize=6, handlelength=1.2, columnspacing=0.8)
+    save(fig, "failure-decomposition")
+
+
 if __name__ == "__main__":
     candidate_pool_figure()
     audit_figure()
+    failure_decomposition_figure()

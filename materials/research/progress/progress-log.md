@@ -835,3 +835,9 @@ G0 runnable science passes. The next experiment is the preregistered 20-pair X1 
 - Extended the standalone persistence analysis with the preregistered G1 decision, the paired partial detector, exact upper bounds, and per-arm usage. Added synthetic-fixture tests (all pass) and a `--pre-submission` analysis flag. Fixed the runbook's analysis command, which would otherwise have analyzed the wrong artifact for the pre-submission run.
 - Redacted local Windows interpreter paths in the public copies of artifacts 196 and 209.
 
+## 2026-10-02 — Pre-deadline experiment preparation and positioning pass
+
+- Drafted protocol 223 (not frozen): a direct-sampling support baseline on the 20 protocol-083 Qwen tasks. It uses 200 public-only temperature-0.7 calls per task for Qwen (primary) and DeepSeek (secondary), about 1.9M tokens. The primary endpoints are the paired oracle versus $C_5$ (exact McNemar over tasks) and the prevalence of response collapse with an exact interval; decision rules are fixed in advance. Added a guarded, resumable runner, an analysis module, a workspace adapter whose hooks raise until wired, and tests with synthetic data and a fake adapter (all pass). No provider call was made.
+- Drafted amendment 222 (pending author commit) and outcome-keyed reporting templates for bringing the 120-triad replication into the ARR manuscript. It is valid only if committed before anyone inspects the exposure fields.
+- Manuscript: led with the failure decomposition (43/46 failures are generation failures, from Table 3 counts) and added the appendix decomposition figure and a threat-model appendix. Shortened §3.5 to one paragraph and added seven web-verified citations (repeated sampling, agent-structure search, self-correction, diversity). Added the task-unrelated-canary limitation. The recompiled PDF has 17 pages, with the body ending on page 8 and about five lines spare; no warnings.
+
