@@ -18,11 +18,11 @@ The contribution is a falsifiable measurement order for privacy--utility claims 
 
 Evidence: `manuscript/main.tex:27--39,190--197,227`; `research/artifacts/iclr2027-signal-selector-notation-correction-100.json`.
 
-### 2. Does 0/20 canary exposure prove that the system is private?
+### 2. Does zero observed canary exposure prove that the system is private?
 
-No. The result is a bounded failed-to-detect outcome under one model, one injection route, a five-round horizon, and fixed topology. Positive controls recover declared channels, and state mutation is observed, so the result is not explained by a completely inert extractor. With zero events in 20 evolve instances, the one-sided 95% upper bound remains 13.9%. The correct conclusion is that this specified setting did not pass the leakage gate, not that evolving agents do not leak.
+No. The result is a bounded failed-to-detect outcome under one model, one injection route, a five-round horizon, and fixed topology. Positive controls recover declared channels, and state mutation is observed, so the result is not explained by a completely inert extractor. The completed three-arm replication has zero events in 120 evolve instances, giving a one-sided 95% upper bound of 2.5%; the earlier 0/20 estimate and 13.9% bound are retained only as historical low-power results. The correct conclusion is that this specified setting did not pass the leakage gate, not that evolving agents do not leak.
 
-Evidence: `manuscript/main.tex:22,217`; `research/artifacts/iclr2027-x1-operational-events-034.json`.
+Evidence: `manuscript/main.tex:22,110,241`; `research/artifacts/iclr2027-x1-operational-events-034.json`; `research/artifacts/pre-submission-persistence-replication-result-223.json`.
 
 ### 3. What exactly is causal about the score result?
 
@@ -62,7 +62,7 @@ Evidence: `manuscript/main.tex:29--39,190--197,213,227`; `manuscript/appendix.te
 
 ### 9. What is the strongest reproducibility evidence?
 
-All headline experiments have frozen protocols, machine-readable artifacts, deterministic endpoint evaluators, provider-usage ledgers, and explicit stopping or amendment records. The live X2 run has 142 accounted provider traces, 142 parseable JSON responses, no empty responses, and no provider-error marker. Source archive 169 has 10 entries, independently compiles to the same 16-page PDF, and is byte-identical to the current manuscript source. The full local test suite has 142 passing tests.
+All headline experiments have frozen protocols, machine-readable artifacts, deterministic endpoint evaluators, provider-usage ledgers, and explicit stopping or amendment records. The live X2 run has 142 accounted provider traces, 142 parseable JSON responses, no empty responses, and no provider-error marker. Source archive 169 has 10 entries, independently compiles to the same 16-page PDF, and is byte-identical to the current manuscript source. The latest recorded full local test run has 157 passing tests; the reviewer-facing audit itself is rerun after text changes.
 
 Evidence: `research/artifacts/iclr2027-live-control-integrity-audit-166.json`; `research/artifacts/iclr2027-main-conference-readiness-audit-167.json`; `research/manifests/iclr2027-submission-source-169.zip`.
 
