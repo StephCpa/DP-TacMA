@@ -1,0 +1,19 @@
+{
+  "artifact": "post-arr-persistence-power-simulation-198",
+  "mode": "local paired-McNemar power simulation; no provider calls",
+  "decision_rule": "two-sided exact McNemar p < 0.05",
+  "alternative": {
+    "evolve_only_rate": 0.15,
+    "reset_only_rate": 0.02,
+    "paired_risk_difference": 0.13
+  },
+  "design": {
+    "complete_pairs": 120,
+    "families": 3,
+    "pairs_per_family": 40,
+    "simulation_repetitions": 100000,
+    "seed": 901
+  },
+  "estimated_power": 0.94812,
+  "interpretation_guard": "This is a planning calculation, not evidence of leakage. The alternative rates are design assumptions and must be stated before cohort selection."
+}

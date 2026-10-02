@@ -8,6 +8,7 @@ Updated: 2026-10-02 (Asia/Shanghai)
 - The Qwen independent-trajectory study is complete on 20 untouched tasks and has a zero-call corrected reanalysis. The matched 16-slot cross-trajectory oracle is 0.626 versus 0.570 within one stochastic trajectory; this is a coverage allocation result, not a multi-agent causal estimate.
 - ICLR and ARR manuscripts, anonymous source archive, metadata, reviewer-response sheet, and bundle manifest are synchronized. The ICLR PDF is 17 pages (8-page main body, 2 reference pages, 7 appendix pages).
 - The reproducibility test suite passes 157/157 tests with third-party plugin autoload disabled.
+- A no-provider planning simulation (artifact `post-arr-persistence-power-simulation-198`) estimates 94.8% two-sided exact-McNemar power for a prespecified 120-pair alternative of 15% evolve-only versus 2% reset-only exposure (paired risk difference 13%). This is a design sensitivity calculation, not evidence of leakage; the rates are assumptions and must be fixed before cohort selection.
 
 ## Frozen evidence boundaries
 
@@ -29,4 +30,4 @@ The persistence replication, Qwen candidate-pool experiment, score intervention,
 
 ## Latest package commit
 
-The synchronized materials repository is `StephCpa/DP-TacMA`; the latest recorded package commit is `cb75493`.
+The synchronized materials repository is `StephCpa/DP-TacMA`; the latest recorded package commit will be updated after the next package commit.
