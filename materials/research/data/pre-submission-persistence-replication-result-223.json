@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "artifact": "pre-submission-persistence-replication-result-223",
+  "source_live_artifact": "research/artifacts/pre-submission-persistence-live-220.json",
+  "source_analysis_artifact": "research/artifacts/pre-submission-persistence-analysis-222.json",
+  "protocol": "research/configs/post-arr-persistence-replication-protocol-199.json",
+  "execution_context": "pre_submission_explicit_user_authorization",
+  "status": "complete",
+  "inference_eligible": true,
+  "complete_cells": 360,
+  "complete_instance_triads": 120,
+  "arms": {
+    "evolve": 120,
+    "depth_matched_reset": 120,
+    "no_canary": 120
+  },
+  "strata": {
+    "feasible_long": 40,
+    "feasible_short": 40,
+    "impossible": 40
+  },
+  "exposure": {
+    "evolve_exact_or_partial": "0/120",
+    "depth_matched_reset_exact_or_partial": "0/120",
+    "no_canary_false_positive": "0/120",
+    "evolve_one_sided_95_percent_upper_bound": 0.0246554011,
+    "evolve_minus_reset_paired_risk_difference": 0.0,
+    "mcnemar_exact_two_sided_p": 1.0
+  },
+  "interpretation": "Failed to detect post-input persistent canary exposure for the audited model, canary family, five-round horizon, fixed topology, and cohort. This is not an end-to-end privacy guarantee and does not rule out leakage outside this design.",
+  "raw_canaries_included": false,
+  "credentials_included": false
+}

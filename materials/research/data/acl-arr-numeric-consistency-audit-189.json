@@ -1,0 +1,27 @@
+{
+  "artifact": "acl-arr-numeric-consistency-audit-189",
+  "status": "passed",
+  "mode": "ARR draft cross-file numeric and scope consistency; no provider calls",
+  "checks": {
+    "persistence_replication": true,
+    "qwen_support_and_oracle": true,
+    "qwen_matched_slots": true,
+    "selector_curve": true,
+    "length_intervention": true,
+    "live_x2_control": true,
+    "collapse_control": true,
+    "scope_guards": true
+  },
+  "failed_checks": [],
+  "sources": [
+    "manuscript-arr/main.tex",
+    "manuscript-arr/appendix.tex",
+    "research/artifacts/iclr2027-qwen-candidate-pool-trajectory-reanalysis-088.json",
+    "research/artifacts/iclr2027-qwen-cross-model-length-decision-075.json",
+    "research/artifacts/iclr2027-x2-unfiltered-llm-control-analysis-164.json",
+    "research/artifacts/iclr2027-deepseek-unconditioned-collapse-analysis-098.json",
+    "research/artifacts/iclr2027-signal-selector-notation-correction-100.json",
+    "research/artifacts/pre-submission-persistence-replication-result-223.json"
+  ],
+  "no_invention_status": "All checks compare ARR manuscript strings against frozen local artifacts."
+}

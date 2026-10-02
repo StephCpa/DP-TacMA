@@ -18,14 +18,15 @@ research record for the DP-TacoMAS study.
 
 ## Current live experiment status (2026-10-02, Asia/Shanghai)
 
-The user-authorized pre-submission persistence replication is still running
-separately from the frozen ARR package. The latest checked snapshot contains
-330/360 complete cells (110 per arm), 17,048 provider calls, and 39,637,371
-recorded tokens. This is operational progress, not a scientific result; the
-cached analysis is correctly marked `incomplete` and
-`inference_eligible: false` until all balanced cells and gates are complete.
+The user-authorized pre-submission persistence replication completed separately
+from the ARR manuscript: 360/360 cells, balanced at 120 per arm and 40 per
+stratum, with 17,048 provider calls and 39,637,371 recorded tokens. Evolve and
+depth-matched-reset exposure are both 0/120, no-canary false positives are
+0/120, and the evolve-arm one-sided 95% upper bound is 2.5%. The machine-
+readable result is explicitly scoped as a failed-to-detect result for the
+audited design, not a privacy guarantee.
 
-The ARR manuscript and submission artifacts are unchanged. No API key,
+The ARR manuscript in this package now reports this complete replication. No API key,
 provider token, raw canary, local credential, or machine-specific secret is
 part of this package.
 

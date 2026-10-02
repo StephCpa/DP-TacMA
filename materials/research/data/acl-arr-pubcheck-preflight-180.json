@@ -1,0 +1,29 @@
+{
+  "artifact": "acl-arr-pubcheck-preflight-180",
+  "status": "passed",
+  "mode": "local non-line-numbered ACL preflight; not the official ACL Pubcheck tool; no provider calls",
+  "source_archive": "research/manifests/acl-arr-october-manuscript-source-179.zip",
+  "proof_pdf_sha256": "12307b62b390622573c6a74b3a48a3a615c03175ccf6399602940d9c5d8faabc",
+  "pages": 15,
+  "command_exit_codes": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "checks": {
+    "non_line_numbered_source": true,
+    "compile_passes": true,
+    "expected_pages": true,
+    "no_overfull_boxes": true,
+    "no_undefined_references": true,
+    "no_type3_fonts": true,
+    "anonymous_author_text_present": true,
+    "blank_pdf_author_metadata": true,
+    "no_credential_prefixes": true,
+    "no_machine_paths": true
+  },
+  "failed_checks": [],
+  "official_pubcheck": "not_available_in_environment",
+  "next_action": "Run the official ACL Pubcheck tool when available, then complete venue-form and license gates."
+}
