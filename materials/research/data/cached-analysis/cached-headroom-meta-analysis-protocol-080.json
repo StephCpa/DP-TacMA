@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "experiment_id": "ICLR2027-CACHED-HEADROOM-META-ANALYSIS-080",
+  "status": "amended_after_initial_analysis_for_bound_validity",
+  "freeze_date_local": "2026-08-13",
+  "model_calls": 0,
+  "amendment": {
+    "original_frozen_sha256": "18d3bb651bda1f3d749e352c4f1c5fd28d98a45d89654f96060c03b048dd17bd",
+    "original_definition": "indicator(any of 15 round candidates valid) minus indicator(final valid)",
+    "problem": "A synthesized final can be valid even when no round-agent candidate is valid, making the original difference negative and therefore not an upper bound for a selector that can retain the current final.",
+    "change": "Add the realized final to the oracle support, so headroom is max(final, 15 round candidates) minus final.",
+    "timing": "Made after the first cohort summaries were inspected and before paper integration.",
+    "analysis_status": "Cohort-specific reanalysis with a mathematically corrected estimand; exploratory cross-cohort headroom synthesis remains explicitly outcome-aware.",
+    "provider_calls": 0
+  },
+  "sources": {
+    "deepseek_x1": {
+      "path": "research/artifacts/iclr2027-x1-plancraft-pilot-033.json",
+      "sha256": "c4571c08f857ef0c31b54817d0c5ad6791ee57b6c24a07905bc27c8440798301"
+    },
+    "deepseek_nondegenerate": {
+      "path": "research/artifacts/iclr2027-nondegenerate-plancraft-replication-068.json",
+      "sha256": "bfeff81619762d6eefe2b5a2459efce085674057bf5966aba5e2409753c6c628"
+    },
+    "deepseek_execution_confirmatory": {
+      "path": "research/artifacts/iclr2027-execution-aware-retention-confirmatory-060.json",
+      "sha256": "c02307e0e8c03704cc9d0cb77926be9876022d227909ac3997edd880856601bb"
+    },
+    "deepseek_execution_confirmatory_decision": {
+      "path": "research/artifacts/iclr2027-execution-aware-retention-confirmatory-decision-061.json",
+      "sha256": "e6a96563efe85da4ceed3d133209742e97b2ca822f8b617fb4e2fe83679c5003"
+    },
+    "deepseek_initial_length": {
+      "path": "research/artifacts/iclr2027-fallback-score-persistence-040.json",
+      "sha256": "ca25e5f5f0cc21ca09716fe8d5f2cc4dd1f7323ab037d0f355f8f4b96bd485fa"
+    },
+    "qwen_length": {
+      "path": "research/artifacts/iclr2027-qwen-cross-model-length-replication-074.json",
+      "sha256": "08cbd9bc96b1cf2b3b7e0ccc17b634dd3ab67d045cd12eba413848b44feb4f1f"
+    }
+  },
+  "recoverability": {
+    "cohorts": {
+      "deepseek_x1": "All 60 completed runs, reported by arm.",
+      "deepseek_nondegenerate": "The 48 main-phase runs only, reported by four arms.",
+      "deepseek_execution_confirmatory": "All 40 completed runs, reported by two arms.",
+      "qwen_length": "Reuse frozen artifact 078 for the 40 main-phase runs."
+    },
+    "candidate_surface": "Exactly 15 fast-round agent output_text slots plus runtime_result.final_answer.",
+    "semantic_endpoint": "Reference-free deterministic executable target reached.",
+    "semantic_denominator": "Runs whose offline reference is a feasible action list. IMPOSSIBLE-reference runs remain in candidate diversity and reference-exact secondary analyses but are excluded from semantic headroom because the frozen executor cannot certify non-existence. This clarification is made before DeepSeek candidate inspection.",
+    "headroom": "Within-run indicator(final or any round candidate valid) minus indicator(final valid). Including the realized final makes the candidate-pool oracle weakly dominate the current finalizer.",
+    "interpretation_guard": "An empirical upper bound for selectors restricted to the persisted candidate pool under the fixed generation process; not a bound on methods that generate or repair new candidates.",
+    "uncertainty": "100,000-draw run bootstrap within each arm plus two-sided 95% Clopper-Pearson intervals for binary headroom incidence."
+  },
+  "diversity": {
+    "primary": [
+      "exact-text unique candidates and duplicate-slot rate within each 16-slot run",
+      "canonical parsed-plan unique candidates and duplicate rate among parseable slots",
+      "same-round inter-agent exact-match rate and character SequenceMatcher similarity"
+    ],
+    "scope": "Descriptive mechanism analysis; no claim that lexical identity exhausts reasoning diversity."
+  },
+  "completeness_proxy": {
+    "cohorts": [
+      "deepseek_initial_length",
+      "deepseek_nondegenerate",
+      "qwen_length"
+    ],
+    "original_arms_only": true,
+    "predictor": "Mean per-slot released length component: 0.85 * min(1, output_chars / 800).",
+    "outcome": "Malformed synthesized final under the deterministic PlanCraft parser.",
+    "analyses": [
+      "well-formed versus malformed predictor means by cohort",
+      "AUC for predicting a well-formed final",
+      "pooled linear-probability coefficient with cohort fixed effects and a stratified bootstrap interval",
+      "paired malformed differences for length-zero minus original"
+    ],
+    "interpretation_guard": "Associational mechanism check, not a causal mediation estimate."
+  },
+  "pooled_length_effect": {
+    "cohorts": [
+      "10-pair DeepSeek initial intervention",
+      "12-pair DeepSeek non-degenerate replication",
+      "20-pair Qwen cross-model replication"
+    ],
+    "primary": "Stratified paired risk difference, length-zero minus original, over 42 pairs.",
+    "uncertainty": "100,000 stratified paired bootstrap draws, resampling pairs within each cohort.",
+    "discordance": "Combined exact sign/binomial test plus cohort-specific discordant counts.",
+    "heterogeneity": "Report cohort effects, range, and DeepSeek-nondegenerate minus Qwen contrast with stratified bootstrap interval; do not pool silently.",
+    "claim_rule": "Describe a precise pooled null only if the interval contains zero and its upper endpoint is at most 0.15; otherwise report the observed interval without the precise-null label."
+  },
+  "scope_guard": "Outcome-aware secondary reanalysis of frozen cached cohorts; no prospective method claim."
+}

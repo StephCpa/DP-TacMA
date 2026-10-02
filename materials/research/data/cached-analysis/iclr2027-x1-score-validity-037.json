@@ -1,0 +1,1429 @@
+{
+  "schema_version": 1,
+  "artifact_id": "ICLR2027-X1-SCORE-VALIDITY-037",
+  "date_local": "2026-08-12",
+  "source_artifact": "research/artifacts/iclr2027-x1-plancraft-pilot-033.json",
+  "source_sha256": "c4571c08f857ef0c31b54817d0c5ad6791ee57b6c24a07905bc27c8440798301",
+  "scope": "Zero-new-call cached analysis of all 60 X1 PlanCraft traces.",
+  "sample": {
+    "runs": 60,
+    "deterministic_exact": 5,
+    "deterministic_failure": 55
+  },
+  "score_reason_counts": {
+    "heuristic_only_non_slow_round": 705,
+    "The agent concludes IMPOSSIBLE based on false recipe facts: paper is 3 sugar cane -> 3 paper, not 1, and cartography table requires 2 paper + 4 planks of any type, not 2 jungle + 1 birch + 1 spruce. It misses the valid path using 3 sugar cane for 2 paper and warped_hyphae for 4 warped planks, so it provides no useful or correct contribution.": 1,
+    "The output gives grounded, concrete evidence: 3 sugar cane yields exactly 1 paper, while the cartography table requires 2 paper, exposing an irreducible missing resource. It also correctly identifies the next plank-related check rather than giving generic failure. This is strong partial progress, though it stops short of explicitly declaring IMPOSSIBLE or fully completing the verification.; capped: no clear grounded evidence": 1,
+    "The output reaches the correct IMPOSSIBLE verdict and gives a concrete inventory-to-recipe check identifying missing items, so it is moderately useful decomposition. However, it does not include explicit retrieved-source snippets or source-backed recipe evidence, and the exact recipe variant is asserted rather than clearly grounded, preventing a higher evidence-based score.": 1,
+    "The planner output is factually incorrect: 3 sugar cane crafts 3 paper, not 1, so the claimed paper shortage is false. It also invents incorrect plank requirements and overlooks that warped_hyphae can produce planks. The output provides no valid crafting plan or correct impossibility conclusion.": 1,
+    "The calculator output provides concrete recipe evidence: cartography_table requires 2 paper, each paper needs 3 sugar_cane, and inventory has exactly 3 sugar_cane, yielding only 1 paper. This identifies a decisive bottleneck and strongly supports an IMPOSSIBLE conclusion, though it does not explicitly finalize the overall answer.; capped: no clear grounded evidence": 1,
+    "The output provides grounded, concrete evidence: it correctly maps 3 sugar_cane to 1 paper and notes cartography_table needs 2 paper, meaning the inventory is short by 1 paper. This is a strong, decisive constraint for impossibility, though it stops short of explicitly stating the final IMPOSSIBLE verdict.; capped: no clear grounded evidence": 1,
+    "The planner output decomposes the cartography table needs and checks the inventory: it correctly notes 3 sugar_cane only yield 1 paper, only 1 jungle_plank is available, and spruce_planks are missing. This is useful partial evidence, but it stops short of delivering the final IMPOSSIBLE verdict or a complete dependency conclusion, so it is only moderately useful.": 1,
+    "The output correctly uses the inventory to compute that 3 sugar_cane yields only 1 paper while 2 paper are required, identifying a decisive missing ingredient for the cartography_table recipe. This is concrete, evidence-backed progress toward impossibility. However, it does not deliver the final IMPOSSIBLE verdict and introduces an ungrounded spruce_planks requirement, so it is not fully decisive.; capped: no clear grounded evidence": 1,
+    "The output provides grounded evidence of the sugar_cane shortfall (3 sugar_cane yields only 1 paper while 2 are required) and identifies the need to check jungle/spruce plank availability. This is a useful partial verification/decomposition, but it stops short of validating the full recipe dependency graph or concluding IMPOSSIBLE.": 1,
+    "The output only names two needed ingredients (gray_dye and white_wool) and says it will check recipes, without determining feasibility or giving a plan. This is a weak partial contribution toward solving the crafting task.": 1,
+    "The output identifies the two required ingredients for gray_carpet, which is a relevant first step, but it provides no concrete recipe verification, inventory comparison, or final IMPOSSIBLE conclusion, so it offers only weak partial progress.": 1,
+    "Correctly identifies that gray_carpet would require gray_dye and white_wool, but does not check inventory or conclude IMPOSSIBLE; no evidence-backed verification or final plan.": 1,
+    "The planner identifies that gray_dye and white_wool are needed for gray_carpet, but it does not check the inventory for them, does not provide a completed crafting plan, and does not conclude IMPOSSIBLE. This is a weak, partially relevant dependency note rather than a decisive contribution.": 1,
+    "Output identifies the key ingredients needed (gray dye and white wool) but provides no inventory comparison, recipe evidence, or final plan/IMPOSSIBLE determination, so it is only a weak partial decomposition.": 1,
+    "The output identifies a relevant dependency (gray_wool requires gray_dye + white_wool) but does not verify inventory availability, inspect recipes, or produce a valid plan/IMPOSSIBLE conclusion. It provides only a weak partial step with no grounded evidence from the provided inventory or documents.": 1,
+    "The planner identifies gray_dye and white_wool as needed ingredients, which is a relevant dependency, but it stops at an intention to search and does not account for string being able to craft white wool, nor conclude that gray_dye is unavailable; therefore it provides only weak partial progress toward deciding IMPOSSIBLE.": 1,
+    "The output only proposes needed ingredients (gray_dye and white_wool) without verifying recipes, checking inventory feasibility, or producing a valid plan/IMPOSSIBLE conclusion. It is partially relevant but lacks concrete evidence-backed calculation.": 1,
+    "The output identifies that gray_wool requires gray dye and white wool, which is a relevant dependency for the gray_carpet target. However, it does not verify the inventory, cite concrete source evidence, or reach any conclusion about feasibility, so it is only weakly useful.": 1,
+    "low_signal output": 9,
+    "The output only states an intention to verify recipe requirements, with no actual recipe evidence, computed result, or decisive conclusion. It contributes no usable information toward solving the crafting task.": 1,
+    "The output recognizes a relevant prerequisite (quartz needed for quartz_block) but provides no concrete crafting plan, no impossibility conclusion, and no evidence-backed recipe or inventory check. It is only a weak partial step toward solving the task.": 1,
+    "The output only muses about quartz dependency; it gives no valid plan or impossibility conclusion, and its stated recipe is not relevant to the target item.": 1,
+    "Output only notes that quartz_block requires 4 quartz and proposes checking whether quartz can be crafted, but it does not reference the provided inventory, produce a concrete plan, or conclude IMPOSSIBLE. This is weak and partially relevant.": 1,
+    "The output usefully identifies that iron_trapdoor requires 4 iron_ingots and that iron_ore can be smelted, but it misses the critical prerequisites of a furnace and fuel. Since the inventory contains neither, the proposed smelting plan is not valid, so the contribution is only partially relevant and not decisive.": 1,
+    "The calculator output provides the crucial grounded reasoning: iron_trapdoor requires 4 iron_ingots in A1/A2/B1/B2, and 4 iron_ore can be smelted into exactly 4 iron_ingots. It also maps the inventory slots and asserts feasibility. This is a strong, concrete contribution toward a valid plan, but it is truncated before delivering a fully executable final action sequence and still questions how the smelt tool handles target slots, so it is not fully decisive.; capped: no clear grounded evidence": 1,
+    "Provides a correct decomposition and inventory conservation check: 4 iron_ore can smelt into 4 iron_ingots, then 4 iron_ingots can craft iron_trapdoor at A1/A2/B1/B2. However, it does not cite explicit retrieved source snippets, parsed recipe documents, or structured source-backed objects, so despite the useful reasoning it cannot receive a high evidence-grounded score.": 1,
+    "The output correctly identifies that iron_trapdoor requires 4 iron ingots and recognizes iron_ore as a potential source, but it incorrectly declares the plan achievable without accounting for the required furnace and fuel for smelting, which are absent from the inventory. Therefore it provides partial relevant reasoning but an invalid conclusion.": 1,
+    "procedural output without grounded evidence": 9,
+    "The output correctly identifies that iron_trapdoor needs 4 iron_ingots and that inventory contains 4 iron_ore, but it fails to account for the required smelting step needing a furnace/fuel, which are not in the inventory. It also cites no grounded evidence or source snippets, so the feasibility conclusion is unsupported and likely incorrect. Only partial decomposition value.": 1,
+    "The output incorrectly asserts the plan is achievable by smelting iron_ore into iron_ingots, but the provided inventory contains neither a furnace nor any fuel required for smelting. Since the only way to obtain iron_ingots is unavailable, iron_trapdoor cannot be crafted from the given inventory. The agent fails to identify this impossibility and instead provides an invalid crafting plan.": 1,
+    "The verifier output clearly confirms the recipe chain using search-backed evidence: iron_ore smelts to iron_ingot, iron_trapdoor requires 4 iron_ingots, and the inventory has exactly 4 iron_ore. It checks inventory conservation and states the plan is achievable with no contradicted claims. This is a strong, directly useful verification contribution, though it does not itself provide the complete final action list.; capped: no clear grounded evidence": 1,
+    "The planner output provides the exact correct crafting plan: craft 4 granite from 4 diorite and 4 quartz, then craft polished_granite from 4 granite. It verifies inventory sufficiency, confirms both recipes, and gives a valid action sequence, making it directly decisive for solving the task.": 1,
+    "The output directly confirms both required recipes and verifies the exact inventory quantities (4 diorite + 4 quartz) needed to produce 4 granite, then craft 1 polished_granite. It provides a concrete, correct action sequence and is decisive for solving the task.; capped: no clear grounded evidence": 1,
+    "The output decisively verifies feasibility with correct recipes, exact inventory counts, explicit dependency chain, conservation check, and a valid action sequence. It fully solves the task.; capped: no clear grounded evidence": 1,
+    "The planner output gives a complete, feasible, and minimal crafting plan: correct recipes, exact required quantities, and a valid action sequence from inventory to polished_granite. It is directly decisive.": 1,
+    "The output verifies the required recipes and checks inventory quantities exactly: 4 granite can be crafted from 4 diorite and 4 quartz, then 4 granite craft 1 polished_granite. It gives a valid concise action sequence, so it is directly decisive for the task.; capped: no clear grounded evidence": 1,
+    "The verifier output decisively solves the task: it confirms both required recipes, validates that exactly 4 diorite and 4 quartz are available, checks inventory conservation, and provides a concrete crafting action sequence. This is a directly decisive contribution supported by recipe inventory reasoning.; capped: no clear grounded evidence": 1,
+    "The planner output provides a fully correct and feasible crafting plan: 4 diorite + 4 quartz craft 4 granite, and 4 granite craft 1 polished_granite. It explicitly verifies inventory quantities, shows exact resource consumption, and gives the action sequence. This is directly decisive for solving the task.": 1,
+    "Verifier output confirms the relevant recipes (polished_granite from 4 granite; granite from 1 diorite + 1 quartz) and checks inventory counts (4 diorite, 4 quartz), showing exact resource sufficiency and conservation. This is grounded in the provided inventory and recipe dependencies, and directly verifies feasibility, though it relies on the planner for the concrete executable action list.; capped: no clear grounded evidence": 1,
+    "The planner correctly identifies the required recipes, verifies that 4 diorite and 4 quartz are available, and gives an executable action sequence to obtain polished_granite. This is a strong, concrete contribution. However, it inaccurately states that crafting 4 granite produces exactly 1 polished_granite; in Minecraft it produces 4 polished_granite. The plan still satisfies the target, but the recipe-output error prevents a perfect score.": 1,
+    "The calculator output provides concrete, evidence-backed recipe confirmations and an executable crafting plan: 4 granite from 4 diorite + 4 quartz, then polished_granite from those 4 granite. It correctly checks inventory sufficiency and states feasibility, giving a strong contribution to solving the task. Minor wording imprecision about polished_granite output count does not undermine feasibility.; capped: no clear grounded evidence": 1,
+    "The verifier correctly recognizes the dependency chain and that 4 diorite + 4 quartz can make 4 granite, and it checks inventory conservation. However, it endorses an invalid recipe output: polished granite from 4 granite yields 4 polished_granite, not 1, so the claimed 'craft 1 polished_granite' action is wrong. It also provides no explicit grounded evidence snippet, and the evidence gate precheck failed. This is therefore only weak/partial verification progress.": 1,
+    "The planner correctly identifies that polished_granite requires 4 granite, that each granite is crafted from 1 diorite + 1 quartz, and that the inventory has exactly 4 diorite and 4 quartz. It provides a complete, valid crafting sequence.": 1,
+    "Output correctly identifies that 4 granite are needed, verifies inventory has exactly 4 diorite and 4 quartz, and gives a valid sequence: craft 4 granite from diorite+quartz, then craft 1 polished_granite from 4 granite. This is a grounded, decisive calculation for the target.; capped: no clear grounded evidence": 1,
+    "The planner correctly identifies the core recipe chain: 4 diorite + 4 quartz can craft 4 granite, then those 4 granite can craft polished_granite, so the target is achievable from the inventory. This is strong, concrete progress toward a valid plan. However, it incorrectly states that 4 granite yields exactly 1 polished_granite; the Minecraft recipe yields 4 polished_granite, so the output quantity/action sequence needs correction.": 1,
+    "The output correctly derives the crafting dependency: polished_granite needs 4 granite, and each granite needs 1 diorite + 1 quartz. It checks the inventory and confirms exact sufficient quantities (4 diorite, 4 quartz), yielding a valid crafting plan.; capped: no clear grounded evidence": 1,
+    "Output identifies only an intermediate dependency (polished_diorite requires diorite) but does not complete recipe expansion, inventory validation, or conclude possible/impossible. No grounded evidence from parsed documents or structured sources is cited, so it is a weak partial contribution.": 1,
+    "The verifier output only contributes a partial dependency note that polished_diorite requires 4 diorite, but it does not connect this to the target polished_diorite_slab, does not verify inventory conservation, and does not conclude IMPOSSIBLE. It lacks cited or sourced evidence and is too incomplete to be decisive.": 1,
+    "The output identifies that polished_diorite requires diorite as a dependency, which is the correct high-level path, but it states the wrong quantity (4 diorite instead of 2) and does not check the inventory or reach the required IMPOSSIBLE conclusion. It is only a weak, partially relevant start.": 1,
+    "The output only states a partial crafting dependency (polished_diorite requires 4 diorite) without citing parsed document evidence, verified recipe data, or inventory-based validation. It does not provide a concrete crafting plan or determine feasibility, so it is weak but partially relevant.": 1,
+    "The output correctly identifies that polished_diorite requires 4 diorite, which is a useful recipe dependency, but it does not complete the verification, connect this dependency to the inventory's lack of diorite, or conclude whether the target item is impossible. It is only a partial, weakly grounded intermediate step.": 1,
+    "The planner only states that polished_diorite requires 4 diorite and defers checking diorite's recipe. This identifies one dependency but does not verify inventory availability, explore recipes, or determine feasibility. It is a weak partial contribution rather than a useful or decisive plan.": 1,
+    "The output identifies a relevant prerequisite (polished_diorite requires diorite) but provides no concrete recipe verification, inventory check, or final plan/IMPOSSIBLE judgment. It is weak and partially relevant, merely signaling the next search step without producing reusable evidence or a decisive contribution.": 1,
+    "Output identifies a relevant recipe dependency (polished_diorite needs diorite), but it does not verify the inventory, check the actual polished_diorite_slab recipe, or reach the correct IMPOSSIBLE conclusion. It is only a partial, ungrounded intermediate step.": 1,
+    "The output identifies that redstone_block can be converted into redstone, which is one relevant ingredient for note_block, but it does not address the required planks, state a full recipe, or produce a valid crafting plan. This is only weak, partial evidence rather than a useful plan.": 1,
+    "The output identifies a relevant ingredient issue (oak_planks normally comes from oak_log, while inventory has stripped_oak_log) and proposes checking whether stripped_oak_log can be converted. However, it provides no concrete validated crafting plan, does not confirm conversion or any alternative plank sources, and lacks grounded evidence or executed calculation. This is weak but partially relevant progress.": 1,
+    "The output identifies a relevant dependency (stripped_oak_log vs oak_log) but stops at an open question rather than confirming a conversion, validating a plan, or determining feasibility. It provides only weak partial progress toward solving the task.": 1,
+    "The output only flags a potential missing ingredient (oak_log vs stripped_oak_log) and defers to further checking. It does not establish the actual note_block recipe, confirm whether stripped_oak_log can substitute, or produce a valid plan or impossibility. This is weak partial progress on dependency tracing.": 1,
+    "Output identifies that oak_planks requires oak_log and notes stripped_oak_log is not equivalent, which is partially relevant but does not yet provide a validated recipe, quantity calculation, or actionable crafting plan.": 1,
+    "The output identifies a potential dependency concern (stripped_oak_log vs oak_log) but does not resolve it or verify the actual note_block recipe. It repeats prior uncertainty and offers no concrete validated progress toward a crafting plan or impossibility determination.": 1,
+    "The planner output provides a partial but useful decomposition: it correctly identifies redstone as obtainable from redstone_block and recognizes the need for planks, mentioning potential conversions from jungle_wood and crimson_hyphae. However, it does not produce a complete validated crafting plan, misses other viable plank sources such as stripped_oak_log and dark_oak_planks, and stops before confirming sufficiency or outputting the final action sequence.": 1,
+    "The output only partially addresses the crafting plan by considering oak plank sources, but it is incomplete and not grounded in a validated recipe; it incorrectly focuses on oak_log and ignores the note_block recipe (planks + redstone) and other plank types available in inventory, so it provides weak, partial signal rather than a concrete plan.": 1,
+    "The output partially addresses recipe dependencies by noting oak_planks may require oak_log and mentioning stripped_oak_log/oak_fence_gate, but it does not verify whether stripped_oak_log can craft planks, ignores other available planks and redstone_block, and provides no final plan or IMPOSSIBLE verdict. It is weak and incomplete.": 1,
+    "The planner correctly identifies that red_sand can be smelted into glass and narrows the remaining requirement to black_dye, giving concrete dependency progress. It does not output a final validated plan, but it provides a strong useful contribution toward solving the task.": 1,
+    "The output provides grounded evidence that 8 red_sand smelt into 8 glass, which is a necessary and concrete ingredient step toward black_stained_glass. It does not include the black dye conversion or final crafting action, so it is a strong partial contribution rather than a decisive complete plan.; capped: no clear grounded evidence": 1,
+    "The output only states an intention to verify the glass recipe, without providing actual confirmed recipe evidence or any concrete verification result. This is weakly relevant to the task but not yet a useful contribution.": 1,
+    "The output correctly identifies black_dye from ink_sac and recognizes that glass is needed, but it does not confirm the key red_sand-to-glass step or produce a valid crafting plan, so it is only weakly and partially relevant.": 1,
+    "The output correctly identifies that red_sand can be smelted into glass and uses the inventory quantity to produce 8 glass, which is concrete partial evidence toward the target. However, it does not address the black dye requirement from ink_sac, the smelting/fuel prerequisites, nor determine whether the full plan is possible or impossible. This is moderately useful decomposition but not decisive.": 1,
+    "Verifier correctly identifies that 1 ink_sac can produce 1 black_dye, a necessary ingredient for black_stained_glass, but stops before verifying the glass ingredient, overall recipe plan, inventory conservation, or feasibility. No retrieved evidence or full validation is provided, so it offers only a weak partial contribution.": 1,
+    "The planner correctly identifies red_sand as the source for the required 8 glass and recognizes the black_stained_glass recipe needs 8 glass plus black dye. This is a concrete, reusable decomposition of the crafting path, though it stops short of explicitly confirming the ink_sac-to-black_dye step and does not output a final complete action sequence.": 1,
+    "The output correctly identifies a concrete usable path: 8 red_sand can be smelted into 8 glass, which is a needed ingredient for black_stained_glass. However, it stops before resolving black_dye from the ink_sac and does not provide the complete crafting plan, so it is only a moderately useful partial contribution.": 1,
+    "The output correctly decomposes black_stained_glass into 8 glass + 1 black_dye, which is a useful recipe-dependency check for the verifier role. However, it does not yet confirm inventory sufficiency, provide a complete validated plan, or cite explicit grounded evidence snippets, so it contributes moderately but is not decisive.": 1,
+    "The output provides a concrete, correct step toward the plan: sunflower can be crafted into yellow_dye. However, it does not complete the orange_dye plan, does not mention combining red_dye and yellow_dye, or provide the final action sequence. It is moderately useful evidence/decomposition but not decisive.": 1,
+    "Output makes partial progress by identifying red_dye can be made from the 1 poppy in inventory, but it does not verify yellow_dye, complete the orange_dye recipe check, or produce a valid plan/IMPOSSIBLE verdict. It is a useful decomposition step but lacks grounded evidence snippets and final decisive contribution.": 1,
+    "The output makes concrete partial progress by verifying that red_dye can be crafted from the 1 poppy in inventory, which is one required ingredient for orange_dye. However, it does not yet confirm yellow_dye or provide a complete crafting plan, and it lacks explicit source/evidence citations.": 1,
+    "The planner identifies that poppy can be crafted into red dye, which is a necessary ingredient for orange dye, but it does not yet confirm the yellow dye source from sunflower or produce a complete crafting plan. This is moderately useful partial decomposition, not yet decisive.": 1,
+    "The output makes partial but relevant progress by identifying that the poppy in inventory can be crafted into red_dye, which is a required ingredient for orange_dye. However, it does not yet address the sunflower/yellow-dye ingredient, the final orange-dye recipe combination, or an overall conclusion/plan, so it is only a moderately useful partial decomposition.": 1,
+    "The output correctly decomposes orange_dye into red_dye + yellow_dye and identifies poppy and sunflower as likely dye sources, which is a useful planning signal. However, it stops before verifying the recipes or producing a concrete crafting plan, and it lacks explicit grounded evidence from parsed documents or retrieved sources.": 1,
+    "The planner output recognizes that poppy can produce red dye, which is one required ingredient for orange_dye, but it does not identify sunflower as the yellow dye source, give the full recipe dependency, or produce a valid crafting plan. This is weak partial progress.": 1,
+    "Correctly identifies that poppy can yield red dye, grounded in the inventory. This is a useful partial decomposition, but it does not verify yellow_dye from sunflower or provide the full orange_dye crafting plan, so it is not decisive.": 1,
+    "Output gives a partially relevant, evidence-backed decomposition: it correctly notes poppy (1) can craft red_dye, which is one required ingredient for orange_dye. However, it fails to verify the other required ingredient (yellow_dye from sunflower) or produce a final plan, so it is only moderately useful.": 1,
+    "The planner identifies the key recipe requirements for golden_axe (3 gold_ingot and 2 sticks) and correctly flags the need to investigate whether golden_horse_armor can supply gold and whether stripped_acacia_log can supply sticks. This is a useful partial decomposition, but it does not verify the smelting possibilities, determine feasibility, or output a final plan/impossibility, so it is only moderately useful.": 1,
+    "The output correctly identifies that gold_ingots are required for golden_axe and proposes checking whether golden_horse_armor can be smelted into gold, which is a relevant direction. However, it does not provide any smelting result, quantity calculation, or final feasibility/conclusion, so it is only a weak partial contribution.": 1,
+    "The output only restates general Minecraft crafting knowledge and expresses an intention to check golden_horse_armor smelting and sticks. It does not cite parsed inventory evidence, validate a recipe, or produce a concrete conservation/dependency conclusion, so it is weak but partially relevant.": 1,
+    "The planner output decomposes the target into dependencies (gold ingot and stick), notes that direct gold sources are absent, and identifies golden_horse_armor as a potential conversion source. However, it does not verify quantities, complete the recipe check, or conclude whether the target is possible, so it is only moderately useful.": 1,
+    "The output correctly identifies that no gold ingots, gold ore, gold block, or nuggets are directly in inventory, and suggests checking whether golden_horse_armor can be smelted into gold. This is a relevant partial decomposition of the crafting dependency, but it does not provide grounded evidence, validated recipe data, or a concrete plan, so the contribution is weak rather than decisive.": 1,
+    "The output identifies the correct missing ingredient dependency: golden_axe needs gold ingots and sticks, and the inventory lacks gold_ore, gold_block, or gold_nuggets. This is a relevant but incomplete verification signal; it only poses further checks and does not resolve whether golden_horse_armor can supply enough gold or deliver an IMPOSSIBLE/final plan.": 1,
+    "The output correctly identifies that gold ingots are required for golden_axe and notes they are absent from the inventory, but it stops at a tentative check of golden_horse_armor smelting without reaching a conclusion or producing a valid crafting/impossible decision. It is partially relevant but not decisive.": 1,
+    "The output correctly notes that gold ingots are not directly present and identifies common gold-ingot sources, but it fails to resolve whether golden_horse_armor can be used, and provides no concrete crafting plan or IMPOSSIBLE verdict. This is weak, partially relevant progress.": 1,
+    "The output correctly identifies the golden axe recipe dependency (3 gold ingots + 2 sticks), which is a useful partial decomposition. However, it does not verify against the supplied inventory, cite grounded evidence from parsed/retrieved sources, or determine whether the item is craftable/impossible. Its contribution is weak and incomplete.": 1,
+    "The output incorrectly concludes IMPOSSIBLE. In Minecraft, 4 stone crafts 4 stone_bricks, so 8 stone is sufficient to make 6 stone_bricks needed for stone_brick_stairs. The agent's dependency calculation is wrong and would prevent the correct solution.": 1,
+    "The output is directly decisive: it verifies the recipe chain (6 stone_bricks needed, each requiring 4 stone, total 24 stone), checks inventory (only 8 stone), and correctly concludes IMPOSSIBLE with concrete evidence-backed calculations.; capped: no clear grounded evidence": 1,
+    "The verifier delivers a decisive, correct conclusion: stone_brick_stairs requires 6 stone_bricks, each stone_bricks requires 4 stone, so 24 stone are needed. The inventory has only 8 stone, making completion impossible. It verifies recipe dependencies, computes the shortage, and excludes irrelevant inventory items, directly resolving the task.; capped: no clear grounded evidence": 1,
+    "The planner correctly identifies the target recipe dependency: stone_brick_stairs need 6 stone_bricks, and 8 stone are sufficient to craft 8 stone_bricks via two 2x2 stone-brick recipes. This decisively establishes that the target is craftable from the inventory and provides the concrete quantities needed for a downstream valid crafting plan.": 1,
+    "The agent incorrectly concludes IMPOSSIBLE by assuming each stone_bricks requires 4 stone and yields only 1. In Minecraft, 4 stone crafts 4 stone_bricks, so 8 stone yields 8 stone_bricks, enough to craft stone_brick_stairs. The impossibility conclusion is wrong and provides no valid plan.": 1,
+    "The verifier output is directly decisive: it correctly identifies the full recipe dependency chain (stone_brick_stairs requires 6 stone_bricks, each requiring 4 stone), computes 24 stone needed, compares against the 8 stone available, and concludes IMPOSSIBLE with clear inventory conservation reasoning. This fully resolves the task.; capped: no clear grounded evidence": 1,
+    "The planner output is directly decisive: it correctly identifies the required recipe chain (stone_brick_stairs needs 6 stone_bricks; each stone_bricks needs 4 stone), calculates 24 stone needed, compares with the 8 available, and concludes IMPOSSIBLE with a valid explanation. This fully resolves the task.": 1,
+    "The output incorrectly assumes 4 stone yields only 1 stone brick. In Minecraft, 4 stone in a 2x2 crafts 4 stone bricks, so 8 stone is enough to craft 8 stone bricks, which is sufficient for the 6 stone bricks needed for stone_brick_stairs. The conclusion IMPOSSIBLE is wrong.": 1,
+    "The verifier output is directly decisive: it confirms stone_brick_stairs requires 6 stone_bricks and each stone_bricks requires 4 stone, computing 24 stone needed versus only 8 available. It correctly concludes IMPOSSIBLE with explicit recipe evidence and inventory accounting, fully solving the task.; capped: no clear grounded evidence": 1,
+    "The output identifies a relevant intermediate material (rabbit_hide for leather) but does not ground it in the provided inventory, does not complete the dependency check, and does not state whether the target is craftable. It is only weak partial progress.": 1,
+    "The output identifies a relevant recipe dependency (leather from rabbit_hide) but fails to verify against the provided inventory, does not conclude IMPOSSIBLE, and provides no concrete crafting plan or grounded evidence.": 1,
+    "The output provides incorrect information (leather does not require rabbit_hide) and does not assess the given inventory or conclude impossibility. It is not a useful contribution toward solving the task.": 1,
+    "The output correctly identifies that leather_helmet requires leather and that leather can be made from rabbit_hide, but it stops at an open question and provides no final determination, valid crafting plan, or grounded inventory-based evidence. It is only a weak partial contribution.": 1,
+    "The output names a relevant dependency (leather can be crafted from rabbit_hide), but it stops at an intention to check rather than verifying inventory or concluding impossibility. It provides no source-backed evidence, no inventory comparison, and no actionable verification result.": 1,
+    "The planner output only begins a dependency check by noting leather requires rabbit_hide, but it does not verify inventory or reach the required conclusion (crafting plan or IMPOSSIBLE). This is a weak, partially relevant step, not a decisive contribution.": 1,
+    "The output mentions that leather can be produced from rabbit_hide, which is a related recipe dependency, but it does not verify the inventory, complete the check, or provide any concrete plan or impossibility conclusion. It is partially relevant but lacks decisive evidence or progress.": 1,
+    "The planner output correctly determines feasibility, identifies the required 7 diamonds and 7 diamond_ore conversion, and provides a valid minimal action sequence ending in diamond_leggings. This is directly decisive for the task.": 1,
+    "The output provides concrete, grounded validation: it cites the diamond_leggings recipe needing 7 diamonds at specified grid positions, confirms diamond is obtained by smelting diamond_ore, and verifies the inventory has exactly 7 diamond_ore. It also produces an execution-order output list. It stops short of a fully executable slot-level action sequence, but it is strong and useful for downstream verification.; capped: no clear grounded evidence": 1,
+    "The verifier output directly confirms feasibility by grounding the diamond_leggings recipe requirement of 7 diamonds, the smelting conversion from 7 diamond_ore to 7 diamonds, and inventory conservation. It gives a concrete two-step valid plan and clearly states that other inventory items are irrelevant. This is decisive evidence for downstream planning, only lacking slot-level JSON formatting.; capped: no clear grounded evidence": 1,
+    "The planner correctly identifies the diamond_leggings recipe (7 diamonds), matches the inventory's 7 diamond_ore via 1:1 smelting, and provides the exact minimal action sequence. This directly and decisively solves the task.": 1,
+    "Agent verifies with recipe evidence that diamond_leggings requires 7 diamonds, that diamond_ore smelts 1:1 into diamond, and that the inventory has exactly 7 diamond_ore, making the plan feasible with no extra consumption. This strongly contributes a concrete, evidence-backed verification and plan; only minor incompleteness is that the final JSON action list is truncated.; capped: no clear grounded evidence": 1,
+    "The agent identifies that diamond_leggings require 7 diamonds, links them to smelting 7 diamond_ore into 7 diamonds, and provides a concrete valid action sequence. This is a direct, decisive solution to the task.": 1,
+    "Agent output cites the inventory evidence (7 diamond_ore) and correctly uses the diamond_leggings recipe needing 7 diamonds, with the smelting conversion of 1 ore to 1 diamond. This is concrete, grounded progress toward a plan. However, the output is truncated and does not provide the complete verified crafting action sequence or slot layout, so it is not fully decisive.; capped: no clear grounded evidence": 1,
+    "The verifier decisively confirms feasibility and provides the exact valid plan: smelt 7 diamond_ore into 7 diamonds, then craft diamond_leggings using the 7-diamond recipe. This is directly supported by the inventory count and the recipe dependency, making it a critical and decisive contribution.; capped: no clear grounded evidence": 1,
+    "The output correctly identifies that diamond_leggings require 7 diamonds, maps the 7 diamond_ore inventory to 7 diamonds via smelting, and states a valid two-step crafting plan. This is directly decisive for the task.": 1,
+    "The verifier clearly grounded the feasibility in explicit inventory counts and recipe dependencies: 7 diamond_ore smelt 1:1 into 7 diamonds, exactly matching the 7 diamonds required for diamond_leggings. It confirms inventory conservation and provides a valid action sequence, making the conclusion directly decisive.; capped: no clear grounded evidence": 1,
+    "The planner output provides a correct, complete, and directly decisive crafting plan: smelt 7 diamond_ore into 7 diamonds, then craft diamond_leggings. It correctly verifies inventory sufficiency and exact consumption, making the solution fully actionable.": 1,
+    "Output correctly identifies diamond_leggings need 7 diamonds and that 7 diamond_ore can be smelted, with a slot mapping, but it does not provide a complete validated executable action list or explicit final impossible/craft decision; it remains a partial decomposition rather than decisive evidence.": 1,
+    "Planner output identifies the correct recipe dependency (netherrack -> nether_brick, then nether_brick_fence from 4 nether_bricks + 2 nether_brick), checks inventory quantities exactly, and provides an achievable action sequence. This directly and decisively solves the task.": 1,
+    "fallback:text_heuristic": 4,
+    "The planner output correctly identifies the exact recipe requirements, verifies inventory sufficiency, states the netherrack-to-nether_brick dependency, and provides a valid actionable crafting plan. It is directly decisive for solving the task.": 1,
+    "The calculator output correctly identifies the concrete crafting chain: smelt 2 netherrack into 2 nether_brick, then use 4 nether_bricks + 2 nether_brick to craft nether_brick_fence. It verifies exact inventory quantities and concludes feasibility, which is strong, actionable progress. However, it is truncated before providing the final executable slot/action sequence, so it is not a complete decisive plan.; capped: no clear grounded evidence": 1,
+    "The verifier provides a concrete, correct crafting plan: smelt 2 netherrack into 2 nether_brick, then craft nether_brick_fence using 4 nether_bricks + 2 nether_brick. It directly checks inventory counts and recipe dependencies, making a decisive contribution to solving the task.; capped: no clear grounded evidence": 1,
+    "The planner output correctly identifies that crafting cyan_wool requires cyan dye (blue dye + green dye) and white wool, and notes that green_dye is available. However, it stops at checking recipes and does not yet produce a complete plan or confirm the conversion of lapis_lazuli to blue dye and string to white wool, so it is a moderately useful partial decomposition rather than a decisive solution.": 1,
+    "The output correctly identifies that cyan dye requires blue and green dye and notes green dye is available, but it does not ground this in verified recipe evidence, recognize lapis_lazuli as a blue dye source, or provide a concrete crafting plan. This is weak, partially relevant progress only.": 1,
+    "The output gives a partial dependency decomposition: cyan dye needs blue_dye + green_dye, and notes green_dye is available. However, it does not identify lapis_lazuli as the source of blue_dye, does not mention string can craft wool, and does not reach a final verdict or plan. It is weak but partially relevant.": 1,
+    "The planner output correctly begins dependency decomposition by identifying cyan dye requires blue_dye and green_dye, and notes green_dye is available. However, it does not complete the recipe check, ignores the need for white wool/string, and provides no concrete crafting plan, so it is only a weak partial contribution.": 1,
+    "Output identifies a relevant intermediate ingredient requirement (green dye and blue dye for cyan dye) and notes that green_dye is available, but it stops before resolving how to obtain blue_dye from lapis_lazuli, does not mention using string to make white wool, and provides no concrete crafting plan or final validity judgment.": 1,
+    "The verifier identifies that cyan dye requires blue and green dye and notes green_dye is available, but it does not ground this in the inventory-provided lapis_lazuli or provide a concrete validated plan. The contribution is only a partial step and lacks evidence-backed verification.": 1,
+    "The planner output only identifies that green_dye is available and that blue_dye is likely needed, but it does not produce a crafting plan or solve the task. It is a weak, partially relevant dependency hint.": 1,
+    "The output partially identifies required dye ingredients (blue_dye and green_dye) and notes green_dye is available, but it lacks grounded recipe evidence, does not address obtaining white wool from string, and does not provide a concrete validated crafting plan. Weak but partially relevant.": 1,
+    "Output is only a partial dependency note: it identifies that cyan dye needs blue_dye and green_dye and observes green_dye is available, but it neither verifies whether lapis_lazuli can provide blue dye, considers the need for wool/white wool from string, nor produces a final crafting plan or impossibility justification. It is a weak, partially relevant contribution without grounded evidence.": 1,
+    "The planner correctly identifies the iron_door recipe requires 6 iron_ingots, converts 51 iron_nuggets to 5 iron_ingots with 6 left over, and highlights the key shortage. This is a useful partial decomposition and evidence of insufficiency, but it stops short of confirming whether any other inventory items can provide iron or declaring IMPOSSIBLE.": 1,
+    "The output provides a grounded negative result from recipe lookup: lanterns cannot be broken down into iron, despite containing iron nuggets. This is useful evidence toward ruling out alternative iron sources, but it does not yet complete the check of remaining items or state the final feasibility/plan, so it is only moderately contributive.": 1,
+    "Output provides a relevant, grounded decomposition: iron_door needs 6 iron_ingots, and 51 iron_nuggets only yield 5 ingots plus 6 leftover nuggets. This is useful progress but incomplete: it does not verify whether chest_minecart, grindstone, or lantern can supply the missing iron, and it stops at 'let me check' without delivering a final plan or IMPOSSIBLE verdict.": 1,
+    "The agent correctly determined the target is impossible by recognizing the iron_door recipe requires 6 iron_ingots, that each ingot needs 9 iron_nuggets, and that only 51 iron_nuggets are available (enough for only 5 ingots). This is a decisive, accurate resolution of the task.": 1,
+    "The output provides a concrete, evidence-backed calculation: iron_door requires 6 iron_ingots, each requiring 9 iron_nuggets, so 54 iron_nuggets are needed. Inventory contains only 51 iron_nuggets, and no other item can be converted to iron_ingots. This directly establishes that crafting is impossible, making it a decisive contribution.; capped: no clear grounded evidence": 1,
+    "The verifier output correctly determines that crafting iron_door requires 6 iron_ingots, which need 54 iron_nuggets, while the inventory contains only 51. It also checks and eliminates other source materials, making the IMPOSSIBLE conclusion directly supported by grounded inventory counts and recipe dependencies.; capped: no clear grounded evidence": 1,
+    "The output only states an intention to check other items (lantern, grindstone, chest_minecart) for iron_ingot conversion, without providing any new evidence, recipe validation, or a concrete plan. It is weakly relevant but does not advance the solution.": 1,
+    "The output adds a small relevant clarification that lanterns consume iron_nuggets rather than providing iron_ingots, but it does not produce a validated plan, complete verification, or decide IMPOSSIBLE. It remains partial and exploratory.": 1,
+    "The verifier gives a concrete, grounded calculation: iron_door needs 6 iron_ingots, each requiring 9 iron_nuggets, so 54 nuggets are needed while only 51 are available. This correctly identifies the central shortage and advances the task by narrowing the possible paths. However, it stops short of a final IMPOSSIBLE verdict and does not complete verification of all alternative iron-ingot sources.; capped: no clear grounded evidence": 1,
+    "The output correctly identifies the missing spruce_log and spruce_planks dependencies, accurately verifies none are in inventory, and reaches the correct IMPOSSIBLE conclusion. This is directly decisive for the task.": 1,
+    "The output correctly identifies the full dependency chain (spruce_boat requires 5 spruce_planks, which requires 1 spruce_log), explicitly checks the provided inventory, and confirms no spruce_log, spruce_planks, or wood-related source exists. This provides a decisive evidence-backed IMPOSSIBLE conclusion directly usable by downstream verifier.; capped: no clear grounded evidence": 1,
+    "The verifier confirms the recipe dependency chain and checks inventory conservation, correctly identifying that spruce_log and spruce_planks are absent and unobtainable, making the target item impossible to craft. This directly and decisively solves the task.; capped: no clear grounded evidence": 1,
+    "Correctly determines IMPOSSIBLE by verifying the dependency chain spruce_boat -> spruce_planks -> spruce_log and checking that none of the inventory items can provide or transform into spruce_log or spruce_planks. This is a critical and decisive contribution.; capped: no clear grounded evidence": 1,
+    "The output recognizes a relevant recipe dependency (spruce_planks requires spruce_log) and signals intent to check availability, but it stops short of verifying whether spruce_log exists in the inventory or concluding IMPOSSIBLE. This is only a weak, partially relevant contribution toward the final crafting decision.": 1,
+    "Correctly determines IMPOSSIBLE: spruce_boat requires spruce planks derived from spruce_log, none of which are present or craftable from the provided inventory. Provides the full dependency chain and a decisive final answer.": 1,
+    "The output correctly identifies that spruce_boat requires spruce_planks, which in turn require spruce_log, and states the need to check availability. This is a partially relevant step toward determining impossibility, but it provides no grounded inventory comparison, no validated recipe evidence, and no final IMPOSSIBLE conclusion.": 1,
+    "The output only notes that spruce_planks requires spruce_log and says it will check availability, without verifying inventory or concluding IMPOSSIBLE. It is partially relevant to recipe dependency analysis but lacks grounded evidence and does not produce a usable final decision.": 1,
+    "The planner identifies that netherrack is absent and begins recipe checking, but it targets the wrong recipe: nether_bricks (the block) is crafted from 4 nether_brick items, not from smelting netherrack. It overlooks the inventory's nether_brick:1 and fails to conclude impossibility due to insufficient nether_brick count. The output is only weakly relevant and does not provide a usable plan or decisive impossibility.": 1,
+    "The output correctly notes that nether_brick requires netherrack and that netherrack is absent from the inventory, but it stops short of resolving the target nether_bricks craft or declaring IMPOSSIBLE. It also fails to account for the existing nether_brick:1 item and the 4-item recipe requirement, so the contribution is partial and not decisive.": 1,
+    "The output identifies that netherrack is absent and that nether_brick requires smelting, which is a partially relevant dependency check. However, it targets the wrong item: the goal is nether_bricks (the block), crafted from 4 nether_brick items, not from netherrack directly. It ignores the inventory's nether_brick:1 count and does not state the decisive impossibility (insufficient nether_brick items). Thus it provides only weak partial progress.": 1,
+    "The planner output correctly identifies the recipe dependency nether_bricks requires 4 nether_brick, notes only 1 nether_brick is available, and confirms no netherrack or alternative source exists in inventory. This directly and decisively solves the task with IMPOSSIBLE.": 1,
+    "The output only restates that the nether_brick recipe requires smelting netherrack and says it will check availability, without providing concrete evidence, inventory validation, or a final conclusion. It is partially relevant but not decisive.": 1,
+    "The verifier output directly confirms the recipe chain and inventory shortage, correctly concluding IMPOSSIBLE with grounded evidence: nether_bricks requires 4 nether_brick, only 1 is present, and no inventory item can yield netherrack or additional nether_brick. This is critical and decisive for the task.; capped: no clear grounded evidence": 1,
+    "The planner correctly identifies the dependency chain: nether_bricks requires 4 nether_brick, only 1 nether_brick is available, and additional nether_brick requires smelting netherrack, which is absent and uncraftable from inventory. This is concrete, evidence-backed progress toward the IMPOSSIBLE conclusion, though the output is truncated and does not explicitly state the final verdict.": 1,
+    "The output is directly decisive: it identifies that nether_bricks requires 4 nether_brick items, cites the inventory as containing only 1 nether_brick, and correctly concludes IMPOSSIBLE. It also checks the missing netherrack source, providing grounded evidence for the impossibility.; capped: no clear grounded evidence": 1,
+    "The output correctly identifies that nether_brick comes from smelting netherrack and notes netherrack is absent from the inventory, which is a relevant partial check. However, it does not verify the target craft itself, such as needing 4 nether_brick items to craft nether_bricks while only 1 is available, and it stops without an IMPOSSIBLE conclusion or concrete sourced reasoning. This is weak but partially relevant progress.": 1,
+    "The planner output correctly identifies the key dependency chain for the bow: sticks require planks, and planks can potentially be derived from birch_log or stripped_spruce_wood. This is a relevant decomposition and partial progress, but it stops short of confirming the recipe plan or producing a valid final action sequence.": 1,
+    "The output correctly identifies the missing stick ingredient and notes that birch_log/stripped_spruce_wood might yield planks for stick crafting. It provides a relevant decomposition and grounds its reasoning in inventory items, but it does not produce a concrete validated crafting plan or final decision.": 1,
+    "The output only repeats the need to check plank conversion from logs and gives an incomplete/inaccurate stick recipe constraint (e.g., birch planks are also valid). It does not verify inventory conservation, confirm stick availability, or produce a concrete bow crafting plan or IMPOSSIBLE justification.": 1,
+    "The output correctly begins decomposing the bow recipe by recognizing that sticks require planks, and it names candidate plank sources from the inventory. However, it stops at an open-ended checking step and provides no concrete crafted plan, quantities, or final validity/impossibility judgment, so it is only a weak partial contribution.": 1,
+    "The output only notes that sticks require planks and says it will check plank recipes. It provides no grounded recipe evidence, no inventory conversion calculation, and no concrete progress toward a valid crafting plan or impossibility determination. This is weak but partially relevant to the bow crafting dependency chain.": 1,
+    "The output only restates that sticks require planks and mentions checking recipes for two wood items. It provides no concrete evidence, recipe expansion, or verified crafting plan; however, it is weakly relevant because it identifies a dependency needed to eventually craft the bow.": 1,
+    "The output correctly identifies that sticks are required and that no planks or bamboo are directly available, but it stops at suggesting checking whether planks can be crafted from wood. It does not actually verify plank crafting, derive the needed stick count, or produce a valid final crafting plan, so it provides only weak partial progress.": 1,
+    "Output only restates upstream recipe uncertainty and proposes checking planks; it does not yet convert inventory wood items into planks, sticks, or a feasible plan. It is partially relevant but lacks decisive or evidence-backed progress.": 1,
+    "The output identifies the need for sticks and notes that planks/bamboo are absent, while checking whether available wood can craft planks. This is relevant but incomplete: it does not verify that birch_log/stripped_spruce_wood can yield planks, does not produce the required stick or bow plan, and stops before giving a supported final answer.": 1,
+    "The planner partially decomposes the recipe by identifying blue_dye and red_dye as ingredients and recognizing glass is needed, but it stops at checking the glass recipe and does not resolve whether glass is available or craftable from inventory. It provides no valid plan and no IMPOSSIBLE determination, so its contribution is weak but partially relevant.": 1,
+    "The output identifies that glass is needed and notes blue/red dye availability, but it offers no verified recipe, no concrete crafting plan, and no grounded evidence from parsed documents or sources. It is only weakly relevant groundwork.": 1,
+    "The output correctly identifies the purple dye recipe (blue dye + red dye) and verifies both ingredients are present in the inventory. This is a grounded, relevant partial decomposition. However, it stops before verifying the glass requirement or producing a complete plan, so it is not yet decisive.": 1,
+    "The planner identifies the key missing dependency: glass requires smelting sand, and no furnace is available in inventory. This is a useful decomposition for reaching an impossibility conclusion, but it stops short of final determination and contains a minor inaccuracy regarding fuel sources (lava bucket is fuel, though furnace is still missing).": 1,
+    "The output correctly decomposes the target into purple dye plus glass, recognizes that purple dye can be made from blue_dye and red_dye, and checks inventory for required smelting inputs. It explicitly notes sand is present but no furnace is listed, which is key evidence toward impossibility. However, it stops short of a final IMPOSSIBLE conclusion, does not fully account for lava_bucket as possible fuel or the absence of furnace-crafting materials, and the reasoning is left incomplete.": 1,
+    "The output correctly recognizes that blue_dye and red_dye can craft purple_dye and identifies glass as the remaining required ingredient, but it does not verify the glass recipe, assess furnace/fuel absence, or determine that the target is impossible. It provides partially useful grounded progress but stops before the decisive bottleneck.": 1,
+    "The output identifies that purple dye can be crafted from blue and red dye, and notes glass is needed, but it stops short of providing the glass recipe, furnace/smelting requirements, or the final crafting plan. This is a weak partial contribution rather than a decisive plan.": 1,
+    "The output correctly notes that blue_dye and red_dye can craft purple_dye, grounded in inventory counts, but it stops before verifying or resolving the glass requirement. It provides only a partial dye step and no complete crafting plan or impossibility determination, so it is weakly relevant but not decisive.": 1,
+    "The output correctly identifies that sand is available and can be smelted into glass, grounding this in the inventory count. This is a concrete step toward the purple_stained_glass recipe, but it stops before verifying the full dependency chain (purple dye plus glass plus crafting layout) and does not provide a complete plan.": 1
+  },
+  "run_level_auc": {
+    "runtime_answer_quality": 1.0,
+    "max_round_answer_quality": 0.990909090909091,
+    "max_agent_contribution_score": 0.7545454545454545,
+    "mean_agent_contribution_score": 0.7745454545454545
+  },
+  "threshold_audit": {
+    "runtime_answer_quality": [
+      {
+        "threshold": 0.5,
+        "tp": 5,
+        "fp": 0,
+        "fn": 0,
+        "tn": 55,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_rate": 0.0
+      },
+      {
+        "threshold": 0.8,
+        "tp": 5,
+        "fp": 0,
+        "fn": 0,
+        "tn": 55,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_rate": 0.0
+      },
+      {
+        "threshold": 0.85,
+        "tp": 5,
+        "fp": 0,
+        "fn": 0,
+        "tn": 55,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_rate": 0.0
+      },
+      {
+        "threshold": 1.0,
+        "tp": 5,
+        "fp": 0,
+        "fn": 0,
+        "tn": 55,
+        "precision": 1.0,
+        "recall": 1.0,
+        "false_positive_rate": 0.0
+      }
+    ],
+    "max_round_answer_quality": [
+      {
+        "threshold": 0.5,
+        "tp": 5,
+        "fp": 1,
+        "fn": 0,
+        "tn": 54,
+        "precision": 0.8333333333333334,
+        "recall": 1.0,
+        "false_positive_rate": 0.01818181818181818
+      },
+      {
+        "threshold": 0.8,
+        "tp": 5,
+        "fp": 1,
+        "fn": 0,
+        "tn": 54,
+        "precision": 0.8333333333333334,
+        "recall": 1.0,
+        "false_positive_rate": 0.01818181818181818
+      },
+      {
+        "threshold": 0.85,
+        "tp": 5,
+        "fp": 1,
+        "fn": 0,
+        "tn": 54,
+        "precision": 0.8333333333333334,
+        "recall": 1.0,
+        "false_positive_rate": 0.01818181818181818
+      },
+      {
+        "threshold": 1.0,
+        "tp": 5,
+        "fp": 1,
+        "fn": 0,
+        "tn": 54,
+        "precision": 0.8333333333333334,
+        "recall": 1.0,
+        "false_positive_rate": 0.01818181818181818
+      }
+    ],
+    "max_agent_contribution_score": [
+      {
+        "threshold": 0.5,
+        "tp": 5,
+        "fp": 42,
+        "fn": 0,
+        "tn": 13,
+        "precision": 0.10638297872340426,
+        "recall": 1.0,
+        "false_positive_rate": 0.7636363636363637
+      },
+      {
+        "threshold": 0.8,
+        "tp": 5,
+        "fp": 28,
+        "fn": 0,
+        "tn": 27,
+        "precision": 0.15151515151515152,
+        "recall": 1.0,
+        "false_positive_rate": 0.509090909090909
+      },
+      {
+        "threshold": 0.85,
+        "tp": 5,
+        "fp": 27,
+        "fn": 0,
+        "tn": 28,
+        "precision": 0.15625,
+        "recall": 1.0,
+        "false_positive_rate": 0.4909090909090909
+      },
+      {
+        "threshold": 1.0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 5,
+        "tn": 55,
+        "precision": null,
+        "recall": 0.0,
+        "false_positive_rate": 0.0
+      }
+    ],
+    "mean_agent_contribution_score": [
+      {
+        "threshold": 0.5,
+        "tp": 5,
+        "fp": 18,
+        "fn": 0,
+        "tn": 37,
+        "precision": 0.21739130434782608,
+        "recall": 1.0,
+        "false_positive_rate": 0.32727272727272727
+      },
+      {
+        "threshold": 0.8,
+        "tp": 0,
+        "fp": 0,
+        "fn": 5,
+        "tn": 55,
+        "precision": null,
+        "recall": 0.0,
+        "false_positive_rate": 0.0
+      },
+      {
+        "threshold": 0.85,
+        "tp": 0,
+        "fp": 0,
+        "fn": 5,
+        "tn": 55,
+        "precision": null,
+        "recall": 0.0,
+        "false_positive_rate": 0.0
+      },
+      {
+        "threshold": 1.0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 5,
+        "tn": 55,
+        "precision": null,
+        "recall": 0.0,
+        "false_positive_rate": 0.0
+      }
+    ]
+  },
+  "agent_round_high_score_audit": {
+    "threshold": 0.8,
+    "high_score_observations": 165,
+    "high_score_observations_on_deterministically_failed_runs": 141,
+    "failed_run_share": 0.8545454545454545
+  },
+  "arm_summary": {
+    "evolve": {
+      "runs": 20,
+      "deterministic_exact": 2,
+      "mean_runtime_answer_quality": 0.11785000000000001,
+      "mean_max_agent_contribution_score": 0.664453125
+    },
+    "depth_matched_reset": {
+      "runs": 20,
+      "deterministic_exact": 1,
+      "mean_runtime_answer_quality": 0.05,
+      "mean_max_agent_contribution_score": 0.673009375
+    },
+    "no_canary": {
+      "runs": 20,
+      "deterministic_exact": 2,
+      "mean_runtime_answer_quality": 0.109403125,
+      "mean_max_agent_contribution_score": 0.6355
+    }
+  },
+  "rows": [
+    {
+      "instance_id": "TEST0011",
+      "arm": "evolve",
+      "deterministic_exact": false,
+      "runtime_answer_quality": 0.0,
+      "max_round_answer_quality": 0.0,
+      "max_agent_contribution_score": 0.85,
+      "mean_agent_contribution_score": 0.6270833333333333,
+      "agent_round_scores_at_least_0_8": 7,
+      "agent_round_score_count": 15,
+      "score_reasons": {
+        "heuristic_only_non_slow_round": 12,
+        "The agent concludes IMPOSSIBLE based on false recipe facts: paper is 3 sugar cane -> 3 paper, not 1, and cartography table requires 2 paper + 4 planks of any type, not 2 jungle + 1 birch + 1 spruce. It misses the valid path using 3 sugar cane for 2 paper and warped_hyphae for 4 warped planks, so it provides no useful or correct contribution.": 1,
+        "The output gives grounded, concrete evidence: 3 sugar cane yields exactly 1 paper, while the cartography table requires 2 paper, exposing an irreducible missing resource. It also correctly identifies the next plank-related check rather than giving generic failure. This is strong partial progress, though it stops short of explicitly declaring IMPOSSIBLE or fully completing the verification.; capped: no clear grounded evidence": 1,
+        "The output reaches the correct IMPOSSIBLE verdict and gives a concrete inventory-to-recipe check identifying missing items, so it is moderately useful decomposition. However, it does not include explicit retrieved-source snippets or source-backed recipe evidence, and the exact recipe variant is asserted rather than clearly grounded, preventing a higher evidence-based score.": 1
+      }
+    },
+    {
+      "instance_id": "TEST0011",
+      "arm": "depth_matched_reset",
+      "deterministic_exact": false,
+      "runtime_answer_quality": 0.0,
+      "max_round_answer_quality": 0.0,
+      "max_agent_contribution_score": 0.85,
+      "mean_agent_contribution_score": 0.5009125,
+      "agent_round_scores_at_least_0_8": 3,
+      "agent_round_score_count": 15,
+      "score_reasons": {
+        "heuristic_only_non_slow_round": 12,
+        "The planner output is factually incorrect: 3 sugar cane crafts 3 paper, not 1, so the claimed paper shortage is false. It also invents incorrect plank requirements and overlooks that warped_hyphae can produce planks. The output provides no valid crafting plan or correct impossibility conclusion.": 1,
+        "The calculator output provides concrete recipe evidence: cartography_table requires 2 paper, each paper needs 3 sugar_cane, and inventory has exactly 3 sugar_cane, yielding only 1 paper. This identifies a decisive bottleneck and strongly supports an IMPOSSIBLE conclusion, though it does not explicitly finalize the overall answer.; capped: no clear grounded evidence": 1,
+        "The output provides grounded, concrete evidence: it correctly maps 3 sugar_cane to 1 paper and notes cartography_table needs 2 paper, meaning the inventory is short by 1 paper. This is a strong, decisive constraint for impossibility, though it stops short of explicitly stating the final IMPOSSIBLE verdict.; capped: no clear grounded evidence": 1
+      }
+    },
+    {
+      "instance_id": "TEST0011",
+      "arm": "no_canary",
+      "deterministic_exact": false,
+      "runtime_answer_quality": 0.0,
+      "max_round_answer_quality": 0.0,
+      "max_agent_contribution_score": 0.85,
+      "mean_agent_contribution_score": 0.3386208333333333,
+      "agent_round_scores_at_least_0_8": 2,
+      "agent_round_score_count": 15,
+      "score_reasons": {
+        "heuristic_only_non_slow_round": 12,
+        "The planner output decomposes the cartography table needs and checks the inventory: it correctly notes 3 sugar_cane only yield 1 paper, only 1 jungle_plank is available, and spruce_planks are missing. This is useful partial evidence, but it stops short of delivering the final IMPOSSIBLE verdict or a complete dependency conclusion, so it is only moderately useful.": 1,
+        "The output correctly uses the inventory to compute that 3 sugar_cane yields only 1 paper while 2 paper are required, identifying a decisive missing ingredient for the cartography_table recipe. This is concrete, evidence-backed progress toward impossibility. However, it does not deliver the final IMPOSSIBLE verdict and introduces an ungrounded spruce_planks requirement, so it is not fully decisive.; capped: no clear grounded evidence": 1,
+        "The output provides grounded evidence of the sugar_cane shortfall (3 sugar_cane yields only 1 paper while 2 are required) and identifies the need to check jungle/spruce plank availability. This is a useful partial verification/decomposition, but it stops short of validating the full recipe dependency graph or concluding IMPOSSIBLE.": 1
+      }
+    },
+    {
+      "instance_id": "TEST0057",
+      "arm": "evolve",
+      "deterministic_exact": false,
+      "runtime_answer_quality": 0.0,
+      "max_round_answer_quality": 0.0,
+      "max_agent_contribution_score": 0.3,
+      "mean_agent_contribution_score": 0.10752916666666666,
+      "agent_round_scores_at_least_0_8": 0,
+      "agent_round_score_count": 15,
+      "score_reasons": {
+        "heuristic_only_non_slow_round": 12,
+        "The output only names two needed ingredients (gray_dye and white_wool) and says it will check recipes, without determining feasibility or giving a plan. This is a weak partial contribution toward solving the crafting task.": 1,
+        "The output identifies the two required ingredients for gray_carpet, which is a relevant first step, but it provides no concrete recipe verification, inventory comparison, or final IMPOSSIBLE conclusion, so it offers only weak partial progress.": 1,
+        "Correctly identifies that gray_carpet would require gray_dye and white_wool, but does not check inventory or conclude IMPOSSIBLE; no evidence-backed verification or final plan.": 1
+      }
+    },
+    {
+      "instance_id": "TEST0057",
+      "arm": "no_canary",
+      "deterministic_exact": false,
+      "runtime_answer_quality": 0.0,
+      "max_round_answer_quality": 0.0,
+      "max_agent_contribution_score": 0.3,
+      "mean_agent_contribution_score": 0.10604166666666666,
+      "agent_round_scores_at_least_0_8": 0,
+      "agent_round_score_count": 15,
+      "score_reasons": {
+        "heuristic_only_non_slow_round": 12,
+        "The planner identifies that gray_dye and white_wool are needed for gray_carpet, but it does not check the inventory for them, does not provide a completed crafting plan, and does not conclude IMPOSSIBLE. This is a weak, partially relevant dependency note rather than a decisive contribution.": 1,
+        "Output identifies the key ingredients needed (gray dye and white wool) but provides no inventory comparison, recipe evidence, or final plan/IMPOSSIBLE determination, so it is only a weak partial decomposition.": 1,
+        "The output identifies a relevant dependency (gray_wool requires gray_dye + white_wool) but does not verify inventory availability, inspect recipes, or produce a valid plan/IMPOSSIBLE conclusion. It provides only a weak partial step with no grounded evidence from the provided inventory or documents.": 1
+      }
+    },
+    {
+      "instance_id": "TEST0057",
+      "arm": "depth_matched_reset",
+      "deterministic_exact": false,
+      "runtime_answer_quality": 0.0,
+      "max_round_answer_quality": 0.0,
+      "max_agent_contribution_score": 0.3,
+      "mean_agent_contribution_score": 0.1209875,
+      "agent_round_scores_at_least_0_8": 0,
+      "agent_round_score_count": 15,
+      "score_reasons": {
+        "heuristic_only_non_slow_round": 12,
+        "The planner identifies gray_dye and white_wool as needed ingredients, which is a relevant dependency, but it stops at an intention to search and does not account for string being able to craft white wool, nor conclude that gray_dye is unavailable; therefore it provides only weak partial progress toward deciding IMPOSSIBLE.": 1,
+        "The output only proposes needed ingredients (gray_dye and white_wool) without verifying recipes, checking inventory feasibility, or producing a valid plan/IMPOSSIBLE conclusion. It is partially relevant but lacks concrete evidence-backed calculation.": 1,
+        "The output identifies that gray_wool requires gray dye and white wool, which is a relevant dependency for the gray_carpet target. However, it does not verify the inventory, cite concrete source evidence, or reach any conclusion about feasibility, so it is only weakly useful.": 1
+      }
+    },
+    {
+      "instance_id": "TEST0069",
+      "arm": "evolve",
+      "deterministic_exact": false,
+      "runtime_answer_quality": 0.0,
+      "max_round_answer_quality": 0.0,
+      "max_agent_contribution_score": 0.5429375000000001,
+      "mean_agent_contribution_score": 0.13040416666666668,
+      "agent_round_scores_at_least_0_8": 0,
+      "agent_round_score_count": 15,
+      "score_reasons": {
+        "heuristic_only_non_slow_round": 12,
+        "low_signal output": 2,
+        "The output only states an intention to verify recipe requirements, with no actual recipe evidence, computed result, or decisive conclusion. It contributes no usable information toward solving the crafting task.": 1
+      }
+    },
+    {
+      "instance_id": "TEST0069",
+      "arm": "depth_matched_reset",
+      "deterministic_exact": false,
+      "runtime_answer_quality": 0.0,
+      "max_round_answer_quality": 0.014875000000000001,
+      "max_agent_contribution_score": 0.8372499999999999,
+      "mean_agent_contribution_score": 0.1600375,
+      "agent_round_scores_at_least_0_8": 1,
+      "agent_round_score_count": 15,
+      "score_reasons": {
+        "heuristic_only_non_slow_round": 12,
+        "low_signal output": 2,
+        "The output recognizes a relevant prerequisite (quartz needed for quartz_block) but provides no concrete crafting plan, no impossibility conclusion, and no evidence-backed recipe or inventory check. It is only a weak partial step toward solving the task.": 1
+      }
+    },
+    {
+      "instance_id": "TEST0069",
+      "arm": "no_canary",
+      "deterministic_exact": false,
+      "runtime_answer_quality": 0.0,
+      "max_round_answer_quality": 0.0,
+      "max_agent_contribution_score": 0.51,
+      "mean_agent_contribution_score": 0.1196625,
+      "agent_round_scores_at_least_0_8": 0,
+      "agent_round_score_count": 15,
+      "score_reasons": {
+        "heuristic_only_non_slow_round": 12,
+        "The output only muses about quartz dependency; it gives no valid plan or impossibility conclusion, and its stated recipe is not relevant to the target item.": 1,
+        "Output only notes that quartz_block requires 4 quartz and proposes checking whether quartz can be crafted, but it does not reference the provided inventory, produce a concrete plan, or conclude IMPOSSIBLE. This is weak and partially relevant.": 1,
+        "low_signal output": 1
+      }
+    },
+    {
+      "instance_id": "TEST0097",
+      "arm": "no_canary",
+      "deterministic_exact": false,
+      "runtime_answer_quality": 0.1009375,
+      "max_round_answer_quality": 0.1009375,
+      "max_agent_contribution_score": 0.85,
+      "mean_agent_contribution_score": 0.5846791666666667,
+      "agent_round_scores_at_least_0_8": 7,
+      "agent_round_score_count": 15,
+      "score_reasons": {
+        "heuristic_only_non_slow_round": 12,
+        "The output usefully identifies that iron_trapdoor requires 4 iron_ingots and that iron_ore can be smelted, but it misses the critical prerequisites of a furnace and fuel. Since the inventory contains neither, the proposed smelting plan is not valid, so the contribution is only partially relevant and not decisive.": 1,
+        "The calculator output provides the crucial grounded reasoning: iron_trapdoor requires 4 iron_ingots in A1/A2/B1/B2, and 4 iron_ore can be smelted into exactly 4 iron_ingots. It also maps the inventory slots and asserts feasibility. This is a strong, concrete contribution toward a valid plan, but it is truncated before delivering a fully executable final action sequence and still questions how the smelt tool handles target slots, so it is not fully decisive.; capped: no clear grounded evidence": 1,
+        "Provides a correct decomposition and inventory conservation check: 4 iron_ore can smelt into 4 iron_ingots, then 4 iron_ingots can craft iron_trapdoor at A1/A2/B1/B2. However, it does not cite explicit retrieved source snippets, parsed recipe documents, or structured source-backed objects, so despite the useful reasoning it cannot receive a high evidence-grounded score.": 1
+      }
+    },
+    {
+      "instance_id": "TEST0097",
+      "arm": "depth_matched_reset",
+      "deterministic_exact": false,
+      "runtime_answer_quality": 0.0,
+      "max_round_answer_quality": 0.1009375,
+      "max_agent_contribution_score": 0.85,
+      "mean_agent_contribution_score": 0.6665916666666667,
+      "agent_round_scores_at_least_0_8": 7,
+      "agent_round_score_count": 15,
+      "score_reasons": {
+        "heuristic_only_non_slow_round": 12,
+        "The output correctly identifies that iron_trapdoor requires 4 iron ingots and recognizes iron_ore as a potential source, but it incorrectly declares the plan achievable without accounting for the required furnace and fuel for smelting, which are absent from the inventory. Therefore it provides partial relevant reasoning but an invalid conclusion.": 1,
+        "procedural output without grounded evidence": 1,
+        "The output correctly identifies that iron_trapdoor needs 4 iron_ingots and that inventory contains 4 iron_ore, but it fails to account for the required smelting step needing a furnace/fuel, which are not in the inventory. It also cites no grounded evidence or source snippets, so the feasibility conclusion is unsupported and likely incorrect. Only partial decomposition value.": 1
+      }
+    },
+    {
+      "instance_id": "TEST0097",
+      "arm": "evolve",
+      "deterministic_exact": false,
+      "runtime_answer_quality": 0.1009375,
+      "max_round_answer_quality": 0.1009375,
+      "max_agent_contribution_score": 0.85,
+      "mean_agent_contribution_score": 0.5759000000000001,
+      "agent_round_scores_at_least_0_8": 8,
+      "agent_round_score_count": 15,
+      "score_reasons": {
+        "heuristic_only_non_slow_round": 12,
+        "The output incorrectly asserts the plan is achievable by smelting iron_ore into iron_ingots, but the provided inventory contains neither a furnace nor any fuel required for smelting. Since the only way to obtain iron_ingots is unavailable, iron_trapdoor cannot be crafted from the given inventory. The agent fails to identify this impossibility and instead provides an invalid crafting plan.": 1,
+        "procedural output without grounded evidence": 1,
+        "The verifier output clearly confirms the recipe chain using search-backed evidence: iron_ore smelts to iron_ingot, iron_trapdoor requires 4 iron_ingots, and the inventory has exactly 4 iron_ore. It checks inventory conservation and states the plan is achievable with no contradicted claims. This is a strong, directly useful verification contribution, though it does not itself provide the complete final action list.; capped: no clear grounded evidence": 1
+      }
+    },
+    {
+      "instance_id": "TEST0115",
+      "arm": "no_canary",
+      "deterministic_exact": true,
+      "runtime_answer_quality": 1.0,
+      "max_round_answer_quality": 1.0,
+      "max_agent_contribution_score": 0.85,
+      "mean_agent_contribution_score": 0.5989,
+      "agent_round_scores_at_least_0_8": 4,
+      "agent_round_score_count": 15,
+      "score_reasons": {
+        "heuristic_only_non_slow_round": 9,
+        "The planner output provides the exact correct crafting plan: craft 4 granite from 4 diorite and 4 quartz, then craft polished_granite from 4 granite. It verifies inventory sufficiency, confirms both recipes, and gives a valid action sequence, making it directly decisive for solving the task.": 1,
+        "The output directly confirms both required recipes and verifies the exact inventory quantities (4 diorite + 4 quartz) needed to produce 4 granite, then craft 1 polished_granite. It provides a concrete, correct action sequence and is decisive for solving the task.; capped: no clear grounded evidence": 1,
+        "The output decisively verifies feasibility with correct recipes, exact inventory counts, explicit dependency chain, conservation check, and a valid action sequence. It fully solves the task.; capped: no clear grounded evidence": 1,
+        "The planner output gives a complete, feasible, and minimal crafting plan: correct recipes, exact required quantities, and a valid action sequence from inventory to polished_granite. It is directly decisive.": 1,
+        "The output verifies the required recipes and checks inventory quantities exactly: 4 granite can be crafted from 4 diorite and 4 quartz, then 4 granite craft 1 polished_granite. It gives a valid concise action sequence, so it is directly decisive for the task.; capped: no clear grounded evidence": 1,
+        "The verifier output decisively solves the task: it confirms both required recipes, validates that exactly 4 diorite and 4 quartz are available, checks inventory conservation, and provides a concrete crafting action sequence. This is a directly decisive contribution supported by recipe inventory reasoning.; capped: no clear grounded evidence": 1
+      }
+    },
+    {
+      "instance_id": "TEST0115",
+      "arm": "evolve",
+      "deterministic_exact": true,
+      "runtime_answer_quality": 1.0,
+      "max_round_answer_quality": 1.0,
+      "max_agent_contribution_score": 0.85,
+      "mean_agent_contribution_score": 0.535975,
+      "agent_round_scores_at_least_0_8": 4,
+      "agent_round_score_count": 15,
+      "score_reasons": {
+        "heuristic_only_non_slow_round": 9,
+        "The planner output provides a fully correct and feasible crafting plan: 4 diorite + 4 quartz craft 4 granite, and 4 granite craft 1 polished_granite. It explicitly verifies inventory quantities, shows exact resource consumption, and gives the action sequence. This is directly decisive for solving the task.": 1,
+        "procedural output without grounded evidence": 1,
+        "Verifier output confirms the relevant recipes (polished_granite from 4 granite; granite from 1 diorite + 1 quartz) and checks inventory counts (4 diorite, 4 quartz), showing exact resource sufficiency and conservation. This is grounded in the provided inventory and recipe dependencies, and directly verifies feasibility, though it relies on the planner for the concrete executable action list.; capped: no clear grounded evidence": 1,
+        "The planner correctly identifies the required recipes, verifies that 4 diorite and 4 quartz are available, and gives an executable action sequence to obtain polished_granite. This is a strong, concrete contribution. However, it inaccurately states that crafting 4 granite produces exactly 1 polished_granite; in Minecraft it produces 4 polished_granite. The plan still satisfies the target, but the recipe-output error prevents a perfect score.": 1,
+        "The calculator output provides concrete, evidence-backed recipe confirmations and an executable crafting plan: 4 granite from 4 diorite + 4 quartz, then polished_granite from those 4 granite. It correctly checks inventory sufficiency and states feasibility, giving a strong contribution to solving the task. Minor wording imprecision about polished_granite output count does not undermine feasibility.; capped: no clear grounded evidence": 1,
+        "The verifier correctly recognizes the dependency chain and that 4 diorite + 4 quartz can make 4 granite, and it checks inventory conservation. However, it endorses an invalid recipe output: polished granite from 4 granite yields 4 polished_granite, not 1, so the claimed 'craft 1 polished_granite' action is wrong. It also provides no explicit grounded evidence snippet, and the evidence gate precheck failed. This is therefore only weak/partial verification progress.": 1
+      }
+    },
+    {
+      "instance_id": "TEST0115",
+      "arm": "depth_matched_reset",
+      "deterministic_exact": true,
+      "runtime_answer_quality": 1.0,
+      "max_round_answer_quality": 1.0,
+      "max_agent_contribution_score": 0.85,
+      "mean_agent_contribution_score": 0.5650625,
+      "agent_round_scores_at_least_0_8": 6,
+      "agent_round_score_count": 15,
+      "score_reasons": {
+        "heuristic_only_non_slow_round": 9,
+        "The planner correctly identifies that polished_granite requires 4 granite, that each granite is crafted from 1 diorite + 1 quartz, and that the inventory has exactly 4 diorite and 4 quartz. It provides a complete, valid crafting sequence.": 1,
+        "Output correctly identifies that 4 granite are needed, verifies inventory has exactly 4 diorite and 4 quartz, and gives a valid sequence: craft 4 granite from diorite+quartz, then craft 1 polished_granite from 4 granite. This is a grounded, decisive calculation for the target.; capped: no clear grounded evidence": 1,
+        "procedural output without grounded evidence": 2,
+        "The planner correctly identifies the core recipe chain: 4 diorite + 4 quartz can craft 4 granite, then those 4 granite can craft polished_granite, so the target is achievable from the inventory. This is strong, concrete progress toward a valid plan. However, it incorrectly states that 4 granite yields exactly 1 polished_granite; the Minecraft recipe yields 4 polished_granite, so the output quantity/action sequence needs correction.": 1,
+        "The output correctly derives the crafting dependency: polished_granite needs 4 granite, and each granite needs 1 diorite + 1 quartz. It checks the inventory and confirms exact sufficient quantities (4 diorite, 4 quartz), yielding a valid crafting plan.; capped: no clear grounded evidence": 1
+      }
+    },
+    {
+      "instance_id": "TEST0122",
+      "arm": "depth_matched_reset",
+      "deterministic_exact": false,
+      "runtime_answer_quality": 0.0,
+      "max_round_answer_quality": 0.0,
+      "max_agent_contribution_score": 0.3,
+      "mean_agent_contribution_score": 0.08979583333333332,
+      "agent_round_scores_at_least_0_8": 0,
+      "agent_round_score_count": 15,
+      "score_reasons": {
+        "heuristic_only_non_slow_round": 12,
+        "low_signal output": 1,
+        "Output identifies only an intermediate dependency (polished_diorite requires diorite) but does not complete recipe expansion, inventory validation, or conclude possible/impossible. No grounded evidence from parsed documents or structured sources is cited, so it is a weak partial contribution.": 1,
+        "The verifier output only contributes a partial dependency note that polished_diorite requires 4 diorite, but it does not connect this to the target polished_diorite_slab, does not verify inventory conservation, and does not conclude IMPOSSIBLE. It lacks cited or sourced evidence and is too incomplete to be decisive.": 1
+      }
+    },
+    {
+      "instance_id": "TEST0122",
+      "arm": "no_canary",
+      "deterministic_exact": false,
+      "runtime_answer_quality": 0.0,
+      "max_round_answer_quality": 0.0,
+      "max_agent_contribution_score": 0.3,
+      "mean_agent_contribution_score": 0.1044125,
+      "agent_round_scores_at_least_0_8": 0,
+      "agent_round_score_count": 15,
+      "score_reasons": {
+        "heuristic_only_non_slow_round": 12,
+        "The output identifies that polished_diorite requires diorite as a dependency, which is the correct high-level path, but it states the wrong quantity (4 diorite instead of 2) and does not check the inventory or reach the required IMPOSSIBLE conclusion. It is only a weak, partially relevant start.": 1,
+        "The output only states a partial crafting dependency (polished_diorite requires 4 diorite) without citing parsed document evidence, verified recipe data, or inventory-based validation. It does not provide a concrete crafting plan or determine feasibility, so it is weak but partially relevant.": 1,
+        "The output correctly identifies that polished_diorite requires 4 diorite, which is a useful recipe dependency, but it does not complete the verification, connect this dependency to the inventory's lack of diorite, or conclude whether the target item is impossible. It is only a partial, weakly grounded intermediate step.": 1
+      }
+    },
+    {
+      "instance_id": "TEST0122",
+      "arm": "evolve",
+      "deterministic_exact": false,
+      "runtime_answer_quality": 0.0,
+      "max_round_answer_quality": 0.0,
+      "max_agent_contribution_score": 0.3,
+      "mean_agent_contribution_score": 0.11142500000000001,
+      "agent_round_scores_at_least_0_8": 0,
+      "agent_round_score_count": 15,
+      "score_reasons": {
+        "heuristic_only_non_slow_round": 12,
+        "The planner only states that polished_diorite requires 4 diorite and defers checking diorite's recipe. This identifies one dependency but does not verify inventory availability, explore recipes, or determine feasibility. It is a weak partial contribution rather than a useful or decisive plan.": 1,
+        "The output identifies a relevant prerequisite (polished_diorite requires diorite) but provides no concrete recipe verification, inventory check, or final plan/IMPOSSIBLE judgment. It is weak and partially relevant, merely signaling the next search step without producing reusable evidence or a decisive contribution.": 1,
+        "Output identifies a relevant recipe dependency (polished_diorite needs diorite), but it does not verify the inventory, check the actual polished_diorite_slab recipe, or reach the correct IMPOSSIBLE conclusion. It is only a partial, ungrounded intermediate step.": 1
+      }
+    },
+    {
+      "instance_id": "TEST0139",
+      "arm": "evolve",
+      "deterministic_exact": false,
+      "runtime_answer_quality": 0.0,
+      "max_round_answer_quality": 0.0,
+      "max_agent_contribution_score": 0.3,
+      "mean_agent_contribution_score": 0.17921249999999997,
+      "agent_round_scores_at_least_0_8": 0,
+      "agent_round_score_count": 15,
+      "score_reasons": {
+        "heuristic_only_non_slow_round": 12,
+        "The output identifies that redstone_block can be converted into redstone, which is one relevant ingredient for note_block, but it does not address the required planks, state a full recipe, or produce a valid crafting plan. This is only weak, partial evidence rather than a useful plan.": 1,
+        "The output identifies a relevant ingredient issue (oak_planks normally comes from oak_log, while inventory has stripped_oak_log) and proposes checking whether stripped_oak_log can be converted. However, it provides no concrete validated crafting plan, does not confirm conversion or any alternative plank sources, and lacks grounded evidence or executed calculation. This is weak but partially relevant progress.": 1,
+        "The output identifies a relevant dependency (stripped_oak_log vs oak_log) but stops at an open question rather than confirming a conversion, validating a plan, or determining feasibility. It provides only weak partial progress toward solving the task.": 1
+      }
+    },
+    {
+      "instance_id": "TEST0139",
+      "arm": "no_canary",
+      "deterministic_exact": false,
+      "runtime_answer_quality": 0.014875000000000001,
+      "max_round_answer_quality": 0.014875000000000001,
+      "max_agent_contribution_score": 0.85,
+      "mean_agent_contribution_score": 0.3565083333333333,
+      "agent_round_scores_at_least_0_8": 3,
+      "agent_round_score_count": 15,
+      "score_reasons": {
+        "heuristic_only_non_slow_round": 12,
+        "The output only flags a potential missing ingredient (oak_log vs stripped_oak_log) and defers to further checking. It does not establish the actual note_block recipe, confirm whether stripped_oak_log can substitute, or produce a valid plan or impossibility. This is weak partial progress on dependency tracing.": 1,
+        "Output identifies that oak_planks requires oak_log and notes stripped_oak_log is not equivalent, which is partially relevant but does not yet provide a validated recipe, quantity calculation, or actionable crafting plan.": 1,
+        "The output identifies a potential dependency concern (stripped_oak_log vs oak_log) but does not resolve it or verify the actual note_block recipe. It repeats prior uncertainty and offers no concrete validated progress toward a crafting plan or impossibility determination.": 1
+      }
+    },
+    {
+      "instance_id": "TEST0139",
+      "arm": "depth_matched_reset",
+      "deterministic_exact": false,
+      "runtime_answer_quality": 0.0,
+      "max_round_answer_quality": 0.0,
+      "max_agent_contribution_score": 0.85,
+      "mean_agent_contribution_score": 0.2337,
+      "agent_round_scores_at_least_0_8": 1,
+      "agent_round_score_count": 15,
+      "score_reasons": {
+        "heuristic_only_non_slow_round": 12,
+        "The planner output provides a partial but useful decomposition: it correctly identifies redstone as obtainable from redstone_block and recognizes the need for planks, mentioning potential conversions from jungle_wood and crimson_hyphae. However, it does not produce a complete validated crafting plan, misses other viable plank sources such as stripped_oak_log and dark_oak_planks, and stops before confirming sufficiency or outputting the final action sequence.": 1,
+        "The output only partially addresses the crafting plan by considering oak plank sources, but it is incomplete and not grounded in a validated recipe; it incorrectly focuses on oak_log and ignores the note_block recipe (planks + redstone) and other plank types available in inventory, so it provides weak, partial signal rather than a concrete plan.": 1,
+        "The output partially addresses recipe dependencies by noting oak_planks may require oak_log and mentioning stripped_oak_log/oak_fence_gate, but it does not verify whether stripped_oak_log can craft planks, ignores other available planks and redstone_block, and provides no final plan or IMPOSSIBLE verdict. It is weak and incomplete.": 1
+      }
+    },
+    {
+      "instance_id": "TEST0186",
+      "arm": "evolve",
+      "deterministic_exact": false,
+      "runtime_answer_quality": 0.0,
+      "max_round_answer_quality": 0.0,
+      "max_agent_contribution_score": 0.85,
+      "mean_agent_contribution_score": 0.20970416666666666,
+      "agent_round_scores_at_least_0_8": 1,
+      "agent_round_score_count": 15,
+      "score_reasons": {
+        "heuristic_only_non_slow_round": 12,
+        "The planner correctly identifies that red_sand can be smelted into glass and narrows the remaining requirement to black_dye, giving concrete dependency progress. It does not output a final validated plan, but it provides a strong useful contribution toward solving the task.": 1,
+        "The output provides grounded evidence that 8 red_sand smelt into 8 glass, which is a necessary and concrete ingredient step toward black_stained_glass. It does not include the black dye conversion or final crafting action, so it is a strong partial contribution rather than a decisive complete plan.; capped: no clear grounded evidence": 1,
+        "The output only states an intention to verify the glass recipe, without providing actual confirmed recipe evidence or any concrete verification result. This is weakly relevant to the task but not yet a useful contribution.": 1
+      }
+    },
+    {
+      "instance_id": "TEST0186",
+      "arm": "depth_matched_reset",
+      "deterministic_exact": false,
+      "runtime_answer_quality": 0.0,
+      "max_round_answer_quality": 0.0,
+      "max_agent_contribution_score": 0.5,
+      "mean_agent_contribution_score": 0.17150833333333332,
+      "agent_round_scores_at_least_0_8": 0,
+      "agent_round_score_count": 15,
+      "score_reasons": {
+        "heuristic_only_non_slow_round": 12,
+        "The output correctly identifies black_dye from ink_sac and recognizes that glass is needed, but it does not confirm the key red_sand-to-glass step or produce a valid crafting plan, so it is only weakly and partially relevant.": 1,
+        "The output correctly identifies that red_sand can be smelted into glass and uses the inventory quantity to produce 8 glass, which is concrete partial evidence toward the target. However, it does not address the black dye requirement from ink_sac, the smelting/fuel prerequisites, nor determine whether the full plan is possible or impossible. This is moderately useful decomposition but not decisive.": 1,
+        "Verifier correctly identifies that 1 ink_sac can produce 1 black_dye, a necessary ingredient for black_stained_glass, but stops before verifying the glass ingredient, overall recipe plan, inventory conservation, or feasibility. No retrieved evidence or full validation is provided, so it offers only a weak partial contribution.": 1
+      }
+    },
+    {
+      "instance_id": "TEST0186",
+      "arm": "no_canary",
+      "deterministic_exact": false,
+      "runtime_answer_quality": 0.0,
+      "max_round_answer_quality": 0.0,
+      "max_agent_contribution_score": 0.7,
+      "mean_agent_contribution_score": 0.18459166666666665,
+      "agent_round_scores_at_least_0_8": 0,
+      "agent_round_score_count": 15,
+      "score_reasons": {
+        "heuristic_only_non_slow_round": 12,
+        "The planner correctly identifies red_sand as the source for the required 8 glass and recognizes the black_stained_glass recipe needs 8 glass plus black dye. This is a concrete, reusable decomposition of the crafting path, though it stops short of explicitly confirming the ink_sac-to-black_dye step and does not output a final complete action sequence.": 1,
+        "The output correctly identifies a concrete usable path: 8 red_sand can be smelted into 8 glass, which is a needed ingredient for black_stained_glass. However, it stops before resolving black_dye from the ink_sac and does not provide the complete crafting plan, so it is only a moderately useful partial contribution.": 1,
+        "The output correctly decomposes black_stained_glass into 8 glass + 1 black_dye, which is a useful recipe-dependency check for the verifier role. However, it does not yet confirm inventory sufficiency, provide a complete validated plan, or cite explicit grounded evidence snippets, so it contributes moderately but is not decisive.": 1
+      }
+    },
+    {
+      "instance_id": "TEST0240",
+      "arm": "no_canary",
+      "deterministic_exact": false,
+      "runtime_answer_quality": 0.0,
+      "max_round_answer_quality": 0.0,
+      "max_agent_contribution_score": 0.5,
+      "mean_agent_contribution_score": 0.16601666666666667,
+      "agent_round_scores_at_least_0_8": 0,
+      "agent_round_score_count": 15,
+      "score_reasons": {
+        "heuristic_only_non_slow_round": 12,
+        "The output provides a concrete, correct step toward the plan: sunflower can be crafted into yellow_dye. However, it does not complete the orange_dye plan, does not mention combining red_dye and yellow_dye, or provide the final action sequence. It is moderately useful evidence/decomposition but not decisive.": 1,
+        "Output makes partial progress by identifying red_dye can be made from the 1 poppy in inventory, but it does not verify yellow_dye, complete the orange_dye recipe check, or produce a valid plan/IMPOSSIBLE verdict. It is a useful decomposition step but lacks grounded evidence snippets and final decisive contribution.": 1,
+        "The output makes concrete partial progress by verifying that red_dye can be crafted from the 1 poppy in inventory, which is one required ingredient for orange_dye. However, it does not yet confirm yellow_dye or provide a complete crafting plan, and it lacks explicit source/evidence citations.": 1
+      }
+    },
+    {
+      "instance_id": "TEST0240",
+      "arm": "depth_matched_reset",
+      "deterministic_exact": false,
+      "runtime_answer_quality": 0.0,
+      "max_round_answer_quality": 0.0,
+      "max_agent_contribution_score": 0.5,
+      "mean_agent_contribution_score": 0.15886250000000002,
+      "agent_round_scores_at_least_0_8": 0,
+      "agent_round_score_count": 15,
+      "score_reasons": {
+        "heuristic_only_non_slow_round": 12,
+        "The planner identifies that poppy can be crafted into red dye, which is a necessary ingredient for orange dye, but it does not yet confirm the yellow dye source from sunflower or produce a complete crafting plan. This is moderately useful partial decomposition, not yet decisive.": 1,
+        "The output makes partial but relevant progress by identifying that the poppy in inventory can be crafted into red_dye, which is a required ingredient for orange_dye. However, it does not yet address the sunflower/yellow-dye ingredient, the final orange-dye recipe combination, or an overall conclusion/plan, so it is only a moderately useful partial decomposition.": 1,
+        "The output correctly decomposes orange_dye into red_dye + yellow_dye and identifies poppy and sunflower as likely dye sources, which is a useful planning signal. However, it stops before verifying the recipes or producing a concrete crafting plan, and it lacks explicit grounded evidence from parsed documents or retrieved sources.": 1
+      }
+    },
+    {
+      "instance_id": "TEST0240",
+      "arm": "evolve",
+      "deterministic_exact": false,
+      "runtime_answer_quality": 0.0,
+      "max_round_answer_quality": 0.0,
+      "max_agent_contribution_score": 0.5,
+      "mean_agent_contribution_score": 0.14269583333333333,
+      "agent_round_scores_at_least_0_8": 0,
+      "agent_round_score_count": 15,
+      "score_reasons": {
+        "heuristic_only_non_slow_round": 12,
+        "The planner output recognizes that poppy can produce red dye, which is one required ingredient for orange_dye, but it does not identify sunflower as the yellow dye source, give the full recipe dependency, or produce a valid crafting plan. This is weak partial progress.": 1,
+        "Correctly identifies that poppy can yield red dye, grounded in the inventory. This is a useful partial decomposition, but it does not verify yellow_dye from sunflower or provide the full orange_dye crafting plan, so it is not decisive.": 1,
+        "Output gives a partially relevant, evidence-backed decomposition: it correctly notes poppy (1) can craft red_dye, which is one required ingredient for orange_dye. However, it fails to verify the other required ingredient (yellow_dye from sunflower) or produce a final plan, so it is only moderately useful.": 1
+      }
+    },
+    {
+      "instance_id": "TEST0249",
+      "arm": "depth_matched_reset",
+      "deterministic_exact": false,
+      "runtime_answer_quality": 0.0,
+      "max_round_answer_quality": 0.0,
+      "max_agent_contribution_score": 0.588625,
+      "mean_agent_contribution_score": 0.23447916666666666,
+      "agent_round_scores_at_least_0_8": 0,
+      "agent_round_score_count": 15,
+      "score_reasons": {
+        "heuristic_only_non_slow_round": 12,
+        "The planner identifies the key recipe requirements for golden_axe (3 gold_ingot and 2 sticks) and correctly flags the need to investigate whether golden_horse_armor can supply gold and whether stripped_acacia_log can supply sticks. This is a useful partial decomposition, but it does not verify the smelting possibilities, determine feasibility, or output a final plan/impossibility, so it is only moderately useful.": 1,
+        "The output correctly identifies that gold_ingots are required for golden_axe and proposes checking whether golden_horse_armor can be smelted into gold, which is a relevant direction. However, it does not provide any smelting result, quantity calculation, or final feasibility/conclusion, so it is only a weak partial contribution.": 1,
+        "The output only restates general Minecraft crafting knowledge and expresses an intention to check golden_horse_armor smelting and sticks. It does not cite parsed inventory evidence, validate a recipe, or produce a concrete conservation/dependency conclusion, so it is weak but partially relevant.": 1
+      }
+    },
+    {
+      "instance_id": "TEST0249",
+      "arm": "no_canary",
+      "deterministic_exact": false,
+      "runtime_answer_quality": 0.0,
+      "max_round_answer_quality": 0.0,
+      "max_agent_contribution_score": 0.5,
+      "mean_agent_contribution_score": 0.18964166666666665,
+      "agent_round_scores_at_least_0_8": 0,
+      "agent_round_score_count": 15,
+      "score_reasons": {
+        "heuristic_only_non_slow_round": 12,
+        "The planner output decomposes the target into dependencies (gold ingot and stick), notes that direct gold sources are absent, and identifies golden_horse_armor as a potential conversion source. However, it does not verify quantities, complete the recipe check, or conclude whether the target is possible, so it is only moderately useful.": 1,
+        "The output correctly identifies that no gold ingots, gold ore, gold block, or nuggets are directly in inventory, and suggests checking whether golden_horse_armor can be smelted into gold. This is a relevant partial decomposition of the crafting dependency, but it does not provide grounded evidence, validated recipe data, or a concrete plan, so the contribution is weak rather than decisive.": 1,
+        "The output identifies the correct missing ingredient dependency: golden_axe needs gold ingots and sticks, and the inventory lacks gold_ore, gold_block, or gold_nuggets. This is a relevant but incomplete verification signal; it only poses further checks and does not resolve whether golden_horse_armor can supply enough gold or deliver an IMPOSSIBLE/final plan.": 1
+      }
+    },
+    {
+      "instance_id": "TEST0249",
+      "arm": "evolve",
+      "deterministic_exact": false,
+      "runtime_answer_quality": 0.0,
+      "max_round_answer_quality": 0.0,
+      "max_agent_contribution_score": 0.85,
+      "mean_agent_contribution_score": 0.26485,
+      "agent_round_scores_at_least_0_8": 1,
+      "agent_round_score_count": 15,
+      "score_reasons": {
+        "heuristic_only_non_slow_round": 12,
+        "The output correctly identifies that gold ingots are required for golden_axe and notes they are absent from the inventory, but it stops at a tentative check of golden_horse_armor smelting without reaching a conclusion or producing a valid crafting/impossible decision. It is partially relevant but not decisive.": 1,
+        "The output correctly notes that gold ingots are not directly present and identifies common gold-ingot sources, but it fails to resolve whether golden_horse_armor can be used, and provides no concrete crafting plan or IMPOSSIBLE verdict. This is weak, partially relevant progress.": 1,
+        "The output correctly identifies the golden axe recipe dependency (3 gold ingots + 2 sticks), which is a useful partial decomposition. However, it does not verify against the supplied inventory, cite grounded evidence from parsed/retrieved sources, or determine whether the item is craftable/impossible. Its contribution is weak and incomplete.": 1
+      }
+    },
+    {
+      "instance_id": "TEST0353",
+      "arm": "evolve",
+      "deterministic_exact": true,
+      "runtime_answer_quality": 1.0,
+      "max_round_answer_quality": 1.0,
+      "max_agent_contribution_score": 0.85,
+      "mean_agent_contribution_score": 0.6000083333333334,
+      "agent_round_scores_at_least_0_8": 5,
+      "agent_round_score_count": 15,
+      "score_reasons": {
+        "heuristic_only_non_slow_round": 12,
+        "The output incorrectly concludes IMPOSSIBLE. In Minecraft, 4 stone crafts 4 stone_bricks, so 8 stone is sufficient to make 6 stone_bricks needed for stone_brick_stairs. The agent's dependency calculation is wrong and would prevent the correct solution.": 1,
+        "The output is directly decisive: it verifies the recipe chain (6 stone_bricks needed, each requiring 4 stone, total 24 stone), checks inventory (only 8 stone), and correctly concludes IMPOSSIBLE with concrete evidence-backed calculations.; capped: no clear grounded evidence": 1,
+        "The verifier delivers a decisive, correct conclusion: stone_brick_stairs requires 6 stone_bricks, each stone_bricks requires 4 stone, so 24 stone are needed. The inventory has only 8 stone, making completion impossible. It verifies recipe dependencies, computes the shortage, and excludes irrelevant inventory items, directly resolving the task.; capped: no clear grounded evidence": 1
+      }
+    },
+    {
+      "instance_id": "TEST0353",
+      "arm": "depth_matched_reset",
+      "deterministic_exact": false,
+      "runtime_answer_quality": 0.0,
+      "max_round_answer_quality": 0.0,
+      "max_agent_contribution_score": 0.85,
+      "mean_agent_contribution_score": 0.6662708333333334,
+      "agent_round_scores_at_least_0_8": 6,
+      "agent_round_score_count": 15,
+      "score_reasons": {
+        "heuristic_only_non_slow_round": 12,
+        "The planner correctly identifies the target recipe dependency: stone_brick_stairs need 6 stone_bricks, and 8 stone are sufficient to craft 8 stone_bricks via two 2x2 stone-brick recipes. This decisively establishes that the target is craftable from the inventory and provides the concrete quantities needed for a downstream valid crafting plan.": 1,
+        "The agent incorrectly concludes IMPOSSIBLE by assuming each stone_bricks requires 4 stone and yields only 1. In Minecraft, 4 stone crafts 4 stone_bricks, so 8 stone yields 8 stone_bricks, enough to craft stone_brick_stairs. The impossibility conclusion is wrong and provides no valid plan.": 1,
+        "The verifier output is directly decisive: it correctly identifies the full recipe dependency chain (stone_brick_stairs requires 6 stone_bricks, each requiring 4 stone), computes 24 stone needed, compares against the 8 stone available, and concludes IMPOSSIBLE with clear inventory conservation reasoning. This fully resolves the task.; capped: no clear grounded evidence": 1
+      }
+    },
+    {
+      "instance_id": "TEST0353",
+      "arm": "no_canary",
+      "deterministic_exact": false,
+      "runtime_answer_quality": 0.0,
+      "max_round_answer_quality": 0.0,
+      "max_agent_contribution_score": 0.85,
+      "mean_agent_contribution_score": 0.5891333333333333,
+      "agent_round_scores_at_least_0_8": 3,
+      "agent_round_score_count": 15,
+      "score_reasons": {
+        "heuristic_only_non_slow_round": 12,
+        "The planner output is directly decisive: it correctly identifies the required recipe chain (stone_brick_stairs needs 6 stone_bricks; each stone_bricks needs 4 stone), calculates 24 stone needed, compares with the 8 available, and concludes IMPOSSIBLE with a valid explanation. This fully resolves the task.": 1,
+        "The output incorrectly assumes 4 stone yields only 1 stone brick. In Minecraft, 4 stone in a 2x2 crafts 4 stone bricks, so 8 stone is enough to craft 8 stone bricks, which is sufficient for the 6 stone bricks needed for stone_brick_stairs. The conclusion IMPOSSIBLE is wrong.": 1,
+        "The verifier output is directly decisive: it confirms stone_brick_stairs requires 6 stone_bricks and each stone_bricks requires 4 stone, computing 24 stone needed versus only 8 available. It correctly concludes IMPOSSIBLE with explicit recipe evidence and inventory accounting, fully solving the task.; capped: no clear grounded evidence": 1
+      }
+    },
+    {
+      "instance_id": "TEST0367",
+      "arm": "evolve",
+      "deterministic_exact": false,
+      "runtime_answer_quality": 0.0,
+      "max_round_answer_quality": 0.0,
+      "max_agent_contribution_score": 0.85,
+      "mean_agent_contribution_score": 0.27020833333333333,
+      "agent_round_scores_at_least_0_8": 2,
+      "agent_round_score_count": 15,
+      "score_reasons": {
+        "heuristic_only_non_slow_round": 12,
+        "low_signal output": 1,
+        "The output identifies a relevant intermediate material (rabbit_hide for leather) but does not ground it in the provided inventory, does not complete the dependency check, and does not state whether the target is craftable. It is only weak partial progress.": 1,
+        "The output identifies a relevant recipe dependency (leather from rabbit_hide) but fails to verify against the provided inventory, does not conclude IMPOSSIBLE, and provides no concrete crafting plan or grounded evidence.": 1
+      }
+    },
+    {
+      "instance_id": "TEST0367",
+      "arm": "depth_matched_reset",
+      "deterministic_exact": false,
+      "runtime_answer_quality": 0.0,
+      "max_round_answer_quality": 0.0,
+      "max_agent_contribution_score": 0.3,
+      "mean_agent_contribution_score": 0.125,
+      "agent_round_scores_at_least_0_8": 0,
+      "agent_round_score_count": 15,
+      "score_reasons": {
+        "heuristic_only_non_slow_round": 12,
+        "The output provides incorrect information (leather does not require rabbit_hide) and does not assess the given inventory or conclude impossibility. It is not a useful contribution toward solving the task.": 1,
+        "The output correctly identifies that leather_helmet requires leather and that leather can be made from rabbit_hide, but it stops at an open question and provides no final determination, valid crafting plan, or grounded inventory-based evidence. It is only a weak partial contribution.": 1,
+        "The output names a relevant dependency (leather can be crafted from rabbit_hide), but it stops at an intention to check rather than verifying inventory or concluding impossibility. It provides no source-backed evidence, no inventory comparison, and no actionable verification result.": 1
+      }
+    },
+    {
+      "instance_id": "TEST0367",
+      "arm": "no_canary",
+      "deterministic_exact": false,
+      "runtime_answer_quality": 0.0,
+      "max_round_answer_quality": 0.0,
+      "max_agent_contribution_score": 0.3,
+      "mean_agent_contribution_score": 0.1128875,
+      "agent_round_scores_at_least_0_8": 0,
+      "agent_round_score_count": 15,
+      "score_reasons": {
+        "heuristic_only_non_slow_round": 12,
+        "The planner output only begins a dependency check by noting leather requires rabbit_hide, but it does not verify inventory or reach the required conclusion (crafting plan or IMPOSSIBLE). This is a weak, partially relevant step, not a decisive contribution.": 1,
+        "low_signal output": 1,
+        "The output mentions that leather can be produced from rabbit_hide, which is a related recipe dependency, but it does not verify the inventory, complete the check, or provide any concrete plan or impossibility conclusion. It is partially relevant but lacks decisive evidence or progress.": 1
+      }
+    },
+    {
+      "instance_id": "TEST0413",
+      "arm": "no_canary",
+      "deterministic_exact": true,
+      "runtime_answer_quality": 1.0,
+      "max_round_answer_quality": 1.0,
+      "max_agent_contribution_score": 0.85,
+      "mean_agent_contribution_score": 0.579325,
+      "agent_round_scores_at_least_0_8": 5,
+      "agent_round_score_count": 15,
+      "score_reasons": {
+        "heuristic_only_non_slow_round": 9,
+        "The planner output correctly determines feasibility, identifies the required 7 diamonds and 7 diamond_ore conversion, and provides a valid minimal action sequence ending in diamond_leggings. This is directly decisive for the task.": 1,
+        "The output provides concrete, grounded validation: it cites the diamond_leggings recipe needing 7 diamonds at specified grid positions, confirms diamond is obtained by smelting diamond_ore, and verifies the inventory has exactly 7 diamond_ore. It also produces an execution-order output list. It stops short of a fully executable slot-level action sequence, but it is strong and useful for downstream verification.; capped: no clear grounded evidence": 1,
+        "The verifier output directly confirms feasibility by grounding the diamond_leggings recipe requirement of 7 diamonds, the smelting conversion from 7 diamond_ore to 7 diamonds, and inventory conservation. It gives a concrete two-step valid plan and clearly states that other inventory items are irrelevant. This is decisive evidence for downstream planning, only lacking slot-level JSON formatting.; capped: no clear grounded evidence": 1,
+        "The planner correctly identifies the diamond_leggings recipe (7 diamonds), matches the inventory's 7 diamond_ore via 1:1 smelting, and provides the exact minimal action sequence. This directly and decisively solves the task.": 1,
+        "procedural output without grounded evidence": 1,
+        "Agent verifies with recipe evidence that diamond_leggings requires 7 diamonds, that diamond_ore smelts 1:1 into diamond, and that the inventory has exactly 7 diamond_ore, making the plan feasible with no extra consumption. This strongly contributes a concrete, evidence-backed verification and plan; only minor incompleteness is that the final JSON action list is truncated.; capped: no clear grounded evidence": 1
+      }
+    },
+    {
+      "instance_id": "TEST0413",
+      "arm": "depth_matched_reset",
+      "deterministic_exact": false,
+      "runtime_answer_quality": 0.0,
+      "max_round_answer_quality": 1.0,
+      "max_agent_contribution_score": 0.85,
+      "mean_agent_contribution_score": 0.6633333333333333,
+      "agent_round_scores_at_least_0_8": 9,
+      "agent_round_score_count": 15,
+      "score_reasons": {
+        "heuristic_only_non_slow_round": 9,
+        "The agent identifies that diamond_leggings require 7 diamonds, links them to smelting 7 diamond_ore into 7 diamonds, and provides a concrete valid action sequence. This is a direct, decisive solution to the task.": 1,
+        "Agent output cites the inventory evidence (7 diamond_ore) and correctly uses the diamond_leggings recipe needing 7 diamonds, with the smelting conversion of 1 ore to 1 diamond. This is concrete, grounded progress toward a plan. However, the output is truncated and does not provide the complete verified crafting action sequence or slot layout, so it is not fully decisive.; capped: no clear grounded evidence": 1,
+        "The verifier decisively confirms feasibility and provides the exact valid plan: smelt 7 diamond_ore into 7 diamonds, then craft diamond_leggings using the 7-diamond recipe. This is directly supported by the inventory count and the recipe dependency, making it a critical and decisive contribution.; capped: no clear grounded evidence": 1,
+        "The output correctly identifies that diamond_leggings require 7 diamonds, maps the 7 diamond_ore inventory to 7 diamonds via smelting, and states a valid two-step crafting plan. This is directly decisive for the task.": 1,
+        "procedural output without grounded evidence": 1,
+        "The verifier clearly grounded the feasibility in explicit inventory counts and recipe dependencies: 7 diamond_ore smelt 1:1 into 7 diamonds, exactly matching the 7 diamonds required for diamond_leggings. It confirms inventory conservation and provides a valid action sequence, making the conclusion directly decisive.; capped: no clear grounded evidence": 1
+      }
+    },
+    {
+      "instance_id": "TEST0413",
+      "arm": "evolve",
+      "deterministic_exact": false,
+      "runtime_answer_quality": 0.1838125,
+      "max_round_answer_quality": 0.1838125,
+      "max_agent_contribution_score": 0.85,
+      "mean_agent_contribution_score": 0.7084333333333334,
+      "agent_round_scores_at_least_0_8": 9,
+      "agent_round_score_count": 15,
+      "score_reasons": {
+        "heuristic_only_non_slow_round": 12,
+        "The planner output provides a correct, complete, and directly decisive crafting plan: smelt 7 diamond_ore into 7 diamonds, then craft diamond_leggings. It correctly verifies inventory sufficiency and exact consumption, making the solution fully actionable.": 1,
+        "Output correctly identifies diamond_leggings need 7 diamonds and that 7 diamond_ore can be smelted, with a slot mapping, but it does not provide a complete validated executable action list or explicit final impossible/craft decision; it remains a partial decomposition rather than decisive evidence.": 1,
+        "procedural output without grounded evidence": 1
+      }
+    },
+    {
+      "instance_id": "TEST0427",
+      "arm": "evolve",
+      "deterministic_exact": false,
+      "runtime_answer_quality": 0.07225000000000001,
+      "max_round_answer_quality": 0.07225000000000001,
+      "max_agent_contribution_score": 0.85,
+      "mean_agent_contribution_score": 0.6925958333333333,
+      "agent_round_scores_at_least_0_8": 9,
+      "agent_round_score_count": 15,
+      "score_reasons": {
+        "heuristic_only_non_slow_round": 12,
+        "Planner output identifies the correct recipe dependency (netherrack -> nether_brick, then nether_brick_fence from 4 nether_bricks + 2 nether_brick), checks inventory quantities exactly, and provides an achievable action sequence. This directly and decisively solves the task.": 1,
+        "procedural output without grounded evidence": 1,
+        "fallback:text_heuristic": 1
+      }
+    },
+    {
+      "instance_id": "TEST0427",
+      "arm": "no_canary",
+      "deterministic_exact": false,
+      "runtime_answer_quality": 0.07225000000000001,
+      "max_round_answer_quality": 0.07225000000000001,
+      "max_agent_contribution_score": 0.85,
+      "mean_agent_contribution_score": 0.7650583333333334,
+      "agent_round_scores_at_least_0_8": 10,
+      "agent_round_score_count": 15,
+      "score_reasons": {
+        "heuristic_only_non_slow_round": 12,
+        "The planner output correctly identifies the exact recipe requirements, verifies inventory sufficiency, states the netherrack-to-nether_brick dependency, and provides a valid actionable crafting plan. It is directly decisive for solving the task.": 1,
+        "fallback:text_heuristic": 2
+      }
+    },
+    {
+      "instance_id": "TEST0427",
+      "arm": "depth_matched_reset",
+      "deterministic_exact": false,
+      "runtime_answer_quality": 0.0,
+      "max_round_answer_quality": 0.07225000000000001,
+      "max_agent_contribution_score": 0.85,
+      "mean_agent_contribution_score": 0.6818916666666667,
+      "agent_round_scores_at_least_0_8": 9,
+      "agent_round_score_count": 15,
+      "score_reasons": {
+        "heuristic_only_non_slow_round": 12,
+        "fallback:text_heuristic": 1,
+        "The calculator output correctly identifies the concrete crafting chain: smelt 2 netherrack into 2 nether_brick, then use 4 nether_bricks + 2 nether_brick to craft nether_brick_fence. It verifies exact inventory quantities and concludes feasibility, which is strong, actionable progress. However, it is truncated before providing the final executable slot/action sequence, so it is not a complete decisive plan.; capped: no clear grounded evidence": 1,
+        "The verifier provides a concrete, correct crafting plan: smelt 2 netherrack into 2 nether_brick, then craft nether_brick_fence using 4 nether_bricks + 2 nether_brick. It directly checks inventory counts and recipe dependencies, making a decisive contribution to solving the task.; capped: no clear grounded evidence": 1
+      }
+    },
+    {
+      "instance_id": "TEST0432",
+      "arm": "depth_matched_reset",
+      "deterministic_exact": false,
+      "runtime_answer_quality": 0.0,
+      "max_round_answer_quality": 0.0,
+      "max_agent_contribution_score": 0.5,
+      "mean_agent_contribution_score": 0.15557083333333332,
+      "agent_round_scores_at_least_0_8": 0,
+      "agent_round_score_count": 15,
+      "score_reasons": {
+        "heuristic_only_non_slow_round": 12,
+        "The planner output correctly identifies that crafting cyan_wool requires cyan dye (blue dye + green dye) and white wool, and notes that green_dye is available. However, it stops at checking recipes and does not yet produce a complete plan or confirm the conversion of lapis_lazuli to blue dye and string to white wool, so it is a moderately useful partial decomposition rather than a decisive solution.": 1,
+        "The output correctly identifies that cyan dye requires blue and green dye and notes green dye is available, but it does not ground this in verified recipe evidence, recognize lapis_lazuli as a blue dye source, or provide a concrete crafting plan. This is weak, partially relevant progress only.": 1,
+        "The output gives a partial dependency decomposition: cyan dye needs blue_dye + green_dye, and notes green_dye is available. However, it does not identify lapis_lazuli as the source of blue_dye, does not mention string can craft wool, and does not reach a final verdict or plan. It is weak but partially relevant.": 1
+      }
+    },
+    {
+      "instance_id": "TEST0432",
+      "arm": "no_canary",
+      "deterministic_exact": false,
+      "runtime_answer_quality": 0.0,
+      "max_round_answer_quality": 0.0,
+      "max_agent_contribution_score": 0.3,
+      "mean_agent_contribution_score": 0.12842499999999998,
+      "agent_round_scores_at_least_0_8": 0,
+      "agent_round_score_count": 15,
+      "score_reasons": {
+        "heuristic_only_non_slow_round": 12,
+        "The planner output correctly begins dependency decomposition by identifying cyan dye requires blue_dye and green_dye, and notes green_dye is available. However, it does not complete the recipe check, ignores the need for white wool/string, and provides no concrete crafting plan, so it is only a weak partial contribution.": 1,
+        "Output identifies a relevant intermediate ingredient requirement (green dye and blue dye for cyan dye) and notes that green_dye is available, but it stops before resolving how to obtain blue_dye from lapis_lazuli, does not mention using string to make white wool, and provides no concrete crafting plan or final validity judgment.": 1,
+        "The verifier identifies that cyan dye requires blue and green dye and notes green_dye is available, but it does not ground this in the inventory-provided lapis_lazuli or provide a concrete validated plan. The contribution is only a partial step and lacks evidence-backed verification.": 1
+      }
+    },
+    {
+      "instance_id": "TEST0432",
+      "arm": "evolve",
+      "deterministic_exact": false,
+      "runtime_answer_quality": 0.0,
+      "max_round_answer_quality": 0.0,
+      "max_agent_contribution_score": 0.3,
+      "mean_agent_contribution_score": 0.14145833333333332,
+      "agent_round_scores_at_least_0_8": 0,
+      "agent_round_score_count": 15,
+      "score_reasons": {
+        "heuristic_only_non_slow_round": 12,
+        "The planner output only identifies that green_dye is available and that blue_dye is likely needed, but it does not produce a crafting plan or solve the task. It is a weak, partially relevant dependency hint.": 1,
+        "The output partially identifies required dye ingredients (blue_dye and green_dye) and notes green_dye is available, but it lacks grounded recipe evidence, does not address obtaining white wool from string, and does not provide a concrete validated crafting plan. Weak but partially relevant.": 1,
+        "Output is only a partial dependency note: it identifies that cyan dye needs blue_dye and green_dye and observes green_dye is available, but it neither verifies whether lapis_lazuli can provide blue dye, considers the need for wool/white wool from string, nor produces a final crafting plan or impossibility justification. It is a weak, partially relevant contribution without grounded evidence.": 1
+      }
+    },
+    {
+      "instance_id": "TEST0470",
+      "arm": "evolve",
+      "deterministic_exact": false,
+      "runtime_answer_quality": 0.0,
+      "max_round_answer_quality": 0.0,
+      "max_agent_contribution_score": 0.85,
+      "mean_agent_contribution_score": 0.5693416666666666,
+      "agent_round_scores_at_least_0_8": 6,
+      "agent_round_score_count": 15,
+      "score_reasons": {
+        "heuristic_only_non_slow_round": 12,
+        "The planner correctly identifies the iron_door recipe requires 6 iron_ingots, converts 51 iron_nuggets to 5 iron_ingots with 6 left over, and highlights the key shortage. This is a useful partial decomposition and evidence of insufficiency, but it stops short of confirming whether any other inventory items can provide iron or declaring IMPOSSIBLE.": 1,
+        "The output provides a grounded negative result from recipe lookup: lanterns cannot be broken down into iron, despite containing iron nuggets. This is useful evidence toward ruling out alternative iron sources, but it does not yet complete the check of remaining items or state the final feasibility/plan, so it is only moderately contributive.": 1,
+        "Output provides a relevant, grounded decomposition: iron_door needs 6 iron_ingots, and 51 iron_nuggets only yield 5 ingots plus 6 leftover nuggets. This is useful progress but incomplete: it does not verify whether chest_minecart, grindstone, or lantern can supply the missing iron, and it stops at 'let me check' without delivering a final plan or IMPOSSIBLE verdict.": 1
+      }
+    },
+    {
+      "instance_id": "TEST0470",
+      "arm": "depth_matched_reset",
+      "deterministic_exact": false,
+      "runtime_answer_quality": 0.0,
+      "max_round_answer_quality": 0.0,
+      "max_agent_contribution_score": 0.85,
+      "mean_agent_contribution_score": 0.7003666666666667,
+      "agent_round_scores_at_least_0_8": 6,
+      "agent_round_score_count": 15,
+      "score_reasons": {
+        "heuristic_only_non_slow_round": 12,
+        "The agent correctly determined the target is impossible by recognizing the iron_door recipe requires 6 iron_ingots, that each ingot needs 9 iron_nuggets, and that only 51 iron_nuggets are available (enough for only 5 ingots). This is a decisive, accurate resolution of the task.": 1,
+        "The output provides a concrete, evidence-backed calculation: iron_door requires 6 iron_ingots, each requiring 9 iron_nuggets, so 54 iron_nuggets are needed. Inventory contains only 51 iron_nuggets, and no other item can be converted to iron_ingots. This directly establishes that crafting is impossible, making it a decisive contribution.; capped: no clear grounded evidence": 1,
+        "The verifier output correctly determines that crafting iron_door requires 6 iron_ingots, which need 54 iron_nuggets, while the inventory contains only 51. It also checks and eliminates other source materials, making the IMPOSSIBLE conclusion directly supported by grounded inventory counts and recipe dependencies.; capped: no clear grounded evidence": 1
+      }
+    },
+    {
+      "instance_id": "TEST0470",
+      "arm": "no_canary",
+      "deterministic_exact": false,
+      "runtime_answer_quality": 0.0,
+      "max_round_answer_quality": 0.0,
+      "max_agent_contribution_score": 0.85,
+      "mean_agent_contribution_score": 0.4558875,
+      "agent_round_scores_at_least_0_8": 4,
+      "agent_round_score_count": 15,
+      "score_reasons": {
+        "heuristic_only_non_slow_round": 12,
+        "The output only states an intention to check other items (lantern, grindstone, chest_minecart) for iron_ingot conversion, without providing any new evidence, recipe validation, or a concrete plan. It is weakly relevant but does not advance the solution.": 1,
+        "The output adds a small relevant clarification that lanterns consume iron_nuggets rather than providing iron_ingots, but it does not produce a validated plan, complete verification, or decide IMPOSSIBLE. It remains partial and exploratory.": 1,
+        "The verifier gives a concrete, grounded calculation: iron_door needs 6 iron_ingots, each requiring 9 iron_nuggets, so 54 nuggets are needed while only 51 are available. This correctly identifies the central shortage and advances the task by narrowing the possible paths. However, it stops short of a final IMPOSSIBLE verdict and does not complete verification of all alternative iron-ingot sources.; capped: no clear grounded evidence": 1
+      }
+    },
+    {
+      "instance_id": "TEST0492",
+      "arm": "evolve",
+      "deterministic_exact": false,
+      "runtime_answer_quality": 0.0,
+      "max_round_answer_quality": 0.0,
+      "max_agent_contribution_score": 0.85,
+      "mean_agent_contribution_score": 0.5443208333333334,
+      "agent_round_scores_at_least_0_8": 4,
+      "agent_round_score_count": 15,
+      "score_reasons": {
+        "heuristic_only_non_slow_round": 12,
+        "The output correctly identifies the missing spruce_log and spruce_planks dependencies, accurately verifies none are in inventory, and reaches the correct IMPOSSIBLE conclusion. This is directly decisive for the task.": 1,
+        "The output correctly identifies the full dependency chain (spruce_boat requires 5 spruce_planks, which requires 1 spruce_log), explicitly checks the provided inventory, and confirms no spruce_log, spruce_planks, or wood-related source exists. This provides a decisive evidence-backed IMPOSSIBLE conclusion directly usable by downstream verifier.; capped: no clear grounded evidence": 1,
+        "The verifier confirms the recipe dependency chain and checks inventory conservation, correctly identifying that spruce_log and spruce_planks are absent and unobtainable, making the target item impossible to craft. This directly and decisively solves the task.; capped: no clear grounded evidence": 1
+      }
+    },
+    {
+      "instance_id": "TEST0492",
+      "arm": "no_canary",
+      "deterministic_exact": false,
+      "runtime_answer_quality": 0.0,
+      "max_round_answer_quality": 0.0,
+      "max_agent_contribution_score": 0.85,
+      "mean_agent_contribution_score": 0.36328333333333335,
+      "agent_round_scores_at_least_0_8": 2,
+      "agent_round_score_count": 15,
+      "score_reasons": {
+        "heuristic_only_non_slow_round": 12,
+        "low_signal output": 1,
+        "Correctly determines IMPOSSIBLE by verifying the dependency chain spruce_boat -> spruce_planks -> spruce_log and checking that none of the inventory items can provide or transform into spruce_log or spruce_planks. This is a critical and decisive contribution.; capped: no clear grounded evidence": 1,
+        "The output recognizes a relevant recipe dependency (spruce_planks requires spruce_log) and signals intent to check availability, but it stops short of verifying whether spruce_log exists in the inventory or concluding IMPOSSIBLE. This is only a weak, partially relevant contribution toward the final crafting decision.": 1
+      }
+    },
+    {
+      "instance_id": "TEST0492",
+      "arm": "depth_matched_reset",
+      "deterministic_exact": false,
+      "runtime_answer_quality": 0.0,
+      "max_round_answer_quality": 0.0,
+      "max_agent_contribution_score": 0.85,
+      "mean_agent_contribution_score": 0.5048666666666667,
+      "agent_round_scores_at_least_0_8": 5,
+      "agent_round_score_count": 15,
+      "score_reasons": {
+        "heuristic_only_non_slow_round": 12,
+        "Correctly determines IMPOSSIBLE: spruce_boat requires spruce planks derived from spruce_log, none of which are present or craftable from the provided inventory. Provides the full dependency chain and a decisive final answer.": 1,
+        "The output correctly identifies that spruce_boat requires spruce_planks, which in turn require spruce_log, and states the need to check availability. This is a partially relevant step toward determining impossibility, but it provides no grounded inventory comparison, no validated recipe evidence, and no final IMPOSSIBLE conclusion.": 1,
+        "The output only notes that spruce_planks requires spruce_log and says it will check availability, without verifying inventory or concluding IMPOSSIBLE. It is partially relevant to recipe dependency analysis but lacks grounded evidence and does not produce a usable final decision.": 1
+      }
+    },
+    {
+      "instance_id": "TEST0499",
+      "arm": "depth_matched_reset",
+      "deterministic_exact": false,
+      "runtime_answer_quality": 0.0,
+      "max_round_answer_quality": 0.0,
+      "max_agent_contribution_score": 0.85,
+      "mean_agent_contribution_score": 0.6113666666666667,
+      "agent_round_scores_at_least_0_8": 8,
+      "agent_round_score_count": 15,
+      "score_reasons": {
+        "heuristic_only_non_slow_round": 12,
+        "The planner identifies that netherrack is absent and begins recipe checking, but it targets the wrong recipe: nether_bricks (the block) is crafted from 4 nether_brick items, not from smelting netherrack. It overlooks the inventory's nether_brick:1 and fails to conclude impossibility due to insufficient nether_brick count. The output is only weakly relevant and does not provide a usable plan or decisive impossibility.": 1,
+        "The output correctly notes that nether_brick requires netherrack and that netherrack is absent from the inventory, but it stops short of resolving the target nether_bricks craft or declaring IMPOSSIBLE. It also fails to account for the existing nether_brick:1 item and the 4-item recipe requirement, so the contribution is partial and not decisive.": 1,
+        "The output identifies that netherrack is absent and that nether_brick requires smelting, which is a partially relevant dependency check. However, it targets the wrong item: the goal is nether_bricks (the block), crafted from 4 nether_brick items, not from netherrack directly. It ignores the inventory's nether_brick:1 count and does not state the decisive impossibility (insufficient nether_brick items). Thus it provides only weak partial progress.": 1
+      }
+    },
+    {
+      "instance_id": "TEST0499",
+      "arm": "evolve",
+      "deterministic_exact": false,
+      "runtime_answer_quality": 0.0,
+      "max_round_answer_quality": 0.0,
+      "max_agent_contribution_score": 0.85,
+      "mean_agent_contribution_score": 0.5538833333333333,
+      "agent_round_scores_at_least_0_8": 5,
+      "agent_round_score_count": 15,
+      "score_reasons": {
+        "heuristic_only_non_slow_round": 12,
+        "The planner output correctly identifies the recipe dependency nether_bricks requires 4 nether_brick, notes only 1 nether_brick is available, and confirms no netherrack or alternative source exists in inventory. This directly and decisively solves the task with IMPOSSIBLE.": 1,
+        "The output only restates that the nether_brick recipe requires smelting netherrack and says it will check availability, without providing concrete evidence, inventory validation, or a final conclusion. It is partially relevant but not decisive.": 1,
+        "The verifier output directly confirms the recipe chain and inventory shortage, correctly concluding IMPOSSIBLE with grounded evidence: nether_bricks requires 4 nether_brick, only 1 is present, and no inventory item can yield netherrack or additional nether_brick. This is critical and decisive for the task.; capped: no clear grounded evidence": 1
+      }
+    },
+    {
+      "instance_id": "TEST0499",
+      "arm": "no_canary",
+      "deterministic_exact": false,
+      "runtime_answer_quality": 0.0,
+      "max_round_answer_quality": 0.0,
+      "max_agent_contribution_score": 0.85,
+      "mean_agent_contribution_score": 0.47299166666666664,
+      "agent_round_scores_at_least_0_8": 3,
+      "agent_round_score_count": 15,
+      "score_reasons": {
+        "heuristic_only_non_slow_round": 12,
+        "The planner correctly identifies the dependency chain: nether_bricks requires 4 nether_brick, only 1 nether_brick is available, and additional nether_brick requires smelting netherrack, which is absent and uncraftable from inventory. This is concrete, evidence-backed progress toward the IMPOSSIBLE conclusion, though the output is truncated and does not explicitly state the final verdict.": 1,
+        "The output is directly decisive: it identifies that nether_bricks requires 4 nether_brick items, cites the inventory as containing only 1 nether_brick, and correctly concludes IMPOSSIBLE. It also checks the missing netherrack source, providing grounded evidence for the impossibility.; capped: no clear grounded evidence": 1,
+        "The output correctly identifies that nether_brick comes from smelting netherrack and notes netherrack is absent from the inventory, which is a relevant partial check. However, it does not verify the target craft itself, such as needing 4 nether_brick items to craft nether_bricks while only 1 is available, and it stops without an IMPOSSIBLE conclusion or concrete sourced reasoning. This is weak but partially relevant progress.": 1
+      }
+    },
+    {
+      "instance_id": "TEST0574",
+      "arm": "depth_matched_reset",
+      "deterministic_exact": false,
+      "runtime_answer_quality": 0.0,
+      "max_round_answer_quality": 0.0,
+      "max_agent_contribution_score": 0.6343125,
+      "mean_agent_contribution_score": 0.29378333333333334,
+      "agent_round_scores_at_least_0_8": 0,
+      "agent_round_score_count": 15,
+      "score_reasons": {
+        "heuristic_only_non_slow_round": 12,
+        "The planner output correctly identifies the key dependency chain for the bow: sticks require planks, and planks can potentially be derived from birch_log or stripped_spruce_wood. This is a relevant decomposition and partial progress, but it stops short of confirming the recipe plan or producing a valid final action sequence.": 1,
+        "The output correctly identifies the missing stick ingredient and notes that birch_log/stripped_spruce_wood might yield planks for stick crafting. It provides a relevant decomposition and grounds its reasoning in inventory items, but it does not produce a concrete validated crafting plan or final decision.": 1,
+        "The output only repeats the need to check plank conversion from logs and gives an incomplete/inaccurate stick recipe constraint (e.g., birch planks are also valid). It does not verify inventory conservation, confirm stick availability, or produce a concrete bow crafting plan or IMPOSSIBLE justification.": 1
+      }
+    },
+    {
+      "instance_id": "TEST0574",
+      "arm": "evolve",
+      "deterministic_exact": false,
+      "runtime_answer_quality": 0.0,
+      "max_round_answer_quality": 0.0,
+      "max_agent_contribution_score": 0.3,
+      "mean_agent_contribution_score": 0.1328875,
+      "agent_round_scores_at_least_0_8": 0,
+      "agent_round_score_count": 15,
+      "score_reasons": {
+        "heuristic_only_non_slow_round": 12,
+        "The output correctly begins decomposing the bow recipe by recognizing that sticks require planks, and it names candidate plank sources from the inventory. However, it stops at an open-ended checking step and provides no concrete crafted plan, quantities, or final validity/impossibility judgment, so it is only a weak partial contribution.": 1,
+        "The output only notes that sticks require planks and says it will check plank recipes. It provides no grounded recipe evidence, no inventory conversion calculation, and no concrete progress toward a valid crafting plan or impossibility determination. This is weak but partially relevant to the bow crafting dependency chain.": 1,
+        "The output only restates that sticks require planks and mentions checking recipes for two wood items. It provides no concrete evidence, recipe expansion, or verified crafting plan; however, it is weakly relevant because it identifies a dependency needed to eventually craft the bow.": 1
+      }
+    },
+    {
+      "instance_id": "TEST0574",
+      "arm": "no_canary",
+      "deterministic_exact": false,
+      "runtime_answer_quality": 0.0,
+      "max_round_answer_quality": 0.0,
+      "max_agent_contribution_score": 0.3,
+      "mean_agent_contribution_score": 0.22397916666666665,
+      "agent_round_scores_at_least_0_8": 0,
+      "agent_round_score_count": 15,
+      "score_reasons": {
+        "heuristic_only_non_slow_round": 12,
+        "The output correctly identifies that sticks are required and that no planks or bamboo are directly available, but it stops at suggesting checking whether planks can be crafted from wood. It does not actually verify plank crafting, derive the needed stick count, or produce a valid final crafting plan, so it provides only weak partial progress.": 1,
+        "Output only restates upstream recipe uncertainty and proposes checking planks; it does not yet convert inventory wood items into planks, sticks, or a feasible plan. It is partially relevant but lacks decisive or evidence-backed progress.": 1,
+        "The output identifies the need for sticks and notes that planks/bamboo are absent, while checking whether available wood can craft planks. This is relevant but incomplete: it does not verify that birch_log/stripped_spruce_wood can yield planks, does not produce the required stick or bow plan, and stops before giving a supported final answer.": 1
+      }
+    },
+    {
+      "instance_id": "TEST0588",
+      "arm": "depth_matched_reset",
+      "deterministic_exact": false,
+      "runtime_answer_quality": 0.0,
+      "max_round_answer_quality": 0.0,
+      "max_agent_contribution_score": 0.5,
+      "mean_agent_contribution_score": 0.16449583333333334,
+      "agent_round_scores_at_least_0_8": 0,
+      "agent_round_score_count": 15,
+      "score_reasons": {
+        "heuristic_only_non_slow_round": 12,
+        "The planner partially decomposes the recipe by identifying blue_dye and red_dye as ingredients and recognizing glass is needed, but it stops at checking the glass recipe and does not resolve whether glass is available or craftable from inventory. It provides no valid plan and no IMPOSSIBLE determination, so its contribution is weak but partially relevant.": 1,
+        "The output identifies that glass is needed and notes blue/red dye availability, but it offers no verified recipe, no concrete crafting plan, and no grounded evidence from parsed documents or sources. It is only weakly relevant groundwork.": 1,
+        "The output correctly identifies the purple dye recipe (blue dye + red dye) and verifies both ingredients are present in the inventory. This is a grounded, relevant partial decomposition. However, it stops before verifying the glass requirement or producing a complete plan, so it is not yet decisive.": 1
+      }
+    },
+    {
+      "instance_id": "TEST0588",
+      "arm": "evolve",
+      "deterministic_exact": false,
+      "runtime_answer_quality": 0.0,
+      "max_round_answer_quality": 0.0,
+      "max_agent_contribution_score": 0.546125,
+      "mean_agent_contribution_score": 0.22849166666666668,
+      "agent_round_scores_at_least_0_8": 0,
+      "agent_round_score_count": 15,
+      "score_reasons": {
+        "heuristic_only_non_slow_round": 12,
+        "The planner identifies the key missing dependency: glass requires smelting sand, and no furnace is available in inventory. This is a useful decomposition for reaching an impossibility conclusion, but it stops short of final determination and contains a minor inaccuracy regarding fuel sources (lava bucket is fuel, though furnace is still missing).": 1,
+        "The output correctly decomposes the target into purple dye plus glass, recognizes that purple dye can be made from blue_dye and red_dye, and checks inventory for required smelting inputs. It explicitly notes sand is present but no furnace is listed, which is key evidence toward impossibility. However, it stops short of a final IMPOSSIBLE conclusion, does not fully account for lava_bucket as possible fuel or the absence of furnace-crafting materials, and the reasoning is left incomplete.": 1,
+        "The output correctly recognizes that blue_dye and red_dye can craft purple_dye and identifies glass as the remaining required ingredient, but it does not verify the glass recipe, assess furnace/fuel absence, or determine that the target is impossible. It provides partially useful grounded progress but stops before the decisive bottleneck.": 1
+      }
+    },
+    {
+      "instance_id": "TEST0588",
+      "arm": "no_canary",
+      "deterministic_exact": false,
+      "runtime_answer_quality": 0.0,
+      "max_round_answer_quality": 0.0,
+      "max_agent_contribution_score": 0.5,
+      "mean_agent_contribution_score": 0.14076666666666665,
+      "agent_round_scores_at_least_0_8": 0,
+      "agent_round_score_count": 15,
+      "score_reasons": {
+        "heuristic_only_non_slow_round": 12,
+        "The output identifies that purple dye can be crafted from blue and red dye, and notes glass is needed, but it stops short of providing the glass recipe, furnace/smelting requirements, or the final crafting plan. This is a weak partial contribution rather than a decisive plan.": 1,
+        "The output correctly notes that blue_dye and red_dye can craft purple_dye, grounded in inventory counts, but it stops before verifying or resolving the glass requirement. It provides only a partial dye step and no complete crafting plan or impossibility determination, so it is weakly relevant but not decisive.": 1,
+        "The output correctly identifies that sand is available and can be smelted into glass, grounding this in the inventory count. This is a concrete step toward the purple_stained_glass recipe, but it stops before verifying the full dependency chain (purple dye plus glass plus crafting layout) and does not provide a complete plan.": 1
+      }
+    }
+  ],
+  "interpretation_guard": "This is an evaluation-validity audit, not a privacy result. Agent contribution scores are local heuristic signals and were not documented as calibrated probabilities of executable task correctness.",
+  "secrets_included": false
+}
