@@ -7,7 +7,7 @@ This package now includes zero-new-call reanalyses of frozen traces:
 - `cached-analysis/iclr2027-x2-failure-modes-108.json`: operational endpoint-failure decomposition for the canonical X2 screening records.
 - `cached-analysis/cached-headroom-meta-analysis-protocol-080.json`: frozen analysis protocol and amendment record.
 
-These files contain no provider credentials or raw canary strings. They are cached analyses only; the direct-sampling baseline remains a planned next experiment.
+These files contain no provider credentials or raw canary strings. They are cached analyses only. The direct-sampling baseline is complete; its zero-call corrected trajectory reanalysis is recorded below, and further provider experiments remain frozen unless a new preregistered question is approved.
 
 Additional direct-sampling reanalysis:
 
