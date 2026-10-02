@@ -1,0 +1,25 @@
+{
+  "artifact_id": "FINAL-HANDOFF-GATE-226",
+  "date_local": "2026-10-02",
+  "status": "passed",
+  "provider_calls": 0,
+  "checks": {
+    "tests_157_passed": true,
+    "iclr_submission_integrity": true,
+    "iclr_main_readiness": true,
+    "reviewer_response": true,
+    "active_evidence_paths": true,
+    "arr_numeric_consistency": true,
+    "arr_claim_evidence": true,
+    "arr_draft_readiness": true,
+    "cross_version_consistency": true
+  },
+  "human_gates_open": [
+    "confirm whether an ICLR upload exists before the deadline",
+    "complete author profiles, ORCID, affiliations, and conflicts",
+    "verify live ARR/NAACL OpenReview dates and service-contributor requirements",
+    "obtain license or redistribution permission before adding the code supplement"
+  ],
+  "scope_guard": "This gate verifies packaging and evidence consistency; it is not a scientific acceptance prediction and does not authorize new provider calls.",
+  "failed_checks": []
+}
