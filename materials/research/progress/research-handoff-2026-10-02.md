@@ -30,4 +30,4 @@ The persistence replication, Qwen candidate-pool experiment, score intervention,
 
 ## Latest package commit
 
-The synchronized materials repository is `StephCpa/DP-TacMA`; the latest recorded package commit is `a85d571`.
+The synchronized materials repository is `StephCpa/DP-TacMA`; the planning-sensitivity content is in commit `a85d571` (the handoff metadata update follows in the subsequent package commit).
