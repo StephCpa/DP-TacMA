@@ -1,0 +1,275 @@
+{
+  "schema_version": 1,
+  "artifact_id": "ICLR2027-PAPER-CLAIM-AUDIT-048",
+  "status": "passed",
+  "draft": "iclr2027-paper-draft.md",
+  "draft_sha256": "5bcbc7519d069e798675f9c0ef4327eb18fabd00eff3095f2a96d10e19d6b6e3",
+  "draft_words": 10495,
+  "appendix": "iclr2027-paper-appendix.md",
+  "appendix_sha256": "9b8eade00e6c9bcd7b32b53c023c18a59615028c62541bc0aeccecaef6a7fda0",
+  "source_hashes": {
+    "x1": {
+      "path": "research/artifacts/iclr2027-x1-g1-decision-036.json",
+      "sha256": "580141bf244d906c41cb7f90484ac732f41b339b21283d2741880c5f2a9748c3"
+    },
+    "score": {
+      "path": "research/artifacts/iclr2027-x1-score-validity-037.json",
+      "sha256": "b55bb0034aaa0bbb7360601d160e5ab31d2083056a1c5ee7430894bff0a4071e"
+    },
+    "score_reanalysis": {
+      "path": "research/artifacts/iclr2027-x1-score-validity-reanalysis-063.json",
+      "sha256": "44351b53eaf18be3a54201a9060fbf12a8a04eee05936e47b922b0d4680a72f9"
+    },
+    "extractor_control": {
+      "path": "research/artifacts/iclr2027-x1-extractor-positive-control-064.json",
+      "sha256": "53c23117c4f7f52b34f190c228be93c2d0986ed6c8115ec677354a4d3bbed07b"
+    },
+    "state_mutation": {
+      "path": "research/artifacts/iclr2027-x1-state-mutation-065.json",
+      "sha256": "2de50726fe1029f2112c6ea465adb9175bbbc24c448f6851c83979d4fd54b165"
+    },
+    "null_power": {
+      "path": "research/artifacts/iclr2027-null-power-analysis-066.json",
+      "sha256": "aa2baaac93f2a6be5dcfa5d76aef1dc861941c48fdab630dc54e8310c38ec50e"
+    },
+    "intervention": {
+      "path": "research/artifacts/iclr2027-fallback-score-persistence-decision-046.json",
+      "sha256": "4bf085bd4cc92905ef7bb1010f9140124e262502586fe11a446a90cb7abfe3b8"
+    },
+    "repeatability": {
+      "path": "research/artifacts/e0-provider-nondeterminism-015.json",
+      "sha256": "1aad6fa0345ee5dd235ab8666742bdf5701f72cfa66ed65bc292302d53a2a676"
+    },
+    "additional_statistics": {
+      "path": "research/artifacts/iclr2027-paper-additional-statistics-050.json",
+      "sha256": "5403a12676029ae9cef2de9543fc3eb36e77796ef785db589fc622bfebb6fb15"
+    },
+    "execution_retention": {
+      "path": "research/artifacts/iclr2027-execution-aware-retention-decision-058.json",
+      "sha256": "a527181e29d81a7af94354f3bf6323e0feaea36c7b9a4a06c88394709c953142"
+    },
+    "execution_retention_confirmatory": {
+      "path": "research/artifacts/iclr2027-execution-aware-retention-confirmatory-decision-061.json",
+      "sha256": "e6a96563efe85da4ceed3d133209742e97b2ca822f8b617fb4e2fe83679c5003"
+    },
+    "nondegenerate": {
+      "path": "research/artifacts/iclr2027-nondegenerate-plancraft-decision-069.json",
+      "sha256": "b5a9f750cc006ffb4c929e807dd02f09f1ee446a528199d4843674cd91773ffd"
+    },
+    "effective_signal": {
+      "path": "research/artifacts/iclr2027-effective-signal-sensitivity-071.json",
+      "sha256": "782fc362143f6d94eda8c037eea17b657b074dd764a80ff31540b724443bf720"
+    },
+    "qwen_replication": {
+      "path": "research/artifacts/iclr2027-qwen-cross-model-length-decision-075.json",
+      "sha256": "bcac421911c104f4b3ca1877beb36fb8cac5658d6bb1b773809d39ce01063069"
+    },
+    "qwen_candidate_audit": {
+      "path": "research/artifacts/iclr2027-qwen-candidate-recoverability-078.json",
+      "sha256": "3bdda0589fdc51a6089c64eeee1917c6b5db7dc8425e717c54afbe5d86b81a65"
+    },
+    "headroom_meta": {
+      "path": "research/artifacts/iclr2027-cached-headroom-meta-analysis-081.json",
+      "sha256": "5544903faa8d0ade3b685f994e641c60f4afd6456b936b21587c39fe712fdfee"
+    },
+    "candidate_pool_enlargement": {
+      "path": "research/artifacts/iclr2027-qwen-candidate-pool-enlargement-decision-085.json",
+      "sha256": "4daf0e0e85cc01278306ba3e5cbf69edb79e9ec46a58acc07ac923561c66a393"
+    },
+    "candidate_pool_reanalysis": {
+      "path": "research/artifacts/iclr2027-qwen-candidate-pool-trajectory-reanalysis-088.json",
+      "sha256": "7325131c535fab4ee1e80c57dfc24ce138cde4e50c986a9c9750672ace9d6bc0"
+    },
+    "deepseek_compute_gate": {
+      "path": "research/artifacts/iclr2027-deepseek-compute-matched-generation-gate-analysis-092.json",
+      "sha256": "e9d05134d4c54cdaf59a79b24549ec839b082fdf2fd0a747b3dd1803982205e3"
+    },
+    "deepseek_conditional_collapse": {
+      "path": "research/artifacts/iclr2027-deepseek-conditional-collapse-analysis-094.json",
+      "sha256": "08a9a7fe357a7f6391134616d15e8ff0b9cd5ade87d06c246bd9ef7cd568c87a"
+    }
+  },
+  "claims": [
+    {
+      "claim": "X1 completed 60 formal runs and 20 complete triads",
+      "passed": true
+    },
+    {
+      "claim": "All three X1 arms had zero exact and partial exposure",
+      "passed": true
+    },
+    {
+      "claim": "X1 cost was 3317 calls and 7479153 tokens",
+      "passed": true
+    },
+    {
+      "claim": "Cached score audit had 5 exact and 55 failed runs",
+      "passed": true
+    },
+    {
+      "claim": "Corrected score analysis reports positive AUC and base-rate lift",
+      "passed": true
+    },
+    {
+      "claim": "Extractor positive control and observable state mutation are reported",
+      "passed": true
+    },
+    {
+      "claim": "Leakage null power limits are explicit",
+      "passed": true
+    },
+    {
+      "claim": "Intervention exact was 1/10 in both arms and paired difference zero",
+      "passed": true
+    },
+    {
+      "claim": "Mean contribution scores were 0.429 and 0.069",
+      "passed": true
+    },
+    {
+      "claim": "High scores fell 33 to zero, with 23 control high scores on failures",
+      "passed": true
+    },
+    {
+      "claim": "Intervention valid/all-observed costs were 2716894/2999293 tokens",
+      "passed": true
+    },
+    {
+      "claim": "Zero-exposure one-sided exact upper bound is 13.9 percent",
+      "passed": true
+    },
+    {
+      "claim": "Paired score manipulation interval and sign test match the additional-statistics artifact",
+      "passed": true
+    },
+    {
+      "claim": "Repeatability audit had 20 calls, two hashes, 65 percent modal raw rate, and canonical identity",
+      "passed": true
+    },
+    {
+      "claim": "Execution-aware development pilot was 1/8 versus 0/8 with risk difference 0.125",
+      "passed": true
+    },
+    {
+      "claim": "Execution-aware pilot cost and uncertainty are reported exactly",
+      "passed": true
+    },
+    {
+      "claim": "Independent execution-aware validation was 1/20 versus 0/20 and failed confirmation",
+      "passed": true
+    },
+    {
+      "claim": "Independent validation uncertainty and cost are reported exactly",
+      "passed": true
+    },
+    {
+      "claim": "Non-degenerate replication resolved the floor and completed 12 pairs",
+      "passed": true
+    },
+    {
+      "claim": "Non-degenerate score, utility, leakage, and cost results are exact",
+      "passed": true
+    },
+    {
+      "claim": "Cluster bootstrap reports rather than imputes degenerate AUC draws",
+      "passed": true
+    },
+    {
+      "claim": "Four-arm nuisance floor equals the length-ablation utility point estimate",
+      "passed": true
+    },
+    {
+      "claim": "Operational rho_U and epsilon inversion are artifact-backed",
+      "passed": true
+    },
+    {
+      "claim": "Qwen replication completed its healthy gate and all 20 pairs",
+      "passed": true
+    },
+    {
+      "claim": "Qwen score-scale rule passes while utility rule fails",
+      "passed": true
+    },
+    {
+      "claim": "Qwen cost is explicitly reported as a lower bound",
+      "passed": true
+    },
+    {
+      "claim": "Qwen candidate audit is zero-call and covers all 20 pairs",
+      "passed": true
+    },
+    {
+      "claim": "Qwen candidate oracle gaps are one run in both arms",
+      "passed": true
+    },
+    {
+      "claim": "Qwen generation failures dominate and selector route stops",
+      "passed": true
+    },
+    {
+      "claim": "Fixed-pool selector headroom is 0 to 8.3 points across four original/control cohorts",
+      "passed": true
+    },
+    {
+      "claim": "Exploratory cross-cohort headroom is labeled and bounded",
+      "passed": true
+    },
+    {
+      "claim": "Stratified 42-pair length synthesis reports a precise near-zero average",
+      "passed": true
+    },
+    {
+      "claim": "Diversity analysis distinguishes Qwen text duplication from cross-model canonical support",
+      "passed": true
+    },
+    {
+      "claim": "Length completeness association reverses on Qwen",
+      "passed": true
+    },
+    {
+      "claim": "Prospective candidate-pool gate and main cohort completed",
+      "passed": true
+    },
+    {
+      "claim": "Nested-pool inference is corrected to estimation without sign tests",
+      "passed": true
+    },
+    {
+      "claim": "Trajectory decomposition preserves task clustering and reports rescue robustness",
+      "passed": true
+    },
+    {
+      "claim": "Final-only and matched-slot decompositions are reported with an architecture guard",
+      "passed": true
+    },
+    {
+      "claim": "Temperature diagnostic and generation cost are reported",
+      "passed": true
+    },
+    {
+      "claim": "Selector-level DP curve is reframed through rho_U and explicit adjacency",
+      "passed": true
+    },
+    {
+      "claim": "DeepSeek compute-matched gate stopped for insufficient informative anchor failures",
+      "passed": true
+    },
+    {
+      "claim": "DeepSeek non-nested paired outcomes are reported without a method-win claim",
+      "passed": true
+    },
+    {
+      "claim": "DeepSeek gate cost, repair collapse, and thinking correction are auditable",
+      "passed": true
+    },
+    {
+      "claim": "Task-level response collapse is quantified at raw and semantic levels",
+      "passed": true
+    },
+    {
+      "claim": "Collapse interpretation retains task-level and comparison guards",
+      "passed": true
+    }
+  ],
+  "failed_claims": []
+}

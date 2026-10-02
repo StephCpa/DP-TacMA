@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "artifact_id": "ICLR2027-SUBMISSION-INTEGRITY-AUDIT-101",
+  "status": "passed",
+  "artifacts": {
+    "main_tex": {
+      "path": "manuscript/main.tex",
+      "sha256": "e649a0af57828a7af303e93387b70733902485b5149aa89af9eb216e04676c8c"
+    },
+    "appendix_tex": {
+      "path": "manuscript/appendix.tex",
+      "sha256": "ec172366b1824e2796d6691cda420980400c85d344e61e210bb372a453fdbc20"
+    },
+    "bibliography": {
+      "path": "manuscript/references.bib",
+      "sha256": "6300a97d771077c3849cb8307895d6547503dd5029ab49f67ac7528abd9ceca9"
+    },
+    "pdf": {
+      "path": "manuscript/main.pdf",
+      "sha256": "fb5869692c169744098ec020271968fdaaa00acde91876bd3291b122d938f4b4",
+      "pages": 16
+    }
+  },
+  "citation_summary": {
+    "cited_keys": 27,
+    "bibliography_entries": 27,
+    "missing_citations": [],
+    "duplicate_bib_keys": []
+  },
+  "checks": {
+    "official_style_loaded": true,
+    "double_blind_author": true,
+    "ai_use_statement_present": true,
+    "appendix_separate_and_loaded": true,
+    "citations_resolve": true,
+    "literature_breadth_at_least_20": true,
+    "length_synthesis_matches_artifact": true,
+    "fixed_pool_bound_matches_artifact": true,
+    "pool_enlargement_matches_artifact": true,
+    "matched_slot_result_matches_artifact": true,
+    "repair_gate_matches_artifact": true,
+    "collapse_matches_artifact": true,
+    "unconditioned_control_matches_artifact": true,
+    "collapse_guards_present": true,
+    "notation_correction_present": true,
+    "private_selection_citations_present": true,
+    "money_figure_precedes_secondary_audit": true,
+    "selector_scope_guard_present": true,
+    "x2_screening_closure_matches_artifacts": true,
+    "x2_symbolic_control_matches_artifact": true,
+    "x2_component_attribution_matches_artifact": true,
+    "x2_branch_attribution_matches_artifact": true,
+    "x2_branch_uncertainty_matches_artifact": true,
+    "active_terminology_audit_passes": true,
+    "browsecomp_gate_is_explicitly_closed": true,
+    "pdf_compiles": true,
+    "readiness_record_is_valid": true,
+    "live_unfiltered_control_matches_artifact": true,
+    "live_control_integrity_audit_passes": true,
+    "main_conference_readiness_audit_passes": "Reviewers may require an end-to-end private evolving-agent system or may treat the two-task collapse result as overgeneralized.",
+    "reviewer_response_prep_audit_passes": true,
+    "manuscript_numeric_consistency_audit_passes": true,
+    "active_evidence_path_audit_passes": true
+  },
+  "failed_checks": [],
+  "no_invention_status": "All numerical checks are derived from frozen local artifacts."
+}
