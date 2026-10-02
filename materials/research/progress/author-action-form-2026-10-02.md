@@ -8,7 +8,7 @@ This form is intentionally identity-bearing and must remain outside the anonymou
 - [ ] ICLR was not uploaded; ARR October 2026 is the active route.
 - [ ] Dual-submission status has been checked and is compliant.
 
-For the October 2026 ARR cycle, the current official dates are: submission October 12, reviewer registration for all authors October 14, reviews due November 16, author response November 24--30, meta-review December 17, and cycle end December 20. NAACL 2027 lists the same October 12 ARR submission deadline and a December 23 NAACL commitment deadline. Confirm dates again in OpenReview immediately before submission; all deadlines are AoE/UTC-12 where specified.
+For the October 2026 ARR cycle, the current official dates are: submission October 12, 2026; reviewer registration for all authors October 14, 2026; reviews due November 16, 2026; author response November 24--30, 2026; meta-review December 17, 2026; and cycle end December 20, 2026. NAACL 2027 lists the same October 12, 2026 ARR submission deadline and a December 23, 2026 NAACL commitment deadline. Confirm dates again in OpenReview immediately before submission; all deadlines are AoE/UTC-12 where specified.
 
 Official references: <https://aclrollingreview.org/dates>, <https://2027.naacl.org/calls/main_conference_papers/>, and <https://aclrollingreview.org/sustainable-reviewing-2026>.
 
