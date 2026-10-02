@@ -1,6 +1,6 @@
 # ICLR 2027 main-conference reviewer-response preparation
 
-Status: internal evidence-backed response sheet, 1 October 2026. It is derived from the frozen manuscript and local artifacts; it is not a new empirical claim and does not authorize additional provider calls.
+Status: internal evidence-backed response sheet, 2 October 2026. It is derived from the frozen manuscript and local artifacts; it is not a new empirical claim and does not authorize additional provider calls.
 
 ## Core positioning
 

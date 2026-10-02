@@ -4,7 +4,7 @@ Status: experiment and anonymous-source checks complete; ICLR 2027 submission st
 
 ## Official timing status
 
-The official ICLR 2027 schedule lists the abstract deadline as 18 September 2026 AOE and the full-paper deadline as 25 September 2026 AOE. The author guidelines state that the deadlines are final and that late uploads or post-deadline paper edits are not accepted. As of the workspace date, 1 October 2026, this package is therefore a verified submission candidate, not evidence that a new ICLR 2027 main-conference upload is still possible.
+The official ICLR 2027 schedule lists the abstract deadline as 18 September 2026 AOE and the full-paper deadline as 25 September 2026 AOE. The author guidelines state that the deadlines are final and that late uploads or post-deadline paper edits are not accepted. As of the workspace date, 2 October 2026, this package is therefore a verified submission candidate, not evidence that a new ICLR 2027 main-conference upload is still possible.
 
 - If this paper was submitted before the deadline: preserve the exact submitted PDF/source snapshot and use the package below for review-period preparation.
 - If it was not submitted: do not attempt a late ICLR upload; select the next venue or a later ICLR cycle before making venue-specific changes.
