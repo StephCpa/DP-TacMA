@@ -1,0 +1,33 @@
+{
+  "artifact": "iclr2027-live-control-integrity-audit-166",
+  "status": "passed",
+  "mode": "numeric-and-claim consistency; no provider calls",
+  "sources": [
+    "research/artifacts/iclr2027-x2-heldout-unfiltered-llm-control-152.json",
+    "research/artifacts/iclr2027-x2-unfiltered-llm-control-analysis-164.json",
+    "research/artifacts/iclr2027-submission-readiness-145.json",
+    "manuscript/main.tex",
+    "manuscript/appendix.tex",
+    "manuscript/main.pdf",
+    "research/manifests/iclr2027-submission-source-169.zip"
+  ],
+  "checks": {
+    "live_artifact_complete": true,
+    "live_summary": true,
+    "paired_replay_summary": true,
+    "paired_exact_summary": true,
+    "provider_accounting": true,
+    "main_claim_text": true,
+    "appendix_claim_text": true,
+    "rendered_text_contains_live_claim": true,
+    "source_archive_identity": true,
+    "source_archive_bytes": true,
+    "pdf_pages": true,
+    "no_forced_page_enlargement": true,
+    "no_withdrawn_term_in_manuscript": true
+  },
+  "failed_checks": [],
+  "source_zip_sha256": "4f7c7e7f12a616a0e85975573c6dd2cb226d9ac3615d61de1e20c88fa5974663",
+  "live_provider_calls": 142,
+  "live_total_tokens": 43623
+}

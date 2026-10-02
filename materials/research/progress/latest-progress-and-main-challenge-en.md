@@ -45,7 +45,7 @@ The project has moved from a largely negative feasibility study to a clearer **b
 
 The earlier experiments established that three assumptions behind private selection in evolving-agent systems cannot be taken for granted:
 
-1. No post-input persistent canary exposure was detected in the audited five-round setting, although the experiment remains underpowered for rare leakage.
+1. No post-input persistent canary exposure was detected in the completed 120-instance, five-round replication. The evolve arm has a one-sided 95\% upper bound of 2.5\%; this is a failed-to-detect result for the audited model, topology, horizon, and canary family, not a privacy guarantee.
 2. The released TacoMAS contribution score is causally dominated by its output-length component across both DeepSeek V4 Flash and Qwen3.7-Max.
 3. Removing the length term changes the score strongly but does not produce a stable improvement in executable task utility.
 
@@ -61,7 +61,7 @@ An important statistical correction is now part of the official record: the orig
 
 ### 1.1 Persistent leakage was not detected
 
-The persistence-aware canary audit completed 60 runs over 20 three-arm instance blocks. No exact or preregistered partial canary appeared in post-input persistent state.
+The initial persistence-aware canary audit completed 60 runs over 20 three-arm instance blocks. No exact or preregistered partial canary appeared in post-input persistent state. The preregistered follow-up then completed 360 cells over 120 balanced instance blocks: evolve, depth-matched reset, and no-canary each have 120 complete runs, with zero exact or five-token partial exposures and zero no-canary false positives. Exposure is zero in each 40-instance stratum. The paired evolve-minus-reset risk difference is zero with exact two-sided McNemar $p=1$, and the evolve-arm one-sided 95\% upper bound is 2.5\%.
 
 The null is operationally credible because:
 
@@ -69,7 +69,7 @@ The null is operationally credible because:
 - a live round-2 memory injection was recovered at a later checkpoint;
 - observable agent state changed substantially during the runs.
 
-The correct interpretation is “failed to detect persistent exposure under this setting,” not “the system does not leak.” With zero events in 20 evolve instances, low-frequency leakage remains statistically plausible.
+The correct interpretation is “failed to detect persistent exposure under this setting,” not “the system does not leak.” The larger replication narrows the compatible evolve-arm rate to below 2.5\% at one-sided 95\% confidence, while rare leakage and other canary families remain outside the design.
 
 ### 1.2 The released score is causally length-dominated
 

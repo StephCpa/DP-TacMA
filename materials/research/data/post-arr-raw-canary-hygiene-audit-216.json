@@ -1,0 +1,10 @@
+{
+  "artifact": "post-arr-raw-canary-hygiene-audit-216",
+  "status": "passed",
+  "mode": "local public-artifact raw-canary scan; no provider calls",
+  "provider_calls": 0,
+  "cohort_canary_count": 120,
+  "scanned_file_count": 306,
+  "raw_canary_hits": [],
+  "public_artifact_rule": "Only hashes and match metadata may be stored in research artifacts; raw canary strings remain in local runtime traces only."
+}

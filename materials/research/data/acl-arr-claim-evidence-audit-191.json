@@ -1,0 +1,94 @@
+{
+  "artifact": "acl-arr-claim-evidence-audit-191",
+  "status": "passed",
+  "mode": "CCF integrity claim-evidence, numeric, citation, reference, and scope audit; no provider calls",
+  "claims": [
+    {
+      "claim": "The completed canary replication detects no post-input exposure in 120 instances.",
+      "status": "supported",
+      "scope": "failed-to-detect result for the audited model, benchmark, canary family, five-round horizon, and fixed topology; not a prevalence or privacy guarantee",
+      "evidence": [
+        "research/artifacts/pre-submission-persistence-replication-result-223.json",
+        "research/artifacts/post-arr-raw-canary-hygiene-audit-216.json"
+      ]
+    },
+    {
+      "claim": "The runtime is instrumented and observably mutates state despite the exposure null.",
+      "status": "supported",
+      "scope": "observable mutation proxies; not byte-level full-state edit distance",
+      "evidence": [
+        "research/artifacts/iclr2027-x1-state-mutation-065.json",
+        "research/artifacts/iclr2027-x1-extractor-positive-control-064.json"
+      ]
+    },
+    {
+      "claim": "Removing the length term changes the released score scale without a consistent exactness gain.",
+      "status": "supported",
+      "scope": "frozen DeepSeek and Qwen interventions; utility result is not a general scorer-validity theorem",
+      "evidence": [
+        "research/artifacts/iclr2027-qwen-cross-model-length-decision-075.json",
+        "research/artifacts/acl-arr-numeric-consistency-audit-189.json"
+      ]
+    },
+    {
+      "claim": "Selectors restricted to recorded candidates have at most 0--8.3 percentage points of observed headroom.",
+      "status": "supported",
+      "scope": "realized-pool upper bound across four frozen cohorts; not a population generalization bound",
+      "evidence": [
+        "research/artifacts/iclr2027-cached-headroom-meta-analysis-081.json",
+        "research/artifacts/acl-arr-numeric-consistency-audit-189.json"
+      ]
+    },
+    {
+      "claim": "Five independent Qwen trajectories raise executable-oracle accuracy from 0.60 to 0.80 at higher token cost.",
+      "status": "supported",
+      "scope": "same three-agent runtime and one PlanCraft benchmark; not a causal multi-agent advantage",
+      "evidence": [
+        "research/artifacts/iclr2027-qwen-candidate-pool-trajectory-reanalysis-088.json",
+        "research/artifacts/acl-arr-numeric-consistency-audit-189.json"
+      ]
+    },
+    {
+      "claim": "Two selected hard failures show task-level response collapse under both repair-conditioned and public-only prompts.",
+      "status": "supported",
+      "scope": "two selected hard failures; task-level diagnostic rather than a general decoding prevalence claim",
+      "evidence": [
+        "research/artifacts/iclr2027-deepseek-unconditioned-collapse-analysis-098.json",
+        "research/artifacts/acl-arr-numeric-consistency-audit-189.json"
+      ]
+    },
+    {
+      "claim": "The live X2 result is a component attribution and not an architecture-level causal multi-agent result.",
+      "status": "supported",
+      "scope": "fixed held-out PlanCraft cohort; symbolic control and live component comparison",
+      "evidence": [
+        "research/artifacts/iclr2027-x2-unfiltered-llm-control-analysis-164.json",
+        "research/artifacts/acl-arr-numeric-consistency-audit-189.json"
+      ]
+    }
+  ],
+  "checks": {
+    "claim_evidence_paths_exist": true,
+    "numeric_consistency_audit_passed": true,
+    "g1_counts_match_claim": true,
+    "instrumentation_claim_matches_controls": true,
+    "headroom_scope_matches_artifact": true,
+    "collapse_scope_matches_artifact": true,
+    "x2_scope_matches_artifact": true,
+    "citations_equal_bibliography": true,
+    "all_figure_and_table_refs_resolve": true,
+    "metadata_abstract_synchronized": true,
+    "scope_guards_present": true,
+    "retracted_terminology_absent": true
+  },
+  "failed_checks": [],
+  "citation_counts": {
+    "cited_keys": 27,
+    "bib_keys": 27
+  },
+  "figure_table_counts": {
+    "refs": 2,
+    "labels": 4
+  },
+  "no_invention_status": "Every claim is paired with an existing local artifact; unsupported generalization is marked in scope fields."
+}

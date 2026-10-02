@@ -1,7 +1,7 @@
-"""Run or analyze the protocol-223 direct-sampling support baseline.
+"""Run or analyze the protocol-227 direct-sampling support baseline.
 
 Default mode is a dry run with zero provider calls. Live execution requires a
-frozen protocol, ``--execute``, and ``DIRECT_SAMPLING_223_AUTHORIZED=1``. The
+frozen protocol, ``--execute``, and ``DIRECT_SAMPLING_227_AUTHORIZED=1``. The
 run is resumable by ``(arm, task_id, call_index)`` and refuses to mix runs made
 under a different protocol hash. ``--analyze`` makes no provider calls.
 """
@@ -24,9 +24,9 @@ sys.path.insert(0, str(HERE))
 import direct_sampling_adapter as adapter  # noqa: E402
 from direct_sampling_analysis import collapse_contrast, summarize_arm  # noqa: E402
 
-PROTOCOL = ROOT / "research" / "protocols" / "direct-sampling-baseline-protocol-223.json"
+PROTOCOL = ROOT / "research" / "protocols" / "direct-sampling-baseline-protocol-227.json"
 if not PROTOCOL.exists():
-    PROTOCOL = ROOT / "research" / "configs" / "direct-sampling-baseline-protocol-223.json"
+    PROTOCOL = ROOT / "research" / "configs" / "direct-sampling-baseline-protocol-227.json"
 SAVE_EVERY = 20
 
 
@@ -58,9 +58,9 @@ def load_existing(path: Path, protocol_sha: str) -> dict[str, Any]:
 
 def execute(protocol: dict[str, Any], output: Path, protocol_sha: str, max_new_calls: int) -> None:
     if protocol.get("status") != "frozen":
-        raise SystemExit("protocol 223 is not frozen; no provider call was made")
-    if os.environ.get("DIRECT_SAMPLING_223_AUTHORIZED") != "1":
-        raise SystemExit("set DIRECT_SAMPLING_223_AUTHORIZED=1 to authorize live calls")
+        raise SystemExit("protocol 227 is not frozen; no provider call was made")
+    if os.environ.get("DIRECT_SAMPLING_227_AUTHORIZED") != "1":
+        raise SystemExit("set DIRECT_SAMPLING_227_AUTHORIZED=1 to authorize live calls")
 
     tasks = adapter.load_tasks()
     existing = load_existing(output, protocol_sha)

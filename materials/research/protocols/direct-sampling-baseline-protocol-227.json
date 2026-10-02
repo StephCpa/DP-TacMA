@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "experiment_id": "DIRECT-SAMPLING-SUPPORT-BASELINE-223",
+  "experiment_id": "DIRECT-SAMPLING-SUPPORT-BASELINE-227",
   "status": "draft_not_frozen",
   "freeze_instructions": "Review, then set status to 'frozen', record the SHA-256 of this file in the progress log, and commit before the first provider call. No field may change after the first call; any change is a dated amendment that keeps the original hash.",
-  "numbering_note": "Artifact numbers 222-225 are provisional; renumber before freezing if the workspace already uses them.",
+  "numbering_note": "Numbers 227-229 follow the 222-226 artifacts already on main; renumber before freezing if the workspace has used them since.",
   "question": "On the 20 Qwen main tasks of protocol 083, does cheap direct temperature-0.7 sampling without the multi-agent runtime reach the executable support of the nested trajectory pools, and how often does it collapse onto a single invalid response?",
   "cohort": {
     "source_protocol": "research/configs/qwen-candidate-pool-enlargement-protocol-083.json",
@@ -74,7 +74,7 @@
         "definition": "task-level indicator that any of the 200 qwen_direct responses is executable, compared with the C5 oracle on the same task",
         "statistics": [
           "paired risk difference direct minus C5",
-          "task-bootstrap 95% interval (100,000 draws, seed 223)",
+          "task-bootstrap 95% interval (100,000 draws, seed 227)",
           "two-sided exact McNemar on discordant tasks"
         ]
       },
@@ -114,9 +114,9 @@
     "rule": "retain invalid calls in the artifact, exclude them from endpoints, and replace each with one new call at the same index; stop and report if more than 5% of calls in an arm are invalid",
     "credential_rule": "credentials only from process environment variables; never written to artifacts or logs"
   },
-  "execution_guard": "Live calls require --execute and DIRECT_SAMPLING_223_AUTHORIZED=1 and a frozen status in this file.",
+  "execution_guard": "Live calls require --execute and DIRECT_SAMPLING_227_AUTHORIZED=1 and a frozen status in this file.",
   "outputs": {
-    "live_artifact": "research/artifacts/direct-sampling-baseline-live-224.json",
-    "analysis_artifact": "research/artifacts/direct-sampling-baseline-analysis-225.json"
+    "live_artifact": "research/artifacts/direct-sampling-baseline-live-228.json",
+    "analysis_artifact": "research/artifacts/direct-sampling-baseline-analysis-229.json"
   }
 }

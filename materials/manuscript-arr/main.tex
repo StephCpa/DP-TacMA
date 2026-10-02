@@ -22,7 +22,7 @@
 \maketitle
 
 \begin{abstract}
-Test-time LLM agents retain natural-language state, score responses, and revise workflows while solving tasks. Before adding a selector or privacy mechanism, we need to know whether state carries sensitive content, whether scores track executable utility, and whether generation exposes useful alternatives. We introduce a persistence-aware executable audit and apply it to a released multi-agent runtime on PlanCraft. A three-arm study detects no post-input canary exposure in 20 instances (one-sided 95\% upper bound 13.9\%). Removing a score term that assigns 85\% weight to output length sharply lowers recorded scores for both DeepSeek and Qwen, yet a secondary synthesis of 42 paired runs changes exactness by only $+0.024$ (95\% interval $[-0.095,0.143]$). In four frozen cohorts, 43 of 46 failed runs contain no executable candidate anywhere in the recorded pool, so any selector restricted to those candidates could have gained only 0 to 8.3 percentage points. Pooling five independent stochastic Qwen trajectories instead of one raises executable-oracle accuracy from 0.60 to 0.80 at triple the token cost. A frozen same-task public-only control reverses our initial explanation of two selected DeepSeek repair failures: each task concentrates on a single invalid response whether or not the prompt contains the current candidate and executor feedback. These results define an audit order for selection in evolving LLM agents and its limits; they do not provide end-to-end privacy or a general prevalence estimate.
+Test-time LLM agents retain natural-language state, score responses, and revise workflows while solving tasks. Before adding a selector or privacy mechanism, we need to know whether state carries sensitive content, whether scores track executable utility, and whether generation exposes useful alternatives. We introduce a persistence-aware executable audit and apply it to a released multi-agent runtime on PlanCraft. A complete three-arm replication detects no post-input canary exposure in 120 instances, with a one-sided 95\% upper bound of 2.5\%. Removing a score term that assigns 85\% weight to output length sharply lowers recorded scores for both DeepSeek and Qwen, yet a secondary synthesis of 42 paired runs changes exactness by only $+0.024$ (95\% interval $[-0.095,0.143]$). In four frozen cohorts, 43 of 46 failed runs contain no executable candidate anywhere in the recorded pool, so any selector restricted to those candidates could have gained only 0--8.3 percentage points. Pooling five independent stochastic Qwen trajectories instead of one raises executable-oracle accuracy from 0.60 to 0.80 at triple the token cost. A frozen same-task public-only control reverses our initial explanation of two selected DeepSeek repair failures: each task concentrates on a single invalid response whether or not the prompt contains the current candidate and executor feedback. These results define an audit order for selection in evolving LLM agents and its limits; they do not provide end-to-end privacy or a general prevalence estimate.
 \end{abstract}
 
 \section{Introduction}
@@ -43,19 +43,19 @@ We develop a persistence-aware executable audit around these premises and apply 
 The resulting audit has a narrow systems conclusion: failures are overwhelmingly generation failures rather than selection failures. In four frozen cohorts, 43 of 46 failed runs contain no executable candidate, so an oracle over all persisted candidates improves accuracy by only 0 to 8.3 points. Repeated repair under fixed execution feedback can concentrate on a single wrong response, and a public-only control shows that this concentration does not require the feedback. Independent trajectories expand support and raise the pool oracle by 20 points at triple the token cost; this is evidence about generation support, not an end-to-end privacy result. Table~\ref{tab:roadmap} maps each premise to its test and verdict.
 
 \begin{table}[t]
-\caption{Audit roadmap: each premise, the test applied to it, and the verdict in our setting.}
+\caption{Audit roadmap: each premise and its verdict in our setting.}
 \label{tab:roadmap}
 \centering
 \small
 \setlength{\tabcolsep}{3pt}
-\begin{tabular}{>{\raggedright\arraybackslash}p{0.22\columnwidth}>{\raggedright\arraybackslash}p{0.36\columnwidth}>{\raggedright\arraybackslash}p{0.34\columnwidth}}
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.33\columnwidth}>{\raggedright\arraybackslash}p{0.61\columnwidth}}
 \toprule
-Premise & Test (section) & Verdict \\
+Premise (section) & Verdict \\
 \midrule
-Post-input exposure & Three-arm canary study with reset control (\S\ref{sec:res-audit}) & Not detected; 0/20, upper bound 13.9\% \\
-Score validity & Randomized length ablation, three cohorts, two model families (\S\ref{sec:res-audit}) & Score scale moves; exactness $+0.024$ $[-0.095,0.143]$ \\
-Candidate support & Executable oracle over recorded pools (\S\ref{sec:res-headroom}) & 0--8.3 points of headroom; 43/46 failures are generation failures \\
-Support expansion & Nested independent trajectories; repair gate (\S\ref{sec:res-expand}--\ref{sec:res-collapse}) & Oracle $0.60\to0.80$ at $3\times$ tokens; repair collapses on 2 tasks \\
+Post-input exposure (\S\ref{sec:res-audit}) & Not detected in 120 instances; upper bound 2.5\% \\
+Score validity (\S\ref{sec:res-audit}) & Length moves the score; exactness $+0.024$ $[-0.095,0.143]$ \\
+Candidate support (\S\ref{sec:res-headroom}) & 43/46 failures are generation failures; 0--8.3 points of headroom \\
+Support expansion (\S\ref{sec:res-expand}--\ref{sec:res-collapse}) & Oracle $0.60\to0.80$ at $3\times$ tokens; repair collapses on 2 tasks \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -120,7 +120,7 @@ We parse candidate text into canonical crafting plans and execute it without ref
 
 Paired binary effects use task-level risk differences, paired task bootstraps, and exact discordant-pair tests when positive and negative differences are both possible. Nested pools satisfy $C_1\subset C_5$, so their support and oracle differences cannot be negative. We report task-bootstrap intervals and one-sided lower bounds, not sign-test $p$-values. Provider calls, rounds, candidate slots, and repeated repairs are never treated as independent task units.
 
-The experiments proceed in a fixed order. We first audit canary exposure and cached score validity with DeepSeek V4 Flash. We then replicate the length ablation on a non-degenerate DeepSeek cohort and an untouched Qwen3.7-Max cohort. A zero-call oracle audit measures fixed-pool headroom. Finally, a prospective Qwen study expands candidate support with independent trajectories, followed by a compute-matched DeepSeek gate comparing an independent restart with direct executor-guided repair. Protocols, stopping rules, amendments, and provider-accounting details appear in the appendix.
+The experiments proceed in a fixed order. We first audit canary exposure and cached score validity with DeepSeek V4 Flash, then complete a preregistered 120-instance replication of the canary audit. We replicate the length ablation on a non-degenerate DeepSeek cohort and an untouched Qwen3.7-Max cohort. A zero-call oracle audit measures fixed-pool headroom. Finally, a prospective Qwen study expands candidate support with independent trajectories, followed by a compute-matched DeepSeek gate comparing an independent restart with direct executor-guided repair. Protocols, stopping rules, amendments, and provider-accounting details appear in the appendix.
 
 An appendix endpoint-status table separates quantities frozen before provider execution from later secondary analyses; no post-outcome qualification changes a recorded run or primary endpoint.
 
@@ -129,10 +129,10 @@ An appendix endpoint-status table separates quantities frozen before provider ex
 \subsection{Leakage diagnostic and score validity}
 \label{sec:res-audit}
 
-All 60 cells in the 20-instance canary study complete five rounds. We detect no exact or five-token partial canary in post-input persistent state in any arm (Table~\ref{tab:audit}). The evolve-arm one-sided 95\% upper confidence bound is 13.9\%, so the study is a low-powered failed-to-detect diagnostic rather than a gate capable of excluding rare or modest exposure. The extractor recovers 7/7 deterministic channel injections and a live canary written into memory at round 2. State is active rather than inert: 617/720 comparable agent transitions change, all 168 recorded slow-feedback fields are nonempty, and retention fires in 60/300 rounds. The defensible result is therefore \emph{failed to detect with a functioning instrument} (Figure~\ref{fig:audit}a). The non-degenerate DeepSeek replication below likewise records 0/12 post-input exposure in its evolve and reset arms (one-sided upper bound 22.1\%); the two cohorts are reported separately rather than pooled.
+All 60 cells in the initial 20-instance canary study complete five rounds, with no exact or five-token partial canary in post-input persistent state. We then completed the preregistered 120-instance replication: all 360 cells reached five rounds, and exposure was 0/120 in the evolve and depth-matched-reset arms; the no-canary arm also had 0/120 false positives. The evolve-arm one-sided 95\% upper confidence bound is 2.5\%. Exposure was zero in each of the three 40-instance strata, and the paired evolve-minus-reset risk difference is 0 with exact two-sided McNemar $p=1$. The extractor recovers 7/7 deterministic channel injections and a live canary written into memory at round 2. State is active rather than inert: 617/720 comparable agent transitions change in the initial audit, all 168 recorded slow-feedback fields are nonempty, and retention fires in 60/300 rounds. The replication strengthens the result from a low-powered failed-to-detect diagnostic to a complete failed-to-detect result for this model, horizon, topology, and canary instrument; it does not establish a privacy guarantee. Figure~\ref{fig:audit}a summarizes both studies.
 
 \begin{table*}[t]
-\caption{Primary audit diagnostics. Exposure is measured only after the input round; upper bounds are one-sided 95\%. Length ablations report length-zero minus released-score exactness. Non-degenerate cohorts passed a preregistered gate placing baseline exactness between 30\% and 70\%. The 42-pair synthesis is a secondary outcome-aware analysis, not a single preregistered trial. Execution-aware retention reports executor-based minus text-heuristic retention.}
+\caption{Primary audit diagnostics. Exposure is post-input; upper bounds are one-sided 95\%. Ablations report length-zero minus released-score exactness; non-degenerate cohorts passed a preregistered 30--70\% baseline gate. The 42-pair synthesis is secondary and outcome-aware. Retention reports executor-based minus text-heuristic retention.}
 \label{tab:audit}
 \centering
 \small
@@ -140,9 +140,11 @@ All 60 cells in the 20-instance canary study complete five rounds. We detect no 
 \toprule
 Study & $n$ & Primary observation & 95\% interval \\
 \midrule
-Canary: evolve & 20 & exact/partial $0/20$ & upper bound 0.139 \\
-Canary: reset & 20 & exact/partial $0/20$ & upper bound 0.139 \\
-Canary: non-degenerate evolve & 12 & exact/partial $0/12$ & upper bound 0.221 \\
+Canary: initial evolve & 20 & exact/partial $0/20$ & upper bound 0.139 \\
+Canary: initial reset & 20 & exact/partial $0/20$ & upper bound 0.139 \\
+Canary: replication evolve & 120 & exact/partial $0/120$ & upper bound 0.025 \\
+Canary: replication reset & 120 & exact/partial $0/120$ & upper bound 0.025 \\
+No-canary replication & 120 & false positives $0/120$ & 0.000 \\
 DeepSeek initial ablation & 10 pairs & exactness $0.000$ & $[0,0]$ \\
 DeepSeek non-degenerate ablation & 12 pairs & exactness $+0.167$ & $[0,0.417]$ \\
 Qwen non-degenerate ablation & 20 pairs & exactness $-0.050$ & $[-0.250,0.150]$ \\
@@ -155,7 +157,7 @@ Execution-aware retention & 20 pairs & executable $+0.050$ & $[0,0.150]$ \\
 \begin{figure*}[t]
 \centering
 \includegraphics[width=\textwidth]{figures/evolution-audit-main-results.pdf}
-\caption{Audit results. (a) No post-input exposure in any arm of the 20-instance study; whiskers show the one-sided 95\% upper bound and the dashed line the frozen 10\% gate. (b) Length-zero minus released-score exactness with 95\% intervals; the pooled 42-pair synthesis is secondary and outcome-aware. (c) Observations scoring at least 0.8 are only mildly enriched for successful runs relative to the base rate.}
+\caption{Audit results. (a) No post-input exposure in any arm of the initial 20-instance study or the 120-instance replication; whiskers show one-sided 95\% upper bounds and the dashed line the frozen 10\% gate. (b) Length-zero minus released-score exactness with 95\% intervals; the pooled 42-pair synthesis is secondary and outcome-aware. (c) Observations scoring at least 0.8 are only mildly enriched for successful runs relative to the base rate.}
 \label{fig:audit}
 \end{figure*}
 
@@ -204,7 +206,7 @@ At a matched 16 candidate slots, sampling across the five stochastic trajectorie
 
 Five independent stochastic final answers alone reach an oracle of 0.65, also above the 0.570 of 16 within-trajectory slots, although five finals cost five full trajectories. Within this runtime, independent restarts thus contribute more coverage per candidate slot than added rounds and agents in a shared trajectory; this does not identify an architectural multi-agent effect.
 
-The gain is uneven. Across the 100 stochastic trajectories, per-task success estimates are exactly zero or one for 14/20 tasks. Four tasks are rescued by $C_5$ but not $C_1$, and three of these contain a valid plan in only one of five trajectories. A fresh-draw plug-in expectation is 0.751 at five stochastic trajectories, whereas the realized nested $C_5$ pool reaches 0.80 on the same sample. The former averages estimated future draws, while the latter is the observed cached pool. The plug-in curve rises to 0.798 at twenty and has an empirical asymptote of 0.80, but this is finite-sample extrapolation. Zero successes in five trials still permits a one-sided 95\% binomial upper bound of 0.451, so 0.80 is not an identified hard ceiling.
+The gain is uneven. Across the 100 stochastic trajectories, per-task success estimates are exactly zero or one for 14/20 tasks. Four tasks are rescued by $C_5$ but not $C_1$, and three of these contain a valid plan in only one of five trajectories. A fresh-draw plug-in expectation is 0.751 at five stochastic trajectories, whereas the realized nested $C_5$ pool reaches 0.80 on the same sample. The plug-in curve rises to 0.798 at twenty and has an empirical asymptote of 0.80, but this is finite-sample extrapolation. Zero successes in five trials still permits a one-sided 95\% binomial upper bound of 0.451, so 0.80 is not an identified hard ceiling.
 
 The escape is also expensive. $C_1$ records 4.81M tokens and $C_5$ 14.43M, a 3.00-fold increase for a 0.20 oracle gain. Independent restarting is an existence proof and a cost baseline, not an efficient method.
 
@@ -228,16 +230,16 @@ We froze a same-task control before making another provider call. DeepSeek then 
 
 This control reverses our initial explanation. Conditioning is not necessary for the concentration and does not increase it on either selected task; on TEST0030 it changes which invalid response dominates, not whether one dominates. We therefore treat this as a scoped task-level response-collapse diagnostic: direct stochastic generation remains concentrated on a single invalid response under each prompt. The repeated calls estimate two within-task response distributions, not 160 task units, so the result does not estimate a population prevalence. It provides a mechanism example for why raising temperature inside a direct prompt can add little support while full independent trajectories sometimes escape.
 
-\subsection{Symbolic constraints supply planning support}
+\subsection{A held-out planning component control}
 
-Because most failures above are generation failures, we also developed, post hoc, a state-verified step planner in which DeepSeek chooses among verifier-applicable actions under symbolic filtering (Appendix~\ref{app:planner}). It reached the target on 12/12 feasible held-out tasks. A frozen component control locates that support: zero-call symbolic search alone also reaches 12/12 feasible replays (8/12 canonical exact), whereas DeepSeek choosing among verified actions without the symbolic filters reaches 8/12 (5/12), with all four replay discordances favoring symbolic search (exact $p=0.125$). Executable support here comes mainly from symbolic constraints, not from LLM choice or a multi-agent architecture.
+Because most failures above are generation failures, we also developed, post hoc, a state-verified step planner in which DeepSeek chooses among verifier-applicable actions under symbolic filtering (Appendix~\ref{app:planner}). It reached the target on 12/12 feasible held-out tasks. A frozen held-out planning component control locates that support: zero-call symbolic search alone also reaches 12/12 feasible replays (8/12 canonical exact), whereas DeepSeek choosing among verified actions without the symbolic filters reaches 8/12 (5/12), with all four replay discordances favoring symbolic search (exact $p=0.125$). Executable support here comes mainly from symbolic constraints, not from LLM choice or a multi-agent architecture.
 
 \subsection{Selector-level privacy after support expansion}
 \label{sec:res-selector}
 
 On a mixed $C_5$ pool, trusted binary executor utility has $g_U^{\mathrm{sel}}=\Delta_u=1$ and hence local $\rho_U^{\mathrm{sel}}=1$. Under candidate-score replacement adjacency, the monotone exponential mechanism samples index $j$ with probability proportional to $\exp(\varepsilon u_j/\Delta_u)$. Its mean executable probability is 0.512, 0.575, 0.682, 0.779, and 0.800 at $\varepsilon=0.5,1,2,4,8$, respectively, against the non-private oracle of 0.80. At $\varepsilon=0.5$, 0.512 is barely above the 0.50 accuracy of the temperature-zero final answer (Figure~\ref{fig:pool}c). The curve becomes materially separated near $\varepsilon=2$ in this binary-gap setting.
 
-This is an illustrative selector calculation, not an experiment establishing a privacy--utility frontier. Candidate texts, prompts, memories, inter-agent messages, and control flow remain trusted; only the released selected index or output is covered by the stated adjacency. The calculation shows how a bounded selector would behave after a mixed-validity pool exists. It does not establish end-to-end privacy or demonstrate that the mechanism improves the evolving agent.
+This is an illustrative calculation, not a privacy--utility frontier: only the selected index or output is covered by the stated adjacency, while candidate texts, prompts, memories, messages, and control flow remain trusted (Appendix~\ref{app:threat}).
 
 \section{Related Work and Implications}
 
@@ -253,19 +255,19 @@ Differential privacy calibrates randomized releases to sensitivity \citep{dwork2
 
 The observed support bottleneck also changes the engineering target. Better reranking cannot solve generator-unreachable tasks. Independent restarts do, but at three times the token cost. Direct repair can exploit execution feedback and stop early, yet the stopped gate shows that stochastic generation can remain concentrated on a single invalid response with or without repair conditioning. Refinement methods therefore cannot assume that feedback supplies diversity. Efficient diversity requires an intervention that changes task-relevant support without multiplying full trajectories. Designing and validating such an intervention is future work, not a post-hoc addition to this study.
 
-An end-to-end private architecture would still need an explicit privacy principal, adjacency relation, public transcript, and trusted boundary. Natural-language memory, cross-agent messages, stopping time, and topology changes can reveal information independently of a private score. One possible direction is a typed-edge billboard design in which cross-boundary communication is mediated through a privatized summary and slow-loop actions are post-processing. The billboard lemma gives a standard route from a shared DP signal plus each participant's own data to joint DP outputs \citep{hsu2014private}. We do not evaluate that architecture here.
+An end-to-end private architecture would also need an explicit privacy principal, adjacency, public transcript, and trusted boundary, because memory, messages, stopping time, and topology can leak independently of a private score. Routing cross-boundary communication through a privatized summary, billboard style, is one untested route to joint DP \citep{hsu2014private}.
 
 \section{Reproducibility}
 
-Every reported experiment uses a frozen JSON protocol, a resumable runner, and machine-readable outputs. References are withheld during online generation and exactness is recomputed offline. Repeated calls, trajectories, and candidate slots are clustered by task in uncertainty analyses. Raw canaries and provider credentials are excluded from research artifacts. The appendix records amendments, stopping decisions, and excluded provider-error traces; its artifact and protocol numbers index this frozen record.
+Every reported experiment uses a frozen JSON protocol, a resumable runner, and machine-readable outputs. The 120-instance persistence replication uses protocol 199 and its complete live and analysis records are archived as artifacts 220 and 222. References are withheld during online generation and exactness is recomputed offline. Repeated calls, trajectories, and candidate slots are clustered by task in uncertainty analyses. Raw canaries and provider credentials are excluded from research artifacts. The appendix records amendments, stopping decisions, and excluded provider-error traces; its artifact and protocol numbers index this frozen record.
 
 \section{Conclusion}
 
-Selection in evolving LLM agents should be preceded by an audit of exposure, score validity, and candidate support. In our setting, the canary study is a low-powered failed-to-detect diagnostic, removing the dominant score term does not reliably change utility, and 43 of 46 failures are generation failures, leaving fixed candidate pools only 0 to 8.3 points of headroom. Independent trajectories raise the oracle from 0.60 to 0.80 but triple token use. A two-task diagnostic shows task-level response collapse under both repair-conditioned and public-only prompts. These measurements define the empirical conditions that a future private selector must satisfy and expose the limits of the present evidence.
+Selection in evolving LLM agents should be preceded by an audit of exposure, score validity, and candidate support. In our setting, a complete 120-instance canary replication fails to detect post-input exposure and places a 2.5\% one-sided upper bound on the evolve-arm rate under the audited setting. Removing the dominant score term does not reliably change utility, and 43 of 46 failures are generation failures, leaving fixed candidate pools only 0 to 8.3 points of headroom. Independent trajectories raise the oracle from 0.60 to 0.80 but triple token use. A two-task diagnostic shows task-level response collapse under both repair-conditioned and public-only prompts. These measurements define the empirical conditions that a future private selector must satisfy and expose the limits of the present evidence.
 
 \section{Limitations}
 
-The leakage audit covers one canary family, injection route, model, five-round horizon, and fixed topology. Topology evolution is disabled, so the study does not test leakage through structural edits. With 0/20 observations it cannot exclude rates below 13.9\% at one-sided 95\% confidence, and it does not mount adaptive extraction attacks. The canary is a synthetic string unrelated to the task, so the audit tests incidental retention; secrets that a plan could use may persist differently. Qwen replicates the score intervention but not leakage.
+The leakage audit covers one canary family, injection route, model, five-round horizon, and fixed topology. Topology evolution is disabled, so the study does not test leakage through structural edits. With 0/120 evolve observations it cannot exclude rates below 2.5\% at one-sided 95\% confidence, and it does not mount adaptive extraction attacks. The canary is a synthetic string unrelated to the task, so the audit tests incidental retention; secrets that a plan could use may persist differently. Qwen replicates the score intervention but not leakage.
 
 PlanCraft exactness is deliberately strict and may ignore useful partial reasoning. The headroom result applies only to recorded candidates and binary target-reaching utility. Hidden reasoning, new repairs, and unrecorded tool interactions lie outside the bound. The four cohort estimates are modest in size, and their intervals do not justify a universal numerical ceiling.
 

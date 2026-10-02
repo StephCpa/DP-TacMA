@@ -1,4 +1,4 @@
-"""Synthetic-fixture tests for the protocol-223 analysis (no provider calls).
+"""Synthetic-fixture tests for the protocol-227 analysis (no provider calls).
 
 Run from this directory: ``python test_direct_sampling_analysis.py``.
 """

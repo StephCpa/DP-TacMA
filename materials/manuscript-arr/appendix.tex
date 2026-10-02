@@ -14,7 +14,7 @@ The table below separates outcomes fixed before provider execution from later an
 \toprule
 \shortstack{\textbf{Component}} & \shortstack{\textbf{Frozen}\\\textbf{endpoint}} & \shortstack{\textbf{Final status or}\\\textbf{qualification}} \\
 \midrule
-Canary audit & Post-input exact or five-token partial exposure in the three-arm 20-instance study & 0/20 in each arm; reported as failed to detect, with the one-sided 95\% upper bound and low power made explicit. \\
+Canary audit & Post-input exact or five-token partial exposure in the three-arm 120-instance replication & 0/120 in evolve and reset, and 0/120 false positives in no-canary; one-sided 95\% upper bound 2.5\%, reported as failed to detect for the audited setting. \\
 Length ablation & Paired exactness and recorded-score differences in each frozen cohort & Cohort results are primary; the 42-pair synthesis was added after cohort inspection and is labeled secondary and outcome-aware. \\
 Fixed-pool headroom & Oracle over the recorded candidate surface & Final answers were retained in the support set by an explicit amendment; the pooled cross-cohort summary remains exploratory. \\
 Nested trajectory pool & Support and oracle differences for $C_1\subset C_5$ & Nested sign tests were withdrawn because decreases are impossible by construction; task-bootstrap intervals and one-sided bounds were retained. The matched decomposition is slot-matched, not token-matched. \\
@@ -38,9 +38,9 @@ The two privacy-relevant components answer different questions and use different
 \toprule
 & \textbf{Canary audit} & \textbf{Selector calculation} \\
 \midrule
-Protected unit & A synthetic nine-token canary placed once in the round-one query & One candidate's clipped validity bit (candidate-score replacement adjacency) \\
+Protected unit & A synthetic random canary injected only in the round-one query & One candidate's clipped validity bit (candidate-score replacement adjacency) \\
 Observer & Anyone who can read persistent state after the input round: memory, feedback, stored outputs, scores, and slow-update logs & Only the selected index or output \\
-Released & Full state snapshots at rounds 3 and 5 & The selected index or output \\
+Released & Full state snapshots after the input round & The selected index or output \\
 Trusted & Runtime code, provider, and extractor & Candidate texts, prompts, memories, messages, control flow, and the executor \\
 Out of scope & Adaptive extraction, provider-side logs, structural edits, task-relevant secrets & End-to-end DP of the transcript or of the evolving state \\
 \bottomrule
@@ -58,7 +58,7 @@ We froze an amendment that marked both cells \texttt{\detokenize{invalid_harness
 
 \section{Detailed null sensitivity}
 
-With zero exposure events in 20 evolve instances, the exact one-sided 95\% upper bound is 13.9\%. A true event rate of 7.7\% already gives an 80\% chance of at least one observed event. In the paired leakage comparison, six pure evolve-only discordances are required for two-sided exact \(p<0.05\), corresponding to a 30-point observed risk difference at \(n=20\). Under the explicit planning scenario of 5\% control risk and 10\% evolve risk with within-pair independence, power at 20 pairs is 1.7\% one-sided and 0.45\% two-sided; 80\% power requires 373 and 463 pairs, respectively. These values are planning diagnostics, not estimates of the true exposure rate.
+The initial audit had zero exposure events in 20 evolve instances, with an exact one-sided 95\% upper bound of 13.9\%. The completed replication has zero events in 120 evolve instances, lowering that bound to 2.5\%. Exposure is also zero in the reset and no-canary arms, and each of the three strata has 0/40 evolve exposures. In the paired replication comparison, the observed evolve-minus-reset risk difference is zero and the exact two-sided McNemar test has \(p=1\). These are failed-to-detect results for the audited model, horizon, topology, and canary family, not estimates of a universal exposure rate.
 
 The independent execution-aware validation likewise has low sensitivity. Five pure method-only discordances would be required for one-sided exact \(p<0.05\), an observed risk difference of 0.25 at 20 pairs. Its observed interval [0, 0.15] includes effects that would triple a 5\% base rate.
 
@@ -107,6 +107,7 @@ Across 20 cache-bypassed temperature-zero calls, two raw response hashes appear.
   \item Qwen candidate-pool enlargement: protocol 083 and artifacts 084--085.
   \item corrected nested-pool inference and trajectory decomposition: protocol 087 and artifact 088.
   \item public-task-only DeepSeek response-collapse control: protocol 096 and artifacts 097--098.
+  \item 120-instance persistence replication: protocol 199, authorization amendment 219, live artifact 220, and complete analysis artifact 222.
 \end{itemize}
 
 \section{Implementation clarification}

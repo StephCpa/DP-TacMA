@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "analysis_id": "ICLR2027-QWEN-CANDIDATE-POOL-TRAJECTORY-REANALYSIS-087",
+  "status": "frozen_before_trajectory_decomposition",
+  "freeze_date_local": "2026-08-14",
+  "model_calls": 0,
+  "source_artifact": "research/artifacts/iclr2027-qwen-candidate-pool-enlargement-084.json",
+  "source_decision": "research/artifacts/iclr2027-qwen-candidate-pool-enlargement-decision-085.json",
+  "correction": {
+    "withdrawn_claims": [
+      "two-sided exact sign p-value for canonical support C5-C1",
+      "two-sided exact sign p-value for executable oracle/headroom C5-C1"
+    ],
+    "reason": "C1 is a subset of C5, so both endpoints are monotone non-decreasing by construction. The equal-probability sign null assigns mass to decreases that the design excludes.",
+    "retained_valid_test": "The standalone temperature-0.7-minus-temperature-0 support contrast is non-nested and retains its two-sided exact sign test."
+  },
+  "frozen_endpoints": {
+    "nested_estimation": {
+      "report": [
+        "paired mean C5-C1",
+        "two-sided 95% task-cluster bootstrap percentile interval for estimation",
+        "one-sided 95% task-cluster bootstrap lower confidence bound"
+      ],
+      "no_null_p_value": true,
+      "bootstrap_draws": 100000,
+      "bootstrap_seed": 20260817
+    },
+    "trajectory_dose_response": {
+      "unit": "task",
+      "within_task_observations": "five stochastic full trajectories",
+      "trajectory_success": "at least one executable canonical candidate among that trajectory's 16 slots",
+      "per_task_estimator": "p_hat_i = successful stochastic trajectories / 5",
+      "anchor_inclusive_plugin_curve": "mean_i [anchor_i + (1-anchor_i)*(1-(1-p_hat_i)^n)]",
+      "n_values": [1, 2, 3, 4, 5, 10, 20],
+      "uncertainty": "task-cluster bootstrap over the 20 tasks",
+      "extrapolation_guard": "n greater than 5 is model-based extrapolation under conditional iid stochastic trajectories and is not new observed evidence"
+    },
+    "rescue_robustness": {
+      "population": "tasks with oracle(C5)=1 and oracle(C1)=0",
+      "report": "number of the five stochastic trajectories containing an executable canonical candidate"
+    },
+    "final_only_comparison": {
+      "report": [
+        "oracle over five stochastic final answers",
+        "mean oracle over one complete stochastic 16-slot trajectory",
+        "oracle over the temperature-0 16-slot trajectory"
+      ],
+      "guard": "candidate counts are intentionally unequal and the result is descriptive"
+    },
+    "matched_slot_comparison": {
+      "within_trajectory": "mean oracle over all 16 slots of one stochastic trajectory",
+      "cross_trajectory": "expected oracle from 16 uniformly sampled slots allocated 4/3/3/3/3 across the five stochastic trajectories, averaged over which trajectory receives four slots",
+      "calculation": "exact hypergeometric no-valid probability within each cached trajectory",
+      "guard": "cached conditional comparison; not a randomized architecture experiment"
+    }
+  },
+  "independence_guard": "The 120 trajectories are repeated observations nested within 20 tasks. Task generalization uncertainty resamples tasks, not trajectories as independent units.",
+  "privacy_reframe": {
+    "binary_executor_signal": "g_U=1 and Delta_c=1 for a valid-versus-invalid candidate comparison, so rho_U=1 conditional on a mixed candidate pool",
+    "adjacency": "candidate-score replacement adjacency: one candidate's clipped binary validity bit may change while the candidate texts and all other utilities are trusted",
+    "release": "only the selected candidate index/output is released",
+    "scope": "selector-level DP only; the selecting trusted party observes candidates and executor utilities"
+  }
+}

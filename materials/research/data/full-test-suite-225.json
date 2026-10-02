@@ -1,0 +1,11 @@
+{
+  "artifact_id": "FULL-TEST-SUITE-225",
+  "date_local": "2026-10-02",
+  "command": ".venv/Scripts/python.exe -m pytest research/tests -q -ra",
+  "status": "passed",
+  "tests_passed": 157,
+  "tests_failed": 0,
+  "elapsed_seconds": 25.15,
+  "provider_calls": 0,
+  "notes": "Third-party plugin autoload was disabled with PYTEST_DISABLE_PLUGIN_AUTOLOAD=1; this is a local reproducibility check, not new experimental evidence."
+}

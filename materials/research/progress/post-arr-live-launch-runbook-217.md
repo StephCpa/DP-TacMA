@@ -74,7 +74,7 @@ pre-submission run writes artifact 220 and must be analyzed with
 script reports `awaiting_live_data` for the wrong file.
 
 ```powershell
-# Pre-submission authorization (artifact 220 -> analysis 221)
+# Pre-submission authorization (artifact 220 -> complete analysis 222)
 .\.venv\Scripts\python.exe research\experiments\analyze_post_arr_persistence_replication.py --pre-submission
 
 # Post-submission launch (artifact 205 -> analysis 207)

@@ -125,26 +125,28 @@ def audit_figure() -> None:
     fig, axes = plt.subplots(1, 3, figsize=(6.8, 2.2),
                              gridspec_kw={"wspace": 0.55, "width_ratios": [0.95, 1.45, 0.75]})
 
-    # Section 3.1: 0/20 post-input exposure per arm; one-sided 95% upper bound.
+    # Section 3.1 / Table 2: 0/20 (initial audit) and 0/120 (preregistered replication)
+    # post-input exposure in every arm; whiskers are one-sided 95% upper bounds.
     ax = axes[0]
     arms = ["Evolve", "Reset", "No\ncanary"]
-    upper = 1 - 0.05 ** (1 / 20)
+    studies = [("initial (n=20)", 20, MUTED, -0.17), ("replication (n=120)", 120, BLUE, 0.17)]
     xs = list(range(len(arms)))
     ax.axhline(0.10, color=ORANGE, lw=1, ls="--")
     # The dashed line is the frozen 10% exposure gate; the caption names it.
-    for x in xs:
-        ax.plot([x, x], [0, upper], color=BLUE, lw=1.6, solid_capstyle="round")
-        ax.plot([x - 0.14, x + 0.14], [upper, upper], color=BLUE, lw=1.6)
-        ax.plot(x, 0, marker="o", color=BLUE, ms=5)
-        ax.text(x + 0.08, 0.006, "0/20", fontsize=6.5, color=INK, va="bottom", ha="left")
-    ax.text(1, upper + 0.006, f"one-sided 95%\nupper bound {upper:.1%}", fontsize=6.5,
-            color=MUTED, ha="center", va="bottom")
+    for label, n, color, dx in studies:
+        upper = 1 - 0.05 ** (1 / n)
+        for x in xs:
+            ax.plot([x + dx, x + dx], [0, upper], color=color, lw=1.6, solid_capstyle="round")
+            ax.plot([x + dx - 0.09, x + dx + 0.09], [upper, upper], color=color, lw=1.6)
+            ax.plot(x + dx, 0, marker="o", color=color, ms=4.5, label=label if x == 0 else None)
+        ax.text(2 + dx, upper + 0.004, f"{upper:.1%}", fontsize=6, color=INK, ha="center", va="bottom")
+    ax.legend(loc="upper left", frameon=False, fontsize=6, handlelength=1.0, borderaxespad=0.1)
     ax.set_xticks(xs, arms)
-    ax.set_xlim(-0.5, 2.6)
+    ax.set_xlim(-0.5, 2.5)
     ax.set_ylim(-0.006, 0.20)
     ax.set_yticks([0, 0.05, 0.10, 0.15])
     ax.yaxis.set_major_formatter(matplotlib.ticker.PercentFormatter(1.0, decimals=0))
-    ax.set_ylabel("Post-input exact exposure")
+    ax.set_ylabel("Post-input exposure (0 observed)")
     ax.set_title("(a) Canary exposure", loc="left")
 
     # Section 3.1 / Table 1: length-zero minus released exactness, 95% intervals.

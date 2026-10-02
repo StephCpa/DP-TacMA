@@ -1,0 +1,19 @@
+{
+  "artifact": "remote-repository-verification-2026-10-02",
+  "mode": "GitHub REST API read-only verification; no provider calls",
+  "repository": "StephCpa/DP-TacMA",
+  "branch": "main",
+  "verified_head": "24ba47384ae0290a1ea56305865db37544c50fa0",
+  "checks": {
+    "handoff_file_present": true,
+    "author_action_form_present": true,
+    "cached_analysis_readme_present": true,
+    "final_handoff_gate_present": true,
+    "live_control_audit_present": true,
+    "handoff_gate_status_passed": true,
+    "author_form_dates_explicit": true,
+    "author_form_freezes_provider_calls_without_new_question": true
+  },
+  "failed_checks": [],
+  "scope_guard": "This artifact verifies remote package availability and selected metadata only; it is not a scientific acceptance or venue-decision claim."
+}

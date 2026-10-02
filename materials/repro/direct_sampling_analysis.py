@@ -1,4 +1,4 @@
-"""Endpoint analysis for the direct-sampling support baseline (protocol 223).
+"""Endpoint analysis for the direct-sampling support baseline (protocol 227).
 
 Input records are per call: ``task_id``, ``arm``, ``call_index``, ``valid``
 (provider integrity), ``raw`` (visible response text), ``semantic_key``,
@@ -132,7 +132,7 @@ def paired_oracle_contrast(
 
 
 def decision(contrast: dict[str, Any], *, complete: bool) -> str:
-    """Protocol-223 decision rule for the primary E1 contrast against C5."""
+    """Protocol-227 decision rule for the primary E1 contrast against C5."""
 
     if not complete or contrast["risk_difference"] is None:
         return "incomplete"
@@ -149,7 +149,7 @@ def summarize_arm(
     *,
     expected_tasks: int = 20,
     calls_per_task: int = 200,
-    seed: int = 223,
+    seed: int = 227,
     draws: int = 100_000,
 ) -> dict[str, Any]:
     tasks = per_task_summary(records)

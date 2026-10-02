@@ -1,4 +1,4 @@
-"""Workspace adapter for the protocol-223 direct-sampling runner.
+"""Workspace adapter for the protocol-227 direct-sampling runner.
 
 Every function here must be wired to the exact code already used by protocols
 083 (task loading, canonical parser, executor, comparators) and 096 (public-only

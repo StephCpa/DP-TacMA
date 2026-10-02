@@ -1,0 +1,32 @@
+{
+  "artifact": "iclr2027-reviewer-response-prep-audit-168",
+  "status": "passed",
+  "mode": "internal evidence-link and scope audit; no provider calls",
+  "document": "research/iclr2027-main-conference-reviewer-response-prep.md",
+  "evidence_paths": [
+    "manuscript/appendix.tex",
+    "manuscript/main.tex",
+    "research/artifacts/iclr2027-cached-headroom-meta-analysis-081.json",
+    "research/artifacts/iclr2027-deepseek-unconditioned-collapse-analysis-098.json",
+    "research/artifacts/iclr2027-live-control-integrity-audit-166.json",
+    "research/artifacts/iclr2027-main-conference-readiness-audit-167.json",
+    "research/artifacts/iclr2027-qwen-candidate-pool-enlargement-decision-085.json",
+    "research/artifacts/iclr2027-qwen-candidate-pool-trajectory-reanalysis-088.json",
+    "research/artifacts/iclr2027-qwen-cross-model-length-decision-075.json",
+    "research/artifacts/iclr2027-signal-selector-notation-correction-100.json",
+    "research/artifacts/iclr2027-x1-operational-events-034.json",
+    "research/artifacts/iclr2027-x2-unfiltered-llm-control-analysis-164.json",
+    "research/artifacts/pre-submission-persistence-replication-result-223.json",
+    "research/manifests/iclr2027-submission-source-169.zip"
+  ],
+  "missing_paths": [],
+  "checks": {
+    "document_exists": true,
+    "all_evidence_paths_exist": true,
+    "all_required_questions_present": true,
+    "red_lines_present": true,
+    "no_credential_prefix": true,
+    "upstream_integrity_audits_passed": true
+  },
+  "failed_checks": []
+}

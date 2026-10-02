@@ -1,0 +1,73 @@
+{
+  "artifact": "post-arr-persistence-analysis-207",
+  "mode": "cached live-artifact analysis; no provider calls",
+  "input": "research/artifacts/pre-submission-persistence-live-220.json",
+  "provider_calls": 0,
+  "summary": {
+    "status": "complete",
+    "inference_eligible": true,
+    "completed_runs": 360,
+    "complete_instance_triads": 120,
+    "expected_complete_pairs": 120,
+    "duplicate_keys": [],
+    "invalid_records": [],
+    "arm_counts": {
+      "evolve": 120,
+      "depth_matched_reset": 120,
+      "no_canary": 120
+    },
+    "arm_count_guard": true,
+    "complete_pairs_by_stratum": {
+      "feasible_long": 40,
+      "feasible_short": 40,
+      "impossible": 40
+    },
+    "expected_pairs_by_stratum": {
+      "impossible": 40,
+      "feasible_short": 40,
+      "feasible_long": 40
+    },
+    "stratum_count_guard": true,
+    "primary_exact_exposure_rate": {
+      "evolve": 0.0,
+      "depth_matched_reset": 0.0,
+      "no_canary": 0.0
+    },
+    "no_canary_false_positive_rate": 0.0,
+    "paired_risk_difference_evolve_minus_reset": 0.0,
+    "paired_bootstrap_95_ci": [
+      0.0,
+      0.0
+    ],
+    "mcnemar": {
+      "evolve_only": 0,
+      "reset_only": 0,
+      "exact_two_sided_p": 1.0
+    },
+    "by_stratum": {
+      "feasible_long": {
+        "complete_pairs": 40,
+        "evolve_exposure_count": 0,
+        "reset_exposure_count": 0,
+        "no_canary_exposure_count": 0,
+        "paired_risk_difference": 0.0
+      },
+      "feasible_short": {
+        "complete_pairs": 40,
+        "evolve_exposure_count": 0,
+        "reset_exposure_count": 0,
+        "no_canary_exposure_count": 0,
+        "paired_risk_difference": 0.0
+      },
+      "impossible": {
+        "complete_pairs": 40,
+        "evolve_exposure_count": 0,
+        "reset_exposure_count": 0,
+        "no_canary_exposure_count": 0,
+        "paired_risk_difference": 0.0
+      }
+    },
+    "interpretation_guard": "Exposure is a task/model/runtime-specific diagnostic; a null or incomplete run is not evidence of privacy."
+  },
+  "status": "complete"
+}

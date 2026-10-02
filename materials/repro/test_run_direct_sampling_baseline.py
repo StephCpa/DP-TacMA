@@ -16,7 +16,7 @@ import direct_sampling_adapter as adapter
 import run_direct_sampling_baseline as runner
 
 PROTOCOL = {
-    "experiment_id": "TEST-223",
+    "experiment_id": "TEST-227",
     "status": "frozen",
     "arms": [{"name": "qwen_direct", "calls_per_task": 4}, {"name": "deepseek_direct", "calls_per_task": 4}],
     "budget": {"max_total_calls": 1000, "max_total_tokens": 10**7},
@@ -47,7 +47,7 @@ def _install_fake_adapter(fail_first: int = 0) -> None:
 
 def test_resume_replacement_and_analysis() -> None:
     _install_fake_adapter(fail_first=2)
-    os.environ["DIRECT_SAMPLING_223_AUTHORIZED"] = "1"
+    os.environ["DIRECT_SAMPLING_227_AUTHORIZED"] = "1"
     with tempfile.TemporaryDirectory() as tmp:
         live = Path(tmp) / "live.json"
         runner.execute(PROTOCOL, live, "hash", max_new_calls=50)

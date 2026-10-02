@@ -17,7 +17,8 @@ claims. Do not overwrite the frozen manuscript with its incomplete output.
   key now marks the summary `incomplete` instead of raising `KeyError`.
   Existing output fields keep their previous meaning.
 - `analyze_post_arr_persistence_replication.py` adds `--pre-submission`, which
-  reads artifact 220 and writes analysis 221. It also falls back to the sibling
+  reads artifact 220 and writes the complete analysis 222 (221 is the
+  historical one-cell staged check). It also falls back to the sibling
   module, so this copy runs without the workspace package layout.
 - `test_post_arr_persistence_analysis.py` holds synthetic-fixture tests. Run
   `python test_post_arr_persistence_analysis.py` or `python -m pytest -q` here.
@@ -25,10 +26,10 @@ claims. Do not overwrite the frozen manuscript with its incomplete output.
 Port these changes to the source workspace and rerun its full test suite
 before using them on artifact 220.
 
-## Direct-sampling baseline (protocol 223, draft)
+## Direct-sampling baseline (protocol 227, draft)
 
 - `run_direct_sampling_baseline.py`: the dry run is the default. Live calls
-  need a frozen protocol, `--execute`, and `DIRECT_SAMPLING_223_AUTHORIZED=1`.
+  need a frozen protocol, `--execute`, and `DIRECT_SAMPLING_227_AUTHORIZED=1`.
   `--analyze` makes no calls.
 - `direct_sampling_analysis.py`: E1 (oracle versus C5/C1/baseline, exact
   McNemar), E2 (collapse prevalence, Clopper--Pearson), unbiased coverage at k,

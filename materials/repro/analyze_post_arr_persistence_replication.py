@@ -33,12 +33,12 @@ def main() -> None:
     parser.add_argument(
         "--pre-submission",
         action="store_true",
-        help="analyze the authorized pre-submission artifact 220 and write analysis 221",
+        help="analyze the authorized pre-submission artifact 220 and write analysis 222",
     )
     args = parser.parse_args()
     if args.pre_submission:
         default_input = ARTIFACTS / "pre-submission-persistence-live-220.json"
-        default_output = ARTIFACTS / "pre-submission-persistence-analysis-221.json"
+        default_output = ARTIFACTS / "pre-submission-persistence-analysis-222.json"
     else:
         default_input = ARTIFACTS / "post-arr-persistence-live-205.json"
         default_output = ARTIFACTS / "post-arr-persistence-analysis-207.json"

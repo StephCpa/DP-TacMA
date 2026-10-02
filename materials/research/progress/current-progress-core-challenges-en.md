@@ -28,7 +28,7 @@ The X2 held-out attribution now limits the apparent LLM choice surface: only 7/7
 
 The project implemented a persistent-state canary audit over a frozen TacoMAS runtime and PlanCraft tasks. The audit distinguishes direct input echo from post-input persistence and includes a depth-matched reset control.
 
-The main leakage study completed 60 runs across 20 three-arm instance blocks. No exact or preregistered five-token partial canary exposure was detected after the direct-input round in any arm. The paired evolve-minus-reset exposure difference was zero.
+The initial leakage study completed 60 runs across 20 three-arm instance blocks. No exact or preregistered five-token partial canary exposure was detected after the direct-input round in any arm. The preregistered 120-instance replication has now completed all 360 cells, with 0/120 exposure in both evolve and depth-matched-reset arms, 0/120 false positives in no-canary, and 0/40 evolve exposures in each stratum. The paired evolve-minus-reset exposure difference is zero with exact two-sided McNemar $p=1$.
 
 Several checks establish that the instrument was operational:
 
@@ -37,7 +37,7 @@ Several checks establish that the instrument was operational:
 - Observable state changed in 617/720 comparable agent transitions in the original study.
 - The non-degenerate replication also showed substantial serialized-state mutation and nonempty slow-loop feedback.
 
-The correct conclusion is therefore **failed to detect persistent exposure under the frozen setting**, not “the system does not leak.” With zero events in 20 evolve instances, the one-sided 95% upper bound remains 13.9%. The study is not powered to rule out rare but practically important leakage.
+The correct conclusion is therefore **failed to detect persistent exposure under the frozen setting**, not “the system does not leak.” The completed replication lowers the evolve-arm one-sided 95% upper bound to 2.5%, but it remains limited to one model, one canary family, one five-round horizon, and fixed topology. It does not rule out rare leakage outside this design.
 
 ### 1.2 Score-validity diagnosis
 

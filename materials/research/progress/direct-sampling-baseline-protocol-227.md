@@ -1,9 +1,10 @@
-# Direct-sampling support baseline (protocol 223, draft)
+# Direct-sampling support baseline (protocol 227, draft)
 
 Status: **draft, not frozen**. Machine-readable version:
-`materials/research/protocols/direct-sampling-baseline-protocol-223.json`.
+`materials/research/protocols/direct-sampling-baseline-protocol-227.json`.
 Freeze it (set `status` to `frozen`, log its SHA-256, commit) before the first
-provider call. Artifact numbers 222–225 are provisional.
+provider call. Numbers 227–229 are provisional; 222–226 are already used on
+main.
 
 ## Why this experiment
 
@@ -87,8 +88,8 @@ and protocol-096 code, so nothing can run by accident.
 
 ```bash
 python run_direct_sampling_baseline.py                       # dry run, zero calls
-DIRECT_SAMPLING_223_AUTHORIZED=1 python run_direct_sampling_baseline.py --execute --max-new-calls 20   # smoke
-DIRECT_SAMPLING_223_AUTHORIZED=1 python run_direct_sampling_baseline.py --execute                      # full, resumable
+DIRECT_SAMPLING_227_AUTHORIZED=1 python run_direct_sampling_baseline.py --execute --max-new-calls 20   # smoke
+DIRECT_SAMPLING_227_AUTHORIZED=1 python run_direct_sampling_baseline.py --execute                      # full, resumable
 python run_direct_sampling_baseline.py --analyze             # zero calls
 ```
 

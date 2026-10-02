@@ -1,0 +1,62 @@
+{
+  "artifact": "iclr2027-submission-readiness-145",
+  "checked_at": "2026-10-02",
+  "status": "author_submission_status_unknown_post_deadline",
+  "manuscript": {
+    "source": "manuscript/main.tex",
+    "pdf": "manuscript/main.pdf",
+    "anonymous_author_line": true,
+    "main_text_pages": 8,
+    "reference_pages": 2,
+    "appendix_pages": 7,
+    "total_pages": 17,
+    "latex_compile": "passed"
+  },
+  "verification": {
+    "unit_tests": "157 passed",
+    "paper_claim_audit": "passed",
+    "submission_integrity_audit": "passed",
+    "submission_integrity_includes_x2_closure_and_browsecomp_gate": true,
+    "visual_pdf_qa": "passed on title/abstract, figure, results, limitations, and final appendix pages",
+    "standalone_bundle_compile": "passed: 10 listed source files, pdflatex/bibtex/pdflatex/pdflatex, 17 pages, no undefined citations or references",
+    "standalone_bundle_text_match": "passed: layout-extracted text identical to workspace PDF; both 17 pages",
+   "source_zip_compile": "passed: archive 169 extracted and compiled with pdflatex/bibtex/pdflatex/pdflatex; 17 pages",
+   "source_zip_entry_check": "passed: 10 entries with figures/ directory preserved",
+    "source_zip_byte_identity": "passed: all 10 archive entries are byte-identical to the current workspace source files",
+    "source_zip_text_match": "passed: archive-169 PDF and workspace PDF have identical layout-extracted text",
+    "source_placeholder_scan": "passed: no TODO/FIXME/TBD, stale final markers, or credential text in listed anonymous source files",
+    "prose_quality_main": "passed",
+    "prose_quality_appendix": "review warnings only; no hard failures"
+  },
+  "evidence_scope": {
+    "x2_status": "screening diagnostic; no causal eight-arm architecture claim",
+    "browsecomp_status": "unavailable dependency/index gate; artifact 143",
+    "heldout_planning_artifact": "artifact 142",
+    "x2_closure_artifact": "artifact 144",
+    "x2_symbolic_control_artifact": "artifact 149",
+    "x2_component_attribution_artifact": "artifact 153",
+    "x2_branch_uncertainty_artifact": "artifact 161",
+    "x2_live_unfiltered_component_analysis": "artifact 164 (DeepSeek live, 142 calls, 43623 tokens)",
+    "x2_live_control_integrity_audit": "artifact 166 passed (numeric/text/archive consistency; zero provider calls)",
+    "main_conference_readiness_audit": "artifact 167 passed (claim-evidence matrix, reviewer risks, and scope audit; zero provider calls)",
+    "reviewer_response_prep": "research/iclr2027-main-conference-reviewer-response-prep.md; artifact 168 passed (all evidence paths exist; no credentials)",
+    "manuscript_numeric_consistency": "artifact 170 passed (Qwen support/oracle, selector curve, length intervention, live X2, collapse control, and scope strings; zero provider calls)",
+    "active_evidence_paths": "artifact 172 passed (active ICLR/ARR submission documents have no missing paths or stale archive references; zero provider calls)",
+    "x2_unfiltered_llm_control_gate": "artifact 156 is the historical no-call gate; completed live result in 152, paired analysis in 164 (142 calls, 43623 tokens)",
+    "x2_unfiltered_protocol_audit": "artifact 160 passed (static, zero provider calls)"
+    ,"active_terminology_audit": "artifact 163 passed (9 current manuscript/summary files; zero old-term hits)"
+  },
+  "bundle_manifest": "research/manifests/iclr2027-submission-bundle-146.md",
+  "source_zip": "research/manifests/iclr2027-submission-source-169.zip",
+  "source_zip_entries": 10,
+  "source_zip_bytes": 235713,
+  "metadata_draft": "research/manifests/iclr2027-submission-metadata-147.md",
+  "author_submission_checklist": "research/manifests/iclr2027-author-submission-checklist-171.md",
+  "venue_routing": "research/manifests/acl-arr-october-2026-routing-173.md",
+  "author_actions_remaining": [
+    "confirm whether an ICLR 2027 submission was uploaded before the 25 September 2026 AOE deadline",
+    "confirm author list and OpenReview profiles",
+    "decide whether the prepared TacoMAS score-formula correspondence should be sent by a human author",
+    "perform final venue-specific metadata and submission-form review"
+  ]
+}

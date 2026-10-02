@@ -1,139 +1,127 @@
-# Manuscript revision notes (2026-10-02, Asia/Shanghai)
+# Revision notes for the complete persistence replication
 
-This pass revises the ARR manuscript in `materials/manuscript-arr/` for
-accuracy, clarity, and reviewer-facing completeness. **No experiment was
-rerun, no new provider call was made, and no number from the incomplete
-pre-submission replication (artifact 220) was used.** Every quantity added to
-the text already appears in the frozen record (appendix, progress log, or
-progress summaries).
+This update incorporates the completed 120-instance, three-arm persistence
+replication into the ARR manuscript.
 
-The request that prompted this pass mentioned "the latest reviewer comments",
-but no comments were attached and none were found in this repository. The
-changes below are therefore a self-review written from a reviewer's point of
-view. When the actual comments are available, map each one to the rows below
-or add new rows.
+- `main.tex` updates the abstract, experimental sequence, Results, conclusion,
+  limitations, reproducibility paragraph, and primary audit table.
+- `appendix.tex` updates endpoint status, null sensitivity, and the artifact
+  index.
+- The replication result is 0/120 exact-or-five-token partial exposure in both
+  evolve and depth-matched-reset arms, 0/120 no-canary false positives, and a
+  2.4655% one-sided 95% upper bound for the evolve arm.
+- The wording remains “failed to detect” and does not claim a privacy guarantee.
+- Local checks passed: numeric consistency, claim-evidence, draft readiness,
+  Pubcheck preflight, metadata synchronization, and 15-page LaTeX compilation.
 
-## Corrections (statements the record did not support)
+The direct-sampling baseline proposed in the research plan has not been run and
+is not represented as evidence in this package.
 
-| Location | Before | After | Evidence |
-|---|---|---|---|
-| Abstract, §3.4, Related Work, Implications | "one invalid endpoint remains concentrated under both repair-conditioned and public-only prompts"; "show the same wrong mode under feedback-conditioned and direct prompts" | Each prompt concentrates on a *single* invalid response, but the mode differs on TEST0030 (`["IMPOSSIBLE"]` with repair conditioning vs `["bookshelf"]` public-only) and is identical only on TEST0535 | Appendix, stopped-gate section; gate summary |
-| Abstract | "Five independent Qwen trajectories raise executable-oracle accuracy from 0.60 to 0.80" | "Pooling five independent stochastic Qwen trajectories instead of one" ($C_1$ = anchor + 1 stochastic, $C_5$ = anchor + 5) | Appendix, protocol 083 |
-| §3.3 | Five stochastic finals (0.65) vs 16 within-trajectory slots (0.570) presented as an allocation effect | Added that this comparison is not cost-matched; "more coverage per candidate slot" | Same section |
-| §3.6 | "barely above the 0.50 baseline" (baseline undefined) | Defined as the 0.50 accuracy of the temperature-zero final answer | $C_1$ oracle 0.60 minus headroom 0.10 |
-| §2.2 | Exponential-mechanism preferred-candidate probability stated without its assumption | Added "the other $k-1$ candidates tie at the lower utility" | Closed form requires it |
-| Contributions | Realized-pool bound "applies to every selector" | States that the bound is simple but caps every restricted selector before any budget is spent (pre-empts a triviality objection) | — |
+# Ported revisions from `claude/inspiring-shannon-rhio9o` (2026-10-02)
 
-## Missing context added
+The two earlier Claude commits (`d8ef740`, `8ba230e`) were based on
+`4eb6cc0`, before the completed replication. Rather than merging them, each
+file was compared three ways (base, main, Claude). Main's evidence and
+replication text are kept verbatim; only changes that still apply to it were
+re-applied. No experiment was run and no provider call was made.
 
-- **Non-degenerate cohorts.** "Healthy" was undefined and used inconsistently with "non-degenerate". The paper now uses "non-degenerate" throughout and defines it as the preregistered outcome-blind 30–70% baseline-exactness gate (progress log, 2026-08-13).
-- **Nuisance floor for the DeepSeek +0.167 estimate.** The three arms that share the released score span 5/12–7/12 exact, the same two-task spread as the length contrast (progress log, 2026-08-13).
-- **Canary result in the non-degenerate replication.** 0/12 post-input exposure for evolve and reset (one-sided upper bound 22.1%), reported separately and not pooled; added to the text and to Table 2.
-- **Execution-aware retention.** The DeepSeek "retention control" in the headroom table was never introduced in the main text. Added the development pilot (1/8 vs 0/8) and frozen validation (1/20 vs 0/20, +0.05 [0, 0.15], one-sided exact p = 0.5, confirmation rule failed), plus a row in Table 2.
-- **Held-out planner (§3.5).** The section referred to "the planner" without describing it. It now explains the post hoc state-verified step planner (verifier-applicable actions, minimum-distance filtering, bounded symbolic pre-check) and notes that symbolic search matches the full planner. The appendix and Limitations now disclose the 8 → 12 step-cap amendment after the first held-out batch.
-- **Undefined labels.** "X1" is defined in the Table 3 caption, and "X2" no longer appears.
-- **Audit roadmap (new Table 1).** Maps each premise to its test, section, and verdict.
-- **Limitations.** Adds the single-benchmark scope and the post hoc development of the planner.
+## Manuscript (`main.tex`, `appendix.tex`, `references.bib`)
 
-## Presentation
+Main's replication wording is unchanged: the abstract sentence, §2.4
+sequence, §3.1 paragraph, five canary table rows, reproducibility,
+conclusion, limitations, and appendix endpoint/null/index entries.
 
-- Neither figure was referenced in the text before; both are now cited where their results are discussed. The audit figure moves to §3.1, next to the results it shows.
-- Both figures are regenerated by `figures/make_main_figures.py`, which holds only the values already reported in the paper:
-  - the pool figure used two y-scales in one panel; the two series now sit in separate panels;
-  - the colliding ε tick labels ("0.51.0") are fixed with a log-2 axis;
-  - every length-ablation cohort now shows its 95% interval, not only the pooled one;
-  - the canary panel shows the one-sided upper bound;
-  - fonts are embedded as TrueType (no Type 3), and both figures are vector PDF.
-- "Appendix D" was hard-coded and is now a `\ref`. Section labels support the roadmap.
-- The bibliography gives the published venue for OPRO (ICLR 2024), LATS (ICML 2024), MoA (ICLR 2025), Snell et al. (ICLR 2025, published title), More Agents (TMLR 2024), LC-AlpacaEval (COLM 2024), AgentPoison (NeurIPS 2024), and AgentDojo (NeurIPS 2024 D&B). Acronyms and proper names are brace-protected so the style no longer lowercases them ("llm", "Dp-opt", "Agentpoison").
-  - TextGrad and PrivacyLens remain arXiv citations because their published versions were not verified in this pass.
+**Corrections the record supports:**
+- The response-collapse wording now says each prompt concentrates on a single
+  invalid response. The mode differs on TEST0030 (`["IMPOSSIBLE"]` repair-conditioned
+  vs `["bookshelf"]` public-only); only TEST0535 keeps the same mode. This
+  replaces "one invalid endpoint ... under both" and "the same wrong mode".
+  The same error remains in the ICLR snapshot, which was not edited.
+- "Pooling five independent stochastic Qwen trajectories instead of one",
+  because $C_1$ and $C_5$ hold 2 and 6 trajectories.
+- The five-finals comparison is marked as not cost-matched.
+- The 0.50 selector baseline is defined.
+- The exponential-mechanism tie assumption is stated.
 
-The recompiled `main.pdf` has 16 pages. The main body (sections 1–6) still ends on page 8. A clean `pdflatex`/`bibtex` build gives no undefined references and no overfull boxes.
+**Context added:**
+- "Non-degenerate" (30–70% preregistered gate) replaces "healthy".
+- The 5/12–7/12 nuisance floor for the DeepSeek +0.167 contrast.
+- The execution-aware retention validation (text and a Table 2 row).
+- A description of the held-out planner and its 8 → 12 step-cap amendment.
+- X1 defined in a caption.
+- Limitations notes the task-unrelated canary and PlanCraft-only scope.
 
-## Second pass: experiment preparation and positioning
+**Headline:** 43 of 46 failed runs are generation failures, from the existing
+Table 3 counts. It appears in the abstract, introduction, §3.2, a new Table 3
+column, and the conclusion, plus an appendix figure.
 
-### Manuscript
+**Structure:**
+- New audit-roadmap table (updated to the 120-instance verdict).
+- Figure references and section/appendix labels.
+- §3.5 shortened to one paragraph.
+- New threat-model appendix section.
+- Seven web-verified citations, and eight arXiv entries updated to their
+  published venues. Bibliography keys equal citation keys (34).
 
-- **Failure decomposition.** The abstract, introduction, roadmap, §3.2,
-  Table 3, and conclusion now lead with the generation-versus-selection split:
-  43 of 46 failed runs (93%) have no executable candidate anywhere in the
-  recorded pool, and only three are selection failures. Table 3 gains a
-  "Generation failures" column (11/13, 5/12, 19/20, 8/20). The appendix adds
-  `figures/failure-decomposition.pdf`. All counts come from Table 3
-  (final = successes; oracle minus final = recoverable; 1 minus oracle =
-  generation failures).
-- **§3.5 shortened** to one paragraph under the title "Symbolic constraints
-  supply planning support". Planner details stay in the appendix (labelled
-  `app:planner`). This frees space for the new experiments.
-- **Related work.** Seven web-verified citations:
-  - repeated-sampling coverage: Brown et al. 2024 (arXiv);
-  - agent-structure search: GPTSwarm (ICML 2024), ADAS (ICLR 2025), AFlow (ICLR 2025);
-  - self-correction limits: Huang et al. (ICLR 2024), Kamoi et al. (TACL 2024);
-  - diversity after preference tuning: Kirk et al. (ICLR 2024), framed as an untested candidate explanation.
-- **Threat model.** New appendix section A, with a pointer from §2.1. It
-  states the protected unit, observer, release, trusted components, and scope
-  for the canary audit and for the selector calculation.
-- **Limitations.** Notes that the canary is a task-unrelated synthetic string,
-  so the audit tests incidental retention only.
-- **Tightening.** The introduction summary, the endpoint-status sentence in
-  §2.4, and the five-finals paragraph in §3.3 are shorter.
-- **Build.** 17 pages; the main body ends on page 8 with about five lines
-  spare; 34 references; no warnings and no Type 3 fonts. Figure generation is
-  deterministic.
+**Figures:** generated by `figures/make_main_figures.py`.
+- Panel (a) of the audit figure now shows both the initial 0/20 study (13.9%)
+  and the 0/120 replication (2.5%).
+- No dual axis; all cohort intervals shown; embedded TrueType fonts;
+  deterministic output.
 
-### Experiment materials (nothing has been run)
+**Length:** to keep the body within eight pages after main's longer
+replication text, the following were tightened: the roadmap (two columns),
+the Table 2 caption, one sentence in §3.3, the §3.6 caveat (now pointing to
+the threat-model appendix), and the end-to-end-DP implications paragraph.
 
-- **Direct-sampling baseline, protocol 223 (draft, not frozen).**
-  - Design: 20 protocol-083 Qwen tasks, 200 public-only calls per task for
-    Qwen (primary) and DeepSeek (secondary), about 1.9M tokens.
-  - Primary endpoints: oracle versus $C_5$, and the prevalence of response
-    collapse.
-  - Documents: `research/protocols/direct-sampling-baseline-protocol-223.json`
-    and `research/progress/direct-sampling-baseline-protocol-223.md`.
-  - Code: `repro/run_direct_sampling_baseline.py` (guarded and resumable),
-    `repro/direct_sampling_analysis.py`, and `repro/direct_sampling_adapter.py`.
-    The adapter's hooks deliberately raise `NotImplementedError` until wired
-    to the protocol-083/096 code.
-  - Tests use synthetic data and a fake adapter, and pass.
-- **Replication inclusion, amendment 222 (draft, pending author commit).**
-  - Documents: `research/protocols/replication-manuscript-inclusion-amendment-222.json`
-    and `research/progress/replication-reporting-templates-222.md`.
-  - It commits to reporting whichever G1 outcome the 120-triad replication
-    produces, using text written before the result. It requires an author to
-    confirm that nobody has inspected the exposure fields, and sets a
-    7 October cutoff.
+**Not ported:** the 0/12 non-degenerate canary sentence and table row, now
+superseded by the replication.
 
-## Required follow-up in the source workspace before upload
+**Build:**
+- 17 pages; the body ends on page 8 with about eight lines spare.
+- No warnings, undefined references, overfull boxes, or Type 3 fonts.
+- `main.txt` regenerated with `pdftotext`.
+- `arr-metadata-draft-190.md` abstract resynchronized exactly to `main.tex`.
 
-The workspace audits are keyed to the previous text, so they will report
-mismatches until they are rerun:
+## String-level audit compatibility (checked here; artifacts not rerun)
 
-1. Port these files into the workspace `manuscript-arr/`, then rerun the
-   numeric (189), claim-evidence (191), citation (192) and metadata (193)
-   audits and the sequential freeze (196). Update the ARR metadata draft (190)
-   to the new abstract first, because audit 193 requires an exact match.
-2. Rerun the official ACL Pubcheck on the new PDF. Artifact 194 covers only the
-   previous proof.
-3. **Ordering caution.** The live replication runner refuses to start unless
-   artifact 196 reports `passed`. If the pre-submission run (330/360 at the last
-   snapshot) still needs a resume, finish it before rerunning a freeze that
-   could fail on the metadata check. Alternatively, update the metadata and
-   the audits together.
-4. Port the analysis changes in `materials/repro/` (G1 decision rule, partial
-   detector, upper bounds, `--pre-submission` flag). Then rerun the workspace
-   test suite and analysis 221 once artifact 220 is complete.
+The text conditions in `audit_arr_numeric_consistency.py` (189),
+`audit_arr_claim_evidence.py` (191), the ARR part of
+`audit_cross_version_headline_consistency.py` (224), and the phrase checks
+in `audit_arr_draft_readiness.py` (174) were evaluated against the ported
+sources, and all pass. This includes "0--8.3 percentage points", "held-out
+planning component control", and metadata abstract equality.
 
-## Open decisions for the authors
+One known expectation change: the readiness audit (174) and the manuscript
+archive check expect a 15-page PDF; the port compiles to 17 pages (appendix
+additions only). Update that expectation deliberately, or drop the appendix
+figure and threat-model section, before rerunning.
 
-- Commit or discard amendment 222 today. It only works if it is committed
-  before anyone looks at the replication's exposure results.
-- Freeze protocol 223 after review. Wire the adapter to the protocol-083/096
-  code and run the smoke test (`--max-new-calls 20`) before the full run.
-- If either result is added, use the space freed in §3.5 and §3.3. Rerun the
-  page check, because the body has only about five lines spare.
+## Research materials
 
-- Once the 120-triad replication completes and passes its gates, decide
-  whether its preregistered G1 outcome belongs in the ARR version. It is the
-  most direct answer to the expected low-power objection (0/20, upper bound
-  13.9%). Under the current isolation rule it stays out of the manuscript.
-- Confirm or replace the arXiv entries for TextGrad and PrivacyLens.
+- **Persistence analysis.** The G1 decision field, paired partial detector,
+  exact upper bounds, and per-arm usage are added, and missing-arm robustness
+  is fixed, with tests. On main's complete replication these give
+  `failed_to_detect` and a 2.4655% bound, consistent with artifacts 222/223.
+  `--pre-submission` now writes the complete analysis 222. The runbook and
+  runner docstring are updated.
+- **Direct-sampling baseline.** Renumbered from 223–225 to 227–229, because
+  main already uses 222–226. It is still a draft and has not been run; main's
+  own notes confirm this. The cached-analysis README wording that called the
+  protocol-083 trajectory study "the direct-sampling baseline" was corrected
+  to keep the two apart.
+- **Dropped:** replication-inclusion amendment 222 and its templates. They
+  are obsolete because the replication is complete and reported, and the
+  number collides with main's artifact 222.
+- **Redaction.** Local Windows interpreter paths are redacted to
+  `<workspace>` in the public copies of artifacts 196 and 209. They were
+  still present on main.
+
+## Before upload (workspace)
+
+1. Copy `main.tex`, `appendix.tex`, `references.bib`, `figures/`, and
+   `arr-metadata-draft-190.md` (to `submission/`) into the workspace.
+2. Rerun audits 189, 191, 192, 193, 174, and 224, then the sequential freeze
+   196 and the 157-test suite.
+3. Rerun the official Pubcheck on the new PDF, and rebuild the manuscript
+   archive.

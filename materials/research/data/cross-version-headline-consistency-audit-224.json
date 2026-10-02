@@ -1,0 +1,38 @@
+{
+  "artifact_id": "CROSS-VERSION-HEADLINE-CONSISTENCY-224",
+  "status": "passed",
+  "model_calls": 0,
+  "checks": {
+    "iclr_main_replication": true,
+    "iclr_main_bound": true,
+    "arr_main_replication": true,
+    "arr_main_bound": true,
+    "reviewer_replication": true,
+    "metadata_replication": true,
+    "iclr_abstract_old_bound": true,
+    "arr_abstract_old_bound": true,
+    "reviewer_old_current_claim": true,
+    "metadata_old_current_claim": true,
+    "archive_has_exactly_10_entries": true,
+    "archive_entry_bytes_match_current_sources": true,
+    "iclr_pdf_exists": true,
+    "arr_pdf_exists": true
+  },
+  "iclr_main_sha256": "8bf134f763c8d27d7eef3fd2e82d66fb159dfb7f0646cf5a6f6539714d232168",
+  "arr_main_sha256": "156ffc616a1a3365f528d4e9e28f9462fedfad1b2a782780e975675ce71df849",
+  "source_archive_sha256": "4f7c7e7f12a616a0e85975573c6dd2cb226d9ac3615d61de1e20c88fa5974663",
+  "source_archive_entries": [
+    "appendix.tex",
+    "fancyhdr.sty",
+    "figures/evolution-audit-main-results.pdf",
+    "figures/qwen-candidate-pool-enlargement.png",
+    "iclr2027_conference.bst",
+    "iclr2027_conference.sty",
+    "main.tex",
+    "math_commands.tex",
+    "natbib.sty",
+    "references.bib"
+  ],
+  "interpretation": "Cross-version text and anonymous-source consistency only; this audit does not establish new scientific evidence.",
+  "failed_checks": []
+}
