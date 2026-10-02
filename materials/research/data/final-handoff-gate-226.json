@@ -12,7 +12,8 @@
     "arr_numeric_consistency": true,
     "arr_claim_evidence": true,
     "arr_draft_readiness": true,
-    "cross_version_consistency": true
+    "cross_version_consistency": true,
+    "live_control_consistency": true
   },
   "human_gates_open": [
     "confirm whether an ICLR upload exists before the deadline",

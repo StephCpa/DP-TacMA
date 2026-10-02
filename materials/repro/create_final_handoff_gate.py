@@ -24,6 +24,7 @@ def main() -> None:
     arr_claims = load("research/artifacts/acl-arr-claim-evidence-audit-191.json")
     arr_ready = load("research/artifacts/acl-arr-draft-readiness-audit-174.json")
     cross = load("research/artifacts/cross-version-headline-consistency-audit-224.json")
+    live_control = load("research/artifacts/iclr2027-live-control-integrity-audit-166.json")
     checks = {
         "tests_157_passed": tests["status"] == "passed" and tests["tests_passed"] == 157,
         "iclr_submission_integrity": iclr["status"] == "passed" and not iclr["failed_checks"],
@@ -34,6 +35,7 @@ def main() -> None:
         "arr_claim_evidence": arr_claims["status"] == "passed" and not arr_claims["failed_checks"],
         "arr_draft_readiness": arr_ready["status"] == "passed" and not arr_ready["failed_checks"],
         "cross_version_consistency": cross["status"] == "passed" and not cross["failed_checks"],
+        "live_control_consistency": live_control["status"] == "passed" and not live_control["failed_checks"],
     }
     result = {
         "artifact_id": "FINAL-HANDOFF-GATE-226",
