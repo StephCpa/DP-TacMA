@@ -14,9 +14,9 @@ The currently checked alternative route is recorded in `research/manifests/acl-a
 ## Frozen upload candidate
 
 - Source archive: `research/manifests/iclr2027-submission-source-169.zip`
-- Source archive SHA-256: `40c44a9079d82476945978a71421101b8188f90a8658d96558303f4988e20c85`
+- Source archive SHA-256: `4f7c7e7f12a616a0e85975573c6dd2cb226d9ac3615d61de1e20c88fa5974663`
 - Rendered PDF: `manuscript/main.pdf`
-- PDF SHA-256: `fb5869692c169744098ec020271968fdaaa00acde91876bd3291b122d938f4b4`
+- PDF SHA-256: `ac2561af3ba7eb29a6e6da99df50f8bea3bf824e352d34646f933b1ff02cf821`
 - PDF length: 17 pages (8-page main body, 2 reference pages, 7 appendix pages)
 - Source package: 10 anonymous files; no rendered PDF, provider logs, audit workspace, credentials, or author identities
 

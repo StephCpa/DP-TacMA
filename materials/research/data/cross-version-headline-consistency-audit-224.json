@@ -18,9 +18,9 @@
     "iclr_pdf_exists": true,
     "arr_pdf_exists": true
   },
-  "iclr_main_sha256": "8a8d4a044b15ada84c191c168a246dfd98926f66fbf45d7e735a2fdac817e9f2",
+  "iclr_main_sha256": "8bf134f763c8d27d7eef3fd2e82d66fb159dfb7f0646cf5a6f6539714d232168",
   "arr_main_sha256": "156ffc616a1a3365f528d4e9e28f9462fedfad1b2a782780e975675ce71df849",
-  "source_archive_sha256": "40c44a9079d82476945978a71421101b8188f90a8658d96558303f4988e20c85",
+  "source_archive_sha256": "4f7c7e7f12a616a0e85975573c6dd2cb226d9ac3615d61de1e20c88fa5974663",
   "source_archive_entries": [
     "appendix.tex",
     "fancyhdr.sty",

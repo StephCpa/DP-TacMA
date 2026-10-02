@@ -5,7 +5,7 @@
   "artifacts": {
     "main_tex": {
       "path": "manuscript/main.tex",
-      "sha256": "8a8d4a044b15ada84c191c168a246dfd98926f66fbf45d7e735a2fdac817e9f2"
+      "sha256": "8bf134f763c8d27d7eef3fd2e82d66fb159dfb7f0646cf5a6f6539714d232168"
     },
     "appendix_tex": {
       "path": "manuscript/appendix.tex",
@@ -17,7 +17,7 @@
     },
     "pdf": {
       "path": "manuscript/main.pdf",
-      "sha256": "e909dcca6edac9ab23744ecfd9eaf128789fec875f52a3ea482b6939ea1ee0cb",
+      "sha256": "ac2561af3ba7eb29a6e6da99df50f8bea3bf824e352d34646f933b1ff02cf821",
       "pages": 17
     }
   },
