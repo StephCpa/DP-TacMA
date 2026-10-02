@@ -829,3 +829,4 @@ G0 runnable science passes. The next experiment is the preregistered 20-pair X1 
 - Re-ran the no-provider live-control consistency audit after the ICLR PDF grew to 17 pages; the old 16-page expectation was stale. Updated the audit to the current 17-page source and obtained a passed artifact (`iclr2027-live-control-integrity-audit-166`).
 - Added the live-control consistency result to the final handoff aggregator; the expanded gate now passes 10/10 checks with zero provider calls.
 - Package author-action form is current through commit `6ebe330`; the refreshed form records the October 2026 ARR and NAACL 2027 dates and remains outside the anonymous archive.
+- Current remote `main` was independently verified through the GitHub API at `8c8a860`; subsequent provenance-only updates are recorded in the package history.
