@@ -13,6 +13,10 @@ If an ICLR upload was made before the deadline, preserve the exact submitted sna
 - ARR official Pubcheck proof: `research/artifacts/acl-arr-official-pubcheck-194.json`.
 - ICLR source/readiness: `research/artifacts/iclr2027-submission-readiness-145.json` and `research/manifests/iclr2027-submission-source-169.zip`.
 
+## Current official timing
+
+The NAACL CFP gives October 12, 2026 as the ARR submission and all-author reviewer-registration deadline, December 18 for meta-reviews, and December 23 for NAACL commitment. The ARR dates page separately lists October 14 reviewer registration, December 17 meta-reviews, and December 20 venue commitment. Treat the NAACL dates as the conservative author-facing deadlines and verify OpenReview at upload time.
+
 ## Human gates before ARR upload
 
 1. Confirm the ICLR submission state and dual-submission eligibility.
