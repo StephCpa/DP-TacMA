@@ -29,4 +29,4 @@ The persistence replication, Qwen candidate-pool experiment, score intervention,
 
 ## Latest package commit
 
-The synchronized materials repository is `StephCpa/DP-TacMA`; the latest recorded package commit is `a96443e`.
+The synchronized materials repository is `StephCpa/DP-TacMA`; the latest recorded package commit is `cb75493`.
