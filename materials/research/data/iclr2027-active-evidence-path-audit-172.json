@@ -1,0 +1,111 @@
+{
+  "artifact": "iclr2027-active-evidence-path-audit-172",
+  "status": "passed",
+  "mode": "active-document path and archive-reference audit; no provider calls",
+  "documents": [
+    "research/current-progress-core-challenges-en.md",
+    "research/latest-progress-and-main-challenge-en.md",
+    "research/iclr2027-main-conference-reviewer-response-prep.md",
+    "research/manifests/iclr2027-submission-metadata-147.md",
+    "research/manifests/iclr2027-submission-bundle-146.md",
+    "research/manifests/iclr2027-author-submission-checklist-171.md",
+    "research/manifests/acl-arr-october-2026-routing-173.md",
+    "manuscript-arr/submission/arr-october-readiness.md",
+    "manuscript-arr/submission/responsible-nlp-checklist-draft.md",
+    "manuscript-arr/submission/anonymous-supplement-boundary-175.md",
+    "manuscript-arr/submission/license-review-178.md",
+    "manuscript-arr/submission/license-confirmation-request-182.md",
+    "manuscript-arr/submission/arr-upload-handoff-184.md",
+    "manuscript-arr/submission/arr-author-response-prep-188.md",
+    "manuscript-arr/submission/arr-metadata-draft-190.md"
+  ],
+  "rows": [
+    {
+      "document": "research/current-progress-core-challenges-en.md",
+      "path_count": 15,
+      "missing_paths": []
+    },
+    {
+      "document": "research/latest-progress-and-main-challenge-en.md",
+      "path_count": 13,
+      "missing_paths": []
+    },
+    {
+      "document": "research/iclr2027-main-conference-reviewer-response-prep.md",
+      "path_count": 14,
+      "missing_paths": []
+    },
+    {
+      "document": "research/manifests/iclr2027-submission-metadata-147.md",
+      "path_count": 1,
+      "missing_paths": []
+    },
+    {
+      "document": "research/manifests/iclr2027-submission-bundle-146.md",
+      "path_count": 15,
+      "missing_paths": []
+    },
+    {
+      "document": "research/manifests/iclr2027-author-submission-checklist-171.md",
+      "path_count": 9,
+      "missing_paths": []
+    },
+    {
+      "document": "research/manifests/acl-arr-october-2026-routing-173.md",
+      "path_count": 25,
+      "missing_paths": []
+    },
+    {
+      "document": "manuscript-arr/submission/arr-october-readiness.md",
+      "path_count": 10,
+      "missing_paths": []
+    },
+    {
+      "document": "manuscript-arr/submission/responsible-nlp-checklist-draft.md",
+      "path_count": 0,
+      "missing_paths": []
+    },
+    {
+      "document": "manuscript-arr/submission/anonymous-supplement-boundary-175.md",
+      "path_count": 3,
+      "missing_paths": []
+    },
+    {
+      "document": "manuscript-arr/submission/license-review-178.md",
+      "path_count": 1,
+      "missing_paths": []
+    },
+    {
+      "document": "manuscript-arr/submission/license-confirmation-request-182.md",
+      "path_count": 1,
+      "missing_paths": []
+    },
+    {
+      "document": "manuscript-arr/submission/arr-upload-handoff-184.md",
+      "path_count": 19,
+      "missing_paths": []
+    },
+    {
+      "document": "manuscript-arr/submission/arr-author-response-prep-188.md",
+      "path_count": 5,
+      "missing_paths": []
+    },
+    {
+      "document": "manuscript-arr/submission/arr-metadata-draft-190.md",
+      "path_count": 0,
+      "missing_paths": []
+    }
+  ],
+  "referenced_path_count": 74,
+  "missing_paths": [],
+  "stale_hits": [],
+  "checks": {
+    "documents_exist": true,
+    "all_referenced_paths_exist": true,
+    "no_stale_archive_references": true,
+    "current_archive_present": true,
+    "numeric_audit_present": true,
+    "supplement_boundary_present": true
+  },
+  "failed_checks": []
+}
