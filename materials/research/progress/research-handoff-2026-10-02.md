@@ -28,6 +28,6 @@ Updated: 2026-10-02 (Asia/Shanghai)
 
 The persistence replication, Qwen candidate-pool experiment, score intervention, response-collapse control, and current audit suite are frozen. Further provider calls should require a new preregistered question, not an attempt to improve a settled headline number.
 
-## Latest package commit
+## Package commit reference
 
 The synchronized materials repository is `StephCpa/DP-TacMA`; the handoff snapshot verified remote `main` at `24f9e76` (the planning-sensitivity content was introduced in `a85d571`); subsequent provenance-only updates are recorded in the package history.
