@@ -24,4 +24,6 @@ The NAACL CFP gives October 12, 2026 as the ARR submission and all-author review
 3. Fill author profiles, ORCID, affiliations, conflicts, and routing fields.
 4. Keep the default upload manuscript-only until TacoMAS license/redistribution permission is confirmed.
 
+ARR's October 2026 sustainable-reviewing policy requires complete OpenReview profiles with ORCID for all authors, a designated service contributor (maximum two submissions per contributor, with the contributor form due within 48 hours after the deadline), and author-level caps of 20 total and 5 first-author submissions. The official qualification criteria should be checked for the intended contributor before upload.
+
 No provider calls are required for this venue decision. The scientific claim set is frozen and should not be broadened during template conversion.

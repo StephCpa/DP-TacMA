@@ -25,12 +25,13 @@ Official pages checked: [ARR dates](https://aclrollingreview.org/dates), [NAACL 
 ## Policy gates before upload
 
 1. Confirm every author has an accurate OpenReview profile, ORCID, affiliation history, and required bibliographic links.
-2. Identify the qualified service contributor/reviewer required by the October 2026 sustainable-reviewing policy, or obtain the applicable manual qualification decision.
+2. Identify a qualified designated service contributor/reviewer. One contributor may support at most two submissions per ARR cycle; if no qualified author is available, a non-author contributor may be nominated and must vouch for the work. The contributor form must be completed no later than 48 hours after the submission deadline.
 3. Confirm the author list and conflicts before submission; do not rely on the ICLR metadata draft.
 4. Convert the manuscript from the ICLR template to the current ACL ARR template and obey its page/format rules.
 5. Retain the dedicated `Limitations` section. The canonical manuscript already contains `\section{Limitations}` before the conclusion and references.
 6. Preserve the existing AI-use statement and add any ACL-required ethics/reproducibility wording without exposing identities.
 7. Check dual-submission status. A paper already submitted to ICLR cannot be simultaneously submitted elsewhere while under review; if it was not submitted, make the ARR upload the single active submission.
+8. Confirm the per-author ARR limits: at most 20 total submissions and 5 first-author or shared-first-author submissions in the cycle.
 
 ## Scientific adaptation, not new experiments
 
