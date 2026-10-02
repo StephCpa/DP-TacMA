@@ -1,7 +1,7 @@
 \appendix
 \sloppy
 
-This appendix preserves protocol and diagnostic details compressed from the nine-page main submission. All quantities are generated from the same frozen artifacts cited in the main paper.
+This appendix preserves protocol and diagnostic details from the current main submission. All quantities are generated from the same frozen artifacts cited in the main paper.
 
 \section{Reference-firewall calibration failure}
 
@@ -11,7 +11,7 @@ We froze an amendment that marked both cells \texttt{\detokenize{invalid_harness
 
 \section{Detailed null sensitivity}
 
-With zero exposure events in 20 evolve instances, the exact one-sided 95\% upper bound is 13.9\%. A true event rate of 7.7\% already gives an 80\% chance of at least one observed event. In the paired leakage comparison, six pure evolve-only discordances are required for two-sided exact \(p<0.05\), corresponding to a 30-point observed risk difference at \(n=20\). Under the explicit planning scenario of 5\% control risk and 10\% evolve risk with within-pair independence, power at 20 pairs is 1.7\% one-sided and 0.45\% two-sided; 80\% power requires 373 and 463 pairs, respectively. These values are planning diagnostics, not estimates of the true exposure rate.
+The initial zero-exposure result in 20 evolve instances has an exact one-sided 95\% upper bound of 13.9\%. The completed replication has zero exposure in 120 evolve instances, lowering the corresponding bound to 2.5\%; the replication is the primary current estimate for this audited setting. A true event rate of 7.7\% already gives an 80\% chance of at least one observed event in the initial cohort. In the paired initial leakage comparison, six pure evolve-only discordances are required for two-sided exact \(p<0.05\), corresponding to a 30-point observed risk difference at \(n=20\). Under the explicit planning scenario of 5\% control risk and 10\% evolve risk with within-pair independence, power at 20 pairs is 1.7\% one-sided and 0.45\% two-sided; 80\% power requires 373 and 463 pairs, respectively. These values are planning diagnostics, not estimates of the true exposure rate.
 
 The independent execution-aware validation likewise has low sensitivity. Five pure method-only discordances would be required for one-sided exact \(p<0.05\), an observed risk difference of 0.25 at 20 pairs. Its observed interval [0, 0.15] includes effects that would triple a 5\% base rate.
 
@@ -60,6 +60,7 @@ Across 20 cache-bypassed temperature-zero calls, two raw response hashes appear.
   \item Qwen candidate-pool enlargement: protocol 083 and artifacts 084--085.
   \item corrected nested-pool inference and trajectory decomposition: protocol 087 and artifact 088.
   \item public-task-only DeepSeek response-collapse control: protocol 096 and artifacts 097--098.
+  \item complete 120-instance persistence replication: protocol 199, amendment 219, and artifacts 220, 222--223.
   \item X2 screening, held-out replication, BrowseComp-Plus gate, and component-attribution controls: artifacts 142--144, 149, 153, 158, 161, and 164.
 \end{itemize}
 

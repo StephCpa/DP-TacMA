@@ -92,13 +92,13 @@ We parse candidate text into canonical crafting plans and execute it without ref
 
 Paired binary effects use task-level risk differences, paired task bootstraps, and exact discordant-pair tests when positive and negative differences are both possible. Nested pools satisfy $C_1\subset C_5$, so their support and oracle differences cannot be negative. We report task-bootstrap intervals and one-sided lower bounds, not sign-test $p$-values. Provider calls, rounds, candidate slots, and repeated repairs are never treated as independent task units.
 
-The experiments proceed in a fixed order. We first audit canary exposure and cached score validity with DeepSeek V4 Flash. We then replicate the length ablation on a non-degenerate DeepSeek cohort and an untouched Qwen3.7-Max cohort. A zero-call oracle audit measures fixed-pool headroom. Finally, a prospective Qwen study expands candidate support with independent trajectories, followed by a compute-matched DeepSeek gate comparing an independent restart with direct executor-guided repair. Protocols, stopping rules, amendments, and provider-accounting details appear in the appendix.
+The experiments proceed in a fixed order. We first audit canary exposure and cached score validity with DeepSeek V4 Flash, then complete a preregistered 120-instance replication of the canary audit. We replicate the length ablation on a non-degenerate DeepSeek cohort and an untouched Qwen3.7-Max cohort. A zero-call oracle audit measures fixed-pool headroom. Finally, a prospective Qwen study expands candidate support with independent trajectories, followed by a compute-matched DeepSeek gate comparing an independent restart with direct executor-guided repair. Protocols, stopping rules, amendments, and provider-accounting details appear in the appendix.
 
 \section{Results}
 
 \subsection{The leakage and score premises do not pass their gates}
 
-All 60 cells in the 20-instance canary study complete five rounds. We detect no exact or five-token partial canary in post-input persistent state in any arm (Table~\ref{tab:audit}). The evolve-arm one-sided 95\% upper confidence bound is 13.9\%, so the result cannot exclude a rare or modest exposure rate. The extractor recovers 7/7 deterministic channel injections and a live canary written into memory at round 2. State is active rather than inert: 617/720 comparable agent transitions change, all 168 recorded slow-feedback fields are nonempty, and retention fires in 60/300 rounds. The defensible result is therefore \emph{failed to detect with a functioning instrument}.
+All 60 cells in the initial 20-instance canary study complete five rounds. We detect no exact or five-token partial canary in post-input persistent state in any arm. We then complete the preregistered 120-instance replication: all 360 cells reach five rounds, exposure is 0/120 in both evolve and depth-matched-reset arms, and the no-canary arm has 0/120 false positives (Table~\ref{tab:audit}). The replication lowers the evolve-arm one-sided 95\% upper confidence bound to 2.5\%. The extractor recovers 7/7 deterministic channel injections and a live canary written into memory at round 2. State is active rather than inert: 617/720 comparable agent transitions change in the initial audit, all 168 recorded slow-feedback fields are nonempty, and retention fires in 60/300 rounds. The defensible result is therefore a complete failed-to-detect result for the audited model, horizon, topology, and canary instrument, not a privacy guarantee.
 
 \begin{table}[t]
 \caption{The first two gates. Exposure is measured only after the input round. Length ablations report length-zero minus released-score exactness.}
@@ -111,6 +111,9 @@ Study & $n$ & Primary observation & 95\% interval \\
 \midrule
 Canary: evolve & 20 & exact/partial $0/20$ & upper bound 0.139 \\
 Canary: reset & 20 & exact/partial $0/20$ & upper bound 0.139 \\
+Canary replication: evolve & 120 & exact/partial $0/120$ & upper bound 0.025 \\
+Canary replication: reset & 120 & exact/partial $0/120$ & upper bound 0.025 \\
+Canary replication: no-canary & 120 & false positives $0/120$ & 0.000 \\
 DeepSeek initial ablation & 10 pairs & exactness $0.000$ & $[0,0]$ \\
 DeepSeek healthy cohort & 12 pairs & exactness $+0.167$ & $[0,0.417]$ \\
 Qwen healthy cohort & 20 pairs & exactness $-0.050$ & $[-0.250,0.150]$ \\
@@ -214,7 +217,7 @@ An end-to-end private architecture would still need an explicit privacy principa
 
 \section{Limitations}
 
-The leakage audit covers one canary family, injection route, model, five-round horizon, and fixed topology. Topology evolution is disabled, so the study does not test leakage through structural edits. With 0/20 observations it cannot exclude rates below 13.9\% at one-sided 95\% confidence, and it does not mount adaptive extraction attacks. Qwen replicates the score intervention but not leakage.
+The leakage audit covers one canary family, injection route, model, five-round horizon, and fixed topology. Topology evolution is disabled, so the study does not test leakage through structural edits. With 0/120 evolve observations the replication cannot exclude rates below 2.5\% at one-sided 95\% confidence, and it does not mount adaptive extraction attacks. The earlier 0/20, 13.9\% result remains a historical low-power diagnostic. Qwen replicates the score intervention but not leakage.
 
 PlanCraft exactness is deliberately strict and may ignore useful partial reasoning. The headroom result applies only to recorded candidates and binary target-reaching utility. Hidden reasoning, new repairs, and unrecorded tool interactions lie outside the bound. The four cohort estimates are modest in size, and their intervals do not justify a universal numerical ceiling.
 

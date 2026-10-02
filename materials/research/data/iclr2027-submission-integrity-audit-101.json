@@ -5,11 +5,11 @@
   "artifacts": {
     "main_tex": {
       "path": "manuscript/main.tex",
-      "sha256": "e649a0af57828a7af303e93387b70733902485b5149aa89af9eb216e04676c8c"
+      "sha256": "8a8d4a044b15ada84c191c168a246dfd98926f66fbf45d7e735a2fdac817e9f2"
     },
     "appendix_tex": {
       "path": "manuscript/appendix.tex",
-      "sha256": "ec172366b1824e2796d6691cda420980400c85d344e61e210bb372a453fdbc20"
+      "sha256": "f1c173bc3c24e1724cd937878bcfcc04bc6c4b8be3b95fef5dbb852e93698a3d"
     },
     "bibliography": {
       "path": "manuscript/references.bib",
@@ -17,8 +17,8 @@
     },
     "pdf": {
       "path": "manuscript/main.pdf",
-      "sha256": "fb5869692c169744098ec020271968fdaaa00acde91876bd3291b122d938f4b4",
-      "pages": 16
+      "sha256": "e909dcca6edac9ab23744ecfd9eaf128789fec875f52a3ea482b6939ea1ee0cb",
+      "pages": 17
     }
   },
   "citation_summary": {

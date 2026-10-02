@@ -17,11 +17,12 @@
       "claim": "Persistent canary exposure was not detected under the preregistered five-round setting.",
       "evidence": [
         "research/artifacts/iclr2027-x1-operational-events-034.json",
-        "manuscript/main.tex:22"
+        "research/artifacts/pre-submission-persistence-replication-result-223.json",
+        "manuscript/main.tex:22,101"
       ],
       "status": "supported_bounded",
       "risk": "medium",
-      "risk_reason": "20 evolve instances, one model/runtime, fixed topology; the manuscript explicitly avoids a non-leakage claim."
+      "risk_reason": "120 evolve instances in the completed replication, one model/runtime, fixed topology; the manuscript explicitly avoids a non-leakage claim."
     },
     {
       "claim": "The released score scale is causally dominated by output length, but length removal is not a validated utility improvement.",
@@ -130,7 +131,7 @@
   },
   "line_anchors": {
     "abstract": 22,
-    "main_x2": 221,
-    "appendix_live_x2": 229
+    "main_x2": 224,
+    "appendix_live_x2": 230
   }
 }
