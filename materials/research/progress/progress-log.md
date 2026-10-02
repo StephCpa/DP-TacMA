@@ -831,3 +831,4 @@ G0 runnable science passes. The next experiment is the preregistered 20-pair X1 
 - Package author-action form is current through commit `6ebe330`; the refreshed form records the October 2026 ARR and NAACL 2027 dates and remains outside the anonymous archive.
 - Current remote `main` was independently verified through the GitHub API at `8c8a860`; subsequent provenance-only updates are recorded in the package history.
 - Recorded the read-only remote package verification as `remote-repository-verification-2026-10-02`; it checks the handoff, author form, cached-analysis README, final gate, and live-control audit at remote HEAD `24ba473` with zero provider calls.
+- Added `submission-day-runbook-2026-10-02.md`, an author-controlled checklist for ARR/NAACL upload, anonymization, reviewer/service gates, license handling, and post-upload freeze discipline. It authorizes no provider calls.
