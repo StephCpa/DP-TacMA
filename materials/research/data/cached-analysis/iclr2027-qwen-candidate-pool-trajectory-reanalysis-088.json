@@ -1,0 +1,1717 @@
+{
+  "schema_version": 1,
+  "artifact_id": "ICLR2027-QWEN-CANDIDATE-POOL-TRAJECTORY-REANALYSIS-088",
+  "status": "complete_zero_call_correction",
+  "protocol": "research/configs/qwen-candidate-pool-trajectory-reanalysis-protocol-087.json",
+  "protocol_sha256": "de6dc0ff460e71e9c1d848654dd82abfe0028849b76d6d93f1acf039d723823c",
+  "source": "research/artifacts/iclr2027-qwen-candidate-pool-enlargement-084.json",
+  "source_sha256": "340bb6fb6a336ddb2fda431699810e2f083ef0cb0f5173c558d83fd352b46db4",
+  "source_decision": "research/artifacts/iclr2027-qwen-candidate-pool-enlargement-decision-085.json",
+  "source_decision_sha256": "4daf0e0e85cc01278306ba3e5cbf69edb79e9ec46a58acc07ac923561c66a393",
+  "supersedes_inference_fields": [
+    "main.support_C5_minus_C1.two_sided_exact_discordant_p",
+    "main.oracle_C5_minus_C1.two_sided_exact_discordant_p",
+    "main.headroom_C5_minus_C1.two_sided_exact_discordant_p"
+  ],
+  "inference_correction": {
+    "nested_exact_sign_tests": "withdrawn",
+    "reason": "C1 is a subset of C5, so canonical support, executable oracle, and headroom cannot decrease. A sign null assigning equal probability to increases and decreases is incompatible with the design.",
+    "support_C5_minus_C1": {
+      "mean": 1.0,
+      "two_sided_percentile_95_interval": [
+        0.5,
+        1.6
+      ],
+      "one_sided_95_lower_confidence_bound": 0.6,
+      "task_values": [
+        1.0,
+        1.0,
+        1.0,
+        0.0,
+        1.0,
+        1.0,
+        3.0,
+        0.0,
+        2.0,
+        1.0,
+        1.0,
+        0.0,
+        5.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        2.0,
+        0.0,
+        1.0
+      ]
+    },
+    "oracle_C5_minus_C1": {
+      "mean": 0.2,
+      "two_sided_percentile_95_interval": [
+        0.05,
+        0.4
+      ],
+      "one_sided_95_lower_confidence_bound": 0.05,
+      "task_values": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ]
+    },
+    "headroom_C5_minus_C1": {
+      "mean": 0.2,
+      "two_sided_percentile_95_interval": [
+        0.05,
+        0.4
+      ],
+      "one_sided_95_lower_confidence_bound": 0.05,
+      "task_values": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ]
+    },
+    "retained_non_nested_temperature_test": {
+      "mean": -0.05,
+      "paired_bootstrap_95_ci": [
+        -0.35,
+        0.25
+      ],
+      "positive_pairs": 4,
+      "negative_pairs": 5,
+      "two_sided_exact_discordant_p": 1.0,
+      "pair_values": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        -1.0,
+        1.0,
+        0.0,
+        1.0,
+        -1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        -1.0,
+        -1.0,
+        0.0,
+        -1.0
+      ]
+    }
+  },
+  "trajectory_dose_response": {
+    "trajectory_success_definition": "A stochastic full trajectory contains at least one executable canonical candidate among its 16 persisted slots.",
+    "successful_stochastic_trajectories": 57,
+    "stochastic_trajectories": 100,
+    "anchor_inclusive_plugin_curve": {
+      "1": {
+        "mean": 0.6599999999999999,
+        "task_cluster_bootstrap_95_interval": [
+          0.47000000000000003,
+          0.8400000000000001
+        ]
+      },
+      "2": {
+        "mean": 0.7,
+        "task_cluster_bootstrap_95_interval": [
+          0.512,
+          0.8779999999999999
+        ]
+      },
+      "3": {
+        "mean": 0.7224,
+        "task_cluster_bootstrap_95_interval": [
+          0.5456,
+          0.8972
+        ]
+      },
+      "4": {
+        "mean": 0.7384,
+        "task_cluster_bootstrap_95_interval": [
+          0.5588,
+          0.9085599999999999
+        ]
+      },
+      "5": {
+        "mean": 0.750816,
+        "task_cluster_bootstrap_95_interval": [
+          0.5672159999999999,
+          0.917168
+        ]
+      },
+      "10": {
+        "mean": 0.7838938624,
+        "task_cluster_bootstrap_95_interval": [
+          0.58926258176,
+          0.9392625664
+        ]
+      },
+      "20": {
+        "mean": 0.7982706177430887,
+        "task_cluster_bootstrap_95_interval": [
+          0.5988470784953932,
+          0.9488470784953916
+        ]
+      }
+    },
+    "observed_nested_oracle_curve": {
+      "C1": 0.6,
+      "C2": 0.7,
+      "C3": 0.7,
+      "C4": 0.8,
+      "C5": 0.8
+    },
+    "p_hat_i_distribution": {
+      "0": 5,
+      "0.2": 4,
+      "0.4": 0,
+      "0.6": 0,
+      "0.8": 2,
+      "1": 9
+    },
+    "tasks_with_p_hat_i_zero": 5,
+    "tasks_with_anchor_failure_and_p_hat_i_zero": 4,
+    "zero_of_five_one_sided_95_clopper_pearson_upper": 0.4507197283469412,
+    "mle_plugin_asymptote_n_to_infinity": 0.8,
+    "ceiling_interpretation_guard": "The 0.80 limit is the finite-sample MLE plug-in asymptote created by tasks with p_hat_i=0. Zero successes in five trajectories does not identify a structural zero; its one-sided 95% binomial upper bound is about 0.451.",
+    "assumption": "conditional iid stochastic trajectories within task",
+    "independence_guard": "The 120 trajectories are repeated observations nested within 20 tasks. Task generalization uncertainty resamples tasks, not trajectories as independent units.",
+    "extrapolation_guard": "n greater than 5 is model-based extrapolation under conditional iid stochastic trajectories and is not new observed evidence"
+  },
+  "rescue_robustness": {
+    "rescued_tasks": 4,
+    "by_task": [
+      {
+        "instance_id": "TEST0102",
+        "successful_stochastic_trajectories_of_5": 1
+      },
+      {
+        "instance_id": "TEST0105",
+        "successful_stochastic_trajectories_of_5": 1
+      },
+      {
+        "instance_id": "TEST0526",
+        "successful_stochastic_trajectories_of_5": 4
+      },
+      {
+        "instance_id": "TEST0361",
+        "successful_stochastic_trajectories_of_5": 1
+      }
+    ],
+    "distribution": {
+      "1": 3,
+      "2": 0,
+      "3": 0,
+      "4": 1,
+      "5": 0
+    }
+  },
+  "final_only_and_matched_slot_decomposition": {
+    "five_stochastic_finals_oracle": 0.65,
+    "anchor_full_trajectory_oracle": 0.55,
+    "anchor_final_valid_rate": 0.5,
+    "mean_single_stochastic_full_trajectory_oracle": 0.57,
+    "matched_16_slot_cross_trajectory_expected_oracle": 0.6260115401214145,
+    "matched_16_slot_single_trajectory_mean_oracle": 0.5700000000000001,
+    "matched_cross_minus_single": {
+      "mean": 0.056011540122254753,
+      "two_sided_percentile_95_interval": [
+        0.015642857142857146,
+        0.104961304152867
+      ],
+      "one_sided_95_lower_confidence_bound": 0.02145761479591837,
+      "task_values": [
+        0.1295761479591837,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.3128571428571429,
+        0.0,
+        0.0,
+        0.0,
+        0.16999999999999998,
+        0.0,
+        0.19494036877162557,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.3128571428571429,
+        0.0,
+        0.0
+      ]
+    },
+    "interpretation_guard": "Every cached trajectory uses the same three-agent evolving runtime. This decomposition measures cross-trajectory versus within-trajectory coverage; it is not a single-agent versus multi-agent causal comparison."
+  },
+  "privacy_reframe": {
+    "binary_executor_signal": "g_U=1 and Delta_c=1 for a valid-versus-invalid candidate comparison, so rho_U=1 conditional on a mixed candidate pool",
+    "adjacency": "candidate-score replacement adjacency: one candidate's clipped binary validity bit may change while the candidate texts and all other utilities are trusted",
+    "release": "only the selected candidate index/output is released",
+    "scope": "selector-level DP only; the selecting trusted party observes candidates and executor utilities"
+  },
+  "task_rows": [
+    {
+      "instance_id": "TEST0576",
+      "anchor_trajectory_oracle": false,
+      "anchor_final_valid": false,
+      "stochastic_trajectory_successes_of_5": 4,
+      "p_hat_i": 0.8,
+      "stochastic_final_successes_of_5": 4,
+      "five_stochastic_finals_oracle": true,
+      "stochastic": [
+        {
+          "rep": 1,
+          "trajectory_oracle": true,
+          "valid_canonical_candidates": 1,
+          "final_valid": true,
+          "valid_slots": 4,
+          "slots": 16
+        },
+        {
+          "rep": 2,
+          "trajectory_oracle": true,
+          "valid_canonical_candidates": 1,
+          "final_valid": true,
+          "valid_slots": 2,
+          "slots": 16
+        },
+        {
+          "rep": 3,
+          "trajectory_oracle": true,
+          "valid_canonical_candidates": 1,
+          "final_valid": true,
+          "valid_slots": 3,
+          "slots": 16
+        },
+        {
+          "rep": 4,
+          "trajectory_oracle": true,
+          "valid_canonical_candidates": 1,
+          "final_valid": true,
+          "valid_slots": 2,
+          "slots": 16
+        },
+        {
+          "rep": 5,
+          "trajectory_oracle": false,
+          "valid_canonical_candidates": 0,
+          "final_valid": false,
+          "valid_slots": 0,
+          "slots": 16
+        }
+      ],
+      "anchor_inclusive_plugin_curve": {
+        "1": 0.8,
+        "2": 0.96,
+        "3": 0.992,
+        "4": 0.9984,
+        "5": 0.99968,
+        "10": 0.9999998976,
+        "20": 0.9999999999999896
+      },
+      "observed_nested_oracle_curve": {
+        "C1": true,
+        "C2": true,
+        "C3": true,
+        "C4": true,
+        "C5": true
+      },
+      "rescued_C5_not_C1": false,
+      "rescue_stochastic_trajectories_with_valid_plan": null,
+      "matched_16_slot_cross_trajectory_expected_oracle": 0.9295761479591838,
+      "matched_16_slot_single_trajectory_mean_oracle": 0.8
+    },
+    {
+      "instance_id": "TEST0117",
+      "anchor_trajectory_oracle": false,
+      "anchor_final_valid": false,
+      "stochastic_trajectory_successes_of_5": 0,
+      "p_hat_i": 0.0,
+      "stochastic_final_successes_of_5": 0,
+      "five_stochastic_finals_oracle": false,
+      "stochastic": [
+        {
+          "rep": 1,
+          "trajectory_oracle": false,
+          "valid_canonical_candidates": 0,
+          "final_valid": false,
+          "valid_slots": 0,
+          "slots": 16
+        },
+        {
+          "rep": 2,
+          "trajectory_oracle": false,
+          "valid_canonical_candidates": 0,
+          "final_valid": false,
+          "valid_slots": 0,
+          "slots": 16
+        },
+        {
+          "rep": 3,
+          "trajectory_oracle": false,
+          "valid_canonical_candidates": 0,
+          "final_valid": false,
+          "valid_slots": 0,
+          "slots": 16
+        },
+        {
+          "rep": 4,
+          "trajectory_oracle": false,
+          "valid_canonical_candidates": 0,
+          "final_valid": false,
+          "valid_slots": 0,
+          "slots": 16
+        },
+        {
+          "rep": 5,
+          "trajectory_oracle": false,
+          "valid_canonical_candidates": 0,
+          "final_valid": false,
+          "valid_slots": 0,
+          "slots": 16
+        }
+      ],
+      "anchor_inclusive_plugin_curve": {
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "10": 0.0,
+        "20": 0.0
+      },
+      "observed_nested_oracle_curve": {
+        "C1": false,
+        "C2": false,
+        "C3": false,
+        "C4": false,
+        "C5": false
+      },
+      "rescued_C5_not_C1": false,
+      "rescue_stochastic_trajectories_with_valid_plan": null,
+      "matched_16_slot_cross_trajectory_expected_oracle": 0.0,
+      "matched_16_slot_single_trajectory_mean_oracle": 0.0
+    },
+    {
+      "instance_id": "TEST0142",
+      "anchor_trajectory_oracle": true,
+      "anchor_final_valid": true,
+      "stochastic_trajectory_successes_of_5": 0,
+      "p_hat_i": 0.0,
+      "stochastic_final_successes_of_5": 0,
+      "five_stochastic_finals_oracle": false,
+      "stochastic": [
+        {
+          "rep": 1,
+          "trajectory_oracle": false,
+          "valid_canonical_candidates": 0,
+          "final_valid": false,
+          "valid_slots": 0,
+          "slots": 16
+        },
+        {
+          "rep": 2,
+          "trajectory_oracle": false,
+          "valid_canonical_candidates": 0,
+          "final_valid": false,
+          "valid_slots": 0,
+          "slots": 16
+        },
+        {
+          "rep": 3,
+          "trajectory_oracle": false,
+          "valid_canonical_candidates": 0,
+          "final_valid": false,
+          "valid_slots": 0,
+          "slots": 16
+        },
+        {
+          "rep": 4,
+          "trajectory_oracle": false,
+          "valid_canonical_candidates": 0,
+          "final_valid": false,
+          "valid_slots": 0,
+          "slots": 16
+        },
+        {
+          "rep": 5,
+          "trajectory_oracle": false,
+          "valid_canonical_candidates": 0,
+          "final_valid": false,
+          "valid_slots": 0,
+          "slots": 16
+        }
+      ],
+      "anchor_inclusive_plugin_curve": {
+        "1": 1.0,
+        "2": 1.0,
+        "3": 1.0,
+        "4": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "20": 1.0
+      },
+      "observed_nested_oracle_curve": {
+        "C1": true,
+        "C2": true,
+        "C3": true,
+        "C4": true,
+        "C5": true
+      },
+      "rescued_C5_not_C1": false,
+      "rescue_stochastic_trajectories_with_valid_plan": null,
+      "matched_16_slot_cross_trajectory_expected_oracle": 0.0,
+      "matched_16_slot_single_trajectory_mean_oracle": 0.0
+    },
+    {
+      "instance_id": "TEST0208",
+      "anchor_trajectory_oracle": true,
+      "anchor_final_valid": true,
+      "stochastic_trajectory_successes_of_5": 5,
+      "p_hat_i": 1.0,
+      "stochastic_final_successes_of_5": 5,
+      "five_stochastic_finals_oracle": true,
+      "stochastic": [
+        {
+          "rep": 1,
+          "trajectory_oracle": true,
+          "valid_canonical_candidates": 1,
+          "final_valid": true,
+          "valid_slots": 16,
+          "slots": 16
+        },
+        {
+          "rep": 2,
+          "trajectory_oracle": true,
+          "valid_canonical_candidates": 1,
+          "final_valid": true,
+          "valid_slots": 15,
+          "slots": 16
+        },
+        {
+          "rep": 3,
+          "trajectory_oracle": true,
+          "valid_canonical_candidates": 1,
+          "final_valid": true,
+          "valid_slots": 15,
+          "slots": 16
+        },
+        {
+          "rep": 4,
+          "trajectory_oracle": true,
+          "valid_canonical_candidates": 1,
+          "final_valid": true,
+          "valid_slots": 16,
+          "slots": 16
+        },
+        {
+          "rep": 5,
+          "trajectory_oracle": true,
+          "valid_canonical_candidates": 1,
+          "final_valid": true,
+          "valid_slots": 15,
+          "slots": 16
+        }
+      ],
+      "anchor_inclusive_plugin_curve": {
+        "1": 1.0,
+        "2": 1.0,
+        "3": 1.0,
+        "4": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "20": 1.0
+      },
+      "observed_nested_oracle_curve": {
+        "C1": true,
+        "C2": true,
+        "C3": true,
+        "C4": true,
+        "C5": true
+      },
+      "rescued_C5_not_C1": false,
+      "rescue_stochastic_trajectories_with_valid_plan": null,
+      "matched_16_slot_cross_trajectory_expected_oracle": 1.0,
+      "matched_16_slot_single_trajectory_mean_oracle": 1.0
+    },
+    {
+      "instance_id": "TEST0211",
+      "anchor_trajectory_oracle": true,
+      "anchor_final_valid": true,
+      "stochastic_trajectory_successes_of_5": 5,
+      "p_hat_i": 1.0,
+      "stochastic_final_successes_of_5": 5,
+      "five_stochastic_finals_oracle": true,
+      "stochastic": [
+        {
+          "rep": 1,
+          "trajectory_oracle": true,
+          "valid_canonical_candidates": 1,
+          "final_valid": true,
+          "valid_slots": 16,
+          "slots": 16
+        },
+        {
+          "rep": 2,
+          "trajectory_oracle": true,
+          "valid_canonical_candidates": 1,
+          "final_valid": true,
+          "valid_slots": 9,
+          "slots": 16
+        },
+        {
+          "rep": 3,
+          "trajectory_oracle": true,
+          "valid_canonical_candidates": 1,
+          "final_valid": true,
+          "valid_slots": 16,
+          "slots": 16
+        },
+        {
+          "rep": 4,
+          "trajectory_oracle": true,
+          "valid_canonical_candidates": 1,
+          "final_valid": true,
+          "valid_slots": 15,
+          "slots": 16
+        },
+        {
+          "rep": 5,
+          "trajectory_oracle": true,
+          "valid_canonical_candidates": 1,
+          "final_valid": true,
+          "valid_slots": 13,
+          "slots": 16
+        }
+      ],
+      "anchor_inclusive_plugin_curve": {
+        "1": 1.0,
+        "2": 1.0,
+        "3": 1.0,
+        "4": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "20": 1.0
+      },
+      "observed_nested_oracle_curve": {
+        "C1": true,
+        "C2": true,
+        "C3": true,
+        "C4": true,
+        "C5": true
+      },
+      "rescued_C5_not_C1": false,
+      "rescue_stochastic_trajectories_with_valid_plan": null,
+      "matched_16_slot_cross_trajectory_expected_oracle": 1.0,
+      "matched_16_slot_single_trajectory_mean_oracle": 1.0
+    },
+    {
+      "instance_id": "TEST0079",
+      "anchor_trajectory_oracle": false,
+      "anchor_final_valid": false,
+      "stochastic_trajectory_successes_of_5": 0,
+      "p_hat_i": 0.0,
+      "stochastic_final_successes_of_5": 0,
+      "five_stochastic_finals_oracle": false,
+      "stochastic": [
+        {
+          "rep": 1,
+          "trajectory_oracle": false,
+          "valid_canonical_candidates": 0,
+          "final_valid": false,
+          "valid_slots": 0,
+          "slots": 16
+        },
+        {
+          "rep": 2,
+          "trajectory_oracle": false,
+          "valid_canonical_candidates": 0,
+          "final_valid": false,
+          "valid_slots": 0,
+          "slots": 16
+        },
+        {
+          "rep": 3,
+          "trajectory_oracle": false,
+          "valid_canonical_candidates": 0,
+          "final_valid": false,
+          "valid_slots": 0,
+          "slots": 16
+        },
+        {
+          "rep": 4,
+          "trajectory_oracle": false,
+          "valid_canonical_candidates": 0,
+          "final_valid": false,
+          "valid_slots": 0,
+          "slots": 16
+        },
+        {
+          "rep": 5,
+          "trajectory_oracle": false,
+          "valid_canonical_candidates": 0,
+          "final_valid": false,
+          "valid_slots": 0,
+          "slots": 16
+        }
+      ],
+      "anchor_inclusive_plugin_curve": {
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "10": 0.0,
+        "20": 0.0
+      },
+      "observed_nested_oracle_curve": {
+        "C1": false,
+        "C2": false,
+        "C3": false,
+        "C4": false,
+        "C5": false
+      },
+      "rescued_C5_not_C1": false,
+      "rescue_stochastic_trajectories_with_valid_plan": null,
+      "matched_16_slot_cross_trajectory_expected_oracle": 0.0,
+      "matched_16_slot_single_trajectory_mean_oracle": 0.0
+    },
+    {
+      "instance_id": "TEST0102",
+      "anchor_trajectory_oracle": false,
+      "anchor_final_valid": false,
+      "stochastic_trajectory_successes_of_5": 1,
+      "p_hat_i": 0.2,
+      "stochastic_final_successes_of_5": 1,
+      "five_stochastic_finals_oracle": true,
+      "stochastic": [
+        {
+          "rep": 1,
+          "trajectory_oracle": false,
+          "valid_canonical_candidates": 0,
+          "final_valid": false,
+          "valid_slots": 0,
+          "slots": 16
+        },
+        {
+          "rep": 2,
+          "trajectory_oracle": false,
+          "valid_canonical_candidates": 0,
+          "final_valid": false,
+          "valid_slots": 0,
+          "slots": 16
+        },
+        {
+          "rep": 3,
+          "trajectory_oracle": false,
+          "valid_canonical_candidates": 0,
+          "final_valid": false,
+          "valid_slots": 0,
+          "slots": 16
+        },
+        {
+          "rep": 4,
+          "trajectory_oracle": true,
+          "valid_canonical_candidates": 1,
+          "final_valid": true,
+          "valid_slots": 3,
+          "slots": 16
+        },
+        {
+          "rep": 5,
+          "trajectory_oracle": false,
+          "valid_canonical_candidates": 0,
+          "final_valid": false,
+          "valid_slots": 0,
+          "slots": 16
+        }
+      ],
+      "anchor_inclusive_plugin_curve": {
+        "1": 0.19999999999999996,
+        "2": 0.3599999999999999,
+        "3": 0.4879999999999999,
+        "4": 0.5903999999999999,
+        "5": 0.6723199999999999,
+        "10": 0.8926258175999999,
+        "20": 0.9884707849539315
+      },
+      "observed_nested_oracle_curve": {
+        "C1": false,
+        "C2": false,
+        "C3": false,
+        "C4": true,
+        "C5": true
+      },
+      "rescued_C5_not_C1": true,
+      "rescue_stochastic_trajectories_with_valid_plan": 1,
+      "matched_16_slot_cross_trajectory_expected_oracle": 0.5128571428571429,
+      "matched_16_slot_single_trajectory_mean_oracle": 0.2
+    },
+    {
+      "instance_id": "TEST0345",
+      "anchor_trajectory_oracle": false,
+      "anchor_final_valid": false,
+      "stochastic_trajectory_successes_of_5": 0,
+      "p_hat_i": 0.0,
+      "stochastic_final_successes_of_5": 0,
+      "five_stochastic_finals_oracle": false,
+      "stochastic": [
+        {
+          "rep": 1,
+          "trajectory_oracle": false,
+          "valid_canonical_candidates": 0,
+          "final_valid": false,
+          "valid_slots": 0,
+          "slots": 16
+        },
+        {
+          "rep": 2,
+          "trajectory_oracle": false,
+          "valid_canonical_candidates": 0,
+          "final_valid": false,
+          "valid_slots": 0,
+          "slots": 16
+        },
+        {
+          "rep": 3,
+          "trajectory_oracle": false,
+          "valid_canonical_candidates": 0,
+          "final_valid": false,
+          "valid_slots": 0,
+          "slots": 16
+        },
+        {
+          "rep": 4,
+          "trajectory_oracle": false,
+          "valid_canonical_candidates": 0,
+          "final_valid": false,
+          "valid_slots": 0,
+          "slots": 16
+        },
+        {
+          "rep": 5,
+          "trajectory_oracle": false,
+          "valid_canonical_candidates": 0,
+          "final_valid": false,
+          "valid_slots": 0,
+          "slots": 16
+        }
+      ],
+      "anchor_inclusive_plugin_curve": {
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "10": 0.0,
+        "20": 0.0
+      },
+      "observed_nested_oracle_curve": {
+        "C1": false,
+        "C2": false,
+        "C3": false,
+        "C4": false,
+        "C5": false
+      },
+      "rescued_C5_not_C1": false,
+      "rescue_stochastic_trajectories_with_valid_plan": null,
+      "matched_16_slot_cross_trajectory_expected_oracle": 0.0,
+      "matched_16_slot_single_trajectory_mean_oracle": 0.0
+    },
+    {
+      "instance_id": "TEST0128",
+      "anchor_trajectory_oracle": true,
+      "anchor_final_valid": true,
+      "stochastic_trajectory_successes_of_5": 5,
+      "p_hat_i": 1.0,
+      "stochastic_final_successes_of_5": 5,
+      "five_stochastic_finals_oracle": true,
+      "stochastic": [
+        {
+          "rep": 1,
+          "trajectory_oracle": true,
+          "valid_canonical_candidates": 1,
+          "final_valid": true,
+          "valid_slots": 15,
+          "slots": 16
+        },
+        {
+          "rep": 2,
+          "trajectory_oracle": true,
+          "valid_canonical_candidates": 1,
+          "final_valid": true,
+          "valid_slots": 11,
+          "slots": 16
+        },
+        {
+          "rep": 3,
+          "trajectory_oracle": true,
+          "valid_canonical_candidates": 1,
+          "final_valid": true,
+          "valid_slots": 10,
+          "slots": 16
+        },
+        {
+          "rep": 4,
+          "trajectory_oracle": true,
+          "valid_canonical_candidates": 1,
+          "final_valid": true,
+          "valid_slots": 3,
+          "slots": 16
+        },
+        {
+          "rep": 5,
+          "trajectory_oracle": true,
+          "valid_canonical_candidates": 1,
+          "final_valid": true,
+          "valid_slots": 12,
+          "slots": 16
+        }
+      ],
+      "anchor_inclusive_plugin_curve": {
+        "1": 1.0,
+        "2": 1.0,
+        "3": 1.0,
+        "4": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "20": 1.0
+      },
+      "observed_nested_oracle_curve": {
+        "C1": true,
+        "C2": true,
+        "C3": true,
+        "C4": true,
+        "C5": true
+      },
+      "rescued_C5_not_C1": false,
+      "rescue_stochastic_trajectories_with_valid_plan": null,
+      "matched_16_slot_cross_trajectory_expected_oracle": 1.0,
+      "matched_16_slot_single_trajectory_mean_oracle": 1.0
+    },
+    {
+      "instance_id": "TEST0105",
+      "anchor_trajectory_oracle": false,
+      "anchor_final_valid": false,
+      "stochastic_trajectory_successes_of_5": 1,
+      "p_hat_i": 0.2,
+      "stochastic_final_successes_of_5": 0,
+      "five_stochastic_finals_oracle": false,
+      "stochastic": [
+        {
+          "rep": 1,
+          "trajectory_oracle": false,
+          "valid_canonical_candidates": 0,
+          "final_valid": false,
+          "valid_slots": 0,
+          "slots": 16
+        },
+        {
+          "rep": 2,
+          "trajectory_oracle": true,
+          "valid_canonical_candidates": 1,
+          "final_valid": false,
+          "valid_slots": 1,
+          "slots": 16
+        },
+        {
+          "rep": 3,
+          "trajectory_oracle": false,
+          "valid_canonical_candidates": 0,
+          "final_valid": false,
+          "valid_slots": 0,
+          "slots": 16
+        },
+        {
+          "rep": 4,
+          "trajectory_oracle": false,
+          "valid_canonical_candidates": 0,
+          "final_valid": false,
+          "valid_slots": 0,
+          "slots": 16
+        },
+        {
+          "rep": 5,
+          "trajectory_oracle": false,
+          "valid_canonical_candidates": 0,
+          "final_valid": false,
+          "valid_slots": 0,
+          "slots": 16
+        }
+      ],
+      "anchor_inclusive_plugin_curve": {
+        "1": 0.19999999999999996,
+        "2": 0.3599999999999999,
+        "3": 0.4879999999999999,
+        "4": 0.5903999999999999,
+        "5": 0.6723199999999999,
+        "10": 0.8926258175999999,
+        "20": 0.9884707849539315
+      },
+      "observed_nested_oracle_curve": {
+        "C1": false,
+        "C2": true,
+        "C3": true,
+        "C4": true,
+        "C5": true
+      },
+      "rescued_C5_not_C1": true,
+      "rescue_stochastic_trajectories_with_valid_plan": 1,
+      "matched_16_slot_cross_trajectory_expected_oracle": 0.2,
+      "matched_16_slot_single_trajectory_mean_oracle": 0.2
+    },
+    {
+      "instance_id": "TEST0276",
+      "anchor_trajectory_oracle": true,
+      "anchor_final_valid": false,
+      "stochastic_trajectory_successes_of_5": 1,
+      "p_hat_i": 0.2,
+      "stochastic_final_successes_of_5": 0,
+      "five_stochastic_finals_oracle": false,
+      "stochastic": [
+        {
+          "rep": 1,
+          "trajectory_oracle": false,
+          "valid_canonical_candidates": 0,
+          "final_valid": false,
+          "valid_slots": 0,
+          "slots": 16
+        },
+        {
+          "rep": 2,
+          "trajectory_oracle": true,
+          "valid_canonical_candidates": 1,
+          "final_valid": false,
+          "valid_slots": 2,
+          "slots": 16
+        },
+        {
+          "rep": 3,
+          "trajectory_oracle": false,
+          "valid_canonical_candidates": 0,
+          "final_valid": false,
+          "valid_slots": 0,
+          "slots": 16
+        },
+        {
+          "rep": 4,
+          "trajectory_oracle": false,
+          "valid_canonical_candidates": 0,
+          "final_valid": false,
+          "valid_slots": 0,
+          "slots": 16
+        },
+        {
+          "rep": 5,
+          "trajectory_oracle": false,
+          "valid_canonical_candidates": 0,
+          "final_valid": false,
+          "valid_slots": 0,
+          "slots": 16
+        }
+      ],
+      "anchor_inclusive_plugin_curve": {
+        "1": 1.0,
+        "2": 1.0,
+        "3": 1.0,
+        "4": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "20": 1.0
+      },
+      "observed_nested_oracle_curve": {
+        "C1": true,
+        "C2": true,
+        "C3": true,
+        "C4": true,
+        "C5": true
+      },
+      "rescued_C5_not_C1": false,
+      "rescue_stochastic_trajectories_with_valid_plan": null,
+      "matched_16_slot_cross_trajectory_expected_oracle": 0.37,
+      "matched_16_slot_single_trajectory_mean_oracle": 0.2
+    },
+    {
+      "instance_id": "TEST0266",
+      "anchor_trajectory_oracle": true,
+      "anchor_final_valid": true,
+      "stochastic_trajectory_successes_of_5": 5,
+      "p_hat_i": 1.0,
+      "stochastic_final_successes_of_5": 5,
+      "five_stochastic_finals_oracle": true,
+      "stochastic": [
+        {
+          "rep": 1,
+          "trajectory_oracle": true,
+          "valid_canonical_candidates": 1,
+          "final_valid": true,
+          "valid_slots": 16,
+          "slots": 16
+        },
+        {
+          "rep": 2,
+          "trajectory_oracle": true,
+          "valid_canonical_candidates": 1,
+          "final_valid": true,
+          "valid_slots": 15,
+          "slots": 16
+        },
+        {
+          "rep": 3,
+          "trajectory_oracle": true,
+          "valid_canonical_candidates": 1,
+          "final_valid": true,
+          "valid_slots": 16,
+          "slots": 16
+        },
+        {
+          "rep": 4,
+          "trajectory_oracle": true,
+          "valid_canonical_candidates": 1,
+          "final_valid": true,
+          "valid_slots": 16,
+          "slots": 16
+        },
+        {
+          "rep": 5,
+          "trajectory_oracle": true,
+          "valid_canonical_candidates": 1,
+          "final_valid": true,
+          "valid_slots": 16,
+          "slots": 16
+        }
+      ],
+      "anchor_inclusive_plugin_curve": {
+        "1": 1.0,
+        "2": 1.0,
+        "3": 1.0,
+        "4": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "20": 1.0
+      },
+      "observed_nested_oracle_curve": {
+        "C1": true,
+        "C2": true,
+        "C3": true,
+        "C4": true,
+        "C5": true
+      },
+      "rescued_C5_not_C1": false,
+      "rescue_stochastic_trajectories_with_valid_plan": null,
+      "matched_16_slot_cross_trajectory_expected_oracle": 1.0,
+      "matched_16_slot_single_trajectory_mean_oracle": 1.0
+    },
+    {
+      "instance_id": "TEST0526",
+      "anchor_trajectory_oracle": false,
+      "anchor_final_valid": false,
+      "stochastic_trajectory_successes_of_5": 4,
+      "p_hat_i": 0.8,
+      "stochastic_final_successes_of_5": 4,
+      "five_stochastic_finals_oracle": true,
+      "stochastic": [
+        {
+          "rep": 1,
+          "trajectory_oracle": false,
+          "valid_canonical_candidates": 0,
+          "final_valid": false,
+          "valid_slots": 0,
+          "slots": 16
+        },
+        {
+          "rep": 2,
+          "trajectory_oracle": true,
+          "valid_canonical_candidates": 2,
+          "final_valid": true,
+          "valid_slots": 6,
+          "slots": 16
+        },
+        {
+          "rep": 3,
+          "trajectory_oracle": true,
+          "valid_canonical_candidates": 1,
+          "final_valid": true,
+          "valid_slots": 4,
+          "slots": 16
+        },
+        {
+          "rep": 4,
+          "trajectory_oracle": true,
+          "valid_canonical_candidates": 2,
+          "final_valid": true,
+          "valid_slots": 5,
+          "slots": 16
+        },
+        {
+          "rep": 5,
+          "trajectory_oracle": true,
+          "valid_canonical_candidates": 2,
+          "final_valid": true,
+          "valid_slots": 5,
+          "slots": 16
+        }
+      ],
+      "anchor_inclusive_plugin_curve": {
+        "1": 0.8,
+        "2": 0.96,
+        "3": 0.992,
+        "4": 0.9984,
+        "5": 0.99968,
+        "10": 0.9999998976,
+        "20": 0.9999999999999896
+      },
+      "observed_nested_oracle_curve": {
+        "C1": false,
+        "C2": true,
+        "C3": true,
+        "C4": true,
+        "C5": true
+      },
+      "rescued_C5_not_C1": true,
+      "rescue_stochastic_trajectories_with_valid_plan": 4,
+      "matched_16_slot_cross_trajectory_expected_oracle": 0.9949403687716256,
+      "matched_16_slot_single_trajectory_mean_oracle": 0.8
+    },
+    {
+      "instance_id": "TEST0010",
+      "anchor_trajectory_oracle": true,
+      "anchor_final_valid": true,
+      "stochastic_trajectory_successes_of_5": 5,
+      "p_hat_i": 1.0,
+      "stochastic_final_successes_of_5": 5,
+      "five_stochastic_finals_oracle": true,
+      "stochastic": [
+        {
+          "rep": 1,
+          "trajectory_oracle": true,
+          "valid_canonical_candidates": 1,
+          "final_valid": true,
+          "valid_slots": 11,
+          "slots": 16
+        },
+        {
+          "rep": 2,
+          "trajectory_oracle": true,
+          "valid_canonical_candidates": 1,
+          "final_valid": true,
+          "valid_slots": 11,
+          "slots": 16
+        },
+        {
+          "rep": 3,
+          "trajectory_oracle": true,
+          "valid_canonical_candidates": 1,
+          "final_valid": true,
+          "valid_slots": 12,
+          "slots": 16
+        },
+        {
+          "rep": 4,
+          "trajectory_oracle": true,
+          "valid_canonical_candidates": 1,
+          "final_valid": true,
+          "valid_slots": 12,
+          "slots": 16
+        },
+        {
+          "rep": 5,
+          "trajectory_oracle": true,
+          "valid_canonical_candidates": 1,
+          "final_valid": true,
+          "valid_slots": 12,
+          "slots": 16
+        }
+      ],
+      "anchor_inclusive_plugin_curve": {
+        "1": 1.0,
+        "2": 1.0,
+        "3": 1.0,
+        "4": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "20": 1.0
+      },
+      "observed_nested_oracle_curve": {
+        "C1": true,
+        "C2": true,
+        "C3": true,
+        "C4": true,
+        "C5": true
+      },
+      "rescued_C5_not_C1": false,
+      "rescue_stochastic_trajectories_with_valid_plan": null,
+      "matched_16_slot_cross_trajectory_expected_oracle": 0.9999999999874852,
+      "matched_16_slot_single_trajectory_mean_oracle": 1.0
+    },
+    {
+      "instance_id": "TEST0237",
+      "anchor_trajectory_oracle": true,
+      "anchor_final_valid": true,
+      "stochastic_trajectory_successes_of_5": 5,
+      "p_hat_i": 1.0,
+      "stochastic_final_successes_of_5": 5,
+      "five_stochastic_finals_oracle": true,
+      "stochastic": [
+        {
+          "rep": 1,
+          "trajectory_oracle": true,
+          "valid_canonical_candidates": 1,
+          "final_valid": true,
+          "valid_slots": 16,
+          "slots": 16
+        },
+        {
+          "rep": 2,
+          "trajectory_oracle": true,
+          "valid_canonical_candidates": 1,
+          "final_valid": true,
+          "valid_slots": 16,
+          "slots": 16
+        },
+        {
+          "rep": 3,
+          "trajectory_oracle": true,
+          "valid_canonical_candidates": 1,
+          "final_valid": true,
+          "valid_slots": 16,
+          "slots": 16
+        },
+        {
+          "rep": 4,
+          "trajectory_oracle": true,
+          "valid_canonical_candidates": 1,
+          "final_valid": true,
+          "valid_slots": 16,
+          "slots": 16
+        },
+        {
+          "rep": 5,
+          "trajectory_oracle": true,
+          "valid_canonical_candidates": 1,
+          "final_valid": true,
+          "valid_slots": 15,
+          "slots": 16
+        }
+      ],
+      "anchor_inclusive_plugin_curve": {
+        "1": 1.0,
+        "2": 1.0,
+        "3": 1.0,
+        "4": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "20": 1.0
+      },
+      "observed_nested_oracle_curve": {
+        "C1": true,
+        "C2": true,
+        "C3": true,
+        "C4": true,
+        "C5": true
+      },
+      "rescued_C5_not_C1": false,
+      "rescue_stochastic_trajectories_with_valid_plan": null,
+      "matched_16_slot_cross_trajectory_expected_oracle": 1.0,
+      "matched_16_slot_single_trajectory_mean_oracle": 1.0
+    },
+    {
+      "instance_id": "TEST0191",
+      "anchor_trajectory_oracle": true,
+      "anchor_final_valid": true,
+      "stochastic_trajectory_successes_of_5": 5,
+      "p_hat_i": 1.0,
+      "stochastic_final_successes_of_5": 5,
+      "five_stochastic_finals_oracle": true,
+      "stochastic": [
+        {
+          "rep": 1,
+          "trajectory_oracle": true,
+          "valid_canonical_candidates": 1,
+          "final_valid": true,
+          "valid_slots": 11,
+          "slots": 16
+        },
+        {
+          "rep": 2,
+          "trajectory_oracle": true,
+          "valid_canonical_candidates": 1,
+          "final_valid": true,
+          "valid_slots": 15,
+          "slots": 16
+        },
+        {
+          "rep": 3,
+          "trajectory_oracle": true,
+          "valid_canonical_candidates": 1,
+          "final_valid": true,
+          "valid_slots": 14,
+          "slots": 16
+        },
+        {
+          "rep": 4,
+          "trajectory_oracle": true,
+          "valid_canonical_candidates": 1,
+          "final_valid": true,
+          "valid_slots": 15,
+          "slots": 16
+        },
+        {
+          "rep": 5,
+          "trajectory_oracle": true,
+          "valid_canonical_candidates": 1,
+          "final_valid": true,
+          "valid_slots": 7,
+          "slots": 16
+        }
+      ],
+      "anchor_inclusive_plugin_curve": {
+        "1": 1.0,
+        "2": 1.0,
+        "3": 1.0,
+        "4": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "20": 1.0
+      },
+      "observed_nested_oracle_curve": {
+        "C1": true,
+        "C2": true,
+        "C3": true,
+        "C4": true,
+        "C5": true
+      },
+      "rescued_C5_not_C1": false,
+      "rescue_stochastic_trajectories_with_valid_plan": null,
+      "matched_16_slot_cross_trajectory_expected_oracle": 1.0,
+      "matched_16_slot_single_trajectory_mean_oracle": 1.0
+    },
+    {
+      "instance_id": "TEST0590",
+      "anchor_trajectory_oracle": true,
+      "anchor_final_valid": true,
+      "stochastic_trajectory_successes_of_5": 5,
+      "p_hat_i": 1.0,
+      "stochastic_final_successes_of_5": 5,
+      "five_stochastic_finals_oracle": true,
+      "stochastic": [
+        {
+          "rep": 1,
+          "trajectory_oracle": true,
+          "valid_canonical_candidates": 1,
+          "final_valid": true,
+          "valid_slots": 12,
+          "slots": 16
+        },
+        {
+          "rep": 2,
+          "trajectory_oracle": true,
+          "valid_canonical_candidates": 1,
+          "final_valid": true,
+          "valid_slots": 11,
+          "slots": 16
+        },
+        {
+          "rep": 3,
+          "trajectory_oracle": true,
+          "valid_canonical_candidates": 1,
+          "final_valid": true,
+          "valid_slots": 12,
+          "slots": 16
+        },
+        {
+          "rep": 4,
+          "trajectory_oracle": true,
+          "valid_canonical_candidates": 1,
+          "final_valid": true,
+          "valid_slots": 12,
+          "slots": 16
+        },
+        {
+          "rep": 5,
+          "trajectory_oracle": true,
+          "valid_canonical_candidates": 1,
+          "final_valid": true,
+          "valid_slots": 12,
+          "slots": 16
+        }
+      ],
+      "anchor_inclusive_plugin_curve": {
+        "1": 1.0,
+        "2": 1.0,
+        "3": 1.0,
+        "4": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "20": 1.0
+      },
+      "observed_nested_oracle_curve": {
+        "C1": true,
+        "C2": true,
+        "C3": true,
+        "C4": true,
+        "C5": true
+      },
+      "rescued_C5_not_C1": false,
+      "rescue_stochastic_trajectories_with_valid_plan": null,
+      "matched_16_slot_cross_trajectory_expected_oracle": 0.9999999999957092,
+      "matched_16_slot_single_trajectory_mean_oracle": 1.0
+    },
+    {
+      "instance_id": "TEST0361",
+      "anchor_trajectory_oracle": false,
+      "anchor_final_valid": false,
+      "stochastic_trajectory_successes_of_5": 1,
+      "p_hat_i": 0.2,
+      "stochastic_final_successes_of_5": 1,
+      "five_stochastic_finals_oracle": true,
+      "stochastic": [
+        {
+          "rep": 1,
+          "trajectory_oracle": false,
+          "valid_canonical_candidates": 0,
+          "final_valid": false,
+          "valid_slots": 0,
+          "slots": 16
+        },
+        {
+          "rep": 2,
+          "trajectory_oracle": false,
+          "valid_canonical_candidates": 0,
+          "final_valid": false,
+          "valid_slots": 0,
+          "slots": 16
+        },
+        {
+          "rep": 3,
+          "trajectory_oracle": false,
+          "valid_canonical_candidates": 0,
+          "final_valid": false,
+          "valid_slots": 0,
+          "slots": 16
+        },
+        {
+          "rep": 4,
+          "trajectory_oracle": true,
+          "valid_canonical_candidates": 1,
+          "final_valid": true,
+          "valid_slots": 3,
+          "slots": 16
+        },
+        {
+          "rep": 5,
+          "trajectory_oracle": false,
+          "valid_canonical_candidates": 0,
+          "final_valid": false,
+          "valid_slots": 0,
+          "slots": 16
+        }
+      ],
+      "anchor_inclusive_plugin_curve": {
+        "1": 0.19999999999999996,
+        "2": 0.3599999999999999,
+        "3": 0.4879999999999999,
+        "4": 0.5903999999999999,
+        "5": 0.6723199999999999,
+        "10": 0.8926258175999999,
+        "20": 0.9884707849539315
+      },
+      "observed_nested_oracle_curve": {
+        "C1": false,
+        "C2": false,
+        "C3": false,
+        "C4": true,
+        "C5": true
+      },
+      "rescued_C5_not_C1": true,
+      "rescue_stochastic_trajectories_with_valid_plan": 1,
+      "matched_16_slot_cross_trajectory_expected_oracle": 0.5128571428571429,
+      "matched_16_slot_single_trajectory_mean_oracle": 0.2
+    },
+    {
+      "instance_id": "TEST0357",
+      "anchor_trajectory_oracle": true,
+      "anchor_final_valid": true,
+      "stochastic_trajectory_successes_of_5": 5,
+      "p_hat_i": 1.0,
+      "stochastic_final_successes_of_5": 5,
+      "five_stochastic_finals_oracle": true,
+      "stochastic": [
+        {
+          "rep": 1,
+          "trajectory_oracle": true,
+          "valid_canonical_candidates": 1,
+          "final_valid": true,
+          "valid_slots": 16,
+          "slots": 16
+        },
+        {
+          "rep": 2,
+          "trajectory_oracle": true,
+          "valid_canonical_candidates": 1,
+          "final_valid": true,
+          "valid_slots": 16,
+          "slots": 16
+        },
+        {
+          "rep": 3,
+          "trajectory_oracle": true,
+          "valid_canonical_candidates": 1,
+          "final_valid": true,
+          "valid_slots": 16,
+          "slots": 16
+        },
+        {
+          "rep": 4,
+          "trajectory_oracle": true,
+          "valid_canonical_candidates": 1,
+          "final_valid": true,
+          "valid_slots": 16,
+          "slots": 16
+        },
+        {
+          "rep": 5,
+          "trajectory_oracle": true,
+          "valid_canonical_candidates": 1,
+          "final_valid": true,
+          "valid_slots": 16,
+          "slots": 16
+        }
+      ],
+      "anchor_inclusive_plugin_curve": {
+        "1": 1.0,
+        "2": 1.0,
+        "3": 1.0,
+        "4": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "20": 1.0
+      },
+      "observed_nested_oracle_curve": {
+        "C1": true,
+        "C2": true,
+        "C3": true,
+        "C4": true,
+        "C5": true
+      },
+      "rescued_C5_not_C1": false,
+      "rescue_stochastic_trajectories_with_valid_plan": null,
+      "matched_16_slot_cross_trajectory_expected_oracle": 1.0,
+      "matched_16_slot_single_trajectory_mean_oracle": 1.0
+    },
+    {
+      "instance_id": "TEST0180",
+      "anchor_trajectory_oracle": false,
+      "anchor_final_valid": false,
+      "stochastic_trajectory_successes_of_5": 0,
+      "p_hat_i": 0.0,
+      "stochastic_final_successes_of_5": 0,
+      "five_stochastic_finals_oracle": false,
+      "stochastic": [
+        {
+          "rep": 1,
+          "trajectory_oracle": false,
+          "valid_canonical_candidates": 0,
+          "final_valid": false,
+          "valid_slots": 0,
+          "slots": 16
+        },
+        {
+          "rep": 2,
+          "trajectory_oracle": false,
+          "valid_canonical_candidates": 0,
+          "final_valid": false,
+          "valid_slots": 0,
+          "slots": 16
+        },
+        {
+          "rep": 3,
+          "trajectory_oracle": false,
+          "valid_canonical_candidates": 0,
+          "final_valid": false,
+          "valid_slots": 0,
+          "slots": 16
+        },
+        {
+          "rep": 4,
+          "trajectory_oracle": false,
+          "valid_canonical_candidates": 0,
+          "final_valid": false,
+          "valid_slots": 0,
+          "slots": 16
+        },
+        {
+          "rep": 5,
+          "trajectory_oracle": false,
+          "valid_canonical_candidates": 0,
+          "final_valid": false,
+          "valid_slots": 0,
+          "slots": 16
+        }
+      ],
+      "anchor_inclusive_plugin_curve": {
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "10": 0.0,
+        "20": 0.0
+      },
+      "observed_nested_oracle_curve": {
+        "C1": false,
+        "C2": false,
+        "C3": false,
+        "C4": false,
+        "C5": false
+      },
+      "rescued_C5_not_C1": false,
+      "rescue_stochastic_trajectories_with_valid_plan": null,
+      "matched_16_slot_cross_trajectory_expected_oracle": 0.0,
+      "matched_16_slot_single_trajectory_mean_oracle": 0.0
+    }
+  ],
+  "model_calls": 0
+}
