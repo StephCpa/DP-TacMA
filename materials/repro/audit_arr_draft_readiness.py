@@ -12,6 +12,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 ARR = ROOT / "manuscript-arr"
 OUT = ROOT / "research" / "artifacts" / "acl-arr-draft-readiness-audit-174.json"
+EXPECTED_PAGES = 17  # 15 before the ported appendix additions; see REVISION-NOTES
 
 
 def sha256(path: Path) -> str:
@@ -38,7 +39,7 @@ def main() -> None:
         (ROOT / "research/artifacts/acl-arr-license-audit-178.json").read_text(encoding="utf-8")
     )
     manuscript_archive = json.loads(
-        (ROOT / "research/artifacts/acl-arr-manuscript-archive-audit-179.json").read_text(encoding="utf-8")
+        (ROOT / "research/artifacts/acl-arr-manuscript-archive-audit-230.json").read_text(encoding="utf-8")
     )
     pubcheck_preflight = json.loads(
         (ROOT / "research/artifacts/acl-arr-pubcheck-preflight-180.json").read_text(encoding="utf-8")
@@ -89,7 +90,11 @@ def main() -> None:
             and live["paired_feasible"]["exact"]["live_true"] == 5
             and live["live_run"]["provider_integrity"]["usage_totals"]["total_tokens"] == 43623
         ),
-        "pdf_compiles_to_expected_length": pages == 15,
+        "pdf_compiles_to_expected_length": pages == EXPECTED_PAGES,
+        "main_body_within_page_limit": (
+            manuscript_archive["independent_compile"].get("limitations_heading_page") is not None
+            and manuscript_archive["independent_compile"]["limitations_heading_page"] <= 8
+        ),
         "no_undefined_citations_or_references": not any(
             token in log.lower()
             for token in ("there were undefined references", "citation `", "undefined citations")
@@ -132,8 +137,10 @@ def main() -> None:
         "manuscript_source_archive_verified": (
             manuscript_archive["status"] == "passed"
             and manuscript_archive["entry_count"] == 10
-            and manuscript_archive["independent_compile"]["command_exit_codes"] == [0, 0, 0, 0]
-            and manuscript_archive["independent_compile"]["pages"] == 15
+            and len(manuscript_archive["independent_compile"]["command_exit_codes"]) >= 4
+            and all(code == 0 for code in manuscript_archive["independent_compile"]["command_exit_codes"])
+            and manuscript_archive["checks"].get("line_numbers_settled") is True
+            and manuscript_archive["independent_compile"]["pages"] == EXPECTED_PAGES
             and manuscript_archive["independent_compile"]["normalized_text_equal"]
             and manuscript_archive["independent_compile"]["text_outputs_distinct"]
         ),

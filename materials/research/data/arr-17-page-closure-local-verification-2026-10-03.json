@@ -1,0 +1,113 @@
+{
+  "artifact": "arr-17-page-closure-local-verification-2026-10-03",
+  "mode": "zero provider calls; run outside the author workspace on Linux with pdfTeX 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian)",
+  "branch_state": {
+    "branch": "claude/inspiring-shannon-rhio9o",
+    "merged_main_head": "7026047",
+    "previous_branch_head": "be3870e"
+  },
+  "page_expectation": {
+    "previous_expected_pages": 15,
+    "current_expected_pages": 17,
+    "main_body_limitations_heading_page": 8,
+    "updated_scripts": [
+      "materials/repro/audit_arr_draft_readiness.py",
+      "materials/repro/arr_pubcheck_preflight.py"
+    ],
+    "added_check": "main_body_within_page_limit (Limitations heading on page <= 8)"
+  },
+  "source_archive": {
+    "artifact": "acl-arr-manuscript-archive-audit-230",
+    "status": "passed",
+    "archive_sha256": "def3c2d161c5964616f9d32e04f37ef98c5152abebee35a70c92ec5e03094838",
+    "entry_count": 10,
+    "entries": [
+      "acl.sty",
+      "acl_natbib.bst",
+      "appendix.tex",
+      "figures/evolution-audit-main-results.pdf",
+      "figures/failure-decomposition.pdf",
+      "figures/make_main_figures.py",
+      "figures/qwen-candidate-pool-enlargement.pdf",
+      "main.tex",
+      "math_commands.tex",
+      "references.bib"
+    ],
+    "independent_compile": {
+      "command_exit_codes": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "extra_pdflatex_passes": 1,
+      "pages": 17,
+      "limitations_heading_page": 8,
+      "normalized_text_equal": true,
+      "text_outputs_distinct": true
+    },
+    "deterministic_rebuild_sha_match": true,
+    "supersedes": "acl-arr-october-manuscript-source-179.zip (15-page version)"
+  },
+  "local_pubcheck_preflight_rerun": {
+    "status": "passed",
+    "pages": 17,
+    "limitations_heading_page": 8,
+    "checks": {
+      "non_line_numbered_source": true,
+      "compile_passes": true,
+      "expected_pages": true,
+      "main_body_within_page_limit": true,
+      "no_overfull_boxes": true,
+      "no_undefined_references": true,
+      "no_type3_fonts": true,
+      "anonymous_author_text_present": true,
+      "blank_pdf_author_metadata": true,
+      "no_credential_prefixes": true,
+      "no_machine_paths": true
+    },
+    "proof_pdf_sha256": "a4705376c78e5038d5a30ad0dd42e0e04203a87943d30bfb3957fc4fd2f14597",
+    "note": "Same script as artifact 180 with the 17-page expectation; not copied over the workspace artifact 180."
+  },
+  "official_pubcheck": {
+    "tool": "https://github.com/acl-org/aclpubcheck",
+    "source_commit": "237bee3a554f2d2fcda69cd0cf1edf4168e3d339",
+    "command": "python -m aclpubcheck --paper_type long main.pdf",
+    "proof": "non-line-numbered compile of archive 230 (review option removed), as for artifact 194",
+    "proof_pdf_sha256": "d8739e95430162ef7e607a7f3850adf03937fbdd6c5e6fbafa60e84dc4307cfa",
+    "proof_pages": 17,
+    "result": "All Clear!",
+    "exit_code": 0,
+    "review_mode_pdf": {
+      "pdf_sha256": "aa129219fe8124454f522f97adc6bb718796fb762e756b9cc7e096b09e67aa5d",
+      "exit_code": 0,
+      "reported_hits": 1407,
+      "line_number_margin_hits": 1390,
+      "footer_band_hits": 17,
+      "other_hits": 0,
+      "interpretation": "All hits come from review-mode line numbers and page footers, which Pubcheck does not exempt; the non-line-numbered proof is the comparable check."
+    }
+  },
+  "line_number_convergence": "A fresh compile with the standard four commands left two review line numbers (507, 539) overlapping text at the bottom of page 7; one extra pdflatex pass removes the lineno re-run warning. The archive builder now repeats pdflatex until the warning clears, and the readiness audit requires that.",
+  "text_level_audit_conditions_checked_here": {
+    "acl-arr-numeric-consistency-audit-189": "all manuscript-string conditions pass",
+    "acl-arr-claim-evidence-audit-191": "all manuscript-string, citation, reference, metadata-sync and scope conditions pass",
+    "acl-arr-citation-audit-192 (emulated)": "34 entries, unique keys, required fields and venue present, cited keys equal bibliography keys",
+    "acl-arr-metadata-audit-193 (emulated)": "title and abstract identical to main.tex; 5 unique keywords; no credential pattern",
+    "acl-arr-draft-readiness-audit-174": "phrase, style, and 17-page conditions pass; artifact-dependent conditions not evaluated",
+    "cross-version-headline-consistency-audit-224 (ARR part)": "pass"
+  },
+  "unit_tests_run_here": [
+    "materials/repro/test_post_arr_persistence_analysis.py",
+    "materials/repro/test_direct_sampling_analysis.py",
+    "materials/repro/test_run_direct_sampling_baseline.py"
+  ],
+  "not_run_here": [
+    "full runs of audits 189, 191, 192, 193, 174 (need workspace artifacts such as 036, 064, 065, 075, 098, 100, 164, 175-187)",
+    "sequential freeze 196",
+    "the 157-test workspace suite",
+    "regeneration of workspace artifacts 180 and 194 from the workspace environment"
+  ],
+  "status": "local_checks_passed_workspace_audits_pending"
+}

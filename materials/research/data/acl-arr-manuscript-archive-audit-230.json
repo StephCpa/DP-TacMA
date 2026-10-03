@@ -1,0 +1,52 @@
+{
+  "artifact": "acl-arr-manuscript-archive-audit-230",
+  "status": "passed",
+  "mode": "deterministic ARR manuscript-only source archive with independent compile; no provider calls",
+  "archive": "research/manifests/acl-arr-october-manuscript-source-230.zip",
+  "archive_sha256": "def3c2d161c5964616f9d32e04f37ef98c5152abebee35a70c92ec5e03094838",
+  "archive_bytes": 112575,
+  "entry_count": 10,
+  "entries": [
+    "acl.sty",
+    "acl_natbib.bst",
+    "appendix.tex",
+    "figures/evolution-audit-main-results.pdf",
+    "figures/failure-decomposition.pdf",
+    "figures/make_main_figures.py",
+    "figures/qwen-candidate-pool-enlargement.pdf",
+    "main.tex",
+    "math_commands.tex",
+    "references.bib"
+  ],
+  "independent_compile": {
+    "command_exit_codes": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "extra_pdflatex_passes": 1,
+    "pages": 17,
+    "limitations_heading_page": 8,
+    "normalized_text_equal": true,
+    "text_outputs_distinct": true
+  },
+  "workspace_pdf_sha256": "aa129219fe8124454f522f97adc6bb718796fb762e756b9cc7e096b09e67aa5d",
+  "workspace_pdf_pages": 17,
+  "checks": {
+    "entry_list_matches_manifest": true,
+    "compile_passes": true,
+    "line_numbers_settled": true,
+    "expected_pages": true,
+    "main_body_within_page_limit": true,
+    "normalized_text_equal_to_workspace_pdf": true,
+    "no_undefined_references": true,
+    "no_overfull_boxes": true,
+    "anonymous_author": true,
+    "no_credential_prefixes": true,
+    "no_machine_paths": true
+  },
+  "failed_checks": [],
+  "supersedes": "acl-arr-october-manuscript-source-179.zip (15-page version)"
+}

@@ -13,7 +13,9 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[2]
-ARCHIVE = ROOT / "research" / "manifests" / "acl-arr-october-manuscript-source-179.zip"
+ARCHIVE = ROOT / "research" / "manifests" / "acl-arr-october-manuscript-source-230.zip"
+EXPECTED_PAGES = 17  # 15 before the ported appendix additions; see REVISION-NOTES
+MAIN_BODY_PAGE_LIMIT = 8
 OUT = ROOT / "research" / "artifacts" / "acl-arr-pubcheck-preflight-180.json"
 
 
@@ -46,10 +48,17 @@ def main() -> None:
         page_match = re.search(r"(?m)^Pages:\s+(\d+)", pdfinfo_text)
         pages = int(page_match.group(1)) if page_match else None
         fonts = run(["pdffonts", os.fspath(pdf)], qa).stdout if pdf.exists() else ""
+        limitations_page = None
+        for page in range(1, (pages or 0) + 1):
+            text = run(["pdftotext", "-f", str(page), "-l", str(page), os.fspath(pdf), "-"], qa).stdout
+            if re.search(r"(?m)^(?:\d+\s+)?Limitations\s*$", text):
+                limitations_page = page
+                break
         checks = {
             "non_line_numbered_source": "\\usepackage[review]{acl}" not in source and "\\usepackage{acl}" in source,
             "compile_passes": codes == [0, 0, 0, 0],
-            "expected_pages": pages == 15,
+            "expected_pages": pages == EXPECTED_PAGES,
+            "main_body_within_page_limit": limitations_page is not None and limitations_page <= MAIN_BODY_PAGE_LIMIT,
             "no_overfull_boxes": "Overfull \\hbox" not in log and "Overfull \\vbox" not in log,
             "no_undefined_references": "undefined references" not in log.lower() and "undefined citations" not in log.lower(),
             "no_type3_fonts": "Type 3" not in fonts,
@@ -64,9 +73,10 @@ def main() -> None:
             "artifact": "acl-arr-pubcheck-preflight-180",
             "status": "passed" if not failed else "failed",
             "mode": "local non-line-numbered ACL preflight; not the official ACL Pubcheck tool; no provider calls",
-            "source_archive": "research/manifests/acl-arr-october-manuscript-source-179.zip",
+            "source_archive": "research/manifests/acl-arr-october-manuscript-source-230.zip",
             "proof_pdf_sha256": proof_sha,
             "pages": pages,
+            "limitations_heading_page": limitations_page,
             "command_exit_codes": codes,
             "checks": checks,
             "failed_checks": failed,

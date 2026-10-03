@@ -83,19 +83,52 @@ superseded by the replication.
 - `main.txt` regenerated with `pdftotext`.
 - `arr-metadata-draft-190.md` abstract resynchronized exactly to `main.tex`.
 
-## String-level audit compatibility (checked here; artifacts not rerun)
+## 17-page closure (2026-10-03)
 
-The text conditions in `audit_arr_numeric_consistency.py` (189),
-`audit_arr_claim_evidence.py` (191), the ARR part of
-`audit_cross_version_headline_consistency.py` (224), and the phrase checks
-in `audit_arr_draft_readiness.py` (174) were evaluated against the ported
-sources, and all pass. This includes "0--8.3 percentage points", "held-out
-planning component control", and metadata abstract equality.
+**Page expectation.** The expectation is now aligned to 17 pages in
+`repro/audit_arr_draft_readiness.py` and `repro/arr_pubcheck_preflight.py`.
+Both also gain a separate check that the main body ends by page 8 (the
+Limitations heading appears on page 8 or earlier), which is the actual ACL
+limit the old 15-page check stood in for.
 
-One known expectation change: the readiness audit (174) and the manuscript
-archive check expect a 15-page PDF; the port compiles to 17 pages (appendix
-additions only). Update that expectation deliberately, or drop the appendix
-figure and threat-model section, before rerunning.
+**Source archive.** The rebuilt archive is
+`research/data/acl-arr-october-manuscript-source-230.zip`, built by
+`repro/build_arr_source_archive.py`; its audit is
+`acl-arr-manuscript-archive-audit-230.json`. It supersedes the 15-page
+archive 179, and the readiness audit and preflight now read 230.
+- 10 entries: the six sources, three figure PDFs, and the figure script.
+- Byte-identical across rebuilds.
+- A fresh extraction compiles to 17 pages, with the body ending on page 8.
+- Its normalized text equals the committed `main.pdf`.
+
+**Line-number convergence.** A fresh compile with only the standard four
+commands left review line numbers 507 and 539 overlapping text at the bottom
+of page 7. One more `pdflatex` pass clears the lineno re-run warning. The
+archive builder now repeats passes until the warning clears, and the
+readiness audit requires that. Make sure the PDF you upload to ARR had
+settled line numbers.
+
+**Run here (zero provider calls):**
+- Local Pubcheck preflight: passed (17 pages, Limitations on page 8, no
+  overfull boxes, no Type 3 fonts).
+- Official `aclpubcheck` at the same commit as artifact 194 (`237bee3`), on
+  the non-line-numbered proof: **All Clear!**
+- The line-numbered review PDF returns only review-mode margin hits: 1,390
+  line numbers and 17 page footers.
+- Text conditions of 189, 191, 174, and the ARR part of 224 all pass.
+- Emulated 192 (citations: 34 keys, all cited, required fields present) and
+  193 (title, abstract, and 5 keywords in sync) both pass.
+- The `repro/` unit tests pass.
+
+The full record is
+`research/data/arr-17-page-closure-local-verification-2026-10-03.json`.
+
+**Still workspace-only:**
+- full runs of 189, 191, 192, 193, and 174, which need artifacts not in this
+  repository;
+- the sequential freeze 196;
+- the 157-test suite;
+- regenerating workspace artifacts 180 and 194 in the workspace environment.
 
 ## Research materials
 
@@ -107,9 +140,8 @@ figure and threat-model section, before rerunning.
   runner docstring are updated.
 - **Direct-sampling baseline.** Renumbered from 223–225 to 227–229, because
   main already uses 222–226. It is still a draft and has not been run; main's
-  own notes confirm this. The cached-analysis README wording that called the
-  protocol-083 trajectory study "the direct-sampling baseline" was corrected
-  to keep the two apart.
+  own notes confirm this. Main has since corrected the cached-analysis README
+  itself, and this branch now takes main's version unchanged.
 - **Dropped:** replication-inclusion amendment 222 and its templates. They
   are obsolete because the replication is complete and reported, and the
   number collides with main's artifact 222.
@@ -119,9 +151,14 @@ figure and threat-model section, before rerunning.
 
 ## Before upload (workspace)
 
-1. Copy `main.tex`, `appendix.tex`, `references.bib`, `figures/`, and
-   `arr-metadata-draft-190.md` (to `submission/`) into the workspace.
-2. Rerun audits 189, 191, 192, 193, 174, and 224, then the sequential freeze
+1. Copy into the workspace:
+   - `main.tex`, `appendix.tex`, `references.bib`, and `figures/`;
+   - `arr-metadata-draft-190.md`, into `submission/`;
+   - `repro/build_arr_source_archive.py`, `repro/arr_pubcheck_preflight.py`,
+     and `repro/audit_arr_draft_readiness.py`, into `research/experiments/`.
+2. Run `build_arr_source_archive.py`, which writes archive 230 and its audit.
+   Then run `arr_pubcheck_preflight.py` and the official Pubcheck on its
+   non-line-numbered proof.
+3. Rerun audits 189, 191, 192, 193, 174, and 224, then the sequential freeze
    196 and the 157-test suite.
-3. Rerun the official Pubcheck on the new PDF, and rebuild the manuscript
-   archive.
+4. Fast-forward main only after those pass.
