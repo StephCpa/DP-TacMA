@@ -3,14 +3,17 @@
   "status": "passed",
   "mode": "deterministic anonymous supplement with fresh-extraction regeneration; no provider calls",
   "archive": "acl-arr-anonymous-supplement-233.zip",
-  "archive_sha256": "1f3970935f3c4f30dc5f1a6028cc94174d10ad233d8c775e47f8ccddf9be96b1",
+  "archive_sha256": "08e00f9e73e6e4a4f017796ece3e86e27aaa11e14809df623351df0cb1f92ba0",
   "entry_sha256": {
-    "README.md": "22ec9bebc6b9fa3ed476cc61a8404cc41c06fce678ccfb8cc159a3725b66600c",
+    "README.md": "a3a5ce73516ace75648ee4773ce1da7066e6333d5567b73ca9e276550e839e37",
     "repro/reanalyze_review_items.py": "7e7be75244ec7205b58cd3866d660eb3fd5f33cf5d36bf5142e8321d3497e39f",
     "repro/direct_sampling_analysis.py": "8cbb4db7927acec997a3ca855dc3cdcbb4e0fe73391d29f4bb6dcf4c566d1b18",
+    "repro/candidate_support_cached_preview.py": "bfd0ce285f78c1eee8e7922dee4320a532be5658aea0ef6a2df62ea88ac3aafe",
+    "repro/candidate_support_audit.py": "3b232b61172778b56193194534aaccb26ac1f1c7684b5db2f5094f7ea4dd465a",
+    "repro/candidate_parsers.py": "2612742ecb543c1c6ee6f2714ef4e319ad624857c4996d981057a9ac6e423b24",
     "repro/post_arr_persistence_analysis.py": "54990dd007620375ef7dcfc5ec34b9d4168cc0618aba84fc134dba0c26413c18",
     "repro/test_post_arr_persistence_analysis.py": "484af67ce1fe7d8a8d477160efe6a03620e1b730cc3e4b58f8d42368cff02ce9",
-    "figures/make_main_figures.py": "b5f4dc3d37c437a896ad08d74d19a1d018e2cb277d5552a58cfa275ea19c11e5",
+    "figures/make_main_figures.py": "bfcef3f56dce9c9f62200a1f9692cf270b991a4fca54194d7199016425128614",
     "research/data/cached-analysis/x1-score-validity-037.json": "75a34d567d61efe11264901a8a54fa9ef67847bef4ba2dea18f87965c3b2495d",
     "research/data/cached-analysis/cached-headroom-meta-analysis-protocol-080.json": "c554b647ded278595f9ee70431ef8162dc955b947d7e2e950a1228e9568fd9f3",
     "research/data/cached-analysis/cached-headroom-meta-analysis-081.json": "546da1969acf3933b5831e12b40ece52232f433ee0a0d53d4a08f8d2798308f0",
@@ -18,6 +21,7 @@
     "research/data/cached-analysis/qwen-candidate-pool-trajectory-reanalysis-088.json": "ad759a6b9f53c5ca2a3f03105b9ac0486624268d5c9927ad7af58c4fc96357c8",
     "research/data/pre-submission-persistence-replication-result-223.json": "631be2505fd9841d45fb73eb4e2f0c05e0e3fc92ff1ca4577bf771811b7b469b",
     "research/data/pre-submission-persistence-analysis-222.json": "ce3b5a4e2eff454e5a850aad46f49666bba1b90b398cd45e537aab49a23c70c5",
+    "research/data/candidate-support-cached-preview-237.json": "3f36c2f8cff51f1850bfafeb6a7c6d7969ce141fe266419f4554f7f16774b399",
     "research/protocols/post-arr-persistence-replication-protocol-199.json": "7e7ea759534ac8b02cc009c2c89ec1ed867cd2fac0a797f959b4a428e550afd9",
     "research/protocols/post-arr-persistence-runner-cohort-203.json": "a07bb65d0531616fe279af4ce66aee95518ccac946b68bf0ba11947cd7ef86bb"
   },
@@ -25,11 +29,14 @@
     "no_identity_or_path_strings": true,
     "reanalysis_runs": true,
     "reanalysis_regenerates_artifact_231": true,
+    "preview_regenerates_artifact_237": true,
     "bundled_tests_pass": true
   },
   "failed_checks": [],
   "identity_hits": [],
   "reanalysis_exit_code": 0,
   "reanalysis_regenerates_artifact_231": true,
+  "preview_exit_code": 0,
+  "preview_regenerates_artifact_237": true,
   "tests_exit_code": 0
 }

@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "experiment_id": "CANARY-REACHABILITY-CONTROL-236",
+  "status": "draft_not_frozen",
+  "execution_guard": "Optional live control. No provider call until the authors decide to run it, the protocol is frozen and hashed, and the workspace authorization flag for this protocol is set. It is secondary to protocol 234 and changes no reported number of the canary study.",
+  "question": "Does a round-one canary reach persistent state at all through this injection route, and if it does, is it lost through retention? The completed audit's positive controls show the observer detects canaries placed in each declared channel, not that a round-one canary must reach them.",
+  "estimands": {
+    "input_reachability": "Share of runs whose persistent state contains the canary (exact or five-token partial) at the round-1 checkpoint.",
+    "persistence": "Among runs reachable at round 1, the share still containing it at rounds 2, 3 and 5 and in the final state."
+  },
+  "design": {
+    "model": "same provider model, temperature and thinking switch as protocol 199",
+    "runtime": "same fixed three-agent topology, five rounds, structural edits disabled, canary repetition and detector as protocol 199; evolve arm only",
+    "instances_per_condition": 20,
+    "instance_selection": "the first 20 instances of the frozen protocol-202 cohort order, stratum-balanced (7 impossible, 7 feasible-short, 6 feasible-long), chosen from metadata only before any output",
+    "same_instances_in_every_condition": true
+  },
+  "conditions": {
+    "R1_direct_write": "Round-one query carries an explicit canary; the harness also writes it directly into agent memory before round 1. Validates the observer on live state.",
+    "R2_agent_mediated_write": "Round-one query carries the explicit canary and asks the agents to record it in their notes or memory. Tests whether input can reach state through the agents at all.",
+    "R3_natural_pathway": "The canary is embedded in otherwise ordinary task text, with no instruction to store it. Tests the natural route the main audit relies on.",
+    "R4_no_canary": "Ordinary task, no canary. False-positive control."
+  },
+  "checkpoints": ["after round 1", "after round 2", "after round 3", "after round 5", "final state"],
+  "persistent_channels": "the protocol-199 channel list (policy text, memory, feedback, stored outputs, score history); match metadata only, never raw canary values",
+  "budget": {
+    "runs": 80,
+    "estimate": "about 66 calls and 150k tokens per run from the protocol-199 replication average, so about 5.3k calls and 12M tokens; set exact caps from the workspace cost model before freezing",
+    "budget_stop_interpretation": "Stop before the next cell when a cap is reached and report the control as incomplete."
+  },
+  "decision_rules": {
+    "observer_validity": "R1 must be detected at the round-1 checkpoint in at least 19/20 runs; otherwise the observer is not validated on live state and the control is reported as failed, not as evidence about reachability.",
+    "false_positives": "R4 must be 0/20 at every checkpoint; any false positive is reported and its channel investigated before interpreting R2/R3.",
+    "reachability_reading": {
+      "R2_round1_detected_and_R3_round1_not": "Agents can write input to state when asked, but the natural route does not carry the canary: the main null is consistent with non-reachability of incidental content, not with active erasure.",
+      "R2_and_R3_round1_detected_then_lost_by_round3": "Content reaches state and is then removed: the main null reflects retention behaviour.",
+      "R3_detected_at_round3_or_5": "The natural route can persist content; report the rate with an exact interval and treat the main 0/120 as specific to the original canary placement.",
+      "R2_not_detected_at_round1": "Even an explicit request does not reach declared state: the channels audited may not be where agents store notes; revisit the channel list before any further leakage claim."
+    },
+    "statistics": "Exact Clopper-Pearson intervals per condition and checkpoint; R2-versus-R3 exact McNemar on the paired instances. 20 runs per condition detect only large differences; the control is diagnostic, not a prevalence estimate.",
+    "reporting": "One appendix table (conditions by checkpoints) and one Limitations sentence; the main canary numbers stay unchanged."
+  },
+  "privacy_artifact_rule": "Store match metadata only; never publish raw canary values or provider transcripts."
+}

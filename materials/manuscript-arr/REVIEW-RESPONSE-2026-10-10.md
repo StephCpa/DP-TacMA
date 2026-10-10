@@ -56,6 +56,10 @@ changes are monotone and `exp(εu/Δu)` is ε-DP.
 - **Claim** is now exactly the reviewer's supported claim.
 - **Not done:** rank-preserving rescaling, mean- or variance-matched pseudo
   terms, and score baselines. These need new runs.
+- **Endpoint (second pass):** \(\delta\) now names its endpoint. Executable
+  validity gives the same paired contrasts as reference exactness in both
+  non-degenerate cohorts (artifact 237); the initial cohort needs workspace
+  records.
 - **Authors:** if call order was interleaved or counterbalanced, state it in
   the appendix; the repository records only the paired design.
 
@@ -93,6 +97,13 @@ topology-edit arm, was not run.
   Generation failures are stated as parser-conditional.
 - **Not done:** a human audit of rejected slots. This needs raw traces from
   the workspace and is the most valuable remaining check for this claim.
+  - **Update (second pass).** Draft protocol 234 and a tested toolkit are
+    ready, with decision tiers fixed in advance. The design is a blinded,
+    double-annotated census of every unique rejected text in the 46 failed
+    runs, re-parsed by P0, a format-only P1, and an independent P2.
+  - **Why a census.** The appendix now shows why a slot sample cannot
+    certify the run count: a 1% per-slot false-negative rate could move about
+    5 of the 43 runs.
 
 **II.6 C1→C5: Done.**
 - "Independent contexts expand support" became "Additional independent
@@ -159,9 +170,15 @@ and artifact 231.
 extended to 0.45 and now to 0.47, so nothing is clipped.
 
 **VII P1 (second runtime or benchmark, real selector baselines, stronger
-canary): Not done.** All need new experiments. Each is stated in Limitations.
-A random or released-score selector baseline cannot be computed from the
-cached rows, which store only oracle indicators, not per-candidate scores.
+canary): Partly.**
+- **Random-final baseline: done.** It is computed from the cached
+  per-trajectory final flags: 0.50 to 0.54 against an oracle of 0.60 to 0.80
+  (Figure 2b, §3.3).
+- **Score-based selectors:** still not computable from cached rows. They are
+  part of protocol 234's replay (B0–B5) once the adapter reads per-candidate
+  scores.
+- **Canary reachability:** a control is drafted as protocol 236 (R1–R4).
+- **Second runtime or benchmark:** not done.
 
 ## Verification (zero provider calls)
 
@@ -182,5 +199,7 @@ The record is `research/data/arr-review-revision-local-verification-2026-10-10.j
 
 - **Dual submission.** Your venue brief already gates ARR upload on the ICLR
   submission state; that gate still applies.
-- **Parser hand-audit.** A 50–100 slot hand audit of rejected slots, run in
-  the workspace, would most strengthen the 43/46 claim.
+- **Parser hand-audit.** Superseded by the protocol-234 census (see
+  `research/progress/candidate-support-audit-protocol-234.md`). It needs
+  workspace texts and two annotators; the decision tiers and reporting text
+  are fixed in advance.

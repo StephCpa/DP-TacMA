@@ -39,3 +39,42 @@ before using them on artifact 220.
 - Tests: `python test_direct_sampling_analysis.py` and
   `python test_run_direct_sampling_baseline.py`.
 
+
+## Candidate-support audit (protocol 234, draft) and cached preview (237)
+
+- `candidate_support_cached_preview.py`: zero-call, reads only cached 081/088
+  and writes `research/data/candidate-support-cached-preview-237.json`. It
+  computes:
+  - executable validity versus reference exactness for the two cached
+    length-removal cohorts;
+  - random-final and random-slot selector baselines on the Qwen nested pools;
+  - the run-level parser-sensitivity calculation behind the census design.
+- `candidate_parsers.py`: P1, a format-only normalizer applied before the
+  unchanged P0, and P2, an independent parser that accepts `IMPOSSIBLE` or
+  exactly one JSON array of item ids.
+- `candidate_support_audit.py`: the analysis library. It covers:
+  - re-parsing and slot states;
+  - run classes and reclassification;
+  - funnels;
+  - blinded packet construction;
+  - label merging with kappa;
+  - q_FN with exact and run-clustered bounds;
+  - selector replay B0–B6 under both endpoints;
+  - dual endpoints;
+  - the frozen decision tiers.
+- `candidate_support_adapter.py`: wire every hook to the 081/088 code paths.
+  Each hook raises `NotImplementedError` until then.
+- `run_candidate_support_audit.py`: stages `--check`, `--reparse`, `--packet`,
+  `--second-pass`, and `--analyze`. Every stage except `--check` needs the
+  frozen protocol and refuses outputs made under another protocol hash. The
+  packet directory holds candidate texts and the de-blinding key, gets a
+  `.gitignore`, and must never be published.
+- `make_candidate_support_figures.py`: draws the funnel, the reclassification
+  matrix, selector versus support, and the cost table from analysis 235.
+- Tests: `python test_candidate_support_audit.py` (15 synthetic-fixture
+  tests with a fake adapter).
+
+The human-readable protocol, annotation guide, and pre-written tier A/B/C
+reporting text are in
+`research/progress/candidate-support-audit-protocol-234.md`. The optional
+live canary reachability control is draft protocol 236.

@@ -384,7 +384,7 @@ sv,t = (ϕv,t , mv,t , fv,t , ov,t , qv,t ),
 163
 164
 
-177
+178
 
 195 from slow-update judging (Appendix D). Zeroing the length term changes every downstream
 use of the heuristic, including retention, the score
@@ -394,13 +394,13 @@ replacing the fast-round heuristic, not the effect
 of verbosity alone. A null utility effect would not
 show that the score is invalid: the controller may ignore it, other signals may dominate, or the cohorts
 may be underpowered.
-For a paired score intervention Z, define its armlevel utility consequence as
+For a paired score intervention Z and a finalanswer endpoint V , define its arm-level consequence as
 
-178
+179
 
-b | Z = 1] − E[U
+b | Z = 1] − E[V
 b | Z = 0].
-δbUabl = E[U
+δbVabl = E[V
 
 165
 166
@@ -414,8 +414,8 @@ b | Z = 0].
 174
 175
 176
+177
 
-179
 180
 181
 182
@@ -430,13 +430,21 @@ b | Z = 0].
 191
 192
 193
+194
+195
+196
+197
 
-This arm-level diagnostic is not a parameter of a
-candidate selector. For two candidates with utilityscore gap gUsel = u(c+ ) − u(c− ) and candidatescore sensitivity ∆u , define the separate local selecsel
-tor ratio ρsel
-U = gU /∆u . Under candidate-score replacement adjacency, a neighboring input changes
-one candidate’s score by at most ∆u and leaves
-the other scores and the candidate set fixed. Such
+Table 2 uses reference exactness for V ; executable
+validity gives identical paired differences in both
+non-degenerate cohorts (Appendix D). This armlevel diagnostic is not a parameter of a candidate
+selector. For two candidates with utility-score gap
+gUsel = u(c+ ) − u(c− ) and candidate-score sensitivity ∆u , define the separate local selector ratio
+sel
+ρsel
+U = gU /∆u . Under candidate-score replacement adjacency, a neighboring input changes one
+candidate’s score by at most ∆u and leaves the
+other scores and the candidate set fixed. Such
 changes are monotone, so sampling candidate j
 with probability proportional to exp(εuj /∆u ) is εDP (McSherry and Talwar, 2007); Appendix V
 gives the proof. Under the general calibration
@@ -444,44 +452,38 @@ exp(εuj /2∆u ), every budget reported below doubles. With the other k − 1 c
 lower utility, the preferred-candidate probability is
 1
 
-194
+198
 
-1 + (k − 1)e
-
-−ερsel
-U
+sel
+1 + (k − 1)e−ερU
 
 .
 
-196
+200
 
 If an intervention changes scores but not utility,
 increasing ε cannot make the targeted signal useful.
 
-197
+201
 
 2.3
 
-198
+202
 
 Let fi be run i’s synthesized final answer and let Ci
 contain fi plus all persisted round-agent candidates.
 For executable utility U , define
 
-195
-
 199
-200
-201
+
+203
+204
+205
 
 Candidate-pool headroom
 
 Hi = max U (c) − U (fi ).
 
-203
-204
-205
-206
 207
 208
 209
@@ -492,7 +494,7 @@ Hi = max U (c) − U (fi ).
 
 Inference and experimental sequence
 
-218
+222
 
 Paired binary effects use task-level risk differences,
 paired task bootstraps, and exact discordant-pair
@@ -515,13 +517,13 @@ table separates quantities frozen before provider
 execution from later secondary analyses; no postoutcome qualification changes a recorded run or
 primary endpoint.
 
-219
+223
 
 3
 
 Results
 
-246
+250
 
 3.1
 
@@ -534,15 +536,14 @@ partial canary in post-input persistent state. We
 then completed the frozen 120-instance replication
 (120 runs per arm, 360 runs): all 360 cells reached
 five rounds, and exposure was 0/120 in the evolve
-and depth-matched-reset arms; the no-canary arm
-also had 0/120 false positives. The evolve-arm
-one-sided 95% upper confidence bound is 2.5%.
-Exposure was zero in each of the three 40-instance
 
 c∈Ci
 
-202
+206
 
+change Ci . Including fi was an outcome-aware
+amendment, but no eligible run had a valid final answer without a valid round candidate (0/65), so the
+round-candidate-only oracle gives identical values.
 U is executable validity. We parse candidate
 text into canonical crafting plans and execute them
 without reference answers; slots the parser rejects
@@ -553,9 +554,6 @@ it is used.
 
 Hi is the hindsight realized-pool oracle gap. It
 bounds every selector, private or not, whose output must belong to Ci ; it does not constrain regeneration, repair, or new tool interaction, which
-change Ci . Including fi was an outcome-aware
-amendment, but no eligible run had a valid final answer without a valid round candidate (0/65), so the
-round-candidate-only oracle gives identical values.
 3
 
 211
@@ -565,11 +563,11 @@ round-candidate-only oracle gives identical values.
 215
 216
 217
-
+218
+219
 220
 221
-222
-223
+
 224
 225
 226
@@ -592,11 +590,11 @@ round-candidate-only oracle gives identical values.
 243
 244
 245
-
+246
 247
 248
 249
-250
+
 251
 252
 253
@@ -659,6 +657,10 @@ round-candidate-only oracle gives identical values.
 309
 310
 
+and depth-matched-reset arms; the no-canary arm
+also had 0/120 false positives. The evolve-arm
+one-sided 95% upper confidence bound is 2.5%.
+Exposure was zero in each of the three 40-instance
 strata, and the paired evolve-minus-reset risk difference is 0 with exact two-sided McNemar p = 1.
 The extractor recovers 7/7 deterministic channel
 injections and a live canary written into memory
@@ -693,11 +695,12 @@ replication that share the released score span 5/12
 to 7/12 exact, the same two-task spread. A secondary, outcome-aware synthesis of all 42 pairs
 gives +0.024 [−0.095, 0.143]. We therefore claim
 only that removing the fast-round length term
-changes recorded scores without a reliably detectable change in measured exactness, not that
+changes recorded scores without a reliably de-
+
+tectable change in measured exactness, not that
 the score is invalid.
 Replacing the heuristic outright does not rescue
 utility either. Inserting a reference-free executor
-
 into historical-answer retention gave 1/8 versus
 0/8 executable finals in a development pilot and
 1/20 versus 0/20 in a separately frozen validation
@@ -713,7 +716,7 @@ control in Table 3.
 Fixed-pool selection has little realized
 headroom
 
-318
+322
 
 We execute the final answer and every persisted
 round-agent candidate in four independently frozen
@@ -741,21 +744,17 @@ DeepSeek duplicate-text rates are much lower.
 Parser-accepted support is small in both model families: across selected arms, 38/72 runs contain no
 parseable canonical plan, 22 contain one, eight contain two, and only four contain at least three.
 
-320
+324
 
 3.3
 
-353
+357
 
 Additional independent restarts expand
 recorded support
 
 We test the bound’s escape clause prospectively on
-20 untouched Qwen length-two tasks. Each task receives one temperature-zero anchor trajectory and
-five independent temperature-0.7 trajectories; each
-five-round trajectory supplies 15 agent outputs and
-a final answer. Cj is the canonically deduplicated
-4
+20 untouched Qwen length-two tasks. Each task re4
 
 312
 313
@@ -763,13 +762,13 @@ a final answer. Cj is the canonically deduplicated
 315
 316
 317
-
+318
 319
-
+320
 321
-322
+
 323
-324
+
 325
 326
 327
@@ -798,11 +797,11 @@ a final answer. Cj is the canonically deduplicated
 350
 351
 352
-
+353
 354
 355
 356
-357
+
 358
 359
 360
@@ -956,41 +955,39 @@ evidence.
 375
 376
 
+ceives one temperature-zero anchor trajectory and
+five independent temperature-0.7 trajectories; each
+five-round trajectory supplies 15 agent outputs and
+a final answer. Cj is the canonically deduplicated
 union of the anchor and the first j stochastic trajectories, so C1 and C5 contain two and six trajectories
 (Figure 2).
 Adding four independent stochastic restarts,
 from C1 to C5 , adds 1.00 canonical plan per task
 [0.50, 1.60] (one-sided 95% lower bound 0.60) and
 raises the offline executable oracle from 0.60 to
-0.80, a gain of 0.20 [0.05, 0.40]. Because the pools
-are nested, we do not report sign-test p-values. The
-contrast changes trajectory count, candidate slots,
-provider calls, and tokens together, so it shows that
-more independent restarts expand recorded support
-in this runtime, not that independence itself causes
-the gain. A non-nested comparison of the first
-temperature-0.7 trajectory with the anchor finds a
-support difference of −0.05 [−0.35, 0.25], so tem5
+0.80, a gain of 0.20 [0.05, 0.40]. A uniformly random choice among each pool’s trajectory final answers rises only from 0.50 to 0.54, so the oracle’s
+lead over it widens from 0.10 to 0.26 [0.10, 0.43]:
+the added support must be located, not merely sam5
 
-perature alone is not sufficient. A retrospective
-slot-matched decomposition points the same way:
-16 slots sampled across the five stochastic trajectories give expected oracle coverage 0.626, versus
-0.570 for 16 slots within one trajectory (difference
-0.056 [0.016, 0.105]). It is matched on slots, not
-tokens or context.
+pled. Because the pools are nested, we do not
+report sign-test p-values. The contrast changes trajectory count, candidate slots, provider calls, and
+tokens together, so it shows that more independent
+restarts expand recorded support in this runtime,
+not that independence itself causes the gain. A
+non-nested comparison of the first temperature-0.7
+trajectory with the anchor finds a support difference
+of −0.05 [−0.35, 0.25], so temperature alone is not
+sufficient. A retrospective slot-matched decomposition points the same way: 16 slots sampled across
+the five stochastic trajectories give expected oracle
+coverage 0.626, versus 0.570 for 16 slots within
+one trajectory (difference 0.056 [0.016, 0.105]). It
+is matched on slots, not tokens or context.
 
 377
 
 The gain is concentrated. Twelve tasks succeed
-at every pool size, four never succeed, and four
-are rescued, three of them by a valid plan in only
-one of five stochastic trajectories (Appendix R). A
-fresh-draw plug-in extrapolation gives 0.751 at five
-stochastic trajectories and 0.798 at twenty, versus
-the realized 0.80; this is finite-sample extrapolation, and zero successes in five trials still permits
-a per-task one-sided 95% upper bound of 0.451,
 
-384
+392
 
 378
 379
@@ -998,7 +995,7 @@ a per-task one-sided 95% upper bound of 0.451,
 381
 382
 383
-
+384
 385
 386
 387
@@ -1006,7 +1003,6 @@ a per-task one-sided 95% upper bound of 0.451,
 389
 390
 391
-392
 
 Table 3: Executable headroom for selectors restricted to persisted candidates. Intervals resample tasks within
 cohort. DeepSeek X1, the evolve arm of the canary study, has n = 13 because forward execution cannot certify
@@ -1069,18 +1065,25 @@ Pooled (exploratory)
 
 43/46
 
-397
+405
 
+at every pool size, four never succeed, and four
+are rescued, three of them by a valid plan in only
+one of five stochastic trajectories (Appendix R). A
+fresh-draw plug-in extrapolation gives 0.751 at five
+stochastic trajectories and 0.798 at twenty, versus
+the realized 0.80; this is finite-sample extrapolation, and zero successes in five trials still permits
+a per-task one-sided 95% upper bound of 0.451,
 so 0.80 is not an identified ceiling. The escape is
 also expensive: C1 records 4.81M tokens and C5
 14.43M, a 3.00-fold increase. Independent restarting is an existence proof and a cost baseline, not an
 efficient method.
 
-398
+406
 
 3.4
 
-399
+407
 
 Two further studies are exploratory and reported
 in full in the appendix. A frozen restart-versusrepair gate on eight DeepSeek tasks stopped because only three anchor failures were informative, below the frozen minimum of four, so no
@@ -1095,26 +1098,20 @@ We read this as task-level response collapse on two
 selected tasks, not a population comparison: raising temperature inside a direct prompt need not
 diversify a hard failure.
 A post hoc held-out planning component control (Appendix T) finds that zero-call symbolic
-search alone reaches 12/12 feasible PlanCraft replays, versus 8/12 when DeepSeek chooses among
-verified actions without the symbolic filters (exact
-p = 0.125). Because the planner was developed
-post hoc and its step cap changed after the first
-held-out batch, we treat it as exploratory evidence
-that symbolic constraints supply much of the executable support, not as an LLM or multi-agent
 
 393
 394
 395
 396
-
+397
+398
+399
 400
 401
 402
 403
 404
-405
-406
-407
+
 408
 409
 410
@@ -1140,16 +1137,32 @@ that symbolic constraints supply much of the executable support, not as an LLM o
 
 Exploratory mechanism studies
 
+search alone reaches 12/12 feasible PlanCraft replays, versus 8/12 when DeepSeek chooses among
+verified actions without the symbolic filters (exact
+p = 0.125). Because the planner was developed
+post hoc and its step cap changed after the first
+held-out batch, we treat it as exploratory evidence
+that symbolic constraints supply much of the executable support, not as an LLM or multi-agent
 result.
 
 430
 
 3.5
 
-431
+439
 
 An illustrative fixed-pool selector
 calculation
+
+432
+433
+434
+435
+436
+437
+438
+
+440
 
 Appendix V gives an illustrative fixed-pool calculation, not a privacy–utility frontier. With binary executor utility on mixed C5 pools (gUsel = ∆u = 1),
 the monotone exponential mechanism selects an
@@ -1161,11 +1174,11 @@ index is covered by the adjacency; candidate texts,
 prompts, memories, messages, control flow, and
 the executor are trusted (Appendix C).
 
-433
+441
 
 4
 
-445
+453
 
 Related Work and Implications
 
@@ -1177,27 +1190,14 @@ et al., 2023a; Zhou et al., 2024; Snell et al., 2025),
 and repeated sampling raises coverage whenever
 a verifier can recognize a correct sample (Brown
 et al., 2024). For agents, Zhu et al. (2025) study parallel sampling, sequential revision, verifiers, and
-diversified rollouts. Our nested pools are a narrower realized-support audit inside one runtime,
-not a new scaling method; the question they add
-is whether the recorded generator exposed any executable alternative before search or selection is
-optimized.
-Feedback-based agents such as ReAct, Reflexion, Self-Refine, and LATS condition later generation on actions, evaluation, or verbal memory (Yao
-6
+diversified rollouts. Our nested pools are a nar6
 
-432
+431
 
-434
-435
-436
-437
-438
-439
-440
-441
 442
 443
 444
-
+445
 446
 447
 448
@@ -1205,7 +1205,7 @@ Feedback-based agents such as ReAct, Reflexion, Self-Refine, and LATS condition 
 450
 451
 452
-453
+
 454
 455
 456
@@ -1273,6 +1273,7 @@ realized offline oracle
 0.8
 
 0.6
+random final
 
 0.4
 
@@ -1299,7 +1300,8 @@ Nested pool (trajectories)
 
 Figure 2: Additional independent restarts expand recorded support on 20 Qwen tasks. Cj pools the temperaturezero anchor with j stochastic trajectories (total trajectories in parentheses). (b) Realized offline oracle with 95%
 task-bootstrap intervals, and the fresh-draw plug-in extrapolation with its task-cluster band; the dotted line is the
-temperature-zero final answer. Offline oracles are upper bounds, not deployed selector accuracy.
+temperature-zero final answer, and the aqua line a uniformly random choice among the pool’s final answers. Offline
+oracles are upper bounds, not deployed selector accuracy.
 
 466
 467
@@ -1332,8 +1334,12 @@ temperature-zero final answer. Offline oracles are upper bounds, not deployed se
 494
 495
 496
-497
 
+rower realized-support audit inside one runtime,
+not a new scaling method; the question they add
+is whether the recorded generator exposed any executable alternative before search or selection is
+optimized.
+Feedback-based agents such as ReAct, Reflexion, Self-Refine, and LATS condition later generation on actions, evaluation, or verbal memory (Yao
 et al., 2023b; Shinn et al., 2023; Madaan et al.,
 2023; Zhou et al., 2024). Multi-agent sampling and
 layered aggregation seek gains from multiple response sources (Li et al., 2024; Wang et al., 2025b;
@@ -1352,18 +1358,18 @@ exhibiting position, self-enhancement, and verbosity biases (Zheng et al., 2023)
 (Dubois et al., 2024). We instead measure the
 downstream consequence of an intervention on a
 score used inside the runtime, rather than a metaevaluation correlation.
+7
+
 Canary methods test whether rare secrets influence model outputs (Carlini et al., 2019). Work
 on indirect prompt injection, memory poisoning,
 tool-using-agent attacks, and privacy-norm behavior shows that agent state and external observations can carry security- or privacy-relevant information (Greshake et al., 2023; Chen et al., 2024;
 Debenedetti et al., 2024; Shao et al., 2024). MEXTRA mounts adaptive black-box extraction against
-7
-
 agent memory (Wang et al., 2025a); our canary
 audit is a non-adaptive, exact-match check of one
 runtime’s persistent state and complements rather
 than replaces such attacks (Appendix U).
 
-498
+497
 
 Differential privacy calibrates randomized releases to sensitivity (Dwork et al., 2006; Dwork
 and Roth, 2014). Report Noisy Max (Dwork and
@@ -1374,21 +1380,15 @@ protected decision improves task outcomes. An
 end-to-end private architecture would also need
 an explicit privacy principal, adjacency, public
 transcript, and trusted boundary, because memory, messages, stopping time, and topology can
-leak independently of a private score; routing crossboundary communication through a privatized summary, billboard style, is one untested route to joint
-DP (Hsu et al., 2014).
+leak independently of a private score; routing crossboundary communication through a privatized sum-
 
-502
+510
 
-The observed support bottleneck changes the engineering target in this configuration. Better reranking cannot solve generator-unreachable tasks; independent restarts sometimes do, but at three times
-the token cost. Efficient diversity requires an intervention that changes task-relevant support without
-multiplying full trajectories, which we leave to future work.
-
-522
-
+498
 499
 500
 501
-
+502
 503
 504
 505
@@ -1396,7 +1396,7 @@ multiplying full trajectories, which we leave to future work.
 507
 508
 509
-510
+
 511
 512
 513
@@ -1408,22 +1408,26 @@ multiplying full trajectories, which we leave to future work.
 519
 520
 521
-
+522
 523
 524
 525
 526
 527
-528
-529
 
-530
+537
+
+mary, billboard style, is one untested route to joint
+DP (Hsu et al., 2014).
+The observed support bottleneck changes the engineering target in this configuration. Better reranking cannot solve generator-unreachable tasks; independent restarts sometimes do, but at three times
+the token cost. Efficient diversity requires an intervention that changes task-relevant support without
+multiplying full trajectories, which we leave to future work.
+
+538
 
 5
 
-531
-
-546
+539
 
 Every reported experiment uses a JSON protocol
 frozen as an internal record before execution, a
@@ -1436,11 +1440,41 @@ credentials are excluded from research artifacts.
 The appendix records amendments, stopping decisions, and excluded provider-error traces, and
 Appendix W lists what the anonymous supplement regenerates; the upstream runtime is not redistributed.
 
+528
+529
+530
+531
+532
+533
+534
+535
+536
+
+540
+541
+542
+543
+544
+545
+546
 547
+548
+549
+550
+551
+552
+553
+554
+
+Reproducibility
+
+555
 
 6
 
-548
+556
+
+572
 
 Candidate selection in test-time LLM agents should
 be preceded by an audit of exposure, score consequences, and realized candidate support. In the
@@ -1455,29 +1489,15 @@ the offline oracle from 0.60 to 0.80 at triple the
 token cost. These measurements locate the binding
 constraint in generation support for this configuration and expose the limits of the present evidence.
 
-532
-533
-534
-535
-536
-537
-538
-539
-540
-541
-542
-543
-544
-545
+573
 
-549
-550
-551
-552
-553
-554
-555
-556
+7
+
+574
+
+Every study disables structural birth/death and edge
+edits, so the results describe a fixed-topology slice
+
 557
 558
 559
@@ -1486,19 +1506,16 @@ constraint in generation support for this configuration and expose the limits of
 562
 563
 564
-
-Reproducibility
-
-Conclusion
-
 565
-
-7
-
 566
+567
+568
+569
+570
+571
 
-Every study disables structural birth/death and edge
-edits, so the results describe a fixed-topology slice
+575
+
 of TacoMAS and do not test topology evolution,
 structural leakage channels, or selection within
 evolving workflows. All studies use PlanCraft, and
@@ -1508,21 +1525,6 @@ family, injected in the round-one query, one model,
 a five-round horizon, and exact or five-token partial matching. With 0/120 evolve observations it
 cannot exclude rates below 2.5% at one-sided 95%
 confidence. It does not test semantic paraphrase,
-
-567
-568
-569
-570
-571
-572
-573
-574
-575
-576
-577
-
-Limitations
-
 encoded or cross-channel reconstruction, taskrelevant secrets, adaptive extraction, or providerside logs, and the positive controls cover the declared channels rather than the round-one injection
 path. The canary is unrelated to the task, so the
 audit tests incidental retention. Qwen replicates the
@@ -1547,29 +1549,22 @@ curve assumes conditionally i.i.d. restarts beyond
 the five observed, and costs are provider-recorded
 token counts. The matched-slot result identifies
 cross-trajectory coverage in the cached multi-agent
-runtime, not a causal multi-agent advantage. We
-report no deployed non-private selector baseline.
+runtime, not a causal multi-agent advantage. Beyond a random final-answer baseline, we report no
+deployed non-private selector.
 Several analyses are exploratory or amended after observation: the 42-pair synthesis, the finalinclusive pool amendment (which leaves every
 value unchanged), the stopped repair gate and its
 0.80 threshold, the held-out planner and its 8-to12 step-cap change, the Qwen gate-token cap, and
 the exclusion of nine payment-invalid traces. Response collapse is observed on two selected tasks;
-its prevalence is unidentified. Finally, the study
-does not provide end-to-end DP: the selector calculation covers only a candidate-validity release
-under a narrow replacement adjacency and leaves
-candidate text and the evolving transcript trusted.
 
-578
+Conclusion
+
+Limitations
 
 8
 
-624
-
-Ethical Considerations
-
-The experiments use a released agent runtime, a
-public synthetic planning benchmark, and synthetic
-canaries; they involve no human participants or per8
-
+576
+577
+578
 579
 580
 581
@@ -1615,67 +1610,82 @@ canaries; they involve no human participants or per8
 621
 622
 623
-
+624
 625
 626
 627
 
-633
+632
 
-sonal data. The audit is designed to test privacyrelevant persistence without publishing raw canary
+its prevalence is unidentified. Finally, the study
+does not provide end-to-end DP: the selector calculation covers only a candidate-validity release
+under a narrow replacement adjacency and leaves
+candidate text and the evolving transcript trusted.
+
+633
+
+8
+
+634
+
+642
+
+The experiments use a released agent runtime, a
+public synthetic planning benchmark, and synthetic
+canaries; they involve no human participants or personal data. The audit is designed to test privacyrelevant persistence without publishing raw canary
 values or provider credentials. Its failed-to-detect
 leakage result should not be read as a privacy guarantee for the audited runtime or for LLM agents
 generally.
 
-634
+643
 
 References
 
-635
-636
-637
-638
-639
+644
+645
+646
+647
+648
 
 Bradley Brown, Jordan Juravsky, Ryan Ehrlich, Ronald
 Clark, Quoc V. Le, Christopher Ré, and Azalia Mirhoseini. 2024. Large language monkeys: Scaling inference compute with repeated sampling. arXiv preprint
 arXiv:2407.21787.
 
-640
-641
-642
-643
-644
+649
+650
+651
+652
+653
 
 Nicholas Carlini, Chang Liu, Ulfar Erlingsson, Jernej
 Kos, and Dawn Song. 2019. The secret sharer: Evaluating and testing unintended memorization in neural
 networks. In USENIX Security Symposium, pages
 267–284.
 
-645
-646
-647
-648
+654
+655
+656
+657
 
 Zhaorun Chen, Zhen Xiang, Chaowei Xiao, Dawn Song,
 and Bo Li. 2024. AgentPoison: Red-teaming LLM
 agents via poisoning memory or knowledge bases. In
 Advances in Neural Information Processing Systems.
 
-649
-650
-651
+658
+659
+660
 
 Gautier Dagan, Frank Keller, and Alex Lascarides. 2025.
 Plancraft: An evaluation dataset for planning with
 LLM agents. In Conference on Language Modeling.
 
-652
-653
-654
-655
-656
-657
+661
+662
+663
+664
+665
+666
 
 Edoardo Debenedetti, Jie Zhang, Mislav Balunovic,
 Luca Beurer-Kellner, Marc Fischer, and Florian
@@ -1683,136 +1693,22 @@ Tramer. 2024. AgentDojo: A dynamic environment
 to evaluate prompt injection attacks and defenses for
 LLM agents. In Advances in Neural Information Processing Systems, Datasets and Benchmarks Track.
 
-658
-659
-660
-661
-
-Yann Dubois, Balazs Galambosi, Percy Liang, and Tatsunori B. Hashimoto. 2024. Length-controlled AlpacaEval: A simple way to debias automatic evaluators. In Conference on Language Modeling.
-
-662
-663
-664
-665
-
-Cynthia Dwork, Frank McSherry, Kobbi Nissim, and
-Adam Smith. 2006. Calibrating noise to sensitivity
-in private data analysis. In Theory of Cryptography
-Conference.
-
-666
 667
 668
-
-Cynthia Dwork, Moni Naor, Toniann Pitassi, and Guy N.
-Rothblum. 2010. Differential privacy under continual
-observation. In Symposium on Theory of Computing.
-
 669
 670
 
-Cynthia Dwork and Aaron Roth. 2014. The Algorithmic
-Foundations of Differential Privacy. Now Publishers.
+Yann Dubois, Balazs Galambosi, Percy Liang, and Tatsunori B. Hashimoto. 2024. Length-controlled AlpacaEval: A simple way to debias automatic evaluators. In Conference on Language Modeling.
 
 671
 672
 673
 674
-675
-676
 
-Kai Greshake, Sahar Abdelnabi, Shailesh Mishra,
-Christoph Endres, Thorsten Holz, and Mario Fritz.
-2023. Not what you’ve signed up for: Compromising
-real-world LLM-integrated applications with indirect
-prompt injection. In ACM Workshop on Artificial
-Intelligence and Security.
-
-677
-678
-
-Junyuan Hong, Jiachen T. Wang, Chenhui Zhang,
-Zhangheng Li, Bo Li, and Zhangyang Wang. 2024.
-
-628
-629
-630
-631
-632
-
-9
-
-DP-OPT: Make large language model your privacypreserving prompt engineer. In International Conference on Learning Representations.
-
-679
-680
-681
-
-Justin Hsu, Zhiyi Huang, Aaron Roth, Tim Roughgarden, and Zhiwei Steven Wu. 2014. Private matchings
-and allocations. In Proceedings of the 46th Annual
-ACM Symposium on Theory of Computing, pages
-21–30.
-
-682
-683
-684
-685
-686
-
-Shengran Hu, Cong Lu, and Jeff Clune. 2025. Automated design of agentic systems. In International
-Conference on Learning Representations.
-
-687
-688
-689
-
-Jie Huang, Xinyun Chen, Swaroop Mishra,
-Huaixiu Steven Zheng, Adams Wei Yu, Xinying Song, and Denny Zhou. 2024. Large language
-models cannot self-correct reasoning yet. In International Conference on Learning Representations.
-
-690
-691
-692
-693
-694
-
-Ryo Kamoi, Yusen Zhang, Nan Zhang, Jiawei Han,
-and Rui Zhang. 2024. When can LLMs actually
-correct their own mistakes? A critical survey of selfcorrection of LLMs. Transactions of the Association
-for Computational Linguistics, 12.
-
-695
-696
-697
-698
-699
-
-Robert Kirk, Ishita Mediratta, Christoforos Nalmpantis,
-Jelena Luketina, Eric Hambro, Edward Grefenstette,
-and Roberta Raileanu. 2024. Understanding the effects of RLHF on LLM generalisation and diversity.
-In International Conference on Learning Representations.
-
-700
-701
-702
-703
-704
-705
-
-Junyou Li, Qin Zhang, Yangbin Yu, Qiang Fu, and Deheng Ye. 2024. More agents is all you need. Transactions on Machine Learning Research.
-
-706
-707
-708
-
-Jingcheng Liu and Kunal Talwar. 2019. Private selection from private candidates. In Proceedings of the
-51st Annual ACM SIGACT Symposium on Theory of
-Computing, pages 298–309.
-
-709
-710
-711
-712
+Cynthia Dwork, Frank McSherry, Kobbi Nissim, and
+Adam Smith. 2006. Calibrating noise to sensitivity
+in private data analysis. In Theory of Cryptography
+Conference.
 
 Aman Madaan, Niket Tandon, Prakhar Gupta, Skyler
 Hallinan, Luyu Gao, Sarah Wiegreffe, Uri Alon,
@@ -1821,36 +1717,136 @@ Shashank Gupta, Bodhisattwa Prasad Majumder,
 Katherine Hermann, Sean Welleck, Amir Yazdanbakhsh, and Peter Clark. 2023. Self-Refine: Iterative
 refinement with self-feedback. In Advances in Neural Information Processing Systems.
 
-713
-714
-715
-716
-717
-718
-719
-720
+675
+676
+677
+
+Cynthia Dwork, Moni Naor, Toniann Pitassi, and Guy N.
+Rothblum. 2010. Differential privacy under continual
+observation. In Symposium on Theory of Computing.
 
 Frank McSherry and Kunal Talwar. 2007. Mechanism
 design via differential privacy. In Foundations of
 Computer Science.
 
+628
+629
+630
+631
+
+635
+636
+637
+638
+639
+640
+641
+
+Ethical Considerations
+
+9
+
+Cynthia Dwork and Aaron Roth. 2014. The Algorithmic
+Foundations of Differential Privacy. Now Publishers.
+
+678
+679
+
+Kai Greshake, Sahar Abdelnabi, Shailesh Mishra,
+Christoph Endres, Thorsten Holz, and Mario Fritz.
+2023. Not what you’ve signed up for: Compromising
+real-world LLM-integrated applications with indirect
+prompt injection. In ACM Workshop on Artificial
+Intelligence and Security.
+
+680
+681
+682
+683
+684
+685
+
+Junyuan Hong, Jiachen T. Wang, Chenhui Zhang,
+Zhangheng Li, Bo Li, and Zhangyang Wang. 2024.
+DP-OPT: Make large language model your privacypreserving prompt engineer. In International Conference on Learning Representations.
+
+686
+687
+688
+689
+690
+
+Justin Hsu, Zhiyi Huang, Aaron Roth, Tim Roughgarden, and Zhiwei Steven Wu. 2014. Private matchings
+and allocations. In Proceedings of the 46th Annual
+ACM Symposium on Theory of Computing, pages
+21–30.
+
+691
+692
+693
+694
+695
+
+Shengran Hu, Cong Lu, and Jeff Clune. 2025. Automated design of agentic systems. In International
+Conference on Learning Representations.
+
+696
+697
+698
+
+Jie Huang, Xinyun Chen, Swaroop Mishra,
+Huaixiu Steven Zheng, Adams Wei Yu, Xinying Song, and Denny Zhou. 2024. Large language
+models cannot self-correct reasoning yet. In International Conference on Learning Representations.
+
+699
+700
+701
+702
+703
+
+Ryo Kamoi, Yusen Zhang, Nan Zhang, Jiawei Han,
+and Rui Zhang. 2024. When can LLMs actually
+correct their own mistakes? A critical survey of selfcorrection of LLMs. Transactions of the Association
+for Computational Linguistics, 12.
+
+704
+705
+706
+707
+708
+
+Robert Kirk, Ishita Mediratta, Christoforos Nalmpantis,
+Jelena Luketina, Eric Hambro, Edward Grefenstette,
+and Roberta Raileanu. 2024. Understanding the effects of RLHF on LLM generalisation and diversity.
+In International Conference on Learning Representations.
+
+709
+710
+711
+712
+713
+714
+
+Junyou Li, Qin Zhang, Yangbin Yu, Qiang Fu, and Deheng Ye. 2024. More agents is all you need. Transactions on Machine Learning Research.
+
+715
+716
+717
+
+Jingcheng Liu and Kunal Talwar. 2019. Private selection from private candidates. In Proceedings of the
+51st Annual ACM SIGACT Symposium on Theory of
+Computing, pages 298–309.
+
+718
+719
+720
 721
 722
 723
-
-Yijia Shao, Tianshi Li, Weiyan Shi, Yanchen Liu, and
-Diyi Yang. 2024. PrivacyLens: Evaluating privacy
-norm awareness of language models in action. arXiv
-preprint arXiv:2409.00138.
-
 724
 725
 726
 727
-
-Noah Shinn, Federico Cassano, Edward Berman, Ashwin Gopinath, Karthik Narasimhan, and Shunyu Yao.
-2023. Reflexion: Language agents with verbal reinforcement learning. In Advances in Neural Information Processing Systems.
-
 728
 729
 730
@@ -1861,18 +1857,37 @@ Noah Shinn, Federico Cassano, Edward Berman, Ashwin Gopinath, Karthik Narasimhan
 734
 735
 736
+
+Yijia Shao, Tianshi Li, Weiyan Shi, Yanchen Liu, and
+Diyi Yang. 2024. PrivacyLens: Evaluating privacy
+norm awareness of language models in action. arXiv
+preprint arXiv:2409.00138.
+
 737
+738
+739
+740
+741
+
+Noah Shinn, Federico Cassano, Edward Berman, Ashwin Gopinath, Karthik Narasimhan, and Shunyu Yao.
+2023. Reflexion: Language agents with verbal reinforcement learning. In Advances in Neural Information Processing Systems.
+
+742
+743
+744
+745
+746
 
 Charlie Snell, Jaehoon Lee, Kelvin Xu, and Aviral Kumar. 2025. Scaling LLM test-time compute optimally
 can be more effective than scaling parameters for reasoning. In International Conference on Learning
 Representations.
 
-738
-739
-740
-741
-742
-743
+747
+748
+749
+750
+751
+752
 
 Bo Wang, Weiyi He, Shenglai Zeng, Zhen Xiang, Yue
 Xing, Jiliang Tang, and Pengfei He. 2025a. Unveiling
@@ -1881,46 +1896,25 @@ of the 63rd Annual Meeting of the Association for
 Computational Linguistics (Volume 1: Long Papers),
 pages 25241–25260.
 
-744
-745
-746
-747
+753
+754
+755
+756
 
 Junlin Wang, Jue Wang, Ben Athiwaratkun, Ce Zhang,
 and James Zou. 2025b. Mixture-of-Agents enhances
 large language model capabilities. In International
 Conference on Learning Representations.
 
-748
-749
-750
-751
-752
-753
-
-Xuezhi Wang, Jason Wei, Dale Schuurmans, Quoc V.
-Le, Ed H. Chi, Sharan Narang, Aakanksha Chowdhery, and Denny Zhou. 2023. Self-consistency improves chain of thought reasoning in language models. In International Conference on Learning Representations.
-
-754
-755
-756
 757
 758
-
-Chen Xu, Yicheng Hu, Ruizi Wang, Xinyu Lin, Wenjie
-Wang, Dongrui Liu, and Fuli Feng. 2026. TacoMAS:
-Test-time co-evolution of topology and capability
-in LLM-based multi-agent systems. arXiv preprint
-arXiv:2605.09539.
-
 759
 760
 761
 762
 
-Chengrun Yang, Xuezhi Wang, Yifeng Lu, Hanxiao Liu,
-Quoc V. Le, Denny Zhou, and Xinyun Chen. 2024.
-Large language models as optimizers. In International Conference on Learning Representations.
+Xuezhi Wang, Jason Wei, Dale Schuurmans, Quoc V.
+Le, Ed H. Chi, Sharan Narang, Aakanksha Chowdhery, and Denny Zhou. 2023. Self-consistency improves chain of thought reasoning in language models. In International Conference on Learning Representations.
 
 763
 764
@@ -1928,16 +1922,37 @@ Large language models as optimizers. In International Conference on Learning Rep
 766
 767
 
-Shunyu Yao, Dian Yu, Jeffrey Zhao, Izhak Shafran,
-Thomas L. Griffiths, Yuan Cao, and Karthik
-Narasimhan. 2023a. Tree of thoughts: Deliberate
-problem solving with large language models. In Advances in Neural Information Processing Systems.
+Chen Xu, Yicheng Hu, Ruizi Wang, Xinyu Lin, Wenjie
+Wang, Dongrui Liu, and Fuli Feng. 2026. TacoMAS:
+Test-time co-evolution of topology and capability
+in LLM-based multi-agent systems. arXiv preprint
+arXiv:2605.09539.
 
 768
 769
 770
 771
+
+Chengrun Yang, Xuezhi Wang, Yifeng Lu, Hanxiao Liu,
+Quoc V. Le, Denny Zhou, and Xinyun Chen. 2024.
+Large language models as optimizers. In International Conference on Learning Representations.
+
 772
+773
+774
+775
+776
+
+Shunyu Yao, Dian Yu, Jeffrey Zhao, Izhak Shafran,
+Thomas L. Griffiths, Yuan Cao, and Karthik
+Narasimhan. 2023a. Tree of thoughts: Deliberate
+problem solving with large language models. In Advances in Neural Information Processing Systems.
+
+777
+778
+779
+780
+781
 
 Shunyu Yao, Jeffrey Zhao, Dian Yu, Nan Du, Izhak
 Shafran, Karthik Narasimhan, and Yuan Cao. 2023b.
@@ -1945,32 +1960,24 @@ ReAct: Synergizing reasoning and acting in language
 models. In International Conference on Learning
 Representations.
 
-773
-774
-775
-776
+782
+783
+784
+785
 
 Mert Yuksekgonul, Federico Bianchi, Joseph Boen,
 Sheng Liu, Zhi Huang, Carlos Guestrin, and James
 Zou. 2024. TextGrad: Automatic differentiation via
 text. arXiv preprint arXiv:2406.07496.
 
-777
-778
-779
-780
-
 Jiayi Zhang, Jinyu Xiang, Zhaoyang Yu, et al. 2025.
 AFlow: Automating agentic workflow generation. In
 International Conference on Learning Representations.
 
-781
-782
-783
-784
-785
 786
 787
+788
+789
 
 Lianmin Zheng, Wei-Lin Chiang, Ying Sheng, Siyuan
 Zhuang, Zhanghao Wu, Yonghao Zhuang, Zi Lin,
@@ -1979,26 +1986,34 @@ Joseph E. Gonzalez, and Ion Stoica. 2023. Judging
 LLM-as-a-judge with MT-Bench and Chatbot Arena.
 In Advances in Neural Information Processing Systems, Datasets and Benchmarks Track.
 
+790
+791
+792
+793
+794
+795
+796
+
 Andy Zhou, Kai Yan, Michal Shlapentokh-Rothman,
 Haohan Wang, and Yu-Xiong Wang. 2024. Language agent tree search unifies reasoning, acting, and
 planning in language models. In International Conference on Machine Learning.
 
-788
-789
-790
-791
-792
+797
+798
+799
+800
+801
 
 King Zhu, Hanhao Li, Siwei Wu, Tianshun Xing, Dehua Ma, Xiangru Tang, Minghao Liu, Jian Yang, Jiaheng Liu, Yuchen Eleanor Jiang, Changwang Zhang,
 Chenghua Lin, Jun Wang, Ge Zhang, and Wangchunshu Zhou. 2025. Scaling test-time compute for LLM
 agents. arXiv preprint arXiv:2506.12928.
 
-793
-794
-795
-796
-797
-798
+802
+803
+804
+805
+806
+807
 
 Mingchen Zhuge, Wenyi Wang, Louis Kirsch,
 Francesco Faccio, Dmitrii Khizbullin, and Jürgen
@@ -2006,36 +2021,52 @@ Schmidhuber. 2024. GPTSwarm: Language agents
 as optimizable graphs. In International Conference
 on Machine Learning.
 
-799
-800
-801
-802
-803
+808
+809
+810
+811
+812
 
 This appendix preserves protocol and diagnostic
 details omitted from the eight-page main submission. All quantities derive from the same frozen
 experimental records underlying the main paper.
 
-804
+813
 
 Endpoint status and amendments
 
-808
+817
 
 The table below separates outcomes fixed before
 provider execution from later analytical qualifications. The qualifications preserve the frozen runs
 and report rather than replace the original records.
 
-809
+818
 
-805
-806
-807
+814
+815
+816
 
-810
-811
-812
-813
+819
+820
+821
+
+822
+
+10
+
+Component
+Canary audit
+
+Length ablation
+
+Fixed-pool
+headroom
+
+823
+
+Nested trajectory
+pool
 
 Frozen
 endpoint
@@ -2043,55 +2074,11 @@ endpoint
 Final status or
 qualification
 
-Canary audit
-
 Post-input exact or
 five-token partial
 exposure in the
 three-arm 120-instance
 replication
-
-Length ablation
-
-Paired exactness and
-recorded-score
-differences in each
-frozen cohort
-
-Fixed-pool
-headroom
-
-Oracle over the
-recorded candidate
-surface
-
-Nested trajectory
-pool
-
-Support and oracle
-differences for
-C1 ⊂ C5
-
-Repair gate
-
-Restart versus repair
-after shared-anchor
-failure
-
-Task-level
-response collapse
-
-Same-task public-only
-control on the two
-exhausted tasks
-
-Selector
-calculation
-
-Closed-form
-exponentialmechanism
-probabilities on
-cached candidates
 
 0/120 in evolve and reset, and
 0/120 false positives in
@@ -2130,36 +2117,109 @@ narrow-adjacency calculation,
 not an empirical end-to-end
 DP experiment.
 
-Component
+Paired exactness and
+recorded-score
+differences in each
+frozen cohort
+Oracle over the
+recorded candidate
+surface
 
-10
+Support and oracle
+differences for
+C1 ⊂ C5
 
-814
+Repair gate
 
-815
+Restart versus repair
+after shared-anchor
+failure
+
+Task-level
+response collapse
+
+Same-task public-only
+control on the two
+exhausted tasks
+
+Selector
+calculation
+
+Closed-form
+exponentialmechanism
+probabilities on
+cached candidates
+
+failures stops selector or retention development on that pool.
+
+851
+
+4. Support expansion. Only if step 3 stops: enlarge the pool prospectively and re-measure
+Hi and cost before any private-selection experiment.
+
+853
+
+Minimum detectable effects follow from the sample sizes: with 120 complete triads, the planning
+simulation for step 1 gives 94.8% power for 15%
+versus 2% discordance; with 20 pairs, step 2 needs
+at least five pure discordances for one-sided exact p < 0.05 (Appendix F). Cost is reported as
+provider-recorded tokens at every step.
+
+857
+
+B
+
+864
+
+Metric definitions
 
 A
 
-816
+825
 
 The audit is an ordered checklist. Each step has an
 estimand, a stop rule fixed before the corresponding
 run, and an escalation rule; the thresholds below are
 the ones used in this study, not universal defaults.
 
-B
+826
+827
+828
+829
+830
+831
+832
+833
+834
+835
+836
+837
+838
+839
+840
+841
+842
+843
+844
+845
+846
+847
+848
+849
+850
 
-Audit procedure and stop rules
-
-Metric definitions
-
+854
 855
 856
 
-817
-818
-819
+858
+859
+860
+861
+862
+863
 
+865
 Metric
 
 Definition
@@ -2196,47 +2256,14 @@ removal, Table 2
 Reference
 exactness
 Canonical exact
-Replay validity
 
-820
-821
-822
-823
 824
-825
-826
-827
 
-828
-829
-830
-831
-832
-833
-834
-835
-836
-837
-838
-
-839
-840
-841
-842
-843
-
-844
-845
-846
-847
-
-848
-849
-850
-851
 852
-853
-854
+
+Audit procedure and stop rules
+
+Replay validity
 
 1. Exposure. Estimand: post-input exact or fivetoken partial canary recovery, evolve versus
 depth-matched reset. Signal rule (protocol
@@ -2245,13 +2272,6 @@ paired difference, and exact McNemar p <
 0.05 over 120 complete triads. If not met,
 report a bounded non-detection and do not
 calibrate privacy for that channel.
-2. Score consequence. Estimand: paired difference in executable or reference exactness
-when the score term is removed, with a manipulation check on the score itself. The frozen
-rules check the score scale first and then a
-utility-improvement criterion; we report a utility interval that contains zero as inconclusive,
-never as score invalidity. The frozen precisenull rule for the pooled synthesis requires an
-interval containing zero with upper endpoint
-below 0.15.
 
 Yes
 (offline)
@@ -2259,7 +2279,7 @@ Yes
 (offline)
 No
 
-857
+866
 
 Planner
 (secondary)
@@ -2271,27 +2291,35 @@ DeepSeek finals through the public PlanCraft environment reaches the target in e
 reference-exact rows. Neither check tests parser
 false negatives on unparseable text.
 
-858
+867
 
 C
 
 Threat model and trust boundary
 
-865
+874
 
 The two privacy-relevant components answer different questions and use different boundaries.
 
-866
+875
 
-859
-860
-861
-862
-863
-864
-
-867
 868
+869
+870
+871
+872
+873
+
+876
+877
+
+2. Score consequence. Estimand: paired difference in executable or reference exactness
+when the score term is removed, with a manipulation check on the score itself. The frozen
+rules check the score scale first and then a
+utility-improvement criterion; we report a utility interval that contains zero as inconclusive,
+never as score invalidity. The frozen precisenull rule for the pooled synthesis requires an
+interval containing zero with upper endpoint
+below 0.15.
 
 Protected unit
 
@@ -2300,15 +2328,7 @@ Observer
 Released
 Trusted
 
-3. Realized support. Estimand: the hindsight
-oracle gap Hi over the recorded pool. Rule
-(protocol 077): fewer than 4/20 recoverable
-failures stops selector or retention development on that pool.
-
 Out of scope
-
-4. Support expansion. Only if step 3 stops: enlarge the pool prospectively and re-measure
-Hi and cost before any private-selection experiment.
 
 Canary audit
 
@@ -2337,7 +2357,7 @@ Adaptive extraction,
 provider-side logs, structural
 edits, task-relevant secrets
 
-869
+878
 The selected index or output
 Candidate texts, prompts,
 memories, messages,
@@ -2352,14 +2372,23 @@ channel; a non-detection is a bounded failure to
 detect under this observer, not a guarantee against
 a stronger one.
 
-870
+3. Realized support. Estimand: the hindsight
+oracle gap Hi over the recorded pool. Rule
+(protocol 077): fewer than 4/20 recoverable
+11
+
+879
+880
+881
+882
+
+883
 
 D
 
-874
+884
 
-Score sources and per-arm
-consequences
+911
 
 In the 60 initial canary-study runs (15 agent-round
 scores each), 705 of 900 recorded contribution
@@ -2369,32 +2398,6 @@ scoring at least 0.8, 24 belong to the five successful
 runs, compared with 75 of 900 observations overall; these observations are clustered within runs.
 The run-level AUC of the maximum contribution
 score is 0.755, and the conditional interval in Appendix H resamples instances.
-
-Minimum detectable effects follow from the sample sizes: with 120 complete triads, the planning
-simulation for step 1 gives 94.8% power for 15%
-versus 2% discordance; with 20 pairs, step 2 needs
-at least five pure discordances for one-sided exact p < 0.05 (Appendix F). Cost is reported as
-provider-recorded tokens at every step.
-11
-
-871
-872
-873
-
-875
-876
-877
-878
-879
-880
-881
-882
-883
-884
-885
-
-895
-
 Removing the length term zeroes the length component wherever the fast-round heuristic is computed. The Judge LLM configuration is identical
 in both arms, but its inputs and the score history
 passed to the Meta-LLM differ, and recorded calls
@@ -2402,14 +2405,16 @@ and tokens differ by arm (Appendices L and N).
 The intervention therefore estimates the consequence of replacing the heuristic for the whole
 runtime. Both arms run on every task, so arms are
 paired within task rather than randomly assigned.
+Endpoint choice. With final-answer executable validity in place of reference exactness, both nondegenerate cohorts give identical paired differences,
+intervals, and discordant pairs (DeepSeek 2/0, exact McNemar p = 0.5; Qwen 2/3, p = 1). The
+initial cohort’s executable outcomes are not cached
+(artifact 237).
 
-896
+912
 
 E
 
-897
-
-916
+913
 
 The initial reference-firewall implementation returned online quality zero for all expensive evaluations. The runtime stores a historical best candidate
 only when quality strictly improves over an initial
@@ -2429,25 +2434,7 @@ demonstrates that reference isolation must cover
 control flow, not merely omit a reference-derived
 metric from the final table.
 
-917
-
-F
-
-918
-
-The initial audit had zero exposure events in 20
-evolve instances, with an exact one-sided 95% upper bound of 13.9%. The completed replication has
-zero events in 120 evolve instances, lowering that
-bound to 2.5%. Exposure is also zero in the reset
-and no-canary arms, and each of the three strata
-has 0/40 evolve exposures. In the paired replication comparison, the observed evolve-minus-reset
-risk difference is zero and the exact two-sided McNemar test has p = 1. These are failed-to-detect
-results for the audited model, horizon, topology,
-and canary family, not estimates of a universal exposure rate.
-The independent execution-aware validation
-likewise has low sensitivity. Five pure methodonly discordances would be required for one-sided
-exact p < 0.05, an observed risk difference of 0.25
-
+885
 886
 887
 888
@@ -2457,7 +2444,9 @@ exact p < 0.05, an observed risk difference of 0.25
 892
 893
 894
-
+895
+896
+897
 898
 899
 900
@@ -2471,12 +2460,12 @@ exact p < 0.05, an observed risk difference of 0.25
 908
 909
 910
-911
-912
-913
+
 914
 915
-
+916
+917
+918
 919
 920
 921
@@ -2491,22 +2480,41 @@ exact p < 0.05, an observed risk difference of 0.25
 930
 931
 932
-933
-934
+
+F
+
+Score sources and per-arm
+consequences
 
 Reference-firewall calibration failure
 
+Detailed null sensitivity
+
+933
+
+The initial audit had zero exposure events in 20
+evolve instances, with an exact one-sided 95% upper bound of 13.9%. The completed replication has
+zero events in 120 evolve instances, lowering that
+bound to 2.5%. Exposure is also zero in the reset
+and no-canary arms, and each of the three strata
+has 0/40 evolve exposures. In the paired replication comparison, the observed evolve-minus-reset
+risk difference is zero and the exact two-sided McNemar test has p = 1. These are failed-to-detect
+results for the audited model, horizon, topology,
+and canary family, not estimates of a universal exposure rate.
+The independent execution-aware validation
+likewise has low sensitivity. Five pure methodonly discordances would be required for one-sided
+exact p < 0.05, an observed risk difference of 0.25
 at 20 pairs. Its observed interval [0, 0.15] includes
 effects that would triple a 5% base rate.
 
-935
+934
 
 G
 
 Development-stage execution-aware
 retention
 
-937
+953
 
 The eight-pair development pilot completed all 16
 five-round cells. Execution-aware retention produced one executable-valid and reference-exact final plan; the text heuristic produced none. Both
@@ -2515,12 +2523,13 @@ paired difference was 1/8 = 0.125, with bootstrap
 interval [0, 0.375], one method-only discordance,
 and two-sided exact McNemar p = 1.
 
-939
+955
 
+935
 936
-
+937
 938
-
+939
 940
 941
 942
@@ -2529,6 +2538,22 @@ and two-sided exact McNemar p = 1.
 945
 946
 947
+948
+949
+950
+951
+952
+
+954
+
+956
+957
+958
+959
+960
+961
+962
+963
 
 Outcome
 Executable-valid final answer
@@ -2536,8 +2561,6 @@ Reference-trace exact
 Malformed final answer
 Provider calls
 Recorded tokens
-
-Detailed null sensitivity
 
 Text heuristic
 
@@ -2571,25 +2594,34 @@ fails at step zero. This demonstrated the intended
 mechanism in one pair and justified independent
 validation; it did not establish utility improvement.
 
-949
+965
 
 H
 
-958
+974
 
 Bootstrap handling
 
-950
-951
-952
-953
-954
-955
-956
-957
-
 The original X1 run-level AUC is 0.755. In
 the 100,000-draw instance-cluster bootstrap, 3,903
+12
+
+964
+
+966
+967
+968
+969
+970
+971
+972
+973
+
+975
+976
+
+987
+
 draws (3.903%) contain no positive or no negative run and therefore have undefined AUC. The
 reported [0.651, 0.853] interval is calculated over
 the 96,097 defined draws and must be read as conditional on resampling both classes. No numerical
@@ -2600,50 +2632,154 @@ cluster. Of 100,000 cluster draws, 51 (0.051%) are
 degenerate; the conditional interval over 99,949
 defined draws is [0.625, 1.000].
 
-959
+988
 
 I
 
-972
+989
 
-Provider repeatability detail
+995
 
 Across 20 cache-bypassed temperature-zero calls,
 two raw response hashes appear. The modal byteidentical rate is 65%, and pairwise raw-response
 disagreement is 47.9%. After parsing and action
 canonicalization, all 20 outputs are identical and
 exact. This result is prompt-specific; semantic identity is not implied for other prompts.
-12
 
-948
-
-960
-961
-962
-963
-964
-965
-966
-967
-968
-969
-970
-971
-
-973
-974
-975
-976
-977
-978
-979
-
-980
+996
 
 J
 
+977
+978
+979
+980
+981
+982
+983
+984
+985
+986
+
+990
+991
+992
+993
+994
+
+Provider repeatability detail
+
+998
+
 Protocol and artifact index
 
+• execution-aware development and validation:
+artifacts 058 and 061;
+
+999
+1000
+
+1002
+
+1004
+
+1006
+
+• Qwen candidate-pool enlargement: protocol
+083 and artifacts 084–085.
+
+1007
+1008
+
+• corrected nested-pool inference and trajectory
+decomposition: protocol 087 and artifact 088.
+
+1009
+1010
+
+• public-task-only DeepSeek response-collapse
+control: protocol 096 and artifacts 097–098.
+
+1011
+1012
+
+• 120-instance persistence replication: protocol
+199, authorization amendment 219, live artifact 220, and complete analysis artifact 222.
+
+1013
+1014
+1015
+1016
+
+K
+
+1017
+
+After the source and intervention audit, the runtime
+authors clarified the intended role of the contribution signal. The length-based formula is used
+
+1018
+1019
+
+Final executable exact
+Correctness-regression instances
+Mean contribution score
+Contribution scores at least 0.8
+Recorded input + output tokens
+
+• Qwen cross-model score replication: artifacts
+074 and 075.
+
+1005
+
+1036
+
+Initial length intervention
+
+Outcome
+
+• arm-level/selector-level notation correction:
+artifact 100;
+
+1003
+
+L
+
+1021
+1022
+1023
+1024
+1025
+1026
+1027
+1028
+1029
+1030
+1031
+1032
+1033
+1034
+1035
+
+1037
+1038
+1039
+1040
+1041
+1042
+1043
+
+1044
+
+• non-degenerate four-arm replication: artifacts
+068 and 069;
+
+1001
+
+1020
+
+The initial prospective intervention completed ten
+five-round pairs. Both arms solved TEST0095
 and failed the other nine instances. Removing the
 length term changed mean contribution score from
 0.429 to 0.069 and eliminated all 33 score observations at least 0.8, while exactness remained 1/10 in
@@ -2652,57 +2788,25 @@ both arms.
 • clustered score correction and null-power
 analysis: artifacts 063 and 066;
 
-981
-982
-
-• execution-aware development and validation:
-artifacts 058 and 061;
-
-983
-984
-
-• non-degenerate four-arm replication: artifacts
-068 and 069;
-
-986
-
-988
-
-990
-
-992
-
-994
-995
-996
 997
-998
-999
 
-1019
-1020
+during regular fast rounds when no slow update
+is scheduled, as a low-cost and coarse proxy for
+analytical effort. During a slow update, a separately configured Judge LLM produces an independent score; the Meta-LLM receives that score together with historical heuristic and judge scores and
+uses them with other state information for topology
+birth/death, edge edits, feedback, and next-round
+guidance. The heuristic therefore enters subsequent
+state and decisions rather than serving only as a log.
+The authors did not provide an independent validation for the specific 0.85 length weight. This
+clarification changes the interpretation of the intervention: it confirms consequential use of the
+released score while leaving its semantic validity
+an empirical question.
 
-L
+Original score
 
-1021
+Length removed
 
-The initial prospective intervention completed ten
-five-round pairs. Both arms solved TEST0095
-
-1007
-1008
-1009
-1010
-1011
-1012
-1013
-1014
-1015
-1016
-1017
-1018
-
-1022
+Paired difference
 
 1/10
 0
@@ -2722,71 +2826,7 @@ five-round pairs. Both arms solved TEST0095
 -33
 +47,272
 
-1029
-
-Outcome
-
-After the source and intervention audit, the runtime
-authors clarified the intended role of the contribution signal. The length-based formula is used
-during regular fast rounds when no slow update
-is scheduled, as a low-cost and coarse proxy for
-analytical effort. During a slow update, a separately configured Judge LLM produces an independent score; the Meta-LLM receives that score together with historical heuristic and judge scores and
-uses them with other state information for topology
-birth/death, edge edits, feedback, and next-round
-guidance. The heuristic therefore enters subsequent
-state and decisions rather than serving only as a log.
-The authors did not provide an independent validation for the specific 0.85 length weight. This
-clarification changes the interpretation of the intervention: it confirms consequential use of the
-released score while leaving its semantic validity
-an empirical question.
-
-1006
-
-Paired difference
-
-• 120-instance persistence replication: protocol
-199, authorization amendment 219, live artifact 220, and complete analysis artifact 222.
-
-1001
-
-1005
-
-Length removed
-
-1040
-
-K
-
-1004
-
-Original score
-
-M
-
-1000
-
-1003
-
-1027
-
-• public-task-only DeepSeek response-collapse
-control: protocol 096 and artifacts 097–098.
-
-• corrected nested-pool inference and trajectory
-decomposition: protocol 087 and artifact 088.
-
-993
-
-1026
-
-1030
-
-• Qwen candidate-pool enlargement: protocol
-083 and artifacts 084–085.
-
-991
-
-1025
+1045
 
 The paired exactness bootstrap interval [0, 0]
 is degenerate because no pair is discordant; since
@@ -2797,60 +2837,37 @@ pairs. The paired mean difference is -0.360, bootstrap interval [-0.500, -0.225]
 sign-test p = 0.00195. These statistics validate
 manipulation of the score scale, not utility improvement.
 
-• Qwen cross-model score replication: artifacts
-074 and 075.
+1046
 
-989
+M
 
-1002
-
-Final executable exact
-Correctness-regression instances
-Mean contribution score
-Contribution scores at least 0.8
-Recorded input + output tokens
-
-• arm-level/selector-level notation correction:
-artifact 100;
-
-987
-
-1024
-
-1028
-Outcome
-
-985
-
-1023
+1056
 
 Independent execution-aware
 validation table
 
-1031
-1032
-1033
-1034
-1035
-1036
-1037
-1038
-1039
+1047
+1048
+1049
+1050
+1051
+1052
+1053
+1054
+1055
 
-1041
-1042
+1057
 
+1058
+
+Implementation clarification
+
+Outcome
 Executable-valid final answer
 Reference-trace exact
 Malformed final answer
 Provider calls
 Recorded tokens
-
-Implementation clarification
-
-N
-
-Initial length intervention
 
 13
 
@@ -2878,11 +2895,15 @@ Difference
 +16
 -65,204
 
-1043
+1059
 
-Qwen cross-model replication detail
+1060
 
-1044
+N
+
+1061
+
+1088
 
 The dated qwen3.7-max-2026-06-08 snapshot
 completes the frozen eight-cell gate and all 40
@@ -2900,31 +2921,6 @@ a cross-model replication of the measurement diagnosis, not evidence that length
 planning.
 The provider’s reserved function-name policy
 requires renaming the read-only PlanCraft search
-
-1045
-1046
-1047
-1048
-1049
-1050
-1051
-1052
-1053
-1054
-1055
-1056
-1057
-1058
-1059
-1060
-1061
-1062
-1063
-1064
-1065
-
-1072
-
 tool to recipe_search; its arguments and environment semantics are unchanged in all cells. The
 runtime tracker reports 4,416,267 tokens and 2,292
 calls over 41/48 cells. Seven completed cells have
@@ -2932,17 +2928,22 @@ empty usage objects despite full trajectories, so
 the totals are lower bounds. Credentials are absent
 from the protocol, artifacts, and raw-output tree.
 
-1073
+1089
 
 O
 
+1062
+1063
+1064
+1065
 1066
 1067
 1068
 1069
 1070
 1071
-
+1072
+1073
 1074
 1075
 1076
@@ -2952,71 +2953,35 @@ O
 1080
 1081
 1082
-
-Conditional on failure, generation failures are
-43/46 (exact 95% interval [0.821, 0.986]) and selection failures 3/46 ([0.014, 0.179]); as a share of
-eligible runs, recoverable failures are 3/65 ([0.010,
-0.129]). Under reference exactness over all 72
-runs, including the seven IMPOSSIBLE references,
-the final and pool oracles are 19/72 and 22/72, the
-same three recoverable runs. Parser acceptance is
-43/320 slots for DeepSeek X1 evolve, 95/192 for
-the non-degenerate arm, 52/320 for text retention,
-and 175/320 for Qwen (365/1,152 overall). Artifact 231 regenerates these numbers from the cached
-per-run rows.
-Protocol 080 freezes a zero-call extension to
-the 60-run DeepSeek X1 cohort, the 48-run nondegenerate main matrix, and the 40-run executionaware confirmatory cohort. Semantic headroom
-excludes IMPOSSIBLE references because forward
-execution cannot certify non-existence. Diversity
-and reference-exact summaries retain all runs. The
-original frozen estimand compared the 15-roundcandidate oracle directly with the synthesized final.
-This comparison is not an upper bound because
-a synthesizer can in principle create a valid final
-absent from its input candidates. We retain the original protocol hash and record an outcome-aware
-amendment that adds the realized final to oracle
-support. The corrected quantity is weakly nonnegative and bounds selectors that can retain the
-current final. In the 65 selected semantically eligible original/control runs, the observed frequency of
-a valid synthesized final with no valid round-agent
-candidate is 0/65. No model call or run outcome
-changes.
-Across original/control arms, empirical fixedpool selector headroom is 0/13 for DeepSeek X1
-evolve, 1/12 for DeepSeek non-degenerate original
-evolve, 1/20 for confirmatory text retention, and
-1/20 for Qwen original scoring. An outcome-aware
-exploratory stratified synthesis gives 3/65=0.046,
-bootstrap interval [0, 0.108]. A two-sided Clopper–
-Pearson interval is [0.010, 0.129] if the heterogeneous cohorts are treated as exchangeable
-Bernoulli trials. This is an exact realized-pool
-bound for selectors restricted to the final plus 15
-persisted round-agent candidates; population intervals concern similar-task generalization. Offline
-headroom in the confirmatory text-retention arm
-and the prospective execution-aware-minus-control
-point estimate are both 0.05 on the same 20 tasks, a
-descriptive convergence rather than an independent
-mediation test.
-
-Qwen intermediate-candidate oracle
-audit
-
-Protocol 077 was frozen before candidate-content
-inspection and makes zero model calls. It evaluates
-every persisted round-agent answer (three agents by
-five rounds) and the synthesized final answer from
-each of the 40 Qwen main cells. Candidate texts are
-deduplicated by within-run SHA-256; only hashes,
-locations, lengths, and deterministic diagnostics
-are retained in artifact 078.
-
 1083
 1084
+1085
+1086
+1087
 
-Arm
+1090
+1091
+1092
+1093
+1094
+1095
+1096
+1097
+1098
+
+Qwen cross-model replication detail
+
+1100
+1101
+1102
+1103
+1104
+1105
+1106
+1107
+
 Original score
 Length-zero score
-
-Final executable
-
-Round-candidate oracle
 
 Recoverable failed final
 
@@ -3039,41 +3004,18 @@ Duplicate slots
 259/320
 263/320
 
-1095
-
-Both semantic oracle gaps are 0.05 with pairedbootstrap intervals [0, 0.15]. Reference-exact gaps
-are identical. No finalization failure contains a
-valid round-5 candidate. The original-score recoverable count is below the frozen 4/20 advancement
-threshold, so the execution-gated selector route
-stops without API expenditure. This diagnostic
-does not prove that generation is the only bottleneck; it shows that selection among the persisted
-answer candidates has insufficient observed headroom for the planned method.
-
-1096
-
-P
-
-1085
-1086
-1087
-1088
-1089
-1090
-1091
-1092
-1093
-1094
+1112
 
 Cross-cohort headroom and diversity
 2
 
-DeepSeek X1 evolve (n=13)
+1109
+1110
+1111
 
 11
 
 6
-
-DeepSeek non-degenerate (n=12)
 
 5
 
@@ -3099,18 +3041,6 @@ Qwen released score (n=20)
 100%
 
 Share of semantically eligible runs
-
-1097
-1098
-1099
-1100
-1101
-1102
-1103
-1104
-1105
-1106
-
 final executable
 
 selection failure
@@ -3124,14 +3054,66 @@ same pool would have succeeded, total three of 46
 failures.
 Estimands and sensitivity. The round-candidateonly oracle and the final-inclusive oracle are both
 22/65, so the amendment below changes no value.
+Conditional on failure, generation failures are
+43/46 (exact 95% interval [0.821, 0.986]) and selection failures 3/46 ([0.014, 0.179]); as a share of
+eligible runs, recoverable failures are 3/65 ([0.010,
+0.129]). Under reference exactness over all 72
+runs, including the seven IMPOSSIBLE references,
+the final and pool oracles are 19/72 and 22/72, the
+same three recoverable runs. Parser acceptance is
+43/320 slots for DeepSeek X1 evolve, 95/192 for
+the non-degenerate arm, 52/320 for text retention,
+and 175/320 for Qwen (365/1,152 overall). Artifact 231 regenerates these numbers from the cached
+per-run rows.
+Parser sensitivity. The 43 generation failures average 13.6 rejected slots. Were each independently a
+false negative with probability 1% (5%), about 5.4
+(21.0) of these runs would hold a valid candidate,
+so bounding a per-slot rate cannot certify the run
+count; that requires auditing every unique rejected
+text in the 46 failed runs (at most 495), which we
+have not done (artifact 237).
+Protocol 080 freezes a zero-call extension to
+the 60-run DeepSeek X1 cohort, the 48-run nondegenerate main matrix, and the 40-run executionaware confirmatory cohort. Semantic headroom
+excludes IMPOSSIBLE references because forward
+execution cannot certify non-existence. Diversity
+and reference-exact summaries retain all runs. The
+
+1099
+Round-candidate oracle
+
+P
+
+DeepSeek non-degenerate (n=12)
+
+Protocol 077 was frozen before candidate-content
+inspection and makes zero model calls. It evaluates
+every persisted round-agent answer (three agents by
+five rounds) and the synthesized final answer from
+each of the 40 Qwen main cells. Candidate texts are
+deduplicated by within-run SHA-256; only hashes,
+locations, lengths, and deterministic diagnostics
+are retained in artifact 078.
+Final executable
+
+1108
+
+DeepSeek X1 evolve (n=13)
+
+Qwen intermediate-candidate oracle
+audit
+
+Arm
+
+does not prove that generation is the only bottleneck; it shows that selection among the persisted
+answer candidates has insufficient observed headroom for the planned method.
+
+Both semantic oracle gaps are 0.05 with pairedbootstrap intervals [0, 0.15]. Reference-exact gaps
+are identical. No finalization failure contains a
+valid round-5 candidate. The original-score recoverable count is below the frozen 4/20 advancement
+threshold, so the execution-gated selector route
+stops without API expenditure. This diagnostic
 14
 
-1107
-1108
-1109
-1110
-1111
-1112
 1113
 1114
 1115
@@ -3170,7 +3152,8 @@ Estimands and sensitivity. The round-candidateonly oracle and the final-inclusiv
 1148
 1149
 1150
-1151
+
+1151
 1152
 1153
 1154
@@ -3178,25 +3161,6 @@ Estimands and sensitivity. The round-candidateonly oracle and the final-inclusiv
 1156
 1157
 1158
-
-1170
-
-Exact-text repetition is provider-specific. Qwen
-original/length-zero duplicate rates are 0.809/0.822,
-whereas DeepSeek arms range approximately
-0.073–0.272. Canonical parseable-plan support is
-consistently small: among 72 original/control runs,
-38 have zero unique parseable canonical plans, 22
-have one, 8 have two, and 4 have at least three. The
-arms average 0.45–1.05 unique canonical plans per
-run, and 73%–91% of parseable slots duplicate
-another canonical plan. We therefore distinguish
-lexical diversity from task-relevant candidate support.
-
-1171
-
-Q
-
 1159
 1160
 1161
@@ -3208,30 +3172,9 @@ Q
 1167
 1168
 1169
-
+1170
+1171
 1172
-
-Stratified length synthesis and
-completeness diagnostic
-
-1191
-
-The 10-, 12-, and 20-pair length interventions contain 42 pairs. The stratified average exact difference is +0.0238, bootstrap interval [-0.0952,
-0.1429], with four length-zero-only and three
-original-only successes and two-sided exact p = 1.
-This outcome-aware secondary synthesis meets the
-frozen rule for describing a precise near-zero average: its interval contains zero and its upper endpoint is below 0.15.
-The length component’s association with wellformed output does not transfer uniformly.
-DeepSeek original arms yield well-formedprediction AUCs 0.938 and 1.0, but Qwen yields
-0.133 with the opposite mean direction. Paired
-malformed changes under length removal are 0,
--0.167, and +0.15. Thus length may act as a modeldependent formation proxy, but it is not a validated
-cross-model completeness or semantic-quality signal.
-
-1192
-
-R
-
 1173
 1174
 1175
@@ -3250,89 +3193,72 @@ R
 1188
 1189
 1190
-
+1191
+1192
 1193
 1194
+
 1195
 1196
 1197
 1198
 1199
 1200
+
+original frozen estimand compared the 15-roundcandidate oracle directly with the synthesized final.
+This comparison is not an upper bound because
+a synthesizer can in principle create a valid final
+absent from its input candidates. We retain the original protocol hash and record an outcome-aware
+amendment that adds the realized final to oracle
+support. The corrected quantity is weakly nonnegative and bounds selectors that can retain the
+current final. In the 65 selected semantically eligible original/control runs, the observed frequency of
+a valid synthesized final with no valid round-agent
+candidate is 0/65. No model call or run outcome
+changes.
+Across original/control arms, empirical fixedpool selector headroom is 0/13 for DeepSeek X1
+evolve, 1/12 for DeepSeek non-degenerate original
+evolve, 1/20 for confirmatory text retention, and
+1/20 for Qwen original scoring. An outcome-aware
+exploratory stratified synthesis gives 3/65=0.046,
+bootstrap interval [0, 0.108]. A two-sided Clopper–
+Pearson interval is [0.010, 0.129] if the heterogeneous cohorts are treated as exchangeable
+Bernoulli trials. This is an exact realized-pool
+bound for selectors restricted to the final plus 15
+persisted round-agent candidates; population intervals concern similar-task generalization. Offline
+headroom in the confirmatory text-retention arm
+and the prospective execution-aware-minus-control
+point estimate are both 0.05 on the same 20 tasks, a
+descriptive convergence rather than an independent
+mediation test.
+Exact-text repetition is provider-specific. Qwen
+original/length-zero duplicate rates are 0.809/0.822,
+whereas DeepSeek arms range approximately
+0.073–0.272. Canonical parseable-plan support is
+consistently small: among 72 original/control runs,
+38 have zero unique parseable canonical plans, 22
+have one, 8 have two, and 4 have at least three. The
+arms average 0.45–1.05 unique canonical plans per
+run, and 73%–91% of parseable slots duplicate
+another canonical plan. We therefore distinguish
+lexical diversity from task-relevant candidate support.
+
+Q
+
+original-only successes and two-sided exact p = 1.
+This outcome-aware secondary synthesis meets the
+frozen rule for describing a precise near-zero average: its interval contains zero and its upper endpoint is below 0.15.
+The length component’s association with wellformed output does not transfer uniformly.
+DeepSeek original arms yield well-formedprediction AUCs 0.938 and 1.0, but Qwen yields
+0.133 with the opposite mean direction. Paired
+malformed changes under length removal are 0,
+-0.167, and +0.15. Thus length may act as a modeldependent formation proxy, but it is not a validated
+cross-model completeness or semantic-quality signal.
+
 1201
-1202
-1203
-1204
-1205
-1206
-1207
 
-0.875, 6/8 tasks have S5 ≥ 2, all 48 valid trajectories complete five rounds, and all have positive usage. A provider payment interruption had
-previously created nine persisted traces containing Access denied or overdue-payment; an integrity back-audit marks all nine invalid, including two with partial positive usage. After seven
-valid tasks, the conservative 6.5M gate-token projection blocked the eighth task because those invalid attempts had consumed budget. The recorded
-amendment raises only this cap to 7.5M. The original and amended hashes begin 7ccf128c5bd4 and
-97c35906de54; the closure manifest stores both
-complete values. At amendment time, nested nonnegative support gains and the first seven task summaries made both substantive gate conditions mathematically irreversible. No task, condition, endpoint, threshold, or main budget changed.
-The 20-task main cohort completes all 120 trajectories without an integrity failure. Results are:
-Contrast
-Canonical support, C5 − C1
-Executable oracle, C5 − C1
-Headroom over baseline final, C5 − C1
-Standalone support, temperature 0.7 minus 0
+R
 
-Mean difference
-
-Task-bootstrap 95% interval
-
-One-sided 95% lower bound
-
-Exact test
-
-+1.00
-+0.20
-+0.20
--0.05
-
-[0.50, 1.60]
-[0.05, 0.40]
-[0.05, 0.40]
-[-0.35, 0.25]
-
-0.60
-0.05
-0.05
-not applicable
-
-withdrawn: nested
-withdrawn: nested
-withdrawn: nested
-p = 1.0
-
-The nested support/oracle/headroom curves
-are 1.85/0.60/0.10, 2.15/0.70/0.20, 2.35/0.70/0.20,
-2.60/0.80/0.30, and 2.85/0.80/0.30 for C1 through
-C5 . The originally reported nested sign-test values are invalid because decreases are excluded by
-construction and are formally withdrawn in artifact
-088. The non-nested standalone temperature contrast permits either direction and retains its p = 1
-result.
-The trajectory decomposition contains 57 successful stochastic trajectories among 100. The
-anchor-inclusive plug-in oracle estimates are 0.660,
-0.700, 0.722, 0.738, 0.751, 0.784, and 0.798 for
-n = 1, 2, 3, 4, 5, 10, and 20. The n > 5 values
-assume conditionally i.i.d. trajectories and are
-extrapolations. Task-cluster intervals, rather than
-trajectory-level independent intervals, preserve the
-20-task experimental unit.
-Per task, the nested oracle pattern from C1 to
-C5 is all-success for 12 tasks, all-failure for four,
-rescued at C2 for two, and rescued at C4 for two.
-Support gains C5 − C1 are 0 for eight tasks, 1 for
-eight, 2 for two, 3 for one, and 5 for one. Taskbootstrap intervals for the realized oracle are [0.40,
-0.80] at C1 , [0.50, 0.90] at C2 and C3 , and [0.60,
-0.95] at C4 and C5 . Of the four C5 -only rescues,
-TEST0102, TEST0105, and TEST0361 contain a
-valid plan in 1/5 stochastic trajectories; TEST0526
-contains one in 4/5. Five stochastic final answers
+1216
 
 Prospective candidate-pool
 enlargement
@@ -3344,8 +3270,27 @@ nested pool Cj contains the temperature-0 trajectory and stochastic repetitions 
 makes C5 − C1 a randomized generation-budget
 contrast over an identical task set.
 The eight-task gate passes: mean S5 − S1 =
+0.875, 6/8 tasks have S5 ≥ 2, all 48 valid trajectories complete five rounds, and all have positive usage. A provider payment interruption had
+previously created nine persisted traces containing Access denied or overdue-payment; an integrity back-audit marks all nine invalid, including two with partial positive usage. After seven
+valid tasks, the conservative 6.5M gate-token projection blocked the eighth task because those invalid attempts had consumed budget. The recorded
+amendment raises only this cap to 7.5M. The original and amended hashes begin 7ccf128c5bd4 and
+97c35906de54; the closure manifest stores both
+complete values. At amendment time, nested nonnegative support gains and the first seven task summaries made both substantive gate conditions mathematically irreversible. No task, condition, endpoint, threshold, or main budget changed.
+The 20-task main cohort completes all 120 tra-
+
+Stratified length synthesis and
+completeness diagnostic
+
+The 10-, 12-, and 20-pair length interventions contain 42 pairs. The stratified average exact difference is +0.0238, bootstrap interval [-0.0952,
+0.1429], with four length-zero-only and three
 15
 
+1202
+1203
+1204
+1205
+1206
+1207
 1208
 1209
 1210
@@ -3354,7 +3299,7 @@ The eight-task gate passes: mean S5 − S1 =
 1213
 1214
 1215
-1216
+
 1217
 1218
 1219
@@ -3389,15 +3334,96 @@ The eight-task gate passes: mean S5 − S1 =
 1248
 1249
 1250
-1251
+
+1251
+
+jectories without an integrity failure. Results are:
+Contrast
+
+Mean difference
+
+Task-bootstrap 95% interval
+
+One-sided 95% lower bound
+
+Exact test
+
++1.00
++0.20
++0.20
+-0.05
+
+[0.50, 1.60]
+[0.05, 0.40]
+[0.05, 0.40]
+[-0.35, 0.25]
+
+0.60
+0.05
+0.05
+not applicable
+
+withdrawn: nested
+withdrawn: nested
+withdrawn: nested
+p = 1.0
+
 1252
+
+Canonical support, C5 − C1
+Executable oracle, C5 − C1
+Headroom over baseline final, C5 − C1
+Standalone support, temperature 0.7 minus 0
+
 1253
+
+The nested support/oracle/headroom curves
+are 1.85/0.60/0.10, 2.15/0.70/0.20, 2.35/0.70/0.20,
+2.60/0.80/0.30, and 2.85/0.80/0.30 for C1 through
+C5 . The originally reported nested sign-test values are invalid because decreases are excluded by
+construction and are formally withdrawn in artifact
+088. The non-nested standalone temperature contrast permits either direction and retains its p = 1
+result.
+The trajectory decomposition contains 57 successful stochastic trajectories among 100. The
+anchor-inclusive plug-in oracle estimates are 0.660,
+0.700, 0.722, 0.738, 0.751, 0.784, and 0.798 for
+n = 1, 2, 3, 4, 5, 10, and 20. The n > 5 values
+assume conditionally i.i.d. trajectories and are
+extrapolations. Task-cluster intervals, rather than
+trajectory-level independent intervals, preserve the
+20-task experimental unit.
+Per task, the nested oracle pattern from C1 to
+C5 is all-success for 12 tasks, all-failure for four,
+rescued at C2 for two, and rescued at C4 for two.
+Support gains C5 − C1 are 0 for eight tasks, 1 for
+eight, 2 for two, 3 for one, and 5 for one. Taskbootstrap intervals for the realized oracle are [0.40,
+0.80] at C1 , [0.50, 0.90] at C2 and C3 , and [0.60,
+0.95] at C4 and C5 . Of the four C5 -only rescues,
+TEST0102, TEST0105, and TEST0361 contain a
+valid plan in 1/5 stochastic trajectories; TEST0526
+contains one in 4/5. Five stochastic final answers
+alone attain 0.65 oracle coverage. A uniformly random final answer of Cj is executable 0.50, 0.52,
+0.53, 0.55, and 0.54 of the time; the oracle’s lead
+grows from 0.10 [0, 0.23] to 0.26 [0.10, 0.43]. A
+random stochastic slot is executable about 0.41
+of the time. Score-based selectors cannot be replayed from the cached per-trajectory counts. At a
+matched count of 16 slots, cached cross-trajectory
+mixing has expected oracle 0.626 versus 0.570
+within one stochastic trajectory, difference 0.056,
+task-bootstrap interval [0.016, 0.105]. All trajectories use the same three-agent runtime, so this is not
+a single-agent comparison.
+Main-cohort generation costs are 4,807,489
+recorded tokens for C1 and 14,430,644 for C5 . The
+incremental four trajectories consume 9,623,155
+tokens, a total ratio of 3.0017. Across gate and
+main, 168 valid trajectories record 10,546 calls and
+20,489,906 tokens. Including the nine retained
+
 1254
 1255
 1256
 1257
-
-1258
+1258
 1259
 1260
 1261
@@ -3430,7 +3456,6 @@ The eight-task gate passes: mean S5 − S1 =
 1288
 1289
 1290
-
 1291
 1292
 1293
@@ -3441,33 +3466,14 @@ The eight-task gate passes: mean S5 − S1 =
 1298
 1299
 1300
-1301
-1302
-1303
-1304
-1305
-1306
-1307
 
-alone attain 0.65 oracle coverage. At a matched
-count of 16 slots, cached cross-trajectory mixing
-has expected oracle 0.626 versus 0.570 within
-one stochastic trajectory, difference 0.056, taskbootstrap interval [0.016, 0.105]. All trajectories
-use the same three-agent runtime, so this is not a
-single-agent comparison.
-Main-cohort generation costs are 4,807,489
-recorded tokens for C1 and 14,430,644 for C5 . The
-incremental four trajectories consume 9,623,155
-tokens, a total ratio of 3.0017. Across gate and
-main, 168 valid trajectories record 10,546 calls and
-20,489,906 tokens. Including the nine retained
 integrity-failed attempts gives 10,590 calls and
 20,573,345 recorded tokens.
 For cached C5 candidates, binary valid-versusinvalid executor utility gives gUsel = ∆u = 1 and
 hence local ρsel
 U = 1 whenever a mixed-validity
 pool exists. This candidate-level ratio is distinct
-from the arm-level ablation consequence δUabl . The
+from the arm-level ablation consequence δVabl . The
 earlier artifact 071 conflated these estimands and its
 epsilon inversion is withdrawn; artifact 100 records
 the zero-call correction. The monotone exponential
@@ -3480,15 +3486,55 @@ may change and only the selected index/output is
 released; candidate text and the remaining system
 are trusted.
 
+1301
+
 S
 
+Stopped DeepSeek compute-matched
+generation gate
+
+1321
+
+Protocol 090 freezes a non-nested restart-versusrepair comparison before any provider call on
+20 untouched reference-length-two tasks: eight
+adaptive gate candidates and 12 reserved main
+tasks. Each task receives a shared temperature0 five-round, three-agent trajectory. An executable
+anchor-pool candidate causes symmetric success
+and zero added intervention calls. On anchor failure, a new temperature-0.7 trajectory defines realized token cap Bi ; sequential direct repair candidates count toward the primary pool only while
+cumulative repair tokens do not exceed Bi . Repair
+uses the public task and reference-free executor diagnostic, never the hidden reference. Unsuccessful
+repair stops at its first budget crossing or 80 calls.
 All eight gate tasks complete with provider integrity. Five anchors succeed, so only TEST0181,
 TEST0030, and TEST0535 are informative. Their
 outcomes are:
+
+1323
+
 Task
 TEST0181
 TEST0030
 TEST0535
+
+1303
+1304
+1305
+1306
+1307
+1308
+1309
+1310
+1311
+1312
+1313
+1314
+1315
+1316
+1317
+1318
+1319
+1320
+
+1322
 
 Restart
 
@@ -3524,71 +3570,10 @@ The frozen gate requires at least four informative anchor failures. It therefore
 repair has at least one rescue, does not underperform restart in rescue count, all provider records
 pass integrity, and both failed repair branches reach
 the 80-call exhaustion rule. No main task is run.
-Conditional on anchor failure, repair minus restart
-is +0.333 with task-bootstrap interval [0, 1] and
-exact paired p = 1. We do not interpret an all-eight
-difference because five symmetric successes are
-inherited from the shared anchor rather than caused
-by either intervention.
-Repair diversity is the principal diagnostic.
-TEST0181 succeeds immediately with
-["dark_oak_planks", "pink_bed"]; because it
-stops after one call, its modal concentration is not
-estimable. TEST0030 has only three raw response
-forms over 80 calls: 69 ["IMPOSSIBLE"], nine
-IMPOSSIBLE, and two empty responses. Its raw
-modal rate is 86.25%, semantic normalization combines the first two forms into an IMPOSSIBLE intent in 78/80 calls (97.5%), and semantic pairwise
-agreement is 95.1%. TEST0535 also has three
-raw forms, with ["redstone_torch"] appearing
-76/80 times (95% raw and semantic modal rates;
-90.4% semantic pairwise agreement); the missing
-intermediate redstone makes it non-executable.
-Across the two exhausted tasks, the call-weighted
-raw modal share is 145/160=90.625%, and the semantic share is 154/160=96.25%.
-The repair-only 0.80 threshold was introduced
-after observing the stopped gate and was not part
-of a frozen protocol. Calls within a task are not
-independent task units: the observed 86.25%–95%
-raw range comes from two failures only. Failuretype association is not estimable with three repair
-branches, and cross-cohort modal stability is unavailable because earlier disjoint DeepSeek cohorts
-did not record repeated direct repairs under this
-prompt. The executor behaves as intended in both
-failures: it does not certify IMPOSSIBLE, and it
-rejects plans that omit required intermediate products.
-We then froze protocol 096 before making a
-same-task public-only control. Each exhausted
-
-Stopped DeepSeek compute-matched
-generation gate
-
-Protocol 090 freezes a non-nested restart-versusrepair comparison before any provider call on
-20 untouched reference-length-two tasks: eight
-adaptive gate candidates and 12 reserved main
-tasks. Each task receives a shared temperature0 five-round, three-agent trajectory. An executable
-anchor-pool candidate causes symmetric success
-and zero added intervention calls. On anchor failure, a new temperature-0.7 trajectory defines realized token cap Bi ; sequential direct repair candidates count toward the primary pool only while
-cumulative repair tokens do not exceed Bi . Repair
-uses the public task and reference-free executor diagnostic, never the hidden reference. Unsuccessful
-repair stops at its first budget crossing or 80 calls.
 16
 
-1308
-1309
-1310
-1311
-1312
+1302
 
-1313
-1314
-1315
-1316
-1317
-1318
-1319
-1320
-1321
-1322
-1323
 1324
 1325
 1326
@@ -3608,13 +3593,15 @@ repair stops at its first budget crossing or 80 calls.
 1340
 1341
 1342
+
 1343
 1344
 1345
 1346
 1347
 1348
-1349
+
+1349
 1350
 1351
 1352
@@ -3623,92 +3610,6 @@ repair stops at its first budget crossing or 80 calls.
 1355
 1356
 1357
-
-symbolic pre-check (depth 12, 50,000 states) emits
-IMPOSSIBLE only when it exhausts its state space
-without a target. Its first held-out batch of nine
-tasks used an eight-step cap and truncated the three
-long tasks; the cap was then raised to 12 and the
-same batch rerun, after which a second batch of
-nine ran unchanged. Bounded stops are not global
-impossibility proofs. Reported separately: on the
-nine development tasks the final planner reached
-7/7 feasible targets; the first held-out batch reached
-3/6 feasible targets at the eight-step cap and 6/6
-after the cap change; the untouched second batch
-reached 6/6 feasible targets with 4/6 canonical exact and 3/3 bounded stops. Only the second batch
-is a clean held-out evaluation. The final planning
-diagnostic used this frozen 18-task cohort and no
-new benchmark selection. The symbolic-only control reproduces 12/12 feasible replays, 8/12 canonical exact plans, six bounded stops on impossiblereference tasks, and 14/18 evaluator-exact labels.
-Ten of the 12 feasible cached plans are sequenceidentical to the symbolic plans; the two remaining
-replay-valid plans use alternative action orderings.
-Only 7/78 accepted requests exposed multiple options, and four step-index mismatches occurred in
-two replay-valid tasks. These branch-level quantities are descriptive for the fixed cohort.
-The prospective unfiltered DeepSeek arm removes bounded pre-checks and distance filtering
-but retains local action verification. It uses 142
-provider calls and 43,623 recorded tokens, reaching 8/12 feasible targets with 5/12 canonical exact
-plans. Against symbolic search, replay has four
-symbolic-only and no live-only pairs (two-sided
-exact p = 0.125); canonical matching has four
-symbolic-only and one live-only pair (p = 0.375).
-The six impossible-reference runs terminate without reaching a target, which does not certify impossibility. This component comparison is separate
-from architecture-level inference and is not a causal
-multi-agent result.
-
-1408
-
-U
-
-1449
-
-1401
-
-task received 80 additional DeepSeek temperature0.7 calls with the same output-format instruction
-but no candidate, executor diagnostic, attempt index, response history, or reference. TEST0030
-produced raw ["bookshelf"] in 79/80 calls
-(98.75%), a different invalid mode from its repairconditioned ["IMPOSSIBLE"]; TEST0535 produced raw ["redstone_torch"] in 76/80 and
-the same semantic plan in 80/80. No response
-was executable. Both tasks exceed the 0.80 neardeterminism threshold frozen in protocol 096, and
-the mean task-level conditioned-minus-public-only
-raw modal-rate contrast is -0.0625. The control
-removes the candidate, diagnostic, attempt index,
-and history together, so it is not a single-factor
-intervention; it does not support conditioning as
-the cause. We use task-level response collapse
-for the repeated invalid endpoint under both direct
-prompts. Protocol 096 treats the two tasks as the independent units and forbids a call-level population
-test.
-The first two direct calls on TEST0030 reached
-the output limit in hidden reasoning and exposed
-empty visible answers because the direct path omitted the full runtime’s explicit non-thinking switch.
-Both calls, 3,768 tokens, and malformed outcomes
-remain in the intention-to-repair record; excluding
-them, TEST0030’s raw modal rate is 69/78 (88.5%)
-and its semantic modal rate 78/78. Subsequent
-direct calls pass thinking.type=disabled; no
-prior output is deleted or rerun. LiteLLM response
-caching is disabled throughout, while DeepSeek’s
-automatic provider-side prefix-cache accounting
-is separately outside that client flag. Total gate
-usage is 736 calls and 1,642,567 recorded tokens:
-1,081,254 anchor, 458,662 restart, and 102,651 repair tokens. TEST0181 shows only that repair succeeded on its first attempt while a matched-budget
-restart failed; comparing first-draw tokens with a
-fully spent failed trajectory as a multiplicative efficiency ratio would be misleading. This stopped
-gate is positive mechanism evidence about two
-observed failures, but not a positive comparativemethod claim.
-
-1402
-
-T
-
-V
-
-1403
-
-The planner was developed post hoc on nine earlier PlanCraft screening tasks: DeepSeek selects
-one verifier-applicable recipe output per step, options are restricted to those with minimum finite
-post-action distance to the target, and a bounded
-
 1358
 1359
 1360
@@ -3753,19 +3654,183 @@ post-action distance to the target, and a bounded
 1399
 1400
 
+Conditional on anchor failure, repair minus restart
+is +0.333 with task-bootstrap interval [0, 1] and
+exact paired p = 1. We do not interpret an all-eight
+difference because five symmetric successes are
+inherited from the shared anchor rather than caused
+by either intervention.
+Repair diversity is the principal diagnostic.
+TEST0181 succeeds immediately with
+["dark_oak_planks", "pink_bed"]; because it
+stops after one call, its modal concentration is not
+estimable. TEST0030 has only three raw response
+forms over 80 calls: 69 ["IMPOSSIBLE"], nine
+IMPOSSIBLE, and two empty responses. Its raw
+modal rate is 86.25%, semantic normalization combines the first two forms into an IMPOSSIBLE intent in 78/80 calls (97.5%), and semantic pairwise
+agreement is 95.1%. TEST0535 also has three
+raw forms, with ["redstone_torch"] appearing
+76/80 times (95% raw and semantic modal rates;
+90.4% semantic pairwise agreement); the missing
+intermediate redstone makes it non-executable.
+Across the two exhausted tasks, the call-weighted
+raw modal share is 145/160=90.625%, and the semantic share is 154/160=96.25%.
+The repair-only 0.80 threshold was introduced
+after observing the stopped gate and was not part
+of a frozen protocol. Calls within a task are not
+independent task units: the observed 86.25%–95%
+raw range comes from two failures only. Failuretype association is not estimable with three repair
+branches, and cross-cohort modal stability is unavailable because earlier disjoint DeepSeek cohorts
+did not record repeated direct repairs under this
+prompt. The executor behaves as intended in both
+failures: it does not certify IMPOSSIBLE, and it
+rejects plans that omit required intermediate products.
+We then froze protocol 096 before making a
+same-task public-only control. Each exhausted
+task received 80 additional DeepSeek temperature0.7 calls with the same output-format instruction
+but no candidate, executor diagnostic, attempt index, response history, or reference. TEST0030
+produced raw ["bookshelf"] in 79/80 calls
+(98.75%), a different invalid mode from its repairconditioned ["IMPOSSIBLE"]; TEST0535 produced raw ["redstone_torch"] in 76/80 and
+the same semantic plan in 80/80. No response
+was executable. Both tasks exceed the 0.80 neardeterminism threshold frozen in protocol 096, and
+the mean task-level conditioned-minus-public-only
+raw modal-rate contrast is -0.0625. The control
+
+removes the candidate, diagnostic, attempt index,
+and history together, so it is not a single-factor
+intervention; it does not support conditioning as
+the cause. We use task-level response collapse
+for the repeated invalid endpoint under both direct
+prompts. Protocol 096 treats the two tasks as the independent units and forbids a call-level population
+test.
+The first two direct calls on TEST0030 reached
+the output limit in hidden reasoning and exposed
+empty visible answers because the direct path omitted the full runtime’s explicit non-thinking switch.
+Both calls, 3,768 tokens, and malformed outcomes
+remain in the intention-to-repair record; excluding
+them, TEST0030’s raw modal rate is 69/78 (88.5%)
+and its semantic modal rate 78/78. Subsequent
+direct calls pass thinking.type=disabled; no
+prior output is deleted or rerun. LiteLLM response
+caching is disabled throughout, while DeepSeek’s
+automatic provider-side prefix-cache accounting
+is separately outside that client flag. Total gate
+usage is 736 calls and 1,642,567 recorded tokens:
+1,081,254 anchor, 458,662 restart, and 102,651 repair tokens. TEST0181 shows only that repair succeeded on its first attempt while a matched-budget
+restart failed; comparing first-draw tokens with a
+fully spent failed trajectory as a multiplicative efficiency ratio would be misleading. This stopped
+gate is positive mechanism evidence about two
+observed failures, but not a positive comparativemethod claim.
+
+1401
+
+T
+
+1432
+
+Held-out planning component control
+
+The planner was developed post hoc on nine earlier PlanCraft screening tasks: DeepSeek selects
+one verifier-applicable recipe output per step, options are restricted to those with minimum finite
+post-action distance to the target, and a bounded
+symbolic pre-check (depth 12, 50,000 states) emits
+IMPOSSIBLE only when it exhausts its state space
+without a target. Its first held-out batch of nine
+tasks used an eight-step cap and truncated the three
+long tasks; the cap was then raised to 12 and the
+same batch rerun, after which a second batch of
+nine ran unchanged. Bounded stops are not global
+impossibility proofs. Reported separately: on the
+nine development tasks the final planner reached
+7/7 feasible targets; the first held-out batch reached
+3/6 feasible targets at the eight-step cap and 6/6
+after the cap change; the untouched second batch
+reached 6/6 feasible targets with 4/6 canonical ex17
+
+1402
+1403
 1404
 1405
 1406
 1407
+1408
+1409
+1410
+1411
+1412
+1413
+1414
+1415
+1416
+1417
+1418
+1419
+1420
+1421
+1422
+1423
+1424
+1425
+1426
+1427
+1428
+1429
+1430
+1431
 
-Closest work
+1433
+1434
+1435
+1436
+1437
+1438
+1439
+1440
+1441
+1442
+1443
+1444
+1445
+1446
+1447
+1448
+1449
+1450
 
-Work
+1479
+
+U
+
+1452
+1453
+1454
+1455
+1456
+1457
+1458
+1459
+1460
+1461
+1462
+1463
+1464
+1465
+1466
+1467
+1468
+1469
+1470
+1471
+1472
+1473
+1474
+1475
+1476
+1477
+
 MEXTRA (Wang et al., 2025a)
 Agent TTS (Zhu et al., 2025)
 This paper
-
-Held-out planning component control
 
 Adaptive extraction
 
@@ -3797,87 +3862,17 @@ Memory-based agents
 Agent benchmarks
 PlanCraft
 
-Fixed-pool selector calculation
+1481
+
+V
+
+1482
 
 Setting. The candidate set of a pool, its size k, and
 the output domain (the k indices) are fixed and
 public. Each candidate j has a clipped score uj ∈
 [0, ∆u ]; here uj is binary executor validity and
-∆u = 1. Two inputs are neighbors under candidate17
-
-1409
-1410
-1411
-1412
-1413
-1414
-1415
-1416
-1417
-1418
-1419
-1420
-1421
-1422
-1423
-1424
-1425
-1426
-1427
-1428
-1429
-1430
-1431
-1432
-1433
-1434
-1435
-1436
-1437
-1438
-1439
-1440
-1441
-1442
-1443
-1444
-1445
-1446
-1447
-1448
-
-1450
-
-1451
-1452
-1453
-1454
-1455
-1456
-
-1457
-1458
-1459
-1460
-1461
-1462
-1463
-1464
-1465
-1466
-1467
-1468
-1469
-1470
-1471
-1472
-1473
-
-Expected executable selection
-
-1474
-
-score replacement adjacency if they differ in the
+∆u = 1. Two inputs are neighbors under candidatescore replacement adjacency if they differ in the
 score of one candidate i by at most ∆u . Candidate
 texts and everything else are trusted and unreleased.
 Claim. The mechanism M that outputs j with
@@ -3891,16 +3886,33 @@ wi (eεδ/∆u − 1), so Z ≤ Z ′ ≤ eεδ/∆u Z. For j = i:
 Pr[M ′ = i]/ Pr[M = i] = eεδ/∆u Z/Z ′ ≤ eε , and
 the reverse ratio is e−εδ/∆u Z ′ /Z ≤ 1. For j ̸= i:
 Pr[M ′ = j]/ Pr[M = j] = Z/Z ′ ≤ 1 and the reverse ratio is Z ′ /Z ≤ eε . A decrease is symmetric.
-This is the monotone case of the exponential mechanism (McSherry and Talwar, 2007); under adjacencies where several scores can move in opposite
-directions, the general calibration exp(εuj /2∆u )
-is required, which doubles every budget.
+
+1483
+1484
+1485
+1486
+1487
+1488
+1489
+1490
+1491
+1492
+1493
+1494
+1495
+1496
+1497
+1498
+1499
 
 0.8
 
-non-private offline oracle 0.80
+1502
+1503
+1504
+
 0.779
 
-0.7
 0.682
 
 0.6
@@ -3909,9 +3921,6 @@ non-private offline oracle 0.80
 0.5
 
 0.512
-
-0.5
-(1)
 
 baseline final 0.50
 
@@ -3927,22 +3936,20 @@ baseline final 0.50
 8
 (16)
 
-ε, monotone calibration (general calibration)
-
-1475
-
-1482
+1505
 
 Values. Means over the 20 cached C5 pools (pools
 without a valid candidate contribute 0, so the ceiling is the 0.80 offline oracle). Labels give ε under the monotone calibration with the generalcalibration equivalent in parentheses. This is not
 a deployed selector, not a privacy–utility frontier,
 and not end-to-end privacy.
 
-1483
+1506
 
 W
 
-1484
+1513
+
+Reproducibility supplement
 
 The anonymous supplement contains the frozen
 protocols released with this paper, the cached analyses 037, 080, 081, 087, and 088, the replication
@@ -3951,46 +3958,95 @@ figure scripts. Running the reanalysis script regenerates the counts in Table 3,
 selection-failure counts and intervals, the parser
 acceptance rates, the per-task pool patterns and
 intervals of Figure 2, the score-source counts of
-Figure 1c, and the canary denominators; the figure script redraws Figures 1 and 2 and the appendix figures. The upstream TacoMAS runtime is
-not redistributed because its license could not be
-
-1476
-1477
-1478
-1479
-1480
-1481
-
-1485
-1486
-1487
-1488
-1489
-1490
-1491
-1492
-1493
-1494
-1495
-1496
-
-confirmed, so live runs require a separate checkout. Models are DeepSeek V4 Flash and the dated
+Figure 1c, and the canary denominators; artifact
+237 adds the random-final baselines, endpoint comparison, and parser sensitivity; the figure script
+redraws Figures 1 and 2 and the appendix figures. The upstream TacoMAS runtime is not redistributed because its license could not be confirmed, so live runs require a separate checkout.
+Models are DeepSeek V4 Flash and the dated
 qwen3.7-max-2026-06-08 snapshot, with thinking disabled, client-side response caching disabled,
 temperature 0 for anchors and audits, and temperature 0.7 for stochastic trajectories, repairs, and
 public-only calls. The PlanCraft task file used by
 the replication has SHA-256 prefix 1d41af11279c.
 
-Reproducibility supplement
-
 18
 
-1497
-1498
-1499
-1500
 1501
-1502
-1503
-1504
+
+0.7
+
+ε, monotone calibration (general calibration)
+
+Fixed-pool selector calculation
+
+1500
+
+non-private offline oracle 0.80
+
+0.5
+(1)
+
+Closest work
+
+Work
+
+1480
+
+This is the monotone case of the exponential mechanism (McSherry and Talwar, 2007); under adjacencies where several scores can move in opposite
+directions, the general calibration exp(εuj /2∆u )
+is required, which doubles every budget.
+Expected executable selection
+
+1478
+
+act and 3/3 bounded stops. Only the second batch
+is a clean held-out evaluation. The final planning
+diagnostic used this frozen 18-task cohort and no
+new benchmark selection. The symbolic-only control reproduces 12/12 feasible replays, 8/12 canonical exact plans, six bounded stops on impossiblereference tasks, and 14/18 evaluator-exact labels.
+Ten of the 12 feasible cached plans are sequenceidentical to the symbolic plans; the two remaining
+replay-valid plans use alternative action orderings.
+Only 7/78 accepted requests exposed multiple options, and four step-index mismatches occurred in
+two replay-valid tasks. These branch-level quantities are descriptive for the fixed cohort.
+The prospective unfiltered DeepSeek arm removes bounded pre-checks and distance filtering
+but retains local action verification. It uses 142
+provider calls and 43,623 recorded tokens, reaching 8/12 feasible targets with 5/12 canonical exact
+plans. Against symbolic search, replay has four
+symbolic-only and no live-only pairs (two-sided
+exact p = 0.125); canonical matching has four
+symbolic-only and one live-only pair (p = 0.375).
+The six impossible-reference runs terminate without reaching a target, which does not certify impossibility. This component comparison is separate
+from architecture-level inference and is not a causal
+multi-agent result.
+
+1451
+
+1507
+1508
+1509
+1510
+1511
+1512
+
+1514
+1515
+1516
+1517
+1518
+1519
+1520
+1521
+1522
+1523
+1524
+1525
+1526
+1527
+1528
+1529
+1530
+1531
+1532
+1533
+1534
+1535
+1536
 
 

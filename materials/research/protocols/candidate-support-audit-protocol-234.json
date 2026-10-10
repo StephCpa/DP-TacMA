@@ -1,0 +1,174 @@
+{
+  "schema_version": 1,
+  "experiment_id": "PARSER-INDEPENDENT-CANDIDATE-SUPPORT-AUDIT-234",
+  "status": "draft_not_frozen",
+  "freeze_instructions": "Confirm the P2 answer schema against the benchmark answer format, set status to 'frozen', record this file's SHA-256 in the progress log, and commit BEFORE any P0-rejected candidate text is displayed to an annotator or printed. Changes after that point are dated amendments that keep the original hash.",
+  "numbering_note": "234 = this protocol; 235 = analysis output; 236 = optional canary reachability control; 237 = zero-call cached preview (already computed from artifacts 081/088; not part of the frozen analysis). Renumber before freezing if already used in the workspace.",
+  "provider_calls": 0,
+  "question": "Does the 43/46 generation-failure result survive parser-independent parsing and a blind human audit of rejected candidates, and can real selectors use the support that additional restarts add?",
+  "hypotheses": {
+    "H1_parser_false_negatives": "Among P0-rejected candidate texts, the share whose human canonical plan is executor-valid is near zero.",
+    "H2_support_is_usable": "Across C1..C5, executable support grows and the oracle-minus-selector gap shows whether real selectors can use it.",
+    "H3_classification_stability": "P1, P2 and the human census reclassify few of the 43 P0 generation-failure runs."
+  },
+  "universes": {
+    "U1_headroom_slots": "The 1,152 recorded slots (72 runs x 16) of the four Table-3 original/control cohorts; the 46 P0-failed runs are the census frame.",
+    "U2_pool_slots": "All slots of the 20-task Qwen nested-pool study (anchor + 5 stochastic trajectories x 16 slots), used for H2 and selector replay.",
+    "fixed": "Candidate texts, runs, pools and P0 outcomes are reused unchanged; nothing is regenerated. The round-candidate-only pool is primary; final-inclusive is a sensitivity analysis."
+  },
+  "parsers": {
+    "P0": "The current strict parser, canonicalizer and executor, unchanged.",
+    "P1": "Format-robust wrapper around P0 (repro/candidate_parsers.p1_normalize): removes Markdown code fences, normalizes whitespace, line endings and Unicode punctuation, re-serializes valid JSON with sorted keys, and lower-cases and trims string items of a JSON string array. It never infers missing fields, rewrites or adds actions, interprets prose, consults references, or calls an LLM.",
+    "P2": "Independent parser (repro/candidate_parsers.p2_parse), written without access to P0 code: accepts IMPOSSIBLE or exactly one distinct JSON array of item identifiers ([a-z0-9_]+ after lower-casing and removing a 'minecraft:' namespace); several distinct arrays are rejected as ambiguous. Canonical plans go to the same executor. It records a failure reason for every rejection and never sees outcomes or references."
+  },
+  "slot_states": [
+    "no_text",
+    "format_invalid",
+    "executor_invalid",
+    "executor_valid_not_reference_exact",
+    "executor_valid_reference_exact"
+  ],
+  "audit": {
+    "primary_census": "Every unique (run, text) P0-rejected candidate in the 46 P0-failed runs (at most 495 unique texts; 604 slots).",
+    "secondary_sample": "A stratified sample of P0-rejected unique texts from non-failed runs (up to 60 per cohort where available) plus 60 P0-accepted texts as positive controls, all shuffled into the census.",
+    "annotators": "Annotator A labels every audit item. Annotator B independently labels a seeded 30% of census items and all secondary and control items. Disagreements on intent class or on whether a plan is given go to a third adjudicator.",
+    "mandatory_double_review": "Any item that either annotator labels A2 or A3 is labelled by both annotators and adjudicated.",
+    "blinding": "Annotators see an opaque audit id, the candidate text, the public answer schema and the P0/P1/P2 parse outputs and reasons. They do not see cohort, model, run, run outcome, the 43/46 classification, or references. The id-to-slot key stays with a non-annotating author until labels are final.",
+    "labels": {
+      "intent": {
+        "A0": "no recognizable executable intent",
+        "A1": "action intent with critical information missing",
+        "A2": "complete action intent convertible to canonical actions",
+        "A3": "explicit executable plan violating only parser format"
+      },
+      "format_failure": {
+        "F0": "no content",
+        "F1": "truncation",
+        "F2": "JSON or schema format error",
+        "F3": "missing fields",
+        "F4": "field type error",
+        "F5": "complete natural-language plan",
+        "F6": "multi-step plan form the parser cannot process",
+        "F7": "other"
+      },
+      "human_plan": "For A2/A3 only: the canonical plan the annotator reads from the text, without adding steps; executed by the executor (E2) and checked offline against the reference (E3).",
+      "execution_status": {
+        "E0": "no canonical plan (A0/A1, or no parseable human plan)",
+        "E1": "canonical human plan, executor-invalid",
+        "E2": "executor-valid, not reference-exact",
+        "E3": "executor-valid and reference-exact",
+        "note": "Derived from the human plan by the executor and the offline reference check; annotators never assign E labels or see references."
+      }
+    },
+    "agreement": "Cohen's kappa for intent (4 classes) and for plan-given (binary) on the double-labelled items.",
+    "parameters": {
+      "overlap_fraction_annotator_b": 0.3,
+      "secondary_per_cohort": 60,
+      "accepted_controls": 60
+    }
+  },
+  "selectors": {
+    "B0_recorded": "Highest recorded runtime score (current heuristic, with runtime ties broken by a seeded draw), if per-slot scores are in the traces.",
+    "B1_random": "Uniform over the pool; exact expectation plus 1,000 seeded replays.",
+    "B2_length_only": "Longest candidate.",
+    "B3_success_only": "Recorded environment success flag; if only executor validity is available it is labelled an offline diagnostic, not a deployable selector.",
+    "B4_composite": "0.85*min(1,|y|/800)+0.15*success, recomputed from text length and the recorded success flag.",
+    "B5_judge": "Judge-only and heuristic-plus-judge, if judge scores are recorded; report calls and tokens.",
+    "B6_oracle": "Executor-validity upper bound, reference exactness as an outcome-aware tie-break; never a baseline.",
+    "endpoints": [
+      "executable validity",
+      "reference exactness",
+      "both"
+    ]
+  },
+  "ablations": {
+    "parser": [
+      "P0",
+      "P1",
+      "P2",
+      "human census"
+    ],
+    "pool": [
+      "C1",
+      "C2",
+      "C3",
+      "C5",
+      "round-only (primary)",
+      "final-inclusive (sensitivity)",
+      "slot-matched",
+      "token-matched if per-trajectory tokens are recorded"
+    ],
+    "selector": [
+      "B1",
+      "B2",
+      "B3",
+      "B4",
+      "B5",
+      "B6"
+    ],
+    "endpoint": "For every score-ablation cell, report the paired contrast under executable validity, reference exactness, and both."
+  },
+  "statistics": {
+    "unit": "Tasks and runs are the inferential units. Slot- and text-level intervals are descriptive.",
+    "q_fn": "Share of audited P0-rejected texts whose adjudicated human plan is executor-valid: unweighted exact Clopper-Pearson interval and a design-weighted estimate with a run-clustered stratified bootstrap; the decision uses the larger upper bound.",
+    "selector_contrasts": "Paired task-level bootstrap (10,000 draws, seed 234) against B4 and B1; exact McNemar for binary task outcomes.",
+    "seed": 234
+  },
+  "decision_rules": {
+    "tier_A_robust": "The human census reclassifies at most 2 of the 43 P0 generation-failure runs, P1 and P2 each reclassify at most 2, and the one-sided 95% upper bound of q_FN is at most 0.05. Keep the generation-support wording and report the updated count.",
+    "tier_B_qualified": "3 to 9 runs are reclassified under the census or any parser variant. Report that most failures are generation failures but the parser accounts for k runs; name the formats responsible.",
+    "tier_C_weakened": "10 or more runs are reclassified. Rename the bottleneck 'parser- and protocol-mediated candidate support' throughout the title, abstract and conclusion.",
+    "cohort_flag": "If one cohort's q_FN upper bound exceeds twice the pooled upper bound, report it as provider-specific and stratify the claim.",
+    "selector_claim": "A selector improvement is claimed only if its paired task-level 95% interval excludes zero on the round-only pool, without extra tokens or final-inclusive hindsight.",
+    "threshold_note": "The 2-run, 10-run and 5% cut-offs are internal reporting thresholds fixed before inspection, not general standards."
+  },
+  "outputs": {
+    "audit_packet": "research/artifacts/candidate-support-audit-packet-234/ (blinded CSVs plus a private key file excluded from any public package)",
+    "analysis": "research/artifacts/candidate-support-audit-analysis-235.json",
+    "figures": "repro/make_candidate_support_figures.py: funnel, run-reclassification matrix, selector versus support, selector cost table"
+  },
+  "cached_preview_237": {
+    "artifact": "research/data/candidate-support-cached-preview-237.json",
+    "already_known": [
+      "Executable validity and reference exactness give identical paired contrasts in both cached non-degenerate length-removal cohorts (DeepSeek +0.167, 2/0 discordant; Qwen -0.050, 2/3).",
+      "On the Qwen nested pools a uniformly random final answer scores 0.50-0.54 while the offline oracle rises 0.60-0.80; a random stochastic slot scores about 0.41.",
+      "The 46 P0-failed runs hold 604 rejected slots and at most 495 unique texts; 43 generation failures average 13.6 rejected slots, so a 1% per-slot false-negative rate would be expected to move about 5 runs under independence."
+    ],
+    "consequence_for_design": "A slot sample bounding q_FN at 5% cannot protect the run-level 43/46 count, so the primary unit is a census of unique rejected texts in the failed runs and the decision is taken on run reclassifications."
+  },
+  "annotation_guide": "research/progress/candidate-support-audit-protocol-234.md#annotation-guide",
+  "minimum_viable": {
+    "keep": [
+      "P0/P1/P2 over all U1 and U2 slots",
+      "census of every unique P0-rejected text in the 43 P0 generation-failure runs",
+      "60 accepted controls",
+      "30% second-annotator overlap plus double review of every A2/A3",
+      "run reclassification under P0/P1/P2/census",
+      "dual endpoints for every score-ablation cell",
+      "B1 random, B4 composite and B6 oracle on the round-only pools"
+    ],
+    "drop_if_needed": [
+      "secondary sample from non-failed runs (then q_FN describes failed runs only)",
+      "B0, B2, B3, B5 if per-candidate scores are not in the traces",
+      "slot-matched replay"
+    ],
+    "never_drop": "the census and the frozen decision rules"
+  },
+  "toolkit": {
+    "parsers": "repro/candidate_parsers.py",
+    "analysis": "repro/candidate_support_audit.py",
+    "adapter": "repro/candidate_support_adapter.py (wire every hook; each raises NotImplementedError until then)",
+    "runner": "repro/run_candidate_support_audit.py (--check, --reparse, --packet, --second-pass, --analyze)",
+    "tests": "repro/test_candidate_support_audit.py (synthetic fixtures, fake adapter)",
+    "figures": "repro/make_candidate_support_figures.py"
+  },
+  "pre_freeze_checklist": [
+    "Confirm the P2 answer schema (IMPOSSIBLE or a JSON array of item ids) against the benchmark answer format.",
+    "Wire every adapter hook to the 081/088 code paths and run --check (reads no candidate text).",
+    "Confirm P0 exposes its rejection reasons; otherwise record 'rejected' for all.",
+    "Confirm whether per-candidate recorded scores, judge scores, environment-success flags and per-trajectory usage exist; record which selectors are therefore estimable before any replay.",
+    "Name annotators A and B and the adjudicator privately; none may have seen the 46 runs' outcomes in this form. Record only roles in public artifacts.",
+    "Set status to 'frozen', record the SHA-256 in the progress log, and commit before --reparse."
+  ],
+  "reachability_control": "research/protocols/canary-reachability-control-protocol-236.json (optional, live, secondary)"
+}

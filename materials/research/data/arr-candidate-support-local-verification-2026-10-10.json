@@ -1,0 +1,80 @@
+{
+ "artifact": "arr-candidate-support-local-verification-2026-10-10",
+ "mode": "zero provider calls; no candidate text read; run outside the author workspace",
+ "manuscript": {
+  "pages": 18,
+  "main_body_limitations_heading_page": 8,
+  "review_pdf_sha256": "18dbcec777a49d2177e52b36ee78c84667531bad112641a58918e373acb77131",
+  "warnings": "none (no undefined references, overfull boxes, or lineno re-run warning)",
+  "changes": [
+   "delta notation names its endpoint (section 2.2)",
+   "random-final selector baseline (section 3.3, Figure 2b, Limitations)",
+   "appendix: endpoint choice, random baselines, parser sensitivity, artifact 237 in the supplement description"
+  ]
+ },
+ "source_archive": {
+  "artifact": "acl-arr-manuscript-archive-audit-232",
+  "status": "passed",
+  "archive_sha256": "a6303f7ea42b113feeef32471283a90a5eb922cf20dd0c62e91efb90a0df65ec",
+  "independent_compile": {
+   "command_exit_codes": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "extra_pdflatex_passes": 1,
+   "pages": 18,
+   "limitations_heading_page": 8,
+   "normalized_text_equal": true,
+   "text_outputs_distinct": true
+  }
+ },
+ "local_pubcheck_preflight": {
+  "status": "passed",
+  "pages": 18,
+  "limitations_heading_page": 8
+ },
+ "official_pubcheck": {
+  "source_commit": "237bee3a554f2d2fcda69cd0cf1edf4168e3d339",
+  "proof": "non-line-numbered compile of archive 232",
+  "proof_pdf_sha256": "302786418c6cbbb286230196256071b444cb83ef8a316642179d2a2036f4a7a7",
+  "proof_pages": 18,
+  "result": "All Clear!",
+  "exit_code": 0
+ },
+ "anonymous_supplement": {
+  "artifact": "anonymous-supplement-audit-233",
+  "status": "passed",
+  "archive_sha256": "08e00f9e73e6e4a4f017796ece3e86e27aaa11e14809df623351df0cb1f92ba0",
+  "checks": {
+   "no_identity_or_path_strings": true,
+   "reanalysis_runs": true,
+   "reanalysis_regenerates_artifact_231": true,
+   "preview_regenerates_artifact_237": true,
+   "bundled_tests_pass": true
+  }
+ },
+ "cached_preview_237_sha256": "3f36c2f8cff51f1850bfafeb6a7c6d7969ce141fe266419f4554f7f16774b399",
+ "draft_protocols": {
+  "candidate-support-audit-protocol-234.json": "9c4dabbfc542094c18271b5aa4aa0a134c3b581f73461c0847c115082c2ad6fd",
+  "canary-reachability-control-protocol-236.json": "cbcde20a7bfea7d5803160648177d15d0758eca4360b16e1f368c87acdf7b125",
+  "status": "draft_not_frozen (hashes recorded for provenance, not as a freeze)"
+ },
+ "tests": {
+  "test_candidate_support_audit.py": "15 passed",
+  "test_direct_sampling_analysis.py": "passed",
+  "test_run_direct_sampling_baseline.py": "passed",
+  "test_post_arr_persistence_analysis.py": "passed"
+ },
+ "text_level_audit_conditions": "conditions of 189, 191, 192 (emulated), 193 (emulated, title and abstract), 174, and the ARR main-text part of 224 pass; 36 cited keys equal 36 bibliography keys",
+ "not_run_here": [
+  "protocol-234 re-parse, census and analysis (need workspace texts, P0 parser and annotators)",
+  "protocol-236 live control",
+  "full workspace runs of 189, 191, 192, 193, 174, 224",
+  "sequential freeze 196",
+  "157-test workspace suite"
+ ],
+ "status": "local_checks_passed_workspace_audits_pending"
+}

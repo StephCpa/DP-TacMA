@@ -854,3 +854,14 @@ G0 runnable science passes. The next experiment is the preregistered 20-pair X1 
   - The repair and planner studies are reduced to an exploratory subsection, with planner batches reported separately.
   - The ε curve is in the appendix with a monotone-calibration proof and general-calibration equivalents.
 - Added zero-call reanalysis artifact 231 from cached artifacts 037/081/088/223, rebuilt the source archive as 232 (11 entries, 18 pages, body ends on page 8), and built anonymous supplement 233. A fresh extraction regenerates 231 and passes its tests. The official Pubcheck returns All Clear, and all text-level audit conditions pass. The full workspace audits, the freeze, and the 157-test suite remain pending.
+- 2026-10-10: Built the parser-independent candidate-support audit as a draft protocol and toolkit; no candidate text was read and no provider call was made.
+  - **Protocol and toolkit.** Draft protocol 234, with a human-readable version and annotation guide in `candidate-support-audit-protocol-234.md`. The toolkit adds parsers P1/P2, the analysis library, a workspace adapter, a staged runner, a figure script, and 15 synthetic-fixture tests.
+  - **Census design.** The design is a census of every unique P0-rejected text in the 46 failed runs (at most 495), not a slot sample. The reason: the 43 generation failures average 13.6 rejected slots, so a 1% per-slot false-negative rate could move about 5 runs.
+  - **Annotation and decision rules.** Blinding, double annotation, and decision tiers A/B/C are fixed before inspection.
+  - **Optional live control.** Canary reachability control R1–R4 is draft protocol 236.
+- Zero-call preview artifact 237 (from cached 081/088):
+  - **Endpoints.** Executable validity and reference exactness give identical paired contrasts in both cached non-degenerate length-removal cohorts: +0.167 with 2/0 discordant pairs, and −0.050 with 2/3.
+  - **Selector baseline.** A random final answer scores 0.50–0.54 on C1–C5, against an oracle of 0.60–0.80; the gap grows from 0.10 to 0.26 [0.10, 0.43].
+  - **Manuscript.** §2.2 now writes the ablation estimand with an explicit endpoint. Figure 2b and §3.3 add the random-final baseline. The appendix adds the endpoint comparison, the random baselines, and the parser-sensitivity calculation.
+  - **Checks.** The PDF is 18 pages with the body ending on page 8. Archive 232 was rebuilt (the independent compile matches), the official Pubcheck returns All Clear, supplement 233 was rebuilt (a fresh extraction regenerates 231 and 237), and all repository tests pass.
+  - **Freezing.** To freeze protocol 234, follow the pre-freeze checklist in the JSON; then `--reparse` can run in the workspace.

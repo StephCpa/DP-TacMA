@@ -192,3 +192,65 @@ The 2026-10-10 pre-submission review is answered point by point in
 - verification record `arr-review-revision-local-verification-2026-10-10.json`.
 
 No provider calls were made.
+
+## Candidate-support audit (2026-10-10, second pass)
+
+This pass answers the request to prioritize a parser-independent
+candidate-support and selection audit. Only the parts that cached data
+support were added to the paper. The rest is a draft protocol and a tested
+toolkit that runs in the workspace, where the raw candidate texts and the P0
+parser live. No provider call was made.
+
+**Paper changes (cached evidence only):**
+- **§2.2.** The ablation estimand is now \(\delta_V^{\mathrm{abl}}\), with an
+  explicit final-answer endpoint \(V\). Table 2 uses reference exactness for
+  \(V\). Executable validity gives identical paired differences in both
+  non-degenerate cohorts (DeepSeek 2/0 discordant pairs, Qwen 2/3).
+- **§3.3 and Figure 2b.** A uniformly random final answer reaches only 0.50 to
+  0.54, against the oracle's 0.60 to 0.80. The oracle's lead grows from 0.10 to
+  0.26 [0.10, 0.43]. Figure 2b draws this as an aqua line, and the legend no
+  longer overlaps a whisker.
+- **Limitations.** The selector sentence now reads "Beyond a random
+  final-answer baseline, we report no deployed non-private selector."
+- **Appendix additions:**
+  - an endpoint-choice paragraph (score sources);
+  - random-final and random-slot baselines (pool enlargement);
+  - a parser-sensitivity paragraph (headroom). It shows why a slot-sample
+    audit cannot certify the run count: at a 1% per-slot false-negative rate
+    about 5.4 runs would move.
+- **Unchanged:** "we have not hand-audited the rejected slots", because that
+  is still true.
+
+**New artifacts:**
+- `repro/candidate_support_cached_preview.py`, which writes
+  `research/data/candidate-support-cached-preview-237.json`;
+- draft protocols 234 (candidate-support audit) and 236 (canary
+  reachability R1–R4);
+- the toolkit `candidate_parsers.py`, `candidate_support_audit.py`,
+  `candidate_support_adapter.py`, `run_candidate_support_audit.py`, and
+  `make_candidate_support_figures.py`, with 15 tests;
+- `research/progress/candidate-support-audit-protocol-234.md`, which holds the
+  annotation guide and pre-written tier A/B/C text.
+
+**Builds:**
+- 18 pages; the body ends on page 8; no warnings; line numbers settled.
+- Archive 232 rebuilt: passed, and the independent compile's text matches.
+- Local preflight: passed.
+- Official Pubcheck (`237bee3`) on the non-line-numbered proof: All Clear.
+- Supplement 233 rebuilt. It now also regenerates 237, and its identity scan
+  is clean.
+- The text conditions of 189, 191, 174, and 224 (ARR) and emulated 192/193
+  pass.
+
+**Next, in the workspace:**
+1. Wire the adapter.
+2. Run `--check`.
+3. Freeze 234 per its checklist.
+4. Run `--reparse`, `--packet`, the annotation, `--second-pass`, and
+   `--analyze`.
+5. Apply the matching tier text from the protocol markdown.
+
+Page budget: the Limitations heading now sits at the foot of page 8's left
+column. The body can therefore grow by roughly one column (about 28 lines)
+before the heading leaves page 8. A tier B or C reclassification table fits
+within that; a full-width float would need cuts.

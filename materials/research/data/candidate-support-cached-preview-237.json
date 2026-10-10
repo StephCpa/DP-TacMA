@@ -1,0 +1,210 @@
+{
+  "artifact": "candidate-support-cached-preview-237",
+  "protocol": "candidate-support-audit-protocol-234 (draft); this preview is not the frozen analysis 235",
+  "mode": "zero-call reanalysis of cached artifacts 081 and 088",
+  "provider_calls": 0,
+  "candidate_texts_read": 0,
+  "endpoint_ablation": {
+    "deepseek_nondegenerate_length_removal": {
+      "control_arm": "original_evolve_canary",
+      "treated_arm": "length_zero_evolve_canary",
+      "executable_validity": {
+        "pairs": 12,
+        "difference": 0.167,
+        "bootstrap_95": [
+          0.0,
+          0.417
+        ],
+        "discordant": [
+          2,
+          0
+        ],
+        "exact_mcnemar_p": 0.5
+      },
+      "reference_exactness": {
+        "pairs": 12,
+        "difference": 0.167,
+        "bootstrap_95": [
+          0.0,
+          0.417
+        ],
+        "discordant": [
+          2,
+          0
+        ],
+        "exact_mcnemar_p": 0.5
+      },
+      "both": {
+        "pairs": 12,
+        "difference": 0.167,
+        "bootstrap_95": [
+          0.0,
+          0.417
+        ],
+        "discordant": [
+          2,
+          0
+        ],
+        "exact_mcnemar_p": 0.5
+      },
+      "endpoints_agree": true
+    },
+    "qwen_length_removal": {
+      "control_arm": "original_score",
+      "treated_arm": "length_zero",
+      "executable_validity": {
+        "pairs": 20,
+        "difference": -0.05,
+        "bootstrap_95": [
+          -0.25,
+          0.15
+        ],
+        "discordant": [
+          2,
+          3
+        ],
+        "exact_mcnemar_p": 1.0
+      },
+      "reference_exactness": {
+        "pairs": 20,
+        "difference": -0.05,
+        "bootstrap_95": [
+          -0.25,
+          0.15
+        ],
+        "discordant": [
+          2,
+          3
+        ],
+        "exact_mcnemar_p": 1.0
+      },
+      "both": {
+        "pairs": 20,
+        "difference": -0.05,
+        "bootstrap_95": [
+          -0.25,
+          0.15
+        ],
+        "discordant": [
+          2,
+          3
+        ],
+        "exact_mcnemar_p": 1.0
+      },
+      "endpoints_agree": true
+    },
+    "initial_deepseek_length_cohort": "Not in the cached rows. Its 10 pairs had 0 discordant pairs under reference exactness (artifact 231); the executable-validity contrast needs the workspace run records."
+  },
+  "selector_baselines_qwen_nested_pool": {
+    "tasks": 20,
+    "definitions": {
+      "oracle": "offline executable oracle over the round candidates of the anchor and first j stochastic trajectories (C_j)",
+      "random_final": "uniform choice among the j+1 trajectory final answers in C_j; exact expectation",
+      "random_stochastic_slot": "uniform choice among the 16j recorded slots of the first j stochastic trajectories; the anchor's per-slot validity is not cached, so it is excluded",
+      "anchor_final": "the temperature-zero trajectory's own final answer"
+    },
+    "C1": {
+      "oracle": 0.6,
+      "random_final": 0.5,
+      "random_final_task_bootstrap_95": [
+        0.3,
+        0.7
+      ],
+      "random_stochastic_slot": 0.416,
+      "oracle_minus_random_final": 0.1,
+      "oracle_minus_random_final_task_bootstrap_95": [
+        0.0,
+        0.225
+      ]
+    },
+    "C2": {
+      "oracle": 0.7,
+      "random_final": 0.517,
+      "random_final_task_bootstrap_95": [
+        0.317,
+        0.717
+      ],
+      "random_stochastic_slot": 0.411,
+      "oracle_minus_random_final": 0.183,
+      "oracle_minus_random_final_task_bootstrap_95": [
+        0.05,
+        0.35
+      ]
+    },
+    "C3": {
+      "oracle": 0.7,
+      "random_final": 0.525,
+      "random_final_task_bootstrap_95": [
+        0.325,
+        0.725
+      ],
+      "random_stochastic_slot": 0.414,
+      "oracle_minus_random_final": 0.175,
+      "oracle_minus_random_final_task_bootstrap_95": [
+        0.05,
+        0.338
+      ]
+    },
+    "C4": {
+      "oracle": 0.8,
+      "random_final": 0.55,
+      "random_final_task_bootstrap_95": [
+        0.36,
+        0.74
+      ],
+      "random_stochastic_slot": 0.415,
+      "oracle_minus_random_final": 0.25,
+      "oracle_minus_random_final_task_bootstrap_95": [
+        0.09,
+        0.42
+      ]
+    },
+    "C5": {
+      "oracle": 0.8,
+      "random_final": 0.542,
+      "random_final_task_bootstrap_95": [
+        0.35,
+        0.733
+      ],
+      "random_stochastic_slot": 0.409,
+      "oracle_minus_random_final": 0.258,
+      "oracle_minus_random_final_task_bootstrap_95": [
+        0.1,
+        0.433
+      ]
+    },
+    "anchor_final": 0.5,
+    "not_computable_from_cache": "recorded-score, length-only, success-only, composite and judge selectors: the cached rows hold per-trajectory counts, not per-candidate scores or lengths"
+  },
+  "census_planning": {
+    "p0_failed_runs": 46,
+    "rejected_slots_in_failed_runs": 604,
+    "unique_texts_in_failed_runs_upper_bound": 495,
+    "generation_failure_runs": 43,
+    "rejected_slots_in_generation_failures": 583,
+    "mean_rejected_slots_per_generation_failure": 13.56,
+    "generation_failures_exact_95": [
+      0.821,
+      0.986
+    ],
+    "expected_runs_reclassified_if_each_rejected_text_is_a_false_negative_with_rate_q": {
+      "0.005": {
+        "independent_rejected_slots": 2.8,
+        "independent_unique_texts_upper": 1.8
+      },
+      "0.01": {
+        "independent_rejected_slots": 5.4,
+        "independent_unique_texts_upper": 3.6
+      },
+      "0.02": {
+        "independent_rejected_slots": 10.2,
+        "independent_unique_texts_upper": 6.9
+      },
+      "0.05": {
+        "independent_rejected_slots": 21.0,
+        "independent_unique_texts_upper": 14.9
+      }
+    },
+    "reading": "A small slot-level false-negative rate can still move many runs because each generation failure has many rejected slots, so protocol 234 audits every unique rejected text in the failed runs and decides on run reclassifications, not on a slot-level rate alone. Independence is a worst-case planning assumption; duplicated texts make false negatives cluster within runs."
+  }
+}

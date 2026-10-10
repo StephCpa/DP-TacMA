@@ -67,6 +67,8 @@ def candidate_pool_figure() -> None:
     plug_in = [0.660, 0.700, 0.722, 0.738, 0.751]  # fresh-draw expectation, n = 1..5
     plug_in_ci = [(0.470, 0.840), (0.512, 0.878), (0.546, 0.897), (0.559, 0.909), (0.567, 0.917)]
     baseline_final = 0.50  # temperature-zero final answer
+    # Uniform choice among the j+1 trajectory final answers in C_j (artifact 237).
+    random_final = [0.500, 0.517, 0.525, 0.550, 0.542]
 
     fig, axes = plt.subplots(1, 2, figsize=(5.4, 2.2), gridspec_kw={"wspace": 0.38})
     ticks = [f"$C_{j}$\n({t})" for j, t in enumerate(trajectories, start=1)]
@@ -94,10 +96,12 @@ def candidate_pool_figure() -> None:
         ax.plot([x + 0.06, x + 0.06], [lo, hi], color=BLUE, lw=1.2)
     ax.plot([t + 0.06 for t in trajectories], oracle, color=BLUE, lw=2, marker="o", ms=4.5,
             label="realized offline oracle")
-    ax.text(2.0, 0.375, "baseline final 0.50", fontsize=6.5, color=MUTED, va="bottom", ha="left")
+    ax.plot(trajectories, random_final, color=AQUA, lw=1.6, marker="^", ms=3.5)
+    ax.text(4.56, 0.488, "random final", fontsize=6.5, color=AQUA, va="top", ha="center")
+    ax.text(2.16, 0.375, "baseline final 0.50", fontsize=6.5, color=MUTED, va="bottom", ha="left")
     ax.legend(loc="upper left", frameon=False, handlelength=2.2, borderaxespad=0.2)
     ax.set_xlim(1.6, 6.4)
-    ax.set_ylim(0.35, 1.05)
+    ax.set_ylim(0.35, 1.15)
     ax.set_yticks([0.4, 0.6, 0.8, 1.0])
     ax.set_xticks(trajectories, ticks)
     ax.set_xlabel("Nested pool (trajectories)")
