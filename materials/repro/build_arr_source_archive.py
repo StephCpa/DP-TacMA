@@ -19,10 +19,10 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 ARR = ROOT / "manuscript-arr"
-ARCHIVE_ID = 230
+ARCHIVE_ID = 232
 ARCHIVE = ROOT / "research" / "manifests" / f"acl-arr-october-manuscript-source-{ARCHIVE_ID}.zip"
 OUT = ROOT / "research" / "artifacts" / f"acl-arr-manuscript-archive-audit-{ARCHIVE_ID}.json"
-EXPECTED_PAGES = 17
+EXPECTED_PAGES = 18
 MAIN_BODY_PAGE_LIMIT = 8
 ENTRIES = [
     "main.tex",
@@ -34,6 +34,7 @@ ENTRIES = [
     "figures/evolution-audit-main-results.pdf",
     "figures/qwen-candidate-pool-enlargement.pdf",
     "figures/failure-decomposition.pdf",
+    "figures/selector-calculation.pdf",
     "figures/make_main_figures.py",
 ]
 FIXED_TIME = (2026, 10, 1, 0, 0, 0)
@@ -164,7 +165,7 @@ def main() -> None:
         "workspace_pdf_pages": workspace_pages,
         "checks": checks,
         "failed_checks": failed,
-        "supersedes": "acl-arr-october-manuscript-source-179.zip (15-page version)",
+        "supersedes": "acl-arr-october-manuscript-source-230.zip (17-page version before the review revision)",
     }
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(result, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")

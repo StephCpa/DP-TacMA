@@ -4,11 +4,11 @@ Status: anonymous, author-fillable metadata sheet. The author list, affiliations
 
 ## Title
 
-Before Selecting Evolving LLM Agents: Auditing Exposure, Score Validity, and Candidate Support
+Before Candidate Selection in Test-Time LLM Agents: A Scope-Limited Audit of Exposure, Score Interventions, and Realized Candidate Support
 
 ## Abstract
 
-Test-time LLM agents retain natural-language state, score responses, and revise workflows while solving tasks. Before adding a selector or privacy mechanism, we need to know whether state carries sensitive content, whether scores track executable utility, and whether generation exposes useful alternatives. We introduce a persistence-aware executable audit and apply it to a released multi-agent runtime on PlanCraft. A complete three-arm replication detects no post-input canary exposure in 120 instances, with a one-sided 95\% upper bound of 2.5\%. Removing a score term that assigns 85\% weight to output length sharply lowers recorded scores for both DeepSeek and Qwen, yet a secondary synthesis of 42 paired runs changes exactness by only $+0.024$ (95\% interval $[-0.095,0.143]$). In four frozen cohorts, 43 of 46 failed runs contain no executable candidate anywhere in the recorded pool, so any selector restricted to those candidates could have gained only 0--8.3 percentage points. Pooling five independent stochastic Qwen trajectories instead of one raises executable-oracle accuracy from 0.60 to 0.80 at triple the token cost. A frozen same-task public-only control reverses our initial explanation of two selected DeepSeek repair failures: each task concentrates on a single invalid response whether or not the prompt contains the current candidate and executor feedback. These results define an audit order for selection in evolving LLM agents and its limits; they do not provide end-to-end privacy or a general prevalence estimate.
+Test-time LLM agents retain natural-language state, score intermediate responses, and revise their outputs while solving tasks. Before adding a candidate selector or a privacy mechanism, one should check three preconditions: whether protected content enters persistent state, whether changing the score has downstream consequences, and whether the generator exposes executable alternatives worth selecting. We apply this audit order to one configuration of a released multi-agent runtime, TacoMAS with a fixed three-agent topology and structural edits disabled, on the PlanCraft benchmark. In a three-arm canary study with 120 instances per arm (360 runs), no exact or five-token partial canary was recovered from post-input persistent state under our canary family, injection route, observer, and five-round horizon (evolve-arm one-sided 95\% upper bound 2.5\%). Removing the fast-round length term, which carries 85\% of the heuristic score weight, sharply lowers recorded scores for DeepSeek and Qwen, but exactness effects in the primary cohorts are heterogeneous and inconclusive. In four frozen cohorts, 43 of 46 failed runs contain no parser-accepted executable candidate in the recorded pool, so selectors restricted to that pool could have gained only 0--8.3 percentage points. Adding four independent stochastic restarts raises the offline executable oracle from 0.60 to 0.80 at roughly three times the token cost. These results scope where selection and privacy mechanisms could matter in this runtime; they do not provide end-to-end privacy or a general prevalence estimate.
 
 ## Keywords
 
@@ -23,7 +23,7 @@ Test-time LLM agents retain natural-language state, score responses, and revise 
 - Preferred venue at ARR submission: NAACL 2027
 - Secondary commitment option: COLING 2027
 - Paper type: long research paper
-- Scope statement: empirical audit of test-time LLM-agent state, scoring, candidate support, and the limits of privacy-oriented selection claims
+- Scope statement: scope-limited empirical audit of persistent state, score interventions, and realized candidate support in a fixed-topology TacoMAS--PlanCraft configuration; not an end-to-end privacy method
 
 ## Submission invariants
 

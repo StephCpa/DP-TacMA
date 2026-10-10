@@ -1,0 +1,263 @@
+{
+  "artifact": "review-response-reanalysis-231",
+  "mode": "zero-call reanalysis of cached artifacts 037, 081, 088 and replication result 223",
+  "provider_calls": 0,
+  "headroom": {
+    "per_cohort": {
+      "DeepSeek X1 evolve": {
+        "eligible": 13,
+        "final": 2,
+        "round_only": 2,
+        "inclusive": 2,
+        "final_only": 0,
+        "all": 20,
+        "ref_final": 2,
+        "ref_pool": 2,
+        "agree": 13,
+        "slots": 320,
+        "parseable": 43,
+        "failed": 11,
+        "selection_failures": 0,
+        "generation_failures": 11,
+        "parse_acceptance": 0.134
+      },
+      "DeepSeek non-degenerate evolve": {
+        "eligible": 12,
+        "final": 6,
+        "round_only": 7,
+        "inclusive": 7,
+        "final_only": 0,
+        "all": 12,
+        "ref_final": 6,
+        "ref_pool": 7,
+        "agree": 12,
+        "slots": 192,
+        "parseable": 95,
+        "failed": 6,
+        "selection_failures": 1,
+        "generation_failures": 5,
+        "parse_acceptance": 0.495
+      },
+      "DeepSeek text-retention control": {
+        "eligible": 20,
+        "final": 0,
+        "round_only": 1,
+        "inclusive": 1,
+        "final_only": 0,
+        "all": 20,
+        "ref_final": 0,
+        "ref_pool": 1,
+        "agree": 20,
+        "slots": 320,
+        "parseable": 52,
+        "failed": 20,
+        "selection_failures": 1,
+        "generation_failures": 19,
+        "parse_acceptance": 0.163
+      },
+      "Qwen released score": {
+        "eligible": 20,
+        "final": 11,
+        "round_only": 12,
+        "inclusive": 12,
+        "final_only": 0,
+        "all": 20,
+        "ref_final": 11,
+        "ref_pool": 12,
+        "agree": 20,
+        "slots": 320,
+        "parseable": 175,
+        "failed": 9,
+        "selection_failures": 1,
+        "generation_failures": 8,
+        "parse_acceptance": 0.547
+      }
+    },
+    "pooled": {
+      "eligible_runs": 65,
+      "failed_runs": 46,
+      "selection_failures": 3,
+      "generation_failures": 43,
+      "generation_failures_of_failed": "43/46",
+      "generation_failures_of_failed_exact_95": [
+        0.821,
+        0.986
+      ],
+      "selection_failures_of_failed": "3/46",
+      "selection_failures_of_failed_exact_95": [
+        0.014,
+        0.179
+      ],
+      "recoverable_of_eligible": "3/65",
+      "recoverable_of_eligible_exact_95": [
+        0.01,
+        0.129
+      ],
+      "round_only_oracle": 22,
+      "final_inclusive_oracle": 22,
+      "valid_final_without_valid_round_candidate": 0,
+      "estimands_identical": true,
+      "reference_exact_all_runs_including_impossible": {
+        "runs": 72,
+        "final": 19,
+        "pool_oracle": 22,
+        "recoverable": 3,
+        "recoverable_exact_95": [
+          0.009,
+          0.117
+        ]
+      },
+      "final_executable_vs_reference_exact_agreement": "65/65",
+      "parser_acceptance": "365/1152",
+      "parser_acceptance_rate": 0.317
+    }
+  },
+  "nested_pool": {
+    "tasks": 20,
+    "oracle_points": {
+      "C1": {
+        "mean": 0.6,
+        "task_bootstrap_95": [
+          0.4,
+          0.8
+        ]
+      },
+      "C2": {
+        "mean": 0.7,
+        "task_bootstrap_95": [
+          0.5,
+          0.9
+        ]
+      },
+      "C3": {
+        "mean": 0.7,
+        "task_bootstrap_95": [
+          0.5,
+          0.9
+        ]
+      },
+      "C4": {
+        "mean": 0.8,
+        "task_bootstrap_95": [
+          0.6,
+          0.95
+        ]
+      },
+      "C5": {
+        "mean": 0.8,
+        "task_bootstrap_95": [
+          0.6,
+          0.95
+        ]
+      }
+    },
+    "per_task_patterns_C1_to_C5": {
+      "11111": 12,
+      "00000": 4,
+      "00011": 2,
+      "01111": 2
+    },
+    "support_C5_minus_C1_task_distribution": {
+      "1": 8,
+      "0": 8,
+      "3": 1,
+      "2": 2,
+      "5": 1
+    },
+    "plug_in_curve": {
+      "1": {
+        "mean": 0.6599999999999999,
+        "task_cluster_bootstrap_95": [
+          0.47000000000000003,
+          0.8400000000000001
+        ]
+      },
+      "2": {
+        "mean": 0.7,
+        "task_cluster_bootstrap_95": [
+          0.512,
+          0.8779999999999999
+        ]
+      },
+      "3": {
+        "mean": 0.7224,
+        "task_cluster_bootstrap_95": [
+          0.5456,
+          0.8972
+        ]
+      },
+      "4": {
+        "mean": 0.7384,
+        "task_cluster_bootstrap_95": [
+          0.5588,
+          0.9085599999999999
+        ]
+      },
+      "5": {
+        "mean": 0.750816,
+        "task_cluster_bootstrap_95": [
+          0.5672159999999999,
+          0.917168
+        ]
+      },
+      "10": {
+        "mean": 0.7838938624,
+        "task_cluster_bootstrap_95": [
+          0.58926258176,
+          0.9392625664
+        ]
+      },
+      "20": {
+        "mean": 0.7982706177430887,
+        "task_cluster_bootstrap_95": [
+          0.5988470784953932,
+          0.9488470784953916
+        ]
+      }
+    }
+  },
+  "score_sources_x1": {
+    "runs": 60,
+    "contribution_score_observations": 900,
+    "fast_heuristic_observations": 705,
+    "slow_judge_observations": 195,
+    "observations_from_successful_runs": "75/900",
+    "high_score_observations_from_successful_runs": "24/165",
+    "observation_level_lift": 1.745,
+    "run_level_auc_max_contribution_score": 0.755,
+    "unit_note": "observations are agent-round scores, 15 per run; lift is descriptive and not a likelihood ratio"
+  },
+  "degenerate_bootstrap_initial_length_ablation": {
+    "pairs": 10,
+    "discordant_pairs": 0,
+    "bootstrap_interval": [
+      0.0,
+      0.0
+    ],
+    "exact_two_sided_95_bound_on_discordance": 0.308,
+    "implied_risk_difference_bound": [
+      -0.308,
+      0.308
+    ],
+    "note": "|RD| cannot exceed the discordant-pair rate, so the exact Clopper-Pearson bound on 0/10 discordances bounds the paired risk difference."
+  },
+  "repair_sensitivity": {
+    "TEST0030_all_80_calls": {
+      "raw_modal": "69/80",
+      "semantic_modal": "78/80"
+    },
+    "TEST0030_excluding_2_empty_pre_fix_calls": {
+      "raw_modal": "69/78 = 0.8846",
+      "semantic_modal": "78/78 = 1.0000"
+    }
+  },
+  "canary_replication_denominators": {
+    "runs_per_arm": {
+      "evolve": 120,
+      "depth_matched_reset": 120,
+      "no_canary": 120
+    },
+    "total_runs": 360,
+    "no_canary_false_positive_one_sided_95_upper": 0.0247
+  }
+}

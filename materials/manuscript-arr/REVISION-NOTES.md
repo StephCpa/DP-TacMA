@@ -162,3 +162,33 @@ The full record is
 3. Rerun audits 189, 191, 192, 193, 174, and 224, then the sequential freeze
    196 and the 157-test suite.
 4. Fast-forward main only after those pass.
+
+## Review revision (2026-10-10)
+
+The 2026-10-10 pre-submission review is answered point by point in
+`REVIEW-RESPONSE-2026-10-10.md`.
+
+**Main changes:**
+- New title, and scope narrowed to a fixed-topology TacoMAS–PlanCraft
+  configuration.
+- Paired, not randomized, length-term removal with a system-level estimand.
+- Parser-conditional 43/46 with exact intervals, plus estimand and IMPOSSIBLE
+  sensitivity checks.
+- Figure 2 has per-point task-bootstrap intervals.
+- The ε curve moved to the appendix with a monotone-calibration proof.
+- The repair and planner studies moved to an exploratory subsection.
+- New appendix sections: procedure, metrics, score sources, closest work, and
+  reproducibility.
+
+**Builds and expectations:**
+- 18 pages; the body ends on page 8.
+- Archive 232 has 11 entries; the readiness audit and preflight now expect 18
+  pages and 11 entries.
+- Official Pubcheck returns All Clear.
+
+**New artifacts:**
+- reanalysis 231 (`repro/reanalyze_review_items.py`);
+- anonymous supplement 233 (`repro/build_anonymous_supplement.py`);
+- verification record `arr-review-revision-local-verification-2026-10-10.json`.
+
+No provider calls were made.

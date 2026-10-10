@@ -1,0 +1,92 @@
+{
+  "artifact": "arr-review-revision-local-verification-2026-10-10",
+  "mode": "zero provider calls; run outside the author workspace",
+  "manuscript": {
+    "pages": 18,
+    "main_body_limitations_heading_page": 8,
+    "review_pdf_sha256": "ea730c50b63aefa04b461b64f18030a06cd933a4e8a6c45cd59cbfabedff5a3d",
+    "warnings": "none (no undefined references, overfull boxes, or lineno re-run warning)"
+  },
+  "source_archive": {
+    "artifact": "acl-arr-manuscript-archive-audit-232",
+    "status": "passed",
+    "archive_sha256": "e4207d8ae12190f9ba8a9cbe3dcd06e8be7736a9cf6d39b812d797afac6e392b",
+    "entry_count": 11,
+    "entries": [
+      "acl.sty",
+      "acl_natbib.bst",
+      "appendix.tex",
+      "figures/evolution-audit-main-results.pdf",
+      "figures/failure-decomposition.pdf",
+      "figures/make_main_figures.py",
+      "figures/qwen-candidate-pool-enlargement.pdf",
+      "figures/selector-calculation.pdf",
+      "main.tex",
+      "math_commands.tex",
+      "references.bib"
+    ],
+    "independent_compile": {
+      "command_exit_codes": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "extra_pdflatex_passes": 1,
+      "pages": 18,
+      "limitations_heading_page": 8,
+      "normalized_text_equal": true,
+      "text_outputs_distinct": true
+    }
+  },
+  "local_pubcheck_preflight": {
+    "status": "passed",
+    "pages": 18,
+    "limitations_heading_page": 8,
+    "checks": {
+      "non_line_numbered_source": true,
+      "compile_passes": true,
+      "expected_pages": true,
+      "main_body_within_page_limit": true,
+      "no_overfull_boxes": true,
+      "no_undefined_references": true,
+      "no_type3_fonts": true,
+      "anonymous_author_text_present": true,
+      "blank_pdf_author_metadata": true,
+      "no_credential_prefixes": true,
+      "no_machine_paths": true
+    }
+  },
+  "official_pubcheck": {
+    "source_commit": "237bee3a554f2d2fcda69cd0cf1edf4168e3d339",
+    "proof": "non-line-numbered compile of archive 232",
+    "proof_pdf_sha256": "49c8b2b095c20f167c5bc305cb0bcffbe962299dad27af05e37bfe9f2a12341f",
+    "proof_pages": 18,
+    "result": "All Clear!",
+    "exit_code": 0
+  },
+  "anonymous_supplement": {
+    "artifact": "anonymous-supplement-audit-233",
+    "status": "passed",
+    "archive_sha256": "1f3970935f3c4f30dc5f1a6028cc94174d10ad233d8c775e47f8ccddf9be96b1",
+    "checks": {
+      "no_identity_or_path_strings": true,
+      "reanalysis_runs": true,
+      "reanalysis_regenerates_artifact_231": true,
+      "bundled_tests_pass": true
+    }
+  },
+  "text_level_audit_conditions": "conditions of 189, 191, 192 (emulated), 193 (emulated, title and abstract), 174, and the ARR part of 224 pass on the revised sources; 36 cited keys equal 36 bibliography keys",
+  "expectation_changes": {
+    "expected_pages": "17 -> 18",
+    "archive_entry_count": "10 -> 11",
+    "archive_id": "230 -> 232"
+  },
+  "not_run_here": [
+    "full workspace runs of 189, 191, 192, 193, 174, 224",
+    "sequential freeze 196",
+    "157-test workspace suite"
+  ],
+  "status": "local_checks_passed_workspace_audits_pending"
+}

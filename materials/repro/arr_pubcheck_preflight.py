@@ -13,8 +13,8 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[2]
-ARCHIVE = ROOT / "research" / "manifests" / "acl-arr-october-manuscript-source-230.zip"
-EXPECTED_PAGES = 17  # 15 before the ported appendix additions; see REVISION-NOTES
+ARCHIVE = ROOT / "research" / "manifests" / "acl-arr-october-manuscript-source-232.zip"
+EXPECTED_PAGES = 18  # 15 originally, 17 after the port, 18 after the review revision; see REVISION-NOTES
 MAIN_BODY_PAGE_LIMIT = 8
 OUT = ROOT / "research" / "artifacts" / "acl-arr-pubcheck-preflight-180.json"
 
@@ -73,7 +73,7 @@ def main() -> None:
             "artifact": "acl-arr-pubcheck-preflight-180",
             "status": "passed" if not failed else "failed",
             "mode": "local non-line-numbered ACL preflight; not the official ACL Pubcheck tool; no provider calls",
-            "source_archive": "research/manifests/acl-arr-october-manuscript-source-230.zip",
+            "source_archive": "research/manifests/acl-arr-october-manuscript-source-232.zip",
             "proof_pdf_sha256": proof_sha,
             "pages": pages,
             "limitations_heading_page": limitations_page,

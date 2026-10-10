@@ -12,7 +12,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 ARR = ROOT / "manuscript-arr"
 OUT = ROOT / "research" / "artifacts" / "acl-arr-draft-readiness-audit-174.json"
-EXPECTED_PAGES = 17  # 15 before the ported appendix additions; see REVISION-NOTES
+EXPECTED_PAGES = 18  # 15 originally, 17 after the port, 18 after the review revision; see REVISION-NOTES
 
 
 def sha256(path: Path) -> str:
@@ -39,7 +39,7 @@ def main() -> None:
         (ROOT / "research/artifacts/acl-arr-license-audit-178.json").read_text(encoding="utf-8")
     )
     manuscript_archive = json.loads(
-        (ROOT / "research/artifacts/acl-arr-manuscript-archive-audit-230.json").read_text(encoding="utf-8")
+        (ROOT / "research/artifacts/acl-arr-manuscript-archive-audit-232.json").read_text(encoding="utf-8")
     )
     pubcheck_preflight = json.loads(
         (ROOT / "research/artifacts/acl-arr-pubcheck-preflight-180.json").read_text(encoding="utf-8")
@@ -136,7 +136,7 @@ def main() -> None:
         ),
         "manuscript_source_archive_verified": (
             manuscript_archive["status"] == "passed"
-            and manuscript_archive["entry_count"] == 10
+            and manuscript_archive["entry_count"] == 11
             and len(manuscript_archive["independent_compile"]["command_exit_codes"]) >= 4
             and all(code == 0 for code in manuscript_archive["independent_compile"]["command_exit_codes"])
             and manuscript_archive["checks"].get("line_numbers_settled") is True

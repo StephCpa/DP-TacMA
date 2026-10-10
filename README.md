@@ -40,6 +40,15 @@ direct-sampling baseline is drafted as protocol 227
 (`materials/research/progress/direct-sampling-baseline-protocol-227.md`) and
 has not been run.
 
+## Review revision (2026-10-10)
+
+The ARR manuscript was revised in response to a pre-submission review: a
+narrowed title and scope, parser-conditional headroom claims with exact
+intervals, a monotone-calibration privacy proof, and the exploratory studies
+moved to the appendix. See `materials/manuscript-arr/REVIEW-RESPONSE-2026-10-10.md`.
+The anonymous reproducibility supplement is
+`materials/research/data/acl-arr-anonymous-supplement-233.zip`.
+
 ## Reproduction and credential policy
 
 Run experiments only from a separately configured local checkout. Set provider
